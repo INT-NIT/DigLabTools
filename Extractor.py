@@ -86,7 +86,6 @@ def load_form(file):
             res=list()
             print(type(fields))
             for f in fields:
-                # pp.pprint (resolve1(f)) get raw dict from the pdf
                 res.append(load_fields(resolve1(f)).copy())
 
     return res
@@ -113,4 +112,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
