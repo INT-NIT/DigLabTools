@@ -95,7 +95,7 @@ def parse_cli():
     """Load command line arguments"""
     parser = ArgumentParser(description='Dump the form contents of a PDF.')
     parser.add_argument('file', metavar='pdf_form',
-        help='PDF Form to dump the contents of')
+        help='PDF form to dump the contents of')
     parser.add_argument('-o', '--out', help='Write output to file',
         default=None, metavar='FILE')
     return parser.parse_args()
