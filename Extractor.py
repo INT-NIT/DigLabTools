@@ -46,7 +46,7 @@ def load_fields(field):
 
 def decode_value(value):
     """
-    Decode bytes to string because i m lazy 
+    Decode bytes to string
 
     Args:
         value ([byte]): [bytes to decode]
