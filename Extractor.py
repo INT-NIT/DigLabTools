@@ -26,7 +26,7 @@ def load_fields(field):
    Recursively load form fields
 
     Args:
-        field ([list]): [list of field fill on the pdf]
+        field ([list]): [list of fields fill on the pdf]
 
     Returns:
         [dict]: [dictionary { name of the field : value of the field}]
@@ -113,7 +113,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 
 
 
