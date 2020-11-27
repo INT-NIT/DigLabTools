@@ -7,7 +7,7 @@
 # Last Modified: Thursday, 26th November 2020 2:47:47 pm
 # Modified By: garcia.j (Jeremy.garcia@univ-amu.fr)
 # -----
-# Copyright - 2020 MIT, Institue de neurosciences de la Timone
+# Copyright - 2020 MIT, Institut de neurosciences de la Timone
 '''
 
 
@@ -113,6 +113,5 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 
 
