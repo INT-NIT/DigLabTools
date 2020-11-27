@@ -36,7 +36,7 @@ def load_fields(field):
         return [load_fields(resolve1(f)) for f in form]
     else:
         # Some field types, like signatures, need extra resolving
-        dictionary_value = {decode_value(field.get('T')) if type(field.get('T')) is not type(None) else field.get('T') : resolve1(field.get('V')) }
+        dictionary_value = {decode_value(field.get('T')) if not (field.get('T') is None) else field.get('T') : resolve1(field.get('V')) }
         for _ in dictionary_value :
             dictionary_value[_] = decode_value(dictionary_value[_])
             # if there is a list in value of the dictionary
@@ -113,5 +113,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 
