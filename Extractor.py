@@ -26,10 +26,10 @@ def load_fields(field):
    Recursively load form fields
 
     Args:
-        field ([list]): [list of fields fill on the pdf]
+        field (list): list of fields fill on the pdf
 
     Returns:
-        [dict]: [dictionary { name of the field : value of the field}]
+        dict: dictionary { name of the field : value of the field}
     """
     form = field.get('Kids', None)
     if form:
@@ -49,10 +49,10 @@ def decode_value(value):
     Decode bytes to string
 
     Args:
-        value ([byte]): [bytes to decode]
+        value (byte): bytes to decode
 
     Returns:
-        [str]: [bytes decoded to str]
+        str: bytes decoded to str
     """
     # decode bytes
     if isinstance(value, bytes):
@@ -62,16 +62,14 @@ def decode_value(value):
 
 def load_form(file):
     """
-    Load form from file
-
     Args:
-        file ([path]): [path to the PDF file]
+        file (path): path to the PDF file
 
     Raises:
-        ValueError: [No AcroForm Found]
+        ValueError: No AcroForm Found
 
     Returns:
-        [list]: [list of dict {name : values} from the pdf]
+         list: list of dict {name : values} from the pdf
     """
     with open(file, 'rb') as fp:
             parser = PDFParser(fp)
@@ -84,7 +82,6 @@ def load_form(file):
 
             fields = resolve1(doc.catalog['AcroForm'])['Fields']  # may need further resolving
             res=list()
-            print(type(fields))
             for f in fields:
                 res.append(load_fields(resolve1(f)).copy())
 
@@ -94,19 +91,23 @@ def load_form(file):
 def parse_cli():
     """Load command line arguments"""
     parser = ArgumentParser(description='Dump the form contents of a PDF.')
+    parser.add_argument('-d','--debug',action="store_true",
+        help='PDF form to dump the contents of')
     parser.add_argument('file', metavar='pdf_form',
         help='PDF form to dump the contents of')
     parser.add_argument('-o', '--out', help='Write output to file',
         default=None, metavar='FILE')
+    
     return parser.parse_args()
 
 def main():
     args = parse_cli()
-    form = load_form(args.file)
+    form =load_form(args.file)
     if args.out:
         with open(args.out, 'w') as outfile:
                 json.dump(form , outfile)
-    else:
+
+    if args.debug:
         pp = pprint.PrettyPrinter(indent=2)
         pp.pprint(form)
 
