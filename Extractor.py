@@ -1,15 +1,37 @@
 '''
+This code can be used to extract metadata from a PDF form following the DigLab layout.
+Example:
+
+    $ python Extractor.py  --debug -s -o [output file]  [inputfile] 
+
+
+Usage:
+
+Extractor.py [-h] [-d] [-o FILE] [-s] pdf_form
+
+    Dump the form contents of a PDF.
+
+    positional arguments:
+    pdf_form             PDF form to dump the contents of
+
+    optional arguments:
+    -h, --help           show this help message and exit
+    -d, --debug          PDF form to dump the contents of
+    -o FILE, --out FILE  Write output to file
+    -s, --safe           Safe mode that do not allow overwriting output file
+
+Todo:
+
 # File: Extractor.py
 # Project: DICE
-# File Created: Thursday, 26th November 2020 2:47:01 pm
+# File Created: Friday, 27th November 2020 9:50:16 am
 # Author: garcia.j (Jeremy.garcia@univ-amu.fr)
 # -----
-# Last Modified: Thursday, 26th November 2020 2:47:47 pm
+# Last Modified: Monday, 30th November 2020 5:15:03 pm
 # Modified By: garcia.j (Jeremy.garcia@univ-amu.fr)
 # -----
-# Copyright - 2020 MIT, Institut de neurosciences de la Timone
+# Copyright - 2020 MIT, Institue de neurosciences de la Timone
 '''
-
 
 from pdfminer.pdfparser import PDFParser
 from pdfminer.pdfdocument import PDFDocument
