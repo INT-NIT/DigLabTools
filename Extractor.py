@@ -19,7 +19,7 @@ from pdfminer.utils import decode_text
 from argparse import ArgumentParser
 import pprint
 import json
-
+import os
 
 def load_fields(field):
     """
@@ -99,6 +99,8 @@ def parse_cli():
         help='PDF form to dump the contents of')
     parser.add_argument('-o', '--out', help='Write output to file',
         default=None, metavar='FILE')
+    parser.add_argument('-s', '--safe', help='Safe mode that do not allow overwriting output file',
+        action="store_true",  default=None)
 
     return parser.parse_args()
 
@@ -106,8 +108,12 @@ def main():
     args = parse_cli()
     form =load_form(args.file)
     if args.out:
-        with open(args.out, 'w') as outfile:
-                json.dump(form , outfile)
+        if args.safe and os.path.isfile(args.out):
+            print("WARNING : safe mode does not allow to overwrite file ")
+            exit(1)
+        else :
+            with open(args.out, 'w') as outfile:
+                    json.dump(form , outfile)
 
     if args.debug:
         pp = pprint.PrettyPrinter(indent=2)
