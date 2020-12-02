@@ -20,7 +20,6 @@ Extractor.py [-h] [-d] [-o FILE] [-s] pdf_form
     -o FILE, --out FILE  Write output to file
     -s, --safe           Safe mode that do not allow overwriting output file
 
-Todo:
 
 # File: Extractor.py
 # Project: DICE
@@ -52,6 +51,7 @@ def load_fields(field):
 
     Returns:
         dict: dictionary { name of the field : value of the field}
+    
     """
     form = field.get('Kids', None)
     if form:
