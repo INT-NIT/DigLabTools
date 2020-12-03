@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xfdf xmlns="http://ns.adobe.com/xfdf/" xml:space="preserve">
+<f href="TestDigLaB_p1-2_form_get_item_name.pdf"/>
+<fields>
+<field name="Eyelink">
+<field name="gain_X">
+<value>3.1415</value>
+</field>
+<field name="gain_Y">
+<value>9.265</value>
+</field>
+<field name="offset_X">
+<value>28.1235</value>
+</field>
+<field name="offset_Y">
+<value>8.1321</value>
+</field>
+</field>
+<field name="Kinarm">
+<field name="elbow">
+<value>11</value>
+</field>
+<field name="shoulder">
+<value>4</value>
+</field>
+</field>
+<field name="EyeScreen">
+<field name="distX">
+<value>9</value>
+</field>
+<field name="distY">
+<value>12</value>
+</field>
+<field name="distZ">
+<value>20</value>
+</field>
+</field>
+</fields>
+<ids original="3D07F211B5B167B13478E4AD0EFDCE2D" modified="C9C1045157AC6E4295639EEDD2FB094F"/>
+</xfdf>
