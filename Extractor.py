@@ -55,7 +55,6 @@ def get_all(data):
         Returns:
             [d]: dictionary
 
-        TODO: maybe do this recursively
         """
         d = dict(data[0])
         for state in data:
@@ -107,7 +106,7 @@ def load_fields(field):
         dict: dictionary { name of the field : value of the field}
 
     TODO: Their is no field called child anymore. Keeping it in case of a new structure format, care double check on the Field.get('T')) to remove
-    
+
     """
     form = field.get('Kids', None)
     if form:
