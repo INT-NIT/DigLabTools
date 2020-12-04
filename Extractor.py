@@ -2,24 +2,24 @@
 This code can be used to extract metadata from a PDF form following the DigLab layout.
 Example:
 
-    $ python Extractor.py  --debug -s -o [output file]  [inputfile] 
+    $ python Extractor.py  --debug -s -o [output file]  [inputfile]
 
 
-Usage:
+usage:
 
-Extractor.py [-h] [-d] [-o FILE] [-s] pdf_form
+Extractor.py [-h] [-d] [-o FILE] [-s] [-a DIR] pdf_form
 
-    Dump the form contents of a PDF.
+Dump the form contents of a PDF.
 
-    positional arguments:
+positional arguments:
     pdf_form             PDF form to dump the contents of
 
-    optional arguments:
+optional arguments:
     -h, --help           show this help message and exit
     -d, --debug          PDF form to dump the contents of
     -o FILE, --out FILE  Write output to file
     -s, --safe           Safe mode that do not allow overwriting output file
-
+    -a DIR, --ando DIR   Create a directory from the Diglab from
 
 # File: Extractor.py
 # Project: DICE
@@ -41,6 +41,60 @@ from argparse import ArgumentParser
 import pprint
 import json
 import os
+import datetime
+
+
+
+def get_all(data):
+        """
+        tranform a list of dict to a dict
+
+        Args:
+            data ([list]): list of dict , information get from the pdf
+
+        Returns:
+            [d]: dictionary
+
+        TODO: maybe do this recursively
+        """
+        d = dict(data[0])
+        for state in data:
+            if isinstance(state,list):
+                for i in state:
+                    d.update(**i)
+            else :
+                d.update(**state)
+        return d
+
+def create_AnDO(dictFromPDF,pathToDir):
+    """
+    Create directory from PDF information
+
+    Args:
+        dictFromPDF (dict): dict with information filled from the PDF
+        pathToDir (str): path to directory where the AnDO structure will be created
+    """
+
+    dirnames=list()
+    dic=get_all(dictFromPDF)
+    dirnames.append("exp-"+str(dic["expName"])+"/"+"sub-"+str(dic["guid"])+"/"+'ses-'
+                +str(datetime.datetime.strptime(dic["dateSession"], "%d/%m/%Y").strftime("%Y%m%d"))+"_"+str(dic["sesNumber"])+"_"+str(dic["customSesField"])+"/derivatives")
+    dirnames.append("exp-"+str(dic["expName"])+"/"+"sub-"+str(dic["guid"])+"/"+'ses-'
+                +str(datetime.datetime.strptime(dic["dateSession"], "%d/%m/%Y").strftime("%Y%m%d"))+"_"+str(dic["sesNumber"])+"_"+str(dic["customSesField"])+"/rawdata")
+    dirnames.append("exp-"+str(dic["expName"])+"/"+"sub-"+str(dic["guid"])+"/"+'ses-'
+                +str(datetime.datetime.strptime(dic["dateSession"], "%d/%m/%Y").strftime("%Y%m%d"))+"_"+str(dic["sesNumber"])+"_"+str(dic["customSesField"])+"/metadata")
+
+    for directory in dirnames:
+
+            try:
+                # Create the directories is they do not exist
+                os.makedirs(pathToDir+'/'+str(directory))
+            except OSError:
+                # Error handling when directory already exists
+                print("Creation of the directory %s failed, already exist" % directory)
+            else:
+                print("Successfully created the directory %s " % directory)
+
 
 def load_fields(field):
     """
@@ -51,14 +105,17 @@ def load_fields(field):
 
     Returns:
         dict: dictionary { name of the field : value of the field}
+
+    TODO: Their is no field called child anymore. Keeping it in case of a new structure format, care double check on the Field.get('T')) to remove
     
     """
     form = field.get('Kids', None)
     if form:
-        return [load_fields(resolve1(f)) for f in form]
+       #return [load_fields(resolve1(f)) for f in form]
+       pass
     else:
         # Some field types, like signatures, need extra resolving
-        key = decode_value(field.get('T')) if not (field.get('T') is None) else field.get('T')
+        key = decode_value(field.get('T')) if (str(field.get('T')) != None) else field.get('T')
         value = resolve1(field.get('V'))
         dictionary_value = {key : value}
         for _ in dictionary_value :
@@ -107,7 +164,10 @@ def load_form(file):
             fields = resolve1(doc.catalog['AcroForm'])['Fields']  # may need further resolving
             res=list()
             for f in fields:
-                res.append(load_fields(resolve1(f)).copy())
+                if load_fields(resolve1(f)) == None  :
+                    continue
+                else :
+                     res.append( load_fields(resolve1(f)))
 
     return res
 
@@ -123,6 +183,8 @@ def parse_cli():
         default=None, metavar='FILE')
     parser.add_argument('-s', '--safe', help='Safe mode that do not allow overwriting output file',
         action="store_true",  default=None)
+    parser.add_argument('-a', '--ando', help='Create a directory from the Diglab from',
+        default=None, metavar='DIR')
 
     return parser.parse_args()
 
@@ -136,6 +198,10 @@ def main():
         else :
             with open(args.out, 'w') as outfile:
                     json.dump(form , outfile)
+
+    if args.ando:
+        create_AnDO(form,args.ando)
+
 
     if args.debug:
         pp = pprint.PrettyPrinter(indent=2)
