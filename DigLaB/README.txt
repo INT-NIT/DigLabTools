@@ -2,14 +2,14 @@ DigLaB v1.0
 Fred Barthelemy June 2020
 ==============================
 Installlation:
-Copiez simplement le dossier DigLaB � l'emplacement souhait�.
-Ne changez pas l'emplacement ni les noms des r�pertoires Templates et Parameters
+Copiez simplement le dossier DigLaB à l'emplacement souhaité.
+Ne changez pas l'emplacement ni les noms des répertoires Templates et Parameters
 
-Resolution de probl�mes li�s aux param�tres de s�curit� de acrobat reader:
-    - Allez dans Edition/Pr�f�rences
-    - Ouvrir la partie Protection (renforc�e)
-    - V�rifier que la case "Activer le mode prot�g� au d�marrage" n'es pas coch�e.
-    - Ajouter le dossier DigLaB avec son chemin complet aux emplacements privil�gi�s.
+Resolution de problèmes liés aux paramètres de sécurité de acrobat reader:
+    - Allez dans Edition/Préférences
+    - Ouvrir la partie Protection (renforcée)
+    - Vérifier que la case "Activer le mode protégé au démarrage" n'es pas cochée.
+    - Ajouter le dossier DigLaB avec son chemin complet aux emplacements privilégiés.
       Pour cela cliquer en bas de la page sur "Ajouter un chemin de dossier"
       Rechercher le dossier DigLaB sur votre ordinateur
 
