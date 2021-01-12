@@ -116,7 +116,7 @@ def parse_cli():
     """Load command line arguments"""
     parser = ArgumentParser(description='Dump the form contents of a PDF.')
     parser.add_argument('-d','--debug',action="store_true",
-        help='PDF form to dump the contents of')
+        help='Activate verbose debug mode')
     parser.add_argument('file', metavar='pdf_form',
         help='PDF form to dump the contents of')
     parser.add_argument('-o', '--out', help='Write output to file',
@@ -133,7 +133,7 @@ def main():
         if args.safe and os.path.isfile(args.out):
             print("WARNING : safe mode does not allow to overwrite file ")
             exit(1)
-        else :
+        else:
             with open(args.out, 'w') as outfile:
                     json.dump(form , outfile)
 
