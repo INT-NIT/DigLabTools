@@ -1,4 +1,4 @@
-'''
+"""
 This code can be used to extract metadata from a PDF form following the DigLab layout.
 Example:
 
@@ -21,26 +21,18 @@ Extractor.py [-h] [-d] [-o FILE] [-s] pdf_form
     -s, --safe           Safe mode that do not allow overwriting output file
 
 
-# File: Extractor.py
-# Project: DICE
-# File Created: Friday, 27th November 2020 9:50:16 am
-# Author: garcia.j (Jeremy.garcia@univ-amu.fr)
-# -----
-# Last Modified: Monday, 30th November 2020 5:15:03 pm
-# Modified By: garcia.j (Jeremy.garcia@univ-amu.fr)
-# -----
-# Copyright - 2020 MIT, Institue de neurosciences de la Timone
-'''
+Copyright - 2020 - 2021 MIT, Institut de Neurosciences de la Timone
+"""
 
 from pdfminer.pdfparser import PDFParser
 from pdfminer.pdfdocument import PDFDocument
 from pdfminer.pdftypes import resolve1
-from pdfminer.psparser import PSLiteral, PSKeyword
 from pdfminer.utils import decode_text
 from argparse import ArgumentParser
 import pprint
 import json
 import os
+
 
 def load_fields(field):
     """
@@ -60,13 +52,14 @@ def load_fields(field):
         # Some field types, like signatures, need extra resolving
         key = decode_value(field.get('T')) if not (field.get('T') is None) else field.get('T')
         value = resolve1(field.get('V'))
-        dictionary_value = {key : value}
-        for _ in dictionary_value :
+        dictionary_value = {key: value}
+        for _ in dictionary_value:
             dictionary_value[_] = decode_value(dictionary_value[_])
             # if there is a list in value of the dictionary
             if isinstance(dictionary_value[_], list):
-                    dictionary_value[_]=[decode_value(x) for x in dictionary_value[_]]
-        return(dictionary_value)
+                dictionary_value[_] = [decode_value(x) for x in dictionary_value[_]]
+        return (dictionary_value)
+
 
 def decode_value(value):
     """
@@ -96,18 +89,18 @@ def load_form(file):
          list: list of dict {name : values} from the pdf
     """
     with open(file, 'rb') as fp:
-            parser = PDFParser(fp)
-            pp = pprint.PrettyPrinter(indent=2)
-            doc = PDFDocument(parser)
-            res = resolve1(doc.catalog)
+        parser = PDFParser(fp)
+        pp = pprint.PrettyPrinter(indent=2)
+        doc = PDFDocument(parser)
+        res = resolve1(doc.catalog)
 
-            if 'AcroForm' not in res:
-                raise ValueError("No AcroForm Found")
+        if 'AcroForm' not in res:
+            raise ValueError("No AcroForm Found")
 
-            fields = resolve1(doc.catalog['AcroForm'])['Fields']  # may need further resolving
-            res=list()
-            for f in fields:
-                res.append(load_fields(resolve1(f)).copy())
+        fields = resolve1(doc.catalog['AcroForm'])['Fields']  # may need further resolving
+        res = list()
+        for f in fields:
+            res.append(load_fields(resolve1(f)).copy())
 
     return res
 
@@ -115,31 +108,33 @@ def load_form(file):
 def parse_cli():
     """Load command line arguments"""
     parser = ArgumentParser(description='Dump the form contents of a PDF.')
-    parser.add_argument('-d','--debug',action="store_true",
-        help='Activate verbose debug mode')
+    parser.add_argument('-d', '--debug', action="store_true",
+                        help='Activate verbose debug mode')
     parser.add_argument('file', metavar='pdf_form',
-        help='PDF form to dump the contents of')
+                        help='PDF form to dump the contents of')
     parser.add_argument('-o', '--out', help='Write output to file',
-        default=None, metavar='FILE')
+                        default=None, metavar='FILE')
     parser.add_argument('-s', '--safe', help='Safe mode that do not allow overwriting output file',
-        action="store_true",  default=None)
+                        action="store_true", default=None)
 
     return parser.parse_args()
 
+
 def main():
     args = parse_cli()
-    form =load_form(args.file)
+    form = load_form(args.file)
     if args.out:
         if args.safe and os.path.isfile(args.out):
             print("WARNING : safe mode does not allow to overwrite file ")
             exit(1)
         else:
             with open(args.out, 'w') as outfile:
-                    json.dump(form , outfile)
+                json.dump(form, outfile)
 
     if args.debug:
         pp = pprint.PrettyPrinter(indent=2)
         pp.pprint(form)
+
 
 if __name__ == '__main__':
     main()
