@@ -1,1 +1,6 @@
 pdfminer.six
+pandas
+pycap
+json
+pytest
+
