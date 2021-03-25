@@ -19,7 +19,7 @@ setup(
         "": ["*.json", '*.csv','*.zip'],
     },
 
-    author="Julia Sprenger , Jeremy Garcia",
+    author="Julia Sprenger, Jeremy Garcia",
     description="Tools to interact with the DigLab metadata collection standard",
     license='MIT',
     install_requires=[],
