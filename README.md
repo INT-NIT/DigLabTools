@@ -9,4 +9,4 @@ Go in ```redcap_bridge/``` then create a copy of the file ```config_template.yam
 
 ```
 
-and replace the API key wit the one that have given to you in ```config.yaml```.
+and replace the API token with the one provided by the RedCap server in ```config.yaml```.
