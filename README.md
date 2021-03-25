@@ -1,4 +1,4 @@
-# DICE
+# DigLabTools
 
 # Install the api key
 
