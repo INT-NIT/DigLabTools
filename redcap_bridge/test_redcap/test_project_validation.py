@@ -42,4 +42,6 @@ def test_load_records():
 def test_validate():
     records = load_records()
     template = load_template('testfiles/Diglabform_2021-02-15_1731.zip')
+    template = load_template('testfiles/DiglabformV4a_2021-03-17_1038.zip')
+
     validate(template, records)

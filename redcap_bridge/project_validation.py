@@ -1,12 +1,63 @@
-import pandas as pd
-import zipfile
 import pathlib
 import shutil
-import redcap
 import json
+import redcap
+import zipfile
+import pandas as pd
+from redcap_bridge.utils import map_header_json_to_csv
+
+index_column_header = 'Variable / Field Name'
 
 
-def validate(template, record):
+def validate_project_against_template_parts(project, *templates):
+    """
+    Validate a built project csv
+    Args:
+        project: (str, buffer)
+            Filepath of the csv file or csv buffer of the built project
+        templates: (str, list)
+            List of file paths of the template part csvs.
+
+    Returns:
+        (bool): True if the validation was successful
+    """
+
+    df_project = pd.read_csv(project)
+    # unify column names to conform to csv style
+    df_project = df_project.rename(columns=map_header_json_to_csv)
+    df_project.index = df_project[index_column_header]
+    dfs_templates = []
+
+    if not templates:
+        raise ValueError('No template_parts to validate against were specified.')
+
+    for template in templates:
+        df_template = pd.read_csv(template)
+        df_template.index = df_template[index_column_header]
+        dfs_templates.append(df_template)
+
+    # compare content of template_parts and project
+    for template_df in dfs_templates:
+        if not all(template_df.columns == df_project.columns):
+            raise ValueError(f'Incompatible columns in project '
+                             f'({project.columns}) and template '
+                             f'({template_df.columns})')
+
+        for i in template_df.index:
+            if i not in df_project.index:
+                raise ValueError(f'Row {i} is missing in project csv')
+
+            # compare entries of the row and exclude `na` entries
+            na_values = template_df.loc[i].isna()
+            equal_entries = df_project.loc[i] == template_df.loc[i]
+            if not (equal_entries | na_values).all():
+                raise ValueError(f'Row {i} is differs between project csv and '
+                                 f'template')
+
+    print('Validation successful')
+    return True
+
+def validate_record_against_template(template, record):
     """
     Validate a RedCap record against a template instrument
 
@@ -126,8 +177,18 @@ def load_records():
     return data
 
 
+
 if __name__ == '__main__':
+    # TODO: This should go into tests
+
+    print('Running V4A project build and validation')
+    from redcap_bridge.project_building import build_project
+    build_project('../projects/V4A/V4A_structure.csv', 'tmp_V4A.csv')
+    validate_project_against_template_parts('tmp_V4A.csv', '../template_parts/general.csv', '../template_parts/eyelink.csv', '../template_parts/kinarm.csv')
+
+
+    ##
     records = load_records()
     template = load_template()
     for record in records:
-        validate(template, record)
+        validate_record_against_template(template, record)
