@@ -2,6 +2,8 @@ import redcap
 import json
 import pandas as pd
 
+from redcap_bridge.utils import map_header_csv_to_json
+
 def upload_datadict(csv_file, server_config_json):
     """
     Upload data dictionary to the redcap server.
@@ -17,10 +19,11 @@ def upload_datadict(csv_file, server_config_json):
     """
 
     df = pd.read_csv(csv_file, dtype=str)
+    df.rename(columns=map_header_csv_to_json, inplace=True)
 
     # Upload csv using pycap
     config = json.load(open(server_config_json, 'r'))
-    redproj = redcap.Project(config['api_url'], config['api_token'])
+    redproj = redcap.Project(config['api_url'], config['api_token'], lazy=False)
     n = redproj.import_metadata(df, format='csv', return_format='json')
     return n
 

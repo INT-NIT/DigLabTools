@@ -25,8 +25,11 @@ def build_project(project_csv, output_file=None):
     """
     output = []
 
+    if isinstance(project_csv, str):
+        project_csv = pathlib.Path(project_csv)
+
     with open(project_csv) as f:
-        project_dir = pathlib.Path(project_csv).parent
+        project_dir = project_csv.parent
         for line in f.readlines():
             # if line only contains reference then include reference here
             if line[0] == '{' and line[-2:] == '}\n' and not (',' in line):
