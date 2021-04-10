@@ -59,20 +59,27 @@ def validate_project_against_template_parts(project, *templates):
     print('Validation successful')
     return True
 
-def validate_record_against_template(template, record):
+def validate_record_against_template(record_csv, template_csv):
     """
     Validate a RedCap record against a template instrument
 
-    Args:
-        template: (dataframe) template structure of an instrument
-        record: (dataframe) data of a single record
+    Parameters
+    ----------
+    record: (path)
+            path to the record csv of that instrument
+        template: (path)
+            path to the template csv of an instrument
 
-    Returns:
+    Returns
+    -------
         True
 
     Raises:
         ValueError in case of failing validation
     """
+
+    template = pd.read_csv(template_csv)
+    record = pd.read_csv(record_csv)
 
     assert 'Variable / Field Name' in template
 
