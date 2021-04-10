@@ -2,8 +2,11 @@ import pathlib
 import json
 import pandas as pd
 import numpy as np
+import redcap_bridge
 from redcap_bridge.project_validation import validate_project_against_template_parts
 from redcap_bridge.utils import map_header_json_to_csv
+
+template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
 
 
 def build_project(project_csv, output_file=None):
@@ -29,11 +32,11 @@ def build_project(project_csv, output_file=None):
         project_csv = pathlib.Path(project_csv)
 
     with open(project_csv) as f:
-        project_dir = project_csv.parent
         for line in f.readlines():
             # if line only contains reference then include reference here
             if line[0] == '{' and line[-2:] == '}\n' and not (',' in line):
-                include_file = (project_dir / pathlib.Path(line[1:-2])).resolve()
+                template_name = pathlib.Path(line[1:-2]).with_suffix('.csv')
+                include_file = (template_dir / template_name).resolve()
 
                 if not include_file.exists():
                     raise ValueError(f'Can not build project {project_csv}. '
@@ -119,7 +122,8 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
 
     return combined_df
 
-def extract_customization(project_csv, custom_csv, *template_csvs):
+
+def extract_customization(project_csv, export_custom_csv, *template_parts):
     """
     Extract custom parts of a project data dict by subtracting template parts
 
@@ -133,15 +137,16 @@ def extract_customization(project_csv, custom_csv, *template_csvs):
     """
 
     # ensure the project csv is compatible with the templates
-    validate_project_against_template_parts(project_csv, *template_csvs)
+    validate_project_against_template_parts(project_csv, *template_parts)
 
     custom_df = pd.read_csv(project_csv, dtype=str)
     custom_df = custom_df.rename(columns=map_header_json_to_csv)
     custom_df.index = custom_df['Variable / Field Name']
     custom_df.drop('Variable / Field Name', axis=1, inplace=True)
 
-    for template_csv in template_csvs:
-        template_df = pd.read_csv(template_csv, dtype=str)
+    for template_part in template_parts:
+        template_path = (template_dir / template_part).with_suffix('.csv')
+        template_df = pd.read_csv(template_path, dtype=str)
         template_df.index = template_df['Variable / Field Name']
         template_df.drop('Variable / Field Name', axis=1, inplace=True)
 
@@ -149,13 +154,19 @@ def extract_customization(project_csv, custom_csv, *template_csvs):
         custom_df[mask] = np.nan
         # keep variable / field name column entries
 
+    # remove custom structural fields (from structure.csv)
+    mask = ((custom_df['Form Name'].isna()) & (custom_df['Field Type'].isna()) &
+             (custom_df['Field Label'].isna()))
+    custom_df = custom_df.loc[mask]
+
+
     # remove rows and columns that don't contain custom infos
     custom_df.dropna(axis=0, how='all', inplace=True)
     custom_df.dropna(axis=1, how='all', inplace=True)
 
     # save the resulting customization csv
-    if custom_csv is not None:
-        custom_df.to_csv(custom_csv, index=False)
+    if export_custom_csv is not None:
+        custom_df.to_csv(export_custom_csv, index=True)
 
 
 if __name__ == '__main__':
