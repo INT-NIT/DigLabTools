@@ -1,0 +1,5 @@
+Variable / Field Name,Form Name,Section Header,Field Type,Field Label,"Choices, Calculations, OR Slider Labels",Field Note,Text Validation Type OR Show Slider Number,Text Validation Min,Text Validation Max,Identifier?,Branching Logic (Show field only if...),Required Field?,Custom Alignment,Question Number (surveys only),Matrix Group Name,Matrix Ranking?,Field Annotation
+eye_screen_distance,diglabform,,descriptive,Eye Screen Distance,,,,,,,,,,,,,
+eye_screen_distance_x,diglabform,,text,X,,in cm,,,,,,y,,,,,
+eye_screen_distance_y,diglabform,,text,Y,,in cm,number,,,,,y,,,,,
+eye_screen_distance_z,diglabform,,text,Z,,in cm,number,,,,,y,,,,,

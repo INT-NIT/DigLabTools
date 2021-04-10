@@ -1,0 +1,8 @@
+Variable / Field Name,Form Name,Section Header,Field Type,Field Label,"Choices, Calculations, OR Slider Labels",Field Note,Text Validation Type OR Show Slider Number,Text Validation Min,Text Validation Max,Identifier?,Branching Logic (Show field only if...),Required Field?,Custom Alignment,Question Number (surveys only),Matrix Group Name,Matrix Ranking?,Field Annotation
+kinarm_txt,diglabform,,descriptive,Kinarm & Eyelink Configuration,,,,,,,,,,,,,
+kinarm_shoulder,diglabform,,text,Shoulder,,in inch,number,,,,,y,,,,,
+kinarm_elbow,diglabform,,text,Elbow,,in cm,number,,,,,y,,,,,
+eyelink_offset_x,diglabform,,text,Offset X,,in V,,,,,,y,,,,,
+eyelink_offset_y,diglabform,,text,Offset Y,,in V,,,,,,y,,,,,
+eyelink_gain_x,diglabform,,text,Gain X,,,,,,,,y,,,,,
+eyelink_gain_y,diglabform,,text,Gain Y,,,,,,,,y,,,,,
