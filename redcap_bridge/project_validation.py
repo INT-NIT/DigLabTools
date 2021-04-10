@@ -1,15 +1,14 @@
 import pathlib
-import shutil
-import json
-import redcap
-import zipfile
+
 import pandas as pd
+
 import redcap_bridge
 from redcap_bridge.utils import map_header_json_to_csv
 
 index_column_header = 'Variable / Field Name'
 
 template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
+
 
 def validate_project_against_template_parts(project, *templates):
     """
@@ -31,7 +30,8 @@ def validate_project_against_template_parts(project, *templates):
     dfs_templates = []
 
     if not templates:
-        raise ValueError('No template_parts to validate against were specified.')
+        raise ValueError(
+            'No template_parts to validate against were specified.')
 
     for template in templates:
         df_template = pd.read_csv((template_dir / template).with_suffix('.csv'))
@@ -58,6 +58,7 @@ def validate_project_against_template_parts(project, *templates):
 
     print('Validation successful')
     return True
+
 
 def validate_record_against_template(record_csv, template_csv):
     """

@@ -1,15 +1,17 @@
-import pytest
 import json
-import pathlib
-import redcap
+
 import pandas as pd
+import pytest
+
+import redcap
 from redcap_bridge.server_interface import upload_datadict
 from redcap_bridge.test_redcap.test_utils import (test_directory,
                                                   initialize_test_directory,
                                                   initialize_testfiles)
 from redcap_bridge.utils import map_header_csv_to_json
 
-SERVER_CONFIG_YAML = (test_directory / 'testfiles' / 'TestProject' / 'project.json').resolve()
+SERVER_CONFIG_YAML = (
+        test_directory / 'testfiles' / 'TestProject' / 'project.json').resolve()
 
 
 @pytest.fixture
@@ -19,7 +21,7 @@ def clean_server():
     redproj = redcap.Project(config['api_url'], config['api_token'], lazy=False)
 
     default_datadict = pd.DataFrame(data=[['record_id', 'my_first_instrument',
-                                           'text', 'Record ID'] + ['']*14],
+                                           'text', 'Record ID'] + [''] * 14],
                                     columns=map_header_csv_to_json)
     redproj.import_metadata(default_datadict, format='csv')
 
@@ -28,6 +30,7 @@ def clean_server():
     redproj.import_records(default_records,
                            format='csv', return_format='json',
                            overwrite="overwrite")
+
 
 def test_upload_datadict(clean_server, initialize_test_directory,
                          initialize_testfiles):

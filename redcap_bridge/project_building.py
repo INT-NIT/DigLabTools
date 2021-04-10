@@ -1,9 +1,11 @@
 import pathlib
-import json
-import pandas as pd
+
 import numpy as np
+import pandas as pd
+
 import redcap_bridge
-from redcap_bridge.project_validation import validate_project_against_template_parts
+from redcap_bridge.project_validation import \
+    validate_project_against_template_parts
 from redcap_bridge.utils import map_header_json_to_csv
 
 template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
@@ -165,9 +167,8 @@ def extract_customization(project_csv, export_custom_csv, *template_parts):
 
     # remove custom structural fields (from structure.csv)
     mask = ((custom_df['Form Name'].isna()) & (custom_df['Field Type'].isna()) &
-             (custom_df['Field Label'].isna()))
+            (custom_df['Field Label'].isna()))
     custom_df = custom_df.loc[mask]
-
 
     # remove rows and columns that don't contain custom infos
     custom_df.dropna(axis=0, how='all', inplace=True)
@@ -180,4 +181,3 @@ def extract_customization(project_csv, export_custom_csv, *template_parts):
 
 if __name__ == '__main__':
     pass
-

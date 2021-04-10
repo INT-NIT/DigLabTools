@@ -1,8 +1,10 @@
-import redcap
 import json
+
 import pandas as pd
 
+import redcap
 from redcap_bridge.utils import map_header_csv_to_json
+
 
 def upload_datadict(csv_file, server_config_json):
     """
@@ -71,7 +73,6 @@ def get_json_csv_header_mapping(server_config_json):
 
     # TODO: This function should replace utils.py/map_header_json_to_csv
     raise NotImplementedError()
-
 
 
 if __name__ == '__main__':

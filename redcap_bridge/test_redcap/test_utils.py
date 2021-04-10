@@ -1,8 +1,9 @@
-import pytest
 import os
 import pathlib
 import shutil
 import tempfile
+
+import pytest
 
 test_directory = pathlib.Path(tempfile.gettempdir()) / 'diglabtools_testfiles'
 
@@ -27,6 +28,7 @@ def initialize_test_directory(clean=True):
     if not os.path.exists(test_directory):
         os.mkdir(test_directory)
     return test_directory
+
 
 @pytest.fixture
 def initialize_testfiles():

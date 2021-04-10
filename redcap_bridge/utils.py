@@ -19,4 +19,3 @@ map_header_json_to_csv = {json: csv for json, csv in zip(header_json,
                                                          header_csv)}
 map_header_csv_to_json = {csv: json for csv, json in zip(header_csv,
                                                          header_json)}
-
