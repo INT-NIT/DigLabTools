@@ -4,7 +4,9 @@ import pathlib
 import redcap
 import pandas as pd
 from redcap_bridge.server_interface import upload_datadict
-from redcap_bridge.test_redcap.test_utils import test_directory
+from redcap_bridge.test_redcap.test_utils import (test_directory,
+                                                  initialize_test_directory,
+                                                  initialize_testfiles)
 from redcap_bridge.utils import map_header_csv_to_json
 
 SERVER_CONFIG_YAML = (test_directory / 'testfiles' / 'TestProject' / 'project.json').resolve()
