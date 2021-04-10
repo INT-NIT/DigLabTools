@@ -14,7 +14,8 @@ def build_project(project_csv, output_file=None):
     Build a complete RedCap Instrument CSV from a set of template_parts and a
     project csv file.
 
-    Args:
+    Parameters
+    ----------
         project_csv: (str)
             Filepath of the project csv file
         output_file: (str,None)
@@ -22,7 +23,8 @@ def build_project(project_csv, output_file=None):
             template_parts. If None, the content is only returned and not saved.
             Default: None
 
-    Returns:
+    Returns
+    -------
         (list) list containing the lines of the complete project definition
         including the template content
     """
@@ -68,7 +70,8 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
     This can be used to e.g. change the default values of fields or customize
     the list of experimenters to be selected
 
-    Args:
+    Parameters
+    ----------
         project_built_csv: (str)
             The filepath to the csv containing the built project
             (see also `build_project`)
@@ -78,7 +81,8 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
         output_file: (str)
             The path to save the combined csv. Default: None
 
-    Returns:
+    Returns
+    -------
         (dataframe) pandas dataframe csv representation of the customized
             project definition
     """
@@ -127,12 +131,17 @@ def extract_customization(project_csv, export_custom_csv, *template_parts):
     """
     Extract custom parts of a project data dict by subtracting template parts
 
-    Args:
-        project_csv:
-        custom_csv:
-        *template_csvs:
+    Parameters
+    ----------
+        project_csv: (path)
+            of complete project csv file
+        export_custom_csv: (path)
+            to store the resulting customization csv file
+        *template_parts: (list)
+            list of template parts included in the project
 
-    Returns:
+    Returns
+    -------
 
     """
 
@@ -170,37 +179,5 @@ def extract_customization(project_csv, export_custom_csv, *template_parts):
 
 
 if __name__ == '__main__':
-    # TODO: This should go into tests
-
-
-    print('Running V4A project build, customization and validation')
-    build_project('../projects/V4A/V4A_structure.csv', 'tmp_V4A.csv')
-    customize_project('tmp_V4A.csv', '../projects/V4A/V4A_customizations.csv',
-                      output_file='tmp_V4A_custom.csv')
-
-    from redcap_bridge.project_validation import validate_project_against_template_parts
-    validate_project_against_template_parts('tmp_V4A_custom.csv', '../template_parts/general.csv', '../template_parts/eyelink.csv', '../template_parts/kinarm.csv')
-
-
-    import redcap
-    # TODO: use server_interface functions for this
-    print('Download project csv and extract customized fields')
-    server_config = json.load(open(
-        '../../RedCap_forms_sandbox/projects/V4A/redcap_server_config.json',
-                                   'r'))
-    redproj = redcap.Project(server_config['api_url'],
-                             server_config['api_token'])
-    proj_string = redproj.export_metadata(format='csv')
-    with open('tmp_V4A_downloaded.csv', 'w') as f:
-        f.write(proj_string)
-
-    proj_conf_path = '../../RedCap_forms_sandbox/projects/V4A/V4A.json'
-    proj_conf = json.load(open(proj_conf_path, 'r'))
-    template_csvs = proj_conf['validation']
-    template_csvs = [(pathlib.Path(proj_conf_path).parent / template_csv).resolve()
-                     for template_csv in template_csvs]
-
-    extract_customization('tmp_V4A_downloaded.csv',
-                          'tmp_V4A_extracted_customization.csv',
-                          *template_csvs)
+    pass
 
