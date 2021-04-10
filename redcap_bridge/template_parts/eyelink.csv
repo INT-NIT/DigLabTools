@@ -1,5 +1,12 @@
 Variable / Field Name,Form Name,Section Header,Field Type,Field Label,"Choices, Calculations, OR Slider Labels",Field Note,Text Validation Type OR Show Slider Number,Text Validation Min,Text Validation Max,Identifier?,Branching Logic (Show field only if...),Required Field?,Custom Alignment,Question Number (surveys only),Matrix Group Name,Matrix Ranking?,Field Annotation
+eyelink_form_version,diglabform,,descriptive,Eyelink Form Version 0.0.1b,,,,,,,,,,,,, @HIDDEN
+eyelink_recorded_eye,diglabform,,dropdown,Recorded Eye,"left, Left | right, Right | both, Both | none, None",,,,,,,,,,,,
+eyelink_offset_x,diglabform,,text,Offset X,,,,,,,,y,,,,,
+eyelink_offset_y,diglabform,,text,Offset Y,,,,,,,,y,,,,,
+eyelink_gain_x,diglabform,,text,Gain X,,,,,,,,y,,,,,
+eyelink_gain_y,diglabform,,text,Gain Y,,,,,,,,y,,,,,
+data_quality_eye,diglabform,,radio,Eye movement data quality,"very-good, Very good | good, Good | bad-calibration, Bad calibration | noisy, Noisy | no-data, No data",,,,,,,y,,,,,
 eye_screen_distance,diglabform,,descriptive,Eye Screen Distance,,,,,,,,,,,,,
-eye_screen_distance_x,diglabform,,text,X,,in cm,,,,,,y,,,,,
+eye_screen_distance_x,diglabform,,text,X,,in cm,number,,,,,y,,,,,
 eye_screen_distance_y,diglabform,,text,Y,,in cm,number,,,,,y,,,,,
 eye_screen_distance_z,diglabform,,text,Z,,in cm,number,,,,,y,,,,,
