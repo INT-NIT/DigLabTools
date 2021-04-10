@@ -1,15 +1,13 @@
-Variable / Field Name,"Choices, Calculations, OR Slider Labels",Field Annotation
-ethical_protocol_id,"ethics_000000, 000000",@DEFAULT='ethics_000000'
-user,"user_brochier, Thomas Brochier | user_barthelemy, Fred Barthelemy",
-exp_name,"land, landing task | draw, drawing task",@DEFAULT='land'
-guid,"1234, Enya | 1235, Jazz",@DEFAULT='1234'
-kinarm_shoulder,,@DEFAULT='1'
-kinarm_elbow,,@DEFAULT='1'
-eyelink_offset_x,,@DEFAULT='1'
-eyelink_offset_y,,@DEFAULT='1'
-eyelink_gain_x,,@DEFAULT='1'
-eyelink_gain_y,,@DEFAULT='1'
-eye_screen_distance_x,,@DEFAULT='1'
-eye_screen_distance_y,,@DEFAULT='1'
-eye_screen_distance_z,,@DEFAULT='1'
-
+Variable / Field Name,Section Header,"Choices, Calculations, OR Slider Labels",Field Note,Field Annotation
+diglab,General,,,
+ethical_protocol_id,,"000000, 000000",, @DEFAULT='000000'
+user,,"sprenger.j, Julia Sprenger | man.b, Bat Man",,
+exp_name,,"rise, rising experiment | fall, falling experiment",,
+guid,,"1234, Ernie | 1235, Bert",,
+comments_exp,Comments on the ...,,,
+kinarm_recorded_hand,,,, @DEFAULT='right'
+kinarm_shoulder,,,in inch,
+kinarm_elbow,,,in cm,
+eyelink_recorded_eye,,,, @DEFAULT='left'
+eyelink_offset_x,,,in V,
+eyelink_offset_y,,,in V,
