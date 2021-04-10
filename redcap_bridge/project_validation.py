@@ -4,10 +4,12 @@ import json
 import redcap
 import zipfile
 import pandas as pd
+import redcap_bridge
 from redcap_bridge.utils import map_header_json_to_csv
 
 index_column_header = 'Variable / Field Name'
 
+template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
 
 def validate_project_against_template_parts(project, *templates):
     """
@@ -16,7 +18,7 @@ def validate_project_against_template_parts(project, *templates):
         project: (str, buffer)
             Filepath of the csv file or csv buffer of the built project
         templates: (str, list)
-            List of file paths of the template part csvs.
+            List of names of template parts to validate against.
 
     Returns:
         (bool): True if the validation was successful
@@ -32,7 +34,7 @@ def validate_project_against_template_parts(project, *templates):
         raise ValueError('No template_parts to validate against were specified.')
 
     for template in templates:
-        df_template = pd.read_csv(template)
+        df_template = pd.read_csv((template_dir / template).with_suffix('.csv'))
         df_template.index = df_template[index_column_header]
         dfs_templates.append(df_template)
 
@@ -155,17 +157,23 @@ def load_template(template_file):
     return df
 
 
-def load_records():
+def load_records(proj_json):
     """
     Load data of a record
 
-    Returns:
+    Parameters
+    ---------
+        proj_json: (path)
+            path of the project.json file
 
+    Returns
+    ------
+        pandas.dataframe
+            the recorded data as a dataframe
     """
 
     # load config
-    dir = pathlib.Path(__file__).parent.absolute()
-    with open(dir.joinpath('config.yaml')) as f:
+    with open(proj_json) as f:
         config = json.load(f)
 
     assert 'api_token' in config
@@ -177,18 +185,5 @@ def load_records():
     return data
 
 
-
 if __name__ == '__main__':
-    # TODO: This should go into tests
-
-    print('Running V4A project build and validation')
-    from redcap_bridge.project_building import build_project
-    build_project('../projects/V4A/V4A_structure.csv', 'tmp_V4A.csv')
-    validate_project_against_template_parts('tmp_V4A.csv', '../template_parts/general.csv', '../template_parts/eyelink.csv', '../template_parts/kinarm.csv')
-
-
-    ##
-    records = load_records()
-    template = load_template()
-    for record in records:
-        validate_record_against_template(template, record)
+    pass
