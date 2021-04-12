@@ -65,8 +65,10 @@ def download_records(save_to, server_config_json, format='csv'):
 
 def get_json_csv_header_mapping(server_config_json):
     """
-    Extract the mapping of json headers (underscore-based) to csv headers (
-    human readable)
+    Retruns
+    ----------
+    dict: 
+        Mapping of json to csv headers
 
     Returns:
         dict: Mapping of json to csv headers
