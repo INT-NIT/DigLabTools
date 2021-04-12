@@ -129,13 +129,18 @@ def validate_record_against_template(record_csv, template_csv):
     # ignore required 'checkbox' fields
     required_fields_df = required_fields_df.loc[
         required_fields_df['Field Type'] != 'checkbox']
-    required_fields = required_fields_df['Variable / Field Name'].values
+    Parameters
+    ----------
+    template_file: str 
+        zip filename of the template are stored
+    instrument: str 
+        name of the instrument to load
 
-    for required_field in required_fields:
-        empty_record_mask = record[required_field].isnull()
-        if empty_record_mask.values.any():
+    Returns
+    ----------
+    dataframe: 
+         structure of the instrument template
     """
-    Load template structure of an instrument
 
     Parameters
     ----------
