@@ -11,17 +11,21 @@ from redcap_bridge.utils import map_header_json_to_csv
 template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
 
 
-def build_project(project_csv, output_file=None):
-    """
-    Build a complete RedCap Instrument CSV from a set of template_parts and a
-    project csv file.
-
     Parameters
     ----------
-        project_csv: (str)
-            Filepath of the project csv file
-        output_file: (str,None)
-            Filepath of the resulting, complete project csv (with inserted
+    project_csv: str
+        Filepath of the project csv file
+    
+    output_file: str ,None
+        Filepath of the resulting, complete project csv (with inserted
+        template_parts. If None, the content is only returned and not saved.
+        Default: None
+
+    Returns
+    -------
+    list
+        list containing the lines of the complete project definition
+        including the template content
             template_parts. If None, the content is only returned and not saved.
             Default: None
 
