@@ -126,14 +126,19 @@ def validate_record_against_template(record_csv, template_csv):
     for required_field in required_fields:
         empty_record_mask = record[required_field].isnull()
         if empty_record_mask.values.any():
-            empty_record = record.loc[empty_record_mask]
-            raise ValueError(
-                f'records with {empty_record.index.name}='
-                f'{empty_record.index.tolist()} do not contain data in '
-                f'required field "{required_field}"')
+    """
+    Load template structure of an instrument
 
-    return True
+    Parameters
+    ----------
+    template_file: str 
+        zip filename of the template are stored
+    instrument: str 
+        name of the instrument to load
 
-
+    Returns
+    ----------
+    dataframe
+        structure of the instrument template
 if __name__ == '__main__':
     pass
