@@ -8,13 +8,15 @@ from redcap_bridge.utils import map_header_csv_to_json
 
 def upload_datadict(csv_file, server_config_json):
     """
-    Upload data dictionary to the redcap server.
+   Parameters
+   ----------
+   csv_file: str
+       Path to the csv file to be used as data dictionary
+   server_config_json: str
+       Path to the json file containing the redcap url and api token
 
-    Args:
-        csv_file: (str)
-            Path to the csv file to be used as data dictionary
-        server_config_json: (str)
-            Path to the json file containing the redcap url and api token
+    Returns:
+    ----------
 
     Returns:
         (int): The number of uploaded fields
