@@ -61,15 +61,20 @@ def validate_project_against_template_parts(project, *templates):
 
 
 def validate_record_against_template(record_csv, template_csv):
-    """
-    Validate a RedCap record against a template instrument
+   Parameters
+   ----------
+   template: dataframe
+       template structure of an instrument
+   record: dataframe
+       data of a single record
 
-    Parameters
+    Returns
     ----------
-    record: (path)
-            path to the record csv of that instrument
-        template: (path)
-            path to the template csv of an instrument
+     True
+
+    Raises
+    ----------
+    ValueError in case of failing validation
 
     Returns
     -------
