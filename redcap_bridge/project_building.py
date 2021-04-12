@@ -65,19 +65,19 @@ template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
     if output_file:
         with open(output_file, 'w') as f:
             f.writelines(output)
+   Parameters
+   ----------
+   project_built_csv: str
+       The filepath to the csv containing the built project (see also `build_project`)
+   customization_csv: str
+       The filepath to the csv containing the project customizations
+   output_file: str
+       The path to save the combined csv. Default: None
 
-    return output
-
-
-def customize_project(project_built_csv, customization_csv, output_file=None):
-    """
-    Fill in a built project csv with project specific customizations.
-
-    This can be used to e.g. change the default values of fields or customize
-    the list of experimenters to be selected
-
-    Parameters
-    ----------
+   Returns
+   -------
+   dataframe 
+       pandas dataframe csv representation of the customized project definition
         project_built_csv: (str)
             The filepath to the csv containing the built project
             (see also `build_project`)
