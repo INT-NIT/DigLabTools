@@ -123,12 +123,14 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
     # combine project and customization
     combined_df = project_df.combine(customization_df, combine_series)
 
-    # restore the original order of columns and rows
-    combined_df = combined_df.reindex(columns=project_df.columns,
-                                      index=project_df.index)
+   Parameters
+   ----------
+   project_csv:
+   custom_csv:
+   *template_csvs:
 
-    if output_file is not None:
-        combined_df.to_csv(output_file, index=False)
+   Returns
+   ----------
 
     return combined_df
 
