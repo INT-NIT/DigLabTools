@@ -48,13 +48,14 @@ def download_datadict(save_to, server_config_json, format='csv'):
 
 def download_records(save_to, server_config_json, format='csv'):
     """
-    Download records from the redcap server.
-
-    Args:
-        save_to: (str)
-            Path where to save the retrieved records csv
-        server_config_json: (str)
-            Path to the json file containing the redcap url and api token
+    Parameters
+    ----------
+    save_to: str
+        Path where to save the retrieved records csv
+    server_config_json: str
+        Path to the json file containing the redcap url and api token
+    format: 'csv', 'json'
+        Format of the retrieved records
         format: 'csv', 'json'
             Format of the retrieved records
     """
