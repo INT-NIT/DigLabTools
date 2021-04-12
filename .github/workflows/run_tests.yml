@@ -30,7 +30,7 @@ jobs:
       run: python -c "import sys; print(sys.version)"
 
     - name: Install package
-      run: pip install .[tools,test]
+      run: pip install .[test]
 
     - name: Test with pytest
       run: |
@@ -55,7 +55,7 @@ jobs:
         run: pip install coveralls
 
       - name: Create coverage
-        run: coverage run --source=ando -m pytest ando/tests/
+        run: coverage run --source=DigLaB -m pytest DigLaB
 
       - name: Submit to coveralls
         env:
