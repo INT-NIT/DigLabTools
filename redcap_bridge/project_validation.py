@@ -11,15 +11,18 @@ template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
 
 
 def validate_project_against_template_parts(project, *templates):
-    """
     Validate a built project csv
-    Args:
-        project: (str, buffer)
-            Filepath of the csv file or csv buffer of the built project
-        templates: (str, list)
-            List of names of template parts to validate against.
+    Parameters
+    ----------
+    project: str, buffer
+        Filepath of the csv file or csv buffer of the built project
+    templates: str, list
+        List of file paths of the template part csvs.
 
-    Returns:
+    Returns
+    ----------
+    bool  
+            True if the validation was successful
         (bool): True if the validation was successful
     """
 
