@@ -11,23 +11,20 @@ from redcap_bridge.utils import map_header_json_to_csv
 template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
 
 
+def build_project(project_csv, output_file=None):
+    """
+    Build a complete RedCap Instrument CSV from a set of template_parts and a
+    project csv file.
+
     Parameters
     ----------
     project_csv: str
         Filepath of the project csv file
     
-    output_file: str ,None
+    output_file: str, None
         Filepath of the resulting, complete project csv (with inserted
         template_parts. If None, the content is only returned and not saved.
         Default: None
-
-    Returns
-    -------
-    list
-        list containing the lines of the complete project definition
-        including the template content
-            template_parts. If None, the content is only returned and not saved.
-            Default: None
 
     Returns
     -------
@@ -65,6 +62,17 @@ template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
     if output_file:
         with open(output_file, 'w') as f:
             f.writelines(output)
+
+    return output
+
+
+def customize_project(project_built_csv, customization_csv, output_file=None):
+    """
+    Fill in a built project csv with project specific customizations.
+
+    This can be used to e.g. change the default values of fields or customize
+    the list of experimenters to be selected
+
    Parameters
    ----------
    project_built_csv: str
@@ -78,19 +86,6 @@ template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
    -------
    dataframe 
        pandas dataframe csv representation of the customized project definition
-        project_built_csv: (str)
-            The filepath to the csv containing the built project
-            (see also `build_project`)
-        customization_csv: (str)
-            The filepath to the csv containing the project
-            customizations
-        output_file: (str)
-            The path to save the combined csv. Default: None
-
-    Returns
-    -------
-        (dataframe) pandas dataframe csv representation of the customized
-            project definition
     """
 
     # Loading project and customization data
@@ -123,14 +118,12 @@ template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
     # combine project and customization
     combined_df = project_df.combine(customization_df, combine_series)
 
-   Parameters
-   ----------
-   project_csv:
-   custom_csv:
-   *template_csvs:
+    # restore the original order of columns and rows
+    combined_df = combined_df.reindex(columns=project_df.columns,
+                                      index=project_df.index)
 
-   Returns
-   ----------
+    if output_file is not None:
+        combined_df.to_csv(output_file, index=False)
 
     return combined_df
 
@@ -141,10 +134,10 @@ def extract_customization(project_csv, export_custom_csv, *template_parts):
 
     Parameters
     ----------
-        project_csv: (path)
-            of complete project csv file
-        export_custom_csv: (path)
-            to store the resulting customization csv file
+        project_csv: path
+            path to the complete project csv file
+        export_custom_csv: path
+            path to store the resulting customization csv file
         *template_parts: (list)
             list of template parts included in the project
 
