@@ -51,6 +51,8 @@ def download_datadict(save_to, server_config_json, format='csv'):
 
 def download_records(save_to, server_config_json, format='csv'):
     """
+    Download records from the redcap server.
+
     Parameters
     ----------
     save_to: str
@@ -59,11 +61,27 @@ def download_records(save_to, server_config_json, format='csv'):
         Path to the json file containing the redcap url and api token
     format: 'csv', 'json'
         Format of the retrieved records
-        format: 'csv', 'json'
-            Format of the retrieved records
     """
+    config = json.load(open(server_config_json, 'r'))
 
-    raise NotImplementedError()
+    redproj = redcap.Project(config['api_url'], config['api_token'], lazy=False)
+    records = redproj.export_records(format=format)
+
+    if format == 'csv':
+        records.to_csv(save_to)
+    elif format == 'json':
+        with open(save_to) as save_file:
+            json.dump(records, save_file)
+    else:
+        raise ValueError(f'Unknown format {format}. Valid formats are "csv" '
+                         f'and "json".')
+
+
+
+
+
+
+
 
 
 def get_json_csv_header_mapping(server_config_json):
