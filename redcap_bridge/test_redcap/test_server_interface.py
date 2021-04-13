@@ -36,6 +36,8 @@ def clean_server(initialize_test_directory, initialize_testfiles):
                                     columns=map_header_csv_to_json)
     redproj.import_metadata(default_datadict, format='csv')
 
+    # second initialize in non-lazy mode to configure records
+    redproj = redcap.Project(config['api_url'], config['api_token'], lazy=False)
     default_records = pd.DataFrame(columns=['record_id',
                                             'my_first_instrument_complete'])
     redproj.import_records(default_records,
@@ -45,6 +47,8 @@ def clean_server(initialize_test_directory, initialize_testfiles):
 
 def test_upload_datadict(clean_server, initialize_test_directory,
                          initialize_testfiles):
+    # uploading metadata csv files from testfile dataset and compare to
+    # return value of upload
     metadata_csv = test_directory / 'testfiles' / 'metadata.csv'
     res = upload_datadict(metadata_csv, SERVER_CONFIG_YAML)
 
