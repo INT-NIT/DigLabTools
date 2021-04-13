@@ -18,6 +18,8 @@ jobs:
         # Tests on Windows elicit errors so keeping only ubuntu/macos for now
         os: [ubuntu-latest, macos-latest, windows-latest]
         python-version: [3.6, 3.9]
+        # Only one job at a time to avoid parallel access of test server
+        max-parallel: 1
 
     steps:
     - uses: actions/checkout@v2
@@ -30,11 +32,10 @@ jobs:
       run: python -c "import sys; print(sys.version)"
 
     - name: Install package
-      run: pip install .[tools,test]
+      run: pip install -e .[test]
 
     - name: Test with pytest
-      run: |
-        pytest
+      run: pytest
 
   run-coverall:
     runs-on: [ubuntu-latest]
@@ -55,7 +56,7 @@ jobs:
         run: pip install coveralls
 
       - name: Create coverage
-        run: coverage run --source=ando -m pytest ando/tests/
+        run: coverage run -m pytest .
 
       - name: Submit to coveralls
         env:
