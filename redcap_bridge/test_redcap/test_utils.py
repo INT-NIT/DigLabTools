@@ -20,7 +20,7 @@ def initialize_test_dir(clean=True):
 
     Returns
     -------
-    test_directory: (str)
+    path
         path of the test directory
     """
     if clean and os.path.exists(test_directory):
