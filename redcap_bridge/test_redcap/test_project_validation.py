@@ -20,7 +20,8 @@ def setup_project_csvs():
                       output_file=project_dir / 'customized.csv')
 
 
-def test_validate_project_against_template_parts(initialize_test_dir):
+def test_validate_project_against_template_parts(initialize_test_dir,
+                                                 setup_project_csvs):
     with open(project_dir / 'project.json') as f:
         project_dict = json.load(f)
     template_parts = project_dict['validation']
