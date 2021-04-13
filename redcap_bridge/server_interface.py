@@ -68,6 +68,9 @@ def download_records(save_to, server_config_json, format='csv'):
     records = redproj.export_records(format=format)
 
     if format == 'csv':
+        with open(save_to, 'w') as save_file:
+            save_file.writelines(records)
+    elif format == 'df':
         records.to_csv(save_to)
     elif format == 'json':
         with open(save_to) as save_file:
