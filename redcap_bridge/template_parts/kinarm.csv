@@ -1,0 +1,6 @@
+Variable / Field Name,Form Name,Section Header,Field Type,Field Label,"Choices, Calculations, OR Slider Labels",Field Note,Text Validation Type OR Show Slider Number,Text Validation Min,Text Validation Max,Identifier?,Branching Logic (Show field only if...),Required Field?,Custom Alignment,Question Number (surveys only),Matrix Group Name,Matrix Ranking?,Field Annotation
+kinarm_form_version,diglabform,,descriptive,Kinarm Form Version 0.0.1b,,,,,,,,,,,,, @HIDDEN
+kinarm_recorded_hand,diglabform,,dropdown,Recorded Hand,"left, Left | right, Right | both, Both | none, None",,,,,,,,,,,,
+kinarm_shoulder,diglabform,,text,Shoulder,,,number,,,,,y,,,,,
+kinarm_elbow,diglabform,,text,Elbow,,,number,,,,,y,,,,,
+data_quality_hand,diglabform,,radio,Hand movement data quality,"very_good, Very good | good, Good | noisy, Noisy | no_data, No data",,,,,,,y,,,,,

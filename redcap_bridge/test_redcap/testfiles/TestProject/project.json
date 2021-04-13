@@ -1,0 +1,11 @@
+{
+  "structure": "structure.csv",
+  "customization": "customization.csv",
+  "validation": [
+    "general",
+    "eyelink",
+    "kinarm"
+  ],
+  "api_token": "A85D960267EF6240BC16A64B298948E1",
+  "api_url": "https://redcap.int.univ-amu.fr/api/"
+}
