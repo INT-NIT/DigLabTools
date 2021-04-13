@@ -5,14 +5,12 @@ import pandas as pd
 from redcap_bridge.project_building import (build_project, customize_project,
                                             extract_customization)
 from redcap_bridge.test_redcap.test_utils import (test_directory,
-                                                  initialize_test_directory,
-                                                  initialize_testfiles)
+                                                  initialize_test_dir)
 
 project_dir = test_directory / 'testfiles' / 'TestProject'
 
 
-def test_build_and_customize_project(initialize_test_directory,
-                                     initialize_testfiles):
+def test_build_and_customize_project(initialize_test_dir):
     # Running test project build
     build_project(project_dir / 'structure.csv',
                   project_dir / 'build.csv')
@@ -25,8 +23,7 @@ def test_build_and_customize_project(initialize_test_directory,
     assert (project_dir / 'customized.csv').exists()
 
 
-def test_extract_customization(initialize_test_directory,
-                               initialize_testfiles):
+def test_extract_customization(initialize_test_dir):
     # build and customize project
     build_project(project_dir / 'structure.csv',
                   project_dir / 'build.csv')

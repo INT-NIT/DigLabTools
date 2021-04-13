@@ -6,8 +6,7 @@ import pytest
 import redcap
 from redcap_bridge.server_interface import upload_datadict, download_records
 from redcap_bridge.test_redcap.test_utils import (test_directory,
-                                                  initialize_test_directory,
-                                                  initialize_testfiles)
+                                                  initialize_test_dir)
 from redcap_bridge.utils import map_header_csv_to_json
 
 SERVER_CONFIG_YAML = (
@@ -15,7 +14,7 @@ SERVER_CONFIG_YAML = (
 
 
 @pytest.fixture
-def clean_server(initialize_test_directory, initialize_testfiles):
+def clean_server(initialize_test_dir):
     """
     Put testing server in a defined state: only minimal metadata (instruments)
     and records present
@@ -45,8 +44,7 @@ def clean_server(initialize_test_directory, initialize_testfiles):
                            overwrite="overwrite")
 
 
-def test_upload_datadict(clean_server, initialize_test_directory,
-                         initialize_testfiles):
+def test_upload_datadict(clean_server, initialize_test_dir):
     # uploading metadata csv files from testfile dataset and compare to
     # return value of upload
     metadata_csv = test_directory / 'testfiles' / 'metadata.csv'
@@ -59,7 +57,7 @@ def test_upload_datadict(clean_server, initialize_test_directory,
 
     assert exp == res
 
-def test_upload_records(clean_server, initialize_test_directory, initialize_testfiles):
+def test_upload_records(clean_server, initialize_test_dir):
     """
     TODO: Finally this test should test the corresponding redcap_bridge
     `upload_records` method instead of pycap itself
@@ -76,7 +74,7 @@ def test_upload_records(clean_server, initialize_test_directory, initialize_test
     redproj.import_records(uploaded_records, format='csv', overwrite='overwrite')
 
 
-def test_download_records(clean_server, initialize_test_directory, initialize_testfiles):
+def test_download_records(clean_server, initialize_test_dir):
     # Step 1: uploading records
     # TODO: This part needs to be updated together with `test_upload_records`
     # upload data records

@@ -9,9 +9,9 @@ test_directory = pathlib.Path(tempfile.gettempdir()) / 'diglabtools_testfiles'
 
 
 @pytest.fixture
-def initialize_test_directory(clean=True):
+def initialize_test_dir(clean=True):
     """
-    Create main test folder if required
+    Create main test folder if required and add test files
 
     Parameters
     ----------
@@ -27,10 +27,9 @@ def initialize_test_directory(clean=True):
         shutil.rmtree(test_directory)
     if not os.path.exists(test_directory):
         os.mkdir(test_directory)
-    return test_directory
 
-
-@pytest.fixture
-def initialize_testfiles():
+    # initialize test files
     packaged_testfolder = pathlib.Path(__file__).parent / 'testfiles'
     shutil.copytree(packaged_testfolder, test_directory / 'testfiles')
+
+    return test_directory
