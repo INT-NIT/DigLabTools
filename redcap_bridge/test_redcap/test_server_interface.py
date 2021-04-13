@@ -45,6 +45,9 @@ def clean_server(initialize_test_dir):
 
 
 def test_upload_datadict(clean_server, initialize_test_dir):
+    """
+    Test uploading a survey definition (datadict) csv to the server
+    """
     # uploading metadata csv files from testfile dataset and compare to
     # return value of upload
     metadata_csv = test_directory / 'testfiles' / 'metadata.csv'
@@ -59,6 +62,8 @@ def test_upload_datadict(clean_server, initialize_test_dir):
 
 def test_upload_records(clean_server, initialize_test_dir):
     """
+    Test upload of records to the server
+
     TODO: Finally this test should test the corresponding redcap_bridge
     `upload_records` method instead of pycap itself
     """
@@ -75,6 +80,9 @@ def test_upload_records(clean_server, initialize_test_dir):
 
 
 def test_download_records(clean_server, initialize_test_dir):
+    """
+    Download records from server and compare to previously uploaded records
+    """
     # Step 1: uploading records
     # TODO: This part needs to be updated together with `test_upload_records`
     # upload data records

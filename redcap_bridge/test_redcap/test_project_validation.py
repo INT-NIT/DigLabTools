@@ -13,6 +13,7 @@ project_dir = test_directory / 'testfiles' / 'TestProject'
 
 @pytest.fixture
 def setup_project_csvs():
+    # pre-build project csvs based on project definition
     build_project(project_dir / 'structure.csv',
                   project_dir / 'build.csv')
     customize_project(project_dir / 'build.csv',
