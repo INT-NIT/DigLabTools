@@ -11,15 +11,18 @@ template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
 
 
 def validate_project_against_template_parts(project, *templates):
-    """
     Validate a built project csv
-    Args:
-        project: (str, buffer)
-            Filepath of the csv file or csv buffer of the built project
-        templates: (str, list)
-            List of names of template parts to validate against.
+    Parameters
+    ----------
+    project: str, buffer
+        Filepath of the csv file or csv buffer of the built project
+    templates: str, list
+        List of file paths of the template part csvs.
 
-    Returns:
+    Returns
+    ----------
+    bool  
+            True if the validation was successful
         (bool): True if the validation was successful
     """
 
@@ -61,15 +64,20 @@ def validate_project_against_template_parts(project, *templates):
 
 
 def validate_record_against_template(record_csv, template_csv):
-    """
-    Validate a RedCap record against a template instrument
+   Parameters
+   ----------
+   template: dataframe
+       template structure of an instrument
+   record: dataframe
+       data of a single record
 
-    Parameters
+    Returns
     ----------
-    record: (path)
-            path to the record csv of that instrument
-        template: (path)
-            path to the template csv of an instrument
+     True
+
+    Raises
+    ----------
+    ValueError in case of failing validation
 
     Returns
     -------
@@ -121,19 +129,29 @@ def validate_record_against_template(record_csv, template_csv):
     # ignore required 'checkbox' fields
     required_fields_df = required_fields_df.loc[
         required_fields_df['Field Type'] != 'checkbox']
-    required_fields = required_fields_df['Variable / Field Name'].values
+    Parameters
+    ----------
+    template_file: str 
+        zip filename of the template are stored
+    instrument: str 
+        name of the instrument to load
 
-    for required_field in required_fields:
-        empty_record_mask = record[required_field].isnull()
-        if empty_record_mask.values.any():
-            empty_record = record.loc[empty_record_mask]
-            raise ValueError(
-                f'records with {empty_record.index.name}='
-                f'{empty_record.index.tolist()} do not contain data in '
-                f'required field "{required_field}"')
+    Returns
+    ----------
+    dataframe: 
+         structure of the instrument template
+    """
 
-    return True
+    Parameters
+    ----------
+    template_file: str 
+        zip filename of the template are stored
+    instrument: str 
+        name of the instrument to load
 
-
+    Returns
+    ----------
+    dataframe
+        structure of the instrument template
 if __name__ == '__main__':
     pass

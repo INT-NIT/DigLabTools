@@ -11,17 +11,21 @@ from redcap_bridge.utils import map_header_json_to_csv
 template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
 
 
-def build_project(project_csv, output_file=None):
-    """
-    Build a complete RedCap Instrument CSV from a set of template_parts and a
-    project csv file.
-
     Parameters
     ----------
-        project_csv: (str)
-            Filepath of the project csv file
-        output_file: (str,None)
-            Filepath of the resulting, complete project csv (with inserted
+    project_csv: str
+        Filepath of the project csv file
+    
+    output_file: str ,None
+        Filepath of the resulting, complete project csv (with inserted
+        template_parts. If None, the content is only returned and not saved.
+        Default: None
+
+    Returns
+    -------
+    list
+        list containing the lines of the complete project definition
+        including the template content
             template_parts. If None, the content is only returned and not saved.
             Default: None
 
@@ -61,19 +65,19 @@ def build_project(project_csv, output_file=None):
     if output_file:
         with open(output_file, 'w') as f:
             f.writelines(output)
+   Parameters
+   ----------
+   project_built_csv: str
+       The filepath to the csv containing the built project (see also `build_project`)
+   customization_csv: str
+       The filepath to the csv containing the project customizations
+   output_file: str
+       The path to save the combined csv. Default: None
 
-    return output
-
-
-def customize_project(project_built_csv, customization_csv, output_file=None):
-    """
-    Fill in a built project csv with project specific customizations.
-
-    This can be used to e.g. change the default values of fields or customize
-    the list of experimenters to be selected
-
-    Parameters
-    ----------
+   Returns
+   -------
+   dataframe 
+       pandas dataframe csv representation of the customized project definition
         project_built_csv: (str)
             The filepath to the csv containing the built project
             (see also `build_project`)
@@ -119,12 +123,14 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
     # combine project and customization
     combined_df = project_df.combine(customization_df, combine_series)
 
-    # restore the original order of columns and rows
-    combined_df = combined_df.reindex(columns=project_df.columns,
-                                      index=project_df.index)
+   Parameters
+   ----------
+   project_csv:
+   custom_csv:
+   *template_csvs:
 
-    if output_file is not None:
-        combined_df.to_csv(output_file, index=False)
+   Returns
+   ----------
 
     return combined_df
 

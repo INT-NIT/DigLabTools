@@ -8,13 +8,15 @@ from redcap_bridge.utils import map_header_csv_to_json
 
 def upload_datadict(csv_file, server_config_json):
     """
-    Upload data dictionary to the redcap server.
+   Parameters
+   ----------
+   csv_file: str
+       Path to the csv file to be used as data dictionary
+   server_config_json: str
+       Path to the json file containing the redcap url and api token
 
-    Args:
-        csv_file: (str)
-            Path to the csv file to be used as data dictionary
-        server_config_json: (str)
-            Path to the json file containing the redcap url and api token
+    Returns:
+    ----------
 
     Returns:
         (int): The number of uploaded fields
@@ -32,14 +34,15 @@ def upload_datadict(csv_file, server_config_json):
 
 def download_datadict(save_to, server_config_json, format='csv'):
     """
-    Download data dictionary from the redcap server.
+    Parameters
+    ----------
+    save_to: str
+        Path where to save the retrieved data dictionary
+    server_config_json: str
+        Path to the json file containing the redcap url and api token
+    format:  'csv', 'json'
+        Format of the retrieved data dictionary
 
-    Args:
-        save_to: (str)
-            Path where to save the retrieved data dictionary
-        server_config_json: (str)
-            Path to the json file containing the redcap url and api token
-        format: 'csv', 'json'
             Format of the retrieved data dictionary
 
     """
@@ -48,13 +51,14 @@ def download_datadict(save_to, server_config_json, format='csv'):
 
 def download_records(save_to, server_config_json, format='csv'):
     """
-    Download records from the redcap server.
-
-    Args:
-        save_to: (str)
-            Path where to save the retrieved records csv
-        server_config_json: (str)
-            Path to the json file containing the redcap url and api token
+    Parameters
+    ----------
+    save_to: str
+        Path where to save the retrieved records csv
+    server_config_json: str
+        Path to the json file containing the redcap url and api token
+    format: 'csv', 'json'
+        Format of the retrieved records
         format: 'csv', 'json'
             Format of the retrieved records
     """
@@ -64,8 +68,10 @@ def download_records(save_to, server_config_json, format='csv'):
 
 def get_json_csv_header_mapping(server_config_json):
     """
-    Extract the mapping of json headers (underscore-based) to csv headers (
-    human readable)
+    Retruns
+    ----------
+    dict: 
+        Mapping of json to csv headers
 
     Returns:
         dict: Mapping of json to csv headers
