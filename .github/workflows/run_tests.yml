@@ -32,10 +32,11 @@ jobs:
       run: python -c "import sys; print(sys.version)"
 
     - name: Install package
-      run: pip install -e .[test]
+      run: pip install .[test]
 
     - name: Test with pytest
-      run: pytest
+      run: |
+        pytest
 
   run-coverall:
     runs-on: [ubuntu-latest]
