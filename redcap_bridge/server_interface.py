@@ -73,7 +73,7 @@ def download_records(save_to, server_config_json, format='csv'):
     elif format == 'df':
         records.to_csv(save_to)
     elif format == 'json':
-        with open(save_to) as save_file:
+        with open(save_to, 'w') as save_file:
             json.dump(records, save_file)
     else:
         raise ValueError(f'Unknown format {format}. Valid formats are "csv" '
