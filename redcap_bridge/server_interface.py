@@ -80,13 +80,6 @@ def download_records(save_to, server_config_json, format='csv'):
                          f'and "json".')
 
 
-
-
-
-
-
-
-
 def get_json_csv_header_mapping(server_config_json):
     """
     Retruns

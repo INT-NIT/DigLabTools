@@ -73,19 +73,19 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
     This can be used to e.g. change the default values of fields or customize
     the list of experimenters to be selected
 
-   Parameters
-   ----------
-   project_built_csv: str
-       The filepath to the csv containing the built project (see also `build_project`)
-   customization_csv: str
-       The filepath to the csv containing the project customizations
-   output_file: str
-       The path to save the combined csv. Default: None
+    Parameters
+    ----------
+    project_built_csv: str
+        The filepath to the csv containing the built project (see also `build_project`)
+    customization_csv: str
+        The filepath to the csv containing the project customizations
+    output_file: str
+        The path to save the combined csv. Default: None
 
-   Returns
-   -------
-   dataframe 
-       pandas dataframe csv representation of the customized project definition
+    Returns
+    -------
+    dataframe
+        pandas dataframe csv representation of the customized project definition
     """
 
     # Loading project and customization data
