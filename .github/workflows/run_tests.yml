@@ -10,8 +10,10 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  strategy:
+    max-parallel: 1
 
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
