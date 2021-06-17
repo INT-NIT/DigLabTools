@@ -57,7 +57,7 @@ def validate_project_against_template_parts(project, *templates):
             na_values = template_df.loc[i].isna()
             equal_entries = df_project.loc[i] == template_df.loc[i]
             if not (equal_entries | na_values).all():
-                raise ValueError(f'Row {i} is differs between project csv and '
+                raise ValueError(f'Row {i} differs between project csv and '
                                  f'template')
 
     print('Validation successful')
