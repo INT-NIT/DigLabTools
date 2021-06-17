@@ -1,17 +1,18 @@
 Variable / Field Name,Form Name,Section Header,Field Type,Field Label,"Choices, Calculations, OR Slider Labels",Field Note,Text Validation Type OR Show Slider Number,Text Validation Min,Text Validation Max,Identifier?,Branching Logic (Show field only if...),Required Field?,Custom Alignment,Question Number (surveys only),Matrix Group Name,Matrix Ranking?,Field Annotation
 record_id,diglabform,,text,Record ID,,,,,,,,,,,,,
-diglab,diglabform,,descriptive,,,,,,,,,,,,,,
-diglab_version,diglabform,,descriptive,DigLab Version 1.0,,,,,,,,,,,,, @HIDDEN
-redcap_form_version,diglabform,,descriptive,RedCap Form Version 0.0.1b,,,,,,,,,,,,, @HIDDEN
+diglab,diglabform,General Metadata,descriptive,,,,,,,,,,,,,,
+diglab_version,diglabform,,descriptive,DigLab Version 1.0,,,,,,,,,,,,,@HIDDEN
+redcap_form_version,diglabform,,descriptive,RedCap Form Version 0.0.1b,,,,,,,,,,,,,@HIDDEN
 ethical_protocol_id,diglabform,,dropdown,Ethical Protocol Identifier,,,,,,,,y,,,,,
 user,diglabform,,dropdown,User,,,,,,,,y,,,,,
-date,diglabform,,text,Session date,,,date_dmy,,,,,y,,,,, @TODAY
+date,diglabform,,text,Session date,,,date_dmy,,,,,y,,,,,@TODAY
 exp_name,diglabform,,dropdown,Experiment Name,,,autocomplete,,,,,y,,,,,
 guid,diglabform,,dropdown,Subject GUID,,,,,,,,y,,,,,
 ses_number,diglabform,,text,Session Number,,,integer,1,,,,y,,,,,
 ses_custom_field,diglabform,,text,Custom Session Field,,,,,,,,,,,,,
 modality,diglabform,,checkbox,Modality,"behaviour_eye, Behaviour (eye) | behaviour_hand, Behaviour (hand) | single_electrode, Single Electrode | multi_electrode, Multi Electrode | emg, EMG | int, Optical Imaging (int) | vsdi, Optical Imaging (VSDi) | drug_injection, Drug injection | neuronal_stimulation, Neuronal Stimulation | ecog, ECoG | seeg, SEEG",,,,,,,y,,,,,
 weight,diglabform,,text,Weight,,in kg,number,0,,,,,,,,,
+comments_label,diglabform,,descriptive,Comments on the...,,,,,,,,,,,,,
 comments_exp,diglabform,,notes,Experiment,,,,,,,,,,,,,
 comments_setup,diglabform,,notes,Setup / Recording,,,,,,,,,,,,,
 comments_animal,diglabform,,notes,Animal Behaviour,,,,,,,,,,,,,
