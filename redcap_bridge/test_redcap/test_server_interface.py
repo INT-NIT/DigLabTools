@@ -4,7 +4,8 @@ import pandas as pd
 import pytest
 
 import redcap
-from redcap_bridge.server_interface import upload_datadict, download_records
+from redcap_bridge.server_interface import (upload_datadict, download_records,
+                                            download_datadict)
 from redcap_bridge.test_redcap.test_utils import (test_directory,
                                                   initialize_test_dir)
 from redcap_bridge.utils import map_header_csv_to_json
@@ -81,28 +82,29 @@ def test_upload_records(clean_server, initialize_test_dir):
 
 def test_download_records(clean_server, initialize_test_dir):
     """
-    Download records from server and compare to previously uploaded records
+    Download datadict from server and compare to previously uploaded datadict
     """
-    # Step 1: uploading records
-    # TODO: This part needs to be updated together with `test_upload_records`
-    # upload data records
-    config = json.load(open(SERVER_CONFIG_YAML, 'r'))
-    redproj = redcap.Project(config['api_url'], config['api_token'], lazy=False)
+    # uploading metadata csv files from testfile dataset and compare to
+    # return value of upload
+    original_metadata_csv = test_directory / 'testfiles' / 'metadata.csv'
+    upload_datadict(original_metadata_csv, SERVER_CONFIG_YAML)
 
-    upload_datadict(test_directory / 'testfiles' / 'metadata.csv',
-                    SERVER_CONFIG_YAML)
 
-    uploaded_records = pd.read_csv(test_directory / 'testfiles' / 'record.csv',
-                                   index_col=0, dtype='str')
-    redproj.import_records(uploaded_records, format='csv', overwrite='overwrite')
+    downloaded_metadata_csv = test_directory / 'testfiles' / 'metadata_downloaded.csv'
+    download_datadict(downloaded_metadata_csv, SERVER_CONFIG_YAML)
 
-    # Step 2: download data records
-    downloaded_csv = test_directory / 'record_downloaded.csv'
-    download_records(downloaded_csv, SERVER_CONFIG_YAML)
 
-    # Step 3: Compare entries
-    assert downloaded_csv.exists()
+    import csv
+    original_reader = csv.reader(open(original_metadata_csv))
+    download_reader = csv.reader(open(downloaded_metadata_csv))
 
-    # Step 4: Comparison of values
-    downloaded_records = pd.read_csv(downloaded_csv, dtype='str')
-    uploaded_records.equals(downloaded_records)
+    # comparing headers
+    original_header = original_reader.__next__()
+    downloaded_header = download_reader.__next__()
+    for oh, dh in zip(original_header, downloaded_header):
+        # translate header of uploaded csv to follow csv standard
+        assert map_header_csv_to_json[oh] == dh
+
+    # compare content
+    for oline, dline in zip(original_reader, download_reader):
+        assert oline == dline

@@ -46,7 +46,23 @@ def download_datadict(save_to, server_config_json, format='csv'):
             Format of the retrieved data dictionary
 
     """
-    raise NotImplementedError()
+
+    config = json.load(open(server_config_json, 'r'))
+
+    redproj = redcap.Project(config['api_url'], config['api_token'], lazy=False)
+    data_dict = redproj.export_metadata(format=format)
+
+    if format == 'csv':
+        with open(save_to, 'w') as save_file:
+            save_file.writelines(data_dict)
+    elif format == 'df':
+        data_dict.to_csv(save_to)
+    elif format == 'json':
+        with open(save_to, 'w') as save_file:
+            json.dump(data_dict, save_file)
+    else:
+        raise ValueError(f'Unknown format {format}. Valid formats are "csv" '
+                         f'and "json".')
 
 
 def download_records(save_to, server_config_json, format='csv'):
