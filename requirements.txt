@@ -1,6 +1,7 @@
 pdfminer.six
 pandas
 pytest
+gitpython
 # Keep this until next PyCap release, then switch to PyPi
 pycap @ git+git://github.com/redcap-tools/PyCap#egg=PyCap
 
