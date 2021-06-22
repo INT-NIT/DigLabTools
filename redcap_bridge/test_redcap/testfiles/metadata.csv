@@ -10,7 +10,7 @@ exp_name,diglabform,,dropdown,Experiment Name,"rise, rising experiment | fall, f
 guid,diglabform,,dropdown,Subject GUID,"1234, Ernie | 1235, Bert",,,,,,,y,,,,,
 ses_number,diglabform,,text,Session Number,,,integer,1,,,,y,,,,,
 ses_custom_field,diglabform,,text,Custom Session Field,,,,,,,,,,,,,
-modality,diglabform,,checkbox,Modality,"behaviour_eye, Behaviour (eye) | behaviour_hand, Behaviour (hand) | single_electrode, Single Electrode | multi_electrode, Multi Electrode | emg, EMG | int, Optical Imaging (int) | vsdi, Optical Imaging (VSDi) | drug_injection, Drug injection | neuronal_stimulation, Neuronal Stimulation | ecog, ECoG | seeg, SEEG",,,,,,,y,,,,,
+modality,diglabform,,checkbox,Modality,"behaviour_eye, Behaviour (eye) | behaviour_hand, Behaviour (hand) | single_electrode, Single Electrode | multi_electrode, Multi Electrode | emg, EMG | int, Optical Imaging (int) | vsdi, Optical Imaging (VSDi) | drug_injection, Drug injection | neuronal_stimulation, Neuronal Stimulation | auditory_stimulation, Auditory Stimulation | ecog, ECoG | seeg, SEEG",,,,,,,y,,,,,
 weight,diglabform,,text,Weight,,in kg,number,0,,,,,,,,,
 comments_exp,diglabform,Comments on the ...,notes,Experiment,,,,,,,,,,,,,
 comments_setup,diglabform,,notes,Setup / Recording,,,,,,,,,,,,,
