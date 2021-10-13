@@ -1,17 +1,20 @@
 import pathlib
 
+import warnings
+
 import numpy as np
 import pandas as pd
 
 import redcap_bridge
 from redcap_bridge.project_validation import \
     validate_project_against_template_parts
-from redcap_bridge.utils import map_header_json_to_csv
+from redcap_bridge.utils import map_header_json_to_csv, get_repo_state
 
-template_dir = pathlib.Path(redcap_bridge.__file__).parent / 'template_parts'
+redcap_bridge_dir = pathlib.Path(redcap_bridge.__file__).parent
+template_dir = redcap_bridge_dir / 'template_parts'
 
 
-def build_project(project_csv, output_file=None):
+def build_project(project_csv, output_file=None, include_provenance=True):
     """
     Build a complete RedCap Instrument CSV from a set of template_parts and a
     project csv file.
@@ -25,6 +28,11 @@ def build_project(project_csv, output_file=None):
         Filepath of the resulting, complete project csv (with inserted
         template_parts. If None, the content is only returned and not saved.
         Default: None
+
+    include_provenance: bool
+        If True, include hidden fields in the project csv that contain
+        git commits of source files
+        Default: True
 
     Returns
     -------
@@ -58,6 +66,33 @@ def build_project(project_csv, output_file=None):
                     output.extend(f_include.readlines())
             else:
                 output.append(line)
+
+        if include_provenance:
+
+            # collect provenance infos
+            diglabtools_hash, diglabtools_state = get_repo_state(redcap_bridge_dir.parent)
+            diglabtools_version = open(redcap_bridge_dir.parent / 'VERSION').read()
+            redcap_forms_hash, redcap_forms_state = get_repo_state(project_csv.parents[1])
+
+            if diglabtools_state != True:
+                warnings.warn('DigLabTools repository is in non-clean state.')
+            if redcap_forms_state != True:
+                warnings.warn('Redcap_Forms repository is in non-clean state.')
+
+            # adding hidden rows to capture provenance info
+            include_file = template_dir / '_provenance.csv'
+            with open(include_file, 'r') as f_include:
+                header = f_include.readline()
+                if header != output[0]:
+                    raise ValueError('Project csv and template do not share'
+                                     'the same header. Compare '
+                                     f'{project_csv} and {include_file}')
+
+                for l in f_include.readlines():
+                    complete_line = l.format(diglabtools_hash=diglabtools_hash,
+                                             diglabtools_version=diglabtools_version,
+                                             redcap_forms_hash=redcap_forms_hash)
+                    output.append(complete_line)
 
     if output_file:
         with open(output_file, 'w') as f:

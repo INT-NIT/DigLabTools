@@ -1,3 +1,5 @@
+import git
+
 # TODO: This can be extracted via the RedCap API
 header_json = ['field_name', 'form_name', 'section_header', 'field_type',
                'field_label', 'select_choices_or_calculations', 'field_note',
@@ -19,3 +21,29 @@ map_header_json_to_csv = {json: csv for json, csv in zip(header_json,
                                                          header_csv)}
 map_header_csv_to_json = {csv: json for csv, json in zip(header_csv,
                                                          header_json)}
+
+def get_repo_state(path):
+    """
+    Extract the latest commit hash of a git repository
+
+    Args:
+        path: Path to the git repository
+
+    Returns:
+        2-tuple (str, bool)
+            latest commit id
+            repo status: True if repository is in a clean state
+
+    Raises:
+        ValueError: if path is not part of a git repository
+    """
+
+    repo = git.Repo.init(path)
+    clean = not repo.is_dirty()
+    try:
+        commit_hash = repo.head.commit.hexsha
+    except ValueError as e:
+        commit_hash = ''
+        clean = False
+
+    return commit_hash, clean

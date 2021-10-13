@@ -26,6 +26,22 @@ def test_build_and_customize_project(initialize_test_dir):
     assert (project_dir / 'customized.csv').exists()
 
 
+def test_project_build_with_provenance():
+    # Running test project build
+    build_project(project_dir / 'structure.csv',
+                  project_dir / 'build.csv')
+
+    exp_prov_lines = ["provenance_diglabtools_commit,diglabform,,descriptive",
+                      "provenance_diglabtools_version,diglabform,,descriptive",
+                      "provenance_redcap_forms_commit,diglabform,,descriptive"]
+
+    with open(project_dir/ 'build.csv', 'r') as f:
+        lines = f.readlines()
+        for lid, line in enumerate(lines[-3:]):
+            assert line.startswith(exp_prov_lines[lid])
+            assert line.endswith(',@HIDDEN\n')
+
+
 def test_extract_customization(initialize_test_dir):
     """
     Test extracting the customizations.csv from a complete project build and
