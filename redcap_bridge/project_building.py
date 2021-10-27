@@ -12,6 +12,8 @@ from redcap_bridge.utils import map_header_json_to_csv, get_repo_state
 
 redcap_bridge_dir = pathlib.Path(redcap_bridge.__file__).parent
 template_dir = redcap_bridge_dir / 'template_parts'
+used_template = []
+custom_fields = 0
 
 
 def build_project(project_csv, output_file=None, include_provenance=True):
@@ -40,7 +42,6 @@ def build_project(project_csv, output_file=None, include_provenance=True):
         including the template content
     """
     output = []
-
     if isinstance(project_csv, str):
         project_csv = pathlib.Path(project_csv)
 
@@ -159,7 +160,8 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
 
     if output_file is not None:
         combined_df.to_csv(output_file, index=False)
-
+    global custom_fields
+    custom_fields = len(combined_df)
     return combined_df
 
 
@@ -190,6 +192,7 @@ def extract_customization(project_csv, export_custom_csv, *template_parts):
     custom_df.drop('Variable / Field Name', axis=1, inplace=True)
 
     for template_part in template_parts:
+        used_template.append(template_part)
         template_path = (template_dir / template_part).with_suffix('.csv')
         template_df = pd.read_csv(template_path, dtype=str)
         template_df.index = template_df['Variable / Field Name']
@@ -211,6 +214,15 @@ def extract_customization(project_csv, export_custom_csv, *template_parts):
     # save the resulting customization csv
     if export_custom_csv is not None:
         custom_df.to_csv(export_custom_csv, index=True)
+
+    # number of templates used
+    print("Include template : ",end='')
+    for template in used_template:
+        print("<",template,">", "", end='')
+    print("\nCustomizing : ",custom_fields, " fields",end='')
+
+
+
 
 
 if __name__ == '__main__':
