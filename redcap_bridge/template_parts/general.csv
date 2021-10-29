@@ -1,11 +1,11 @@
 Variable / Field Name,Form Name,Section Header,Field Type,Field Label,"Choices, Calculations, OR Slider Labels",Field Note,Text Validation Type OR Show Slider Number,Text Validation Min,Text Validation Max,Identifier?,Branching Logic (Show field only if...),Required Field?,Custom Alignment,Question Number (surveys only),Matrix Group Name,Matrix Ranking?,Field Annotation
 record_id,diglabform,,text,Record ID,,,,,,,,,,,,,
 diglab,diglabform,General Metadata,descriptive,,,,,,,,,,,,,,
-diglab_version,diglabform,,descriptive,DigLab Version 1.0,,,,,,,,,,,,, @HIDDEN
-redcap_form_version,diglabform,,descriptive,RedCap Form Version 0.0.1c,,,,,,,,,,,,, @HIDDEN
+diglab_version,diglabform,,descriptive,DigLab Version 1.0,,,,,,,,,,,,,@HIDDEN
+redcap_form_version,diglabform,,descriptive,RedCap Form Version 0.0.1c,,,,,,,,,,,,,@HIDDEN
 ethical_protocol_id,diglabform,,dropdown,Ethical Protocol Identifier,,"The official ethical protocol id in '5X-16X-vX' format",,,,,,y,,,,,
 user,diglabform,,dropdown,User,,"The name of the experimenter",,,,,,y,,,,,
-date,diglabform,,text,Session date,,"The date of the recording",date_dmy,,,,,y,,,,, @TODAY
+date,diglabform,,text,Session date,,"The date of the recording",date_dmy,,,,,y,,,,,@TODAY
 exp_name,diglabform,,dropdown,Experiment Name,,"The name of the experiment",autocomplete,,,,,y,,,,,
 guid,diglabform,,dropdown,Subject GUID,,"The globally unique identifier of the subject",,,,,,y,,,,,
 ses_number,diglabform,,text,Session Number,,"The consecutive number of this recording session",integer,1,,,,y,,,,,
@@ -24,5 +24,9 @@ subject_behaviour_2,diglabform,,checkbox,Subject Behaviour (post-trial),"agitate
 reward_fluid,diglabform,,text,Fluid (reward),,"in ml; Total volume of fluid reward received during the recording",number_comma_decimal,,,,,,,,,,
 reward_fluid_additional,diglabform,,text,Fluid (additional),,"in ml; Total volume of fluid reward received outside of the recording",number,,,,,,,,,,
 reward_other,diglabform,,checkbox,Other reward (additional),"fruit_fresh, Fruit (fresh) | fruit_dry, Fruit (dry) | seeds, Seeds | treats, Treats | insects, Insects","Additional reward received [tick all applicable]",,,,,,,,,,,
-special_event,diglabform,,text,"Special event (alarm, fight, perturbation,...)",,"Unexpected interruption or distraction during the recording",,,,,,,,,,,
-special_event_time,diglabform,,text,Time of the special event,,"Time at which the unexpected interruption or distraction occurred",time,,,,,,,,,,
+special_event_0,diglabform,,text,"Special event (alarm, fight, perturbation,...)",,"Unexpected interruption or distraction during the recording",,,,,,,,,,,
+special_event_time_0,diglabform,,text,Time of the special event,,"Time at which the unexpected interruption or distraction occurred",time,,,,,,,,,,
+special_event_1,diglabform,,text,"2nd special event (alarm, fight, perturbation,...)",,"Unexpected interruption or distraction during the recording",,,,,[special_event_0] <> "",,,,,,
+special_event_time_1,diglabform,,text,Time of the special event,,"Time at which the unexpected interruption or distraction occurred",time,,,,[special_event_0] <> "",,,,,,
+special_event_2,diglabform,,text,"3rd pecial event (alarm, fight, perturbation,...)",,"Unexpected interruption or distraction during the recording",,,,,[special_event_1] <> "",,,,,,
+special_event_time_2,diglabform,,text,Time of the special event,,"Time at which the unexpected interruption or distraction occurred",time,,,,[special_event_1] <> "",,,,,,
