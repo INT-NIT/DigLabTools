@@ -24,8 +24,12 @@ subject_behaviour_2,diglabform,,checkbox,Subject Behaviour (post-trial),"agitate
 reward_fluid,diglabform,,text,Fluid (reward),,in ml,number_comma_decimal,,,,,,,,,,
 reward_fluid_additional,diglabform,,text,Fluid (additional),,in ml,number,,,,,,,,,,
 reward_other,diglabform,,checkbox,Other reward (additional),"fruit_fresh, Fruit (fresh) | fruit_dry, Fruit (dry) | seeds, Seeds | treats, Treats | insects, Insects",,,,,,,,,,,,
-special_event,diglabform,,text,"Special event (alarm, fight, perturbation,...)",,,,,,,,,,,,,
-special_event_time,diglabform,,text,Time of the special event,,,time,,,,,,,,,,
+special_event_0,diglabform,,text,"Special event (alarm, fight, perturbation,...)",,,,,,,,,,,,,
+special_event_time_0,diglabform,,text,Time of the special event,,,time,,,,,,,,,,
+special_event_1,diglabform,,text,"Special event (alarm, fight, perturbation,...)",,,,,,,,,,,,,
+special_event_time_1,diglabform,,text,Time of the special event,,,time,,,,,,,,,,
+special_event_2,diglabform,,text,"Special event (alarm, fight, perturbation,...)",,,,,,,,,,,,,
+special_event_time_2,diglabform,,text,Time of the special event,,,time,,,,,,,,,,
 comments_3,diglabform,,descriptive,"--Project specific data --",,,,,,,,,,,,, @HIDDEN
 kinarm_form_version,diglabform,,descriptive,Kinarm Form Version 0.0.1b,,,,,,,,,,,,, @HIDDEN
 kinarm_recorded_hand,diglabform,,dropdown,Recorded Hand,"left, Left | right, Right | both, Both | none, None",,,,,,,,,,,, @DEFAULT='right'
