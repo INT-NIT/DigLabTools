@@ -2,6 +2,6 @@ Variable / Field Name,Form Name,Section Header,Field Type,Field Label,"Choices, 
 {general}
 {kinarm}
 {eyelink}
-custom_field,diglabform,,text,"my custom field",,"my custom description",number,0,,,,,,,,,
+custom_field,diglabform,,text,"my custom field",,"my custom description",,,,,,,,,,,
 
 
