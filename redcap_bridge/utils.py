@@ -1,4 +1,5 @@
 import git
+import pathlib
 
 # TODO: This can be extracted via the RedCap API
 header_json = ['field_name', 'form_name', 'section_header', 'field_type',
@@ -38,7 +39,18 @@ def get_repo_state(path):
         ValueError: if path is not part of a git repository
     """
 
-    repo = git.Repo.init(path)
+    repo_root = None
+    # find repository root folder
+    path = pathlib.Path(path)
+    for parent in [path] + list(path.parents):
+        if (parent / '.git').exists():
+            repo_root = parent
+            break
+
+    if repo_root is None:
+        return '', None
+
+    repo = git.Repo.init(str(repo_root))
     clean = not repo.is_dirty()
     try:
         commit_hash = repo.head.commit.hexsha
