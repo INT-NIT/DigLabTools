@@ -1,3 +1,4 @@
+import os
 import pathlib
 import json
 import tempfile
@@ -23,9 +24,13 @@ def setup_project(proj_folder, working_dir=None, include_provenance=True):
     """
 
     if working_dir is None:
-        working_dir = tempfile.tempdir().name
+        working_dir = tempfile.TemporaryDirectory(prefix='redcap_bridge_').name
+
     working_dir = pathlib.Path(working_dir)
     proj_folder = pathlib.Path(proj_folder)
+
+    if not working_dir.exists():
+        os.mkdir(working_dir)
 
     with open(proj_folder / 'project.json') as f:
         proj_conf = json.load(f)
