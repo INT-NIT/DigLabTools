@@ -35,7 +35,7 @@ def test_project_build_with_provenance():
                       "provenance_diglabtools_version,diglabform,,descriptive",
                       "provenance_redcap_forms_commit,diglabform,,descriptive"]
 
-    with open(project_dir/ 'build.csv', 'r') as f:
+    with open(project_dir / 'build.csv', 'r') as f:
         lines = f.readlines()
         for lid, line in enumerate(lines[-3:]):
             assert line.startswith(exp_prov_lines[lid])
