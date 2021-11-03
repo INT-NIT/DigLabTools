@@ -133,6 +133,8 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
     project_df.index = project_df['Variable / Field Name']
     customization_df = pd.read_csv(customization_csv, dtype=str)
     customization_df.index = customization_df['Variable / Field Name']
+    print_custom = []
+
     # Utility functions for combining dataframes and series
     def combine_values(value1, value2):
         """
@@ -164,7 +166,16 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
     if output_file is not None:
         combined_df.to_csv(output_file, index=False)
 
+    # print number of customizing field
     print("\nCustomizing", len(customization_df) , "fields\n", end='')
+
+    # print the field name
+    if(len(customization_df)) < 100:
+        customization_df = pd.read_csv(customization_csv, usecols=[0])
+        print(customization_df)
+    else:
+        print_custom.append(customization_df['Variable / Field Name'])
+        print(print_custom)
 
     return combined_df
 
@@ -217,6 +228,7 @@ def extract_customization(project_csv, export_custom_csv, *template_parts):
     # save the resulting customization csv
     if export_custom_csv is not None:
         custom_df.to_csv(export_custom_csv, index=True)
+
 
 if __name__ == '__main__':
     pass
