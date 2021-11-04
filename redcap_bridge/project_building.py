@@ -97,11 +97,11 @@ def build_project(project_csv, output_file=None, include_provenance=True):
     if output_file:
         with open(output_file, 'w') as f:
             f.writelines(output)
-    #Print of templates used and total numbre of fields
-    print("\nUsed template : ",end='')
+    # Print of templates used and total number of fields
+    print("\nUsed template : ", end='')
     for template in used_template:
-        print(template,"",end='')
-    print("with total of :",len(output),"fields",end='')
+        print(template, "", end='')
+    print("with total of :", len(output), "fields", end='')
 
     return output
 
@@ -133,7 +133,6 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
     project_df.index = project_df['Variable / Field Name']
     customization_df = pd.read_csv(customization_csv, dtype=str)
     customization_df.index = customization_df['Variable / Field Name']
-    print_custom = []
 
     # Utility functions for combining dataframes and series
     def combine_values(value1, value2):
@@ -167,15 +166,13 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
         combined_df.to_csv(output_file, index=False)
 
     # print number of customizing field
-    print("\nCustomizing", len(customization_df) , "fields\n", end='')
+    print("\nCustomizing", len(customization_df), "fields\n", end='')
 
     # print the field name
     if(len(customization_df)) < 100:
-        customization_df = pd.read_csv(customization_csv, usecols=[0])
-        print(customization_df)
+        print(customization_df['Variable / Field Name'].to_csv(index=False))
     else:
-        print_custom.append(customization_df['Variable / Field Name'])
-        print(print_custom)
+        print(customization_df['Variable / Field Name'].values)
 
     return combined_df
 
