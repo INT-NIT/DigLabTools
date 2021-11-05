@@ -40,7 +40,7 @@ def build_project(project_csv, output_file=None, include_provenance=True):
         including the template content
     """
     output = []
-
+    used_template = []
     if isinstance(project_csv, str):
         project_csv = pathlib.Path(project_csv)
 
@@ -49,6 +49,7 @@ def build_project(project_csv, output_file=None, include_provenance=True):
             # if line only contains reference then include reference here
             if line[0] == '{' and line[-2:] == '}\n' and not (',' in line):
                 template_name = pathlib.Path(line[1:-2]).with_suffix('.csv')
+                used_template.append(template_name)
                 include_file = (template_dir / template_name).resolve()
 
                 if not include_file.exists():
@@ -62,7 +63,6 @@ def build_project(project_csv, output_file=None, include_provenance=True):
                         raise ValueError('Project csv and template do not share'
                                          'the same header. Compare '
                                          f'{project_csv} and {include_file}')
-
                     output.extend(f_include.readlines())
             else:
                 output.append(line)
@@ -97,6 +97,11 @@ def build_project(project_csv, output_file=None, include_provenance=True):
     if output_file:
         with open(output_file, 'w') as f:
             f.writelines(output)
+    # Print of templates used and total number of fields
+    print(f"\nUsed template: ", end='')
+    for template in used_template:
+        print(f"{template} ", end='')
+    print(f"with total of : {len(output)} fields", end='')
 
     return output
 
@@ -159,6 +164,16 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
 
     if output_file is not None:
         combined_df.to_csv(output_file, index=False)
+
+    # print number of customizing field
+    print(f"\nCustomizing: {len(customization_df)} fields\n", end='')
+
+    # print the field name
+    print(f"The following fields were customized:")
+    if(len(customization_df)) < 10:
+        print(f"{customization_df['Variable / Field Name'].to_csv(index=False)} ", end='')
+    else:
+        print(f"{customization_df['Variable / Field Name'].values}")
 
     return combined_df
 
