@@ -170,7 +170,7 @@ def customize_project(project_built_csv, customization_csv, output_file=None):
 
     # print the field name
     print(f"The following fields were customized:")
-    if(len(customization_df)) < 100:
+    if(len(customization_df)) < 10:
         print(f"{customization_df['Variable / Field Name'].to_csv(index=False)} ", end='')
     else:
         print(f"{customization_df['Variable / Field Name'].values}")
