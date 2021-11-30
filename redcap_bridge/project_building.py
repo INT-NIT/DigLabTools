@@ -72,12 +72,14 @@ def build_project(project_csv, output_file=None, include_provenance=True):
             # collect provenance infos
             diglabtools_hash, diglabtools_state = get_repo_state(redcap_bridge_dir.parent)
             diglabtools_version = open(redcap_bridge_dir.parent / 'VERSION').read()
-            redcap_forms_hash, redcap_forms_state = get_repo_state(project_csv.parents[1])
+            project_conf_repo_hash, project_conf_repo_state = get_repo_state(project_csv)
 
-            if diglabtools_state != True:
+            if not diglabtools_state:
                 warnings.warn('DigLabTools repository is in non-clean state.')
-            if redcap_forms_state != True:
-                warnings.warn('Redcap_Forms repository is in non-clean state.')
+            if project_conf_repo_state is None:
+                warnings.warn('Project configuration is not part of a version control repository.')
+            elif not project_conf_repo_state:
+                warnings.warn('Project configuration repository is in non-clean state.')
 
             # adding hidden rows to capture provenance info
             include_file = template_dir / '_provenance.csv'
@@ -91,7 +93,7 @@ def build_project(project_csv, output_file=None, include_provenance=True):
                 for l in f_include.readlines():
                     complete_line = l.format(diglabtools_hash=diglabtools_hash,
                                              diglabtools_version=diglabtools_version,
-                                             redcap_forms_hash=redcap_forms_hash)
+                                             redcap_forms_hash=project_conf_repo_hash)
                     output.append(complete_line)
 
     if output_file:
