@@ -34,5 +34,10 @@ setup(
     python_requires='>=3.6',
     extras_require={
         'test': ['pytest']
+    },
+    entry_points={
+        "console_scripts": [
+            "RedCapBridge=redcap_bridge.cli:main",
+        ],
     }
 )
