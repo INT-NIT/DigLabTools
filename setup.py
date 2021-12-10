@@ -21,7 +21,7 @@ setup(
         # If any package contains *.json or *.csv files, include them:
         "": ["*.json", '*.csv','*.zip'],
     },
-
+    data_files=[('.', ['VERSION', 'requirements.txt'])],
     author="Julia Sprenger, Jeremy Garcia",
     description="Tools to interact with the DigLab metadata collection standard",
     license='MIT',
