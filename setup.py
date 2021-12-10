@@ -12,6 +12,8 @@ with open(os.path.join(os.path.dirname(__file__), "VERSION")) as version_file:
 with open('requirements.txt') as f:
     requires = f.read().splitlines()
 
+with open('README.md') as f:
+    long_description = f.read()
 
 setup(
     name="DigLabTools",
@@ -19,11 +21,13 @@ setup(
     packages=find_packages(),
     package_data={
         # If any package contains *.json or *.csv files, include them:
-        "": ["*.json", '*.csv','*.zip'],
+        "": ["*.json", '*.csv', '*.zip'],
     },
-    data_files=[('.', ['VERSION', 'requirements.txt'])],
+    data_files=[('.', ['VERSION', 'README.md', 'requirements.txt'])],
     author="Julia Sprenger, Jeremy Garcia",
     description="Tools to interact with the DigLab metadata collection standard",
+    long_description_content_type="text/markdown",
+    long_description=long_description,
     license='MIT',
     install_requires=requires,
     include_package_data=True,
