@@ -112,5 +112,4 @@ def get_json_csv_header_mapping(server_config_json):
 
 
 if __name__ == '__main__':
-    # TODO: Add CLI here
     pass
