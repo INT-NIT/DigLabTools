@@ -24,7 +24,8 @@ def main(command_line=None):
                           help="The destination filename.")
     download.add_argument("config_json", nargs=1, metavar='config_json', type=str,
                           help="The json configuration file of the project")
-    download.add_argument("--format", type=str, nargs=1, metavar='format', help="Format to store the data (")
+    download.add_argument("--format", type=str, nargs=1, metavar='format',
+                          help="Format to store the data (json/csv)")
 
     # parse arguments
     args = parser.parse_args(command_line)
