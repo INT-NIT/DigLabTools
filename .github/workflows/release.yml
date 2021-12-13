@@ -2,7 +2,7 @@ name: Create PYPI Release
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - VERSION
 
