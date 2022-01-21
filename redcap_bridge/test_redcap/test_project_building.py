@@ -6,6 +6,7 @@ from redcap_bridge.project_building import (build_project, customize_project,
                                             extract_customization)
 from redcap_bridge.test_redcap.test_utils import (test_directory,
                                                   initialize_test_dir)
+
 project_dir = test_directory / 'testfiles' / 'TestProject'
 
 

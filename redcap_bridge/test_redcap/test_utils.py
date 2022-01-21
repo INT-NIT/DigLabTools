@@ -4,10 +4,8 @@ import shutil
 import tempfile
 
 import pytest
-from redcap_bridge.utils import compressed_record
 
 test_directory = pathlib.Path(tempfile.gettempdir()) / 'diglabtools_testfiles'
-project_dir = test_directory / 'testfiles' / 'TestProject'
 
 
 @pytest.fixture
@@ -34,6 +32,3 @@ def initialize_test_dir(clean=True):
     packaged_testfolder = pathlib.Path(__file__).parent / 'testfiles'
     shutil.copytree(packaged_testfolder, test_directory / 'testfiles')
     return test_directory
-
-def test_CompressedCSV():
-    compressed_record(project_dir / "compressed_test.csv")
