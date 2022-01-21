@@ -1,5 +1,7 @@
 import git
 import pathlib
+import pandas as pd
+import re as re
 
 # TODO: This can be extracted via the RedCap API
 header_json = ['field_name', 'form_name', 'section_header', 'field_type',
@@ -59,3 +61,21 @@ def get_repo_state(path):
         clean = False
 
     return commit_hash, clean
+
+def compressed_record(csv_file, compressed_file=None):
+
+    modalityList = []
+    custom_csv = pd.read_csv(csv_file)
+    df = pd.DataFrame(custom_csv)
+    custom_df = df.filter(regex='.___.')
+    print(custom_csv)
+    for column in custom_df:
+        if 1 in custom_df[column].values:
+            #nameModa = re.search('(.+?)___', column).group(1)
+            styleModa = re.search('___(.+?)',column).group(1)
+            modalityList.append(styleModa)
+        else:
+            del custom_df[column]
+    list = ' '.join(modalityList)
+    custom_df.insert(6,"Modality",list,True)
+    print(custom_df)
