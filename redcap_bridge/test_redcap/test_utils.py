@@ -35,5 +35,5 @@ def initialize_test_dir(clean=True):
     shutil.copytree(packaged_testfolder, test_directory / 'testfiles')
     return test_directory
 
-def test_compressedCSV():
-    compressed_record('/Users/killianrochet/PycharmProjects/DigLabTools/redcap_bridge/test_redcap/testfiles/TestProject/compressed_test.csv')
+def test_compressedCSV(initialize_test_dir):
+    compressed_record(test_directory / 'testfiles' / 'compression_test' / 'original_record.csv')
