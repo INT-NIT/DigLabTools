@@ -75,12 +75,20 @@ def compressed_record(csv_file, compressed_file=None):
         else:
             del custom_df[column]
 
-    for column in custom_df:
-        name_moda = re.search('(.+?)___', column).group(1)
-        if name_moda in custom_df:
-            custom_df[name_moda] += custom_df[column].agg('-'.join)
-            del custom_df[column]
+    list_column = custom_df.columns.tolist()
+
+    for i, item in enumerate(list_column):
+        print(item)
+        name = re.search('(.+?)___', item).group(1)
+        if i != 0:
+            get_previous = list_column[i-1]
+            if name in item and name in get_previous:
+                custom_df[name] = custom_df[[name, item]].agg(','.join, axis=1)
+                del custom_df[item]
+            else:
+                custom_df[name] = custom_df[[item]].agg(','.join, axis=1)
+                del custom_df[item]
         else:
-            custom_df[name_moda] = custom_df[column].agg('-'.join)
-            del custom_df[column]
-    print(custom_df)
+            custom_df[name] = custom_df[[item]].agg(','.join, axis=1)
+            del custom_df[item]
+    print(f"{custom_df} ", end='')
