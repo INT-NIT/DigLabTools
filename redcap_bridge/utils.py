@@ -68,27 +68,28 @@ def compressed_record(csv_file, compressed_file=None):
     custom_csv = pd.read_csv(csv_file)
     df = pd.DataFrame(custom_csv)
     custom_df = df.filter(regex='.___.')
+    custom_df.replace(0,'', inplace=True)
+    print(custom_df)
     for column in custom_df:
         if 1 in custom_df[column].values:
             style_moda = re.search('___(.+?)', column).group(1)
-            custom_df[column] = style_moda
+            custom_df[column].replace(1, style_moda, inplace=True)
         else:
-            del custom_df[column]
-
+            custom_df.pop(column)
+    print(custom_df)
     list_column = custom_df.columns.tolist()
 
     for i, item in enumerate(list_column):
-        print(item)
         name = re.search('(.+?)___', item).group(1)
         if i != 0:
             get_previous = list_column[i-1]
             if name in item and name in get_previous:
                 custom_df[name] = custom_df[[name, item]].agg(','.join, axis=1)
-                del custom_df[item]
+                custom_df.pop(item)
             else:
                 custom_df[name] = custom_df[[item]].agg(','.join, axis=1)
-                del custom_df[item]
+                custom_df.pop(item)
         else:
             custom_df[name] = custom_df[[item]].agg(','.join, axis=1)
-            del custom_df[item]
+            custom_df.pop(item)
     print(f"{custom_df} ", end='')
