@@ -47,8 +47,9 @@ def build_project(project_csv, output_file=None, include_provenance=True):
     with open(project_csv) as f:
         for line in f.readlines():
             # if line only contains reference then include reference here
-            if line[0] == '{' and line[-2:] == '}\n' and not (',' in line):
-                template_name = pathlib.Path(line[1:-2]).with_suffix('.csv')
+            if line[0] == '{' and line.replace(',', '')[-2:] == '}\n':
+                cleaned_line = line.replace(',', '')
+                template_name = pathlib.Path(cleaned_line[1:-2]).with_suffix('.csv')
                 used_template.append(template_name)
                 include_file = (template_dir / template_name).resolve()
 
