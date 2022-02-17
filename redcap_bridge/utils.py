@@ -67,29 +67,27 @@ def get_repo_state(path):
 def compressed_record(csv_file, compressed_file=None):
     custom_csv = pd.read_csv(csv_file)
     df = pd.DataFrame(custom_csv)
-    custom_df = df.filter(regex='.___.')
-    custom_df.replace(0,'', inplace=True)
-    print(custom_df)
-    for column in custom_df:
-        if 1 in custom_df[column].values:
+    compressed_file = df.filter(regex='.___.')
+    compressed_file.replace(0,'', inplace=True)
+    for column in compressed_file:
+        if 1 in compressed_file[column].values:
             style_moda = re.search('___(.+?)', column).group(1)
-            custom_df[column].replace(1, style_moda, inplace=True)
+            compressed_file[column].replace(1, style_moda, inplace=True)
         else:
-            custom_df.pop(column)
-    print(custom_df)
-    list_column = custom_df.columns.tolist()
+            compressed_file.pop(column)
+    list_column = compressed_file.columns.tolist()
 
     for i, item in enumerate(list_column):
         name = re.search('(.+?)___', item).group(1)
         if i != 0:
             get_previous = list_column[i-1]
             if name in item and name in get_previous:
-                custom_df[name] = custom_df[[name, item]].agg(','.join, axis=1)
-                custom_df.pop(item)
+                compressed_file[name] = compressed_file[[name, item]].agg(','.join, axis=1)
+                compressed_file.pop(item)
             else:
-                custom_df[name] = custom_df[[item]].agg(','.join, axis=1)
-                custom_df.pop(item)
+                compressed_file[name] = compressed_file[[item]].agg(','.join, axis=1)
+                compressed_file.pop(item)
         else:
-            custom_df[name] = custom_df[[item]].agg(','.join, axis=1)
-            custom_df.pop(item)
-    print(f"{custom_df} ", end='')
+            compressed_file[name] = compressed_file[[item]].agg(','.join, axis=1)
+            compressed_file.pop(item)
+    return compressed_file
