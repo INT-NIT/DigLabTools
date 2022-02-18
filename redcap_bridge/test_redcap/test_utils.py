@@ -2,6 +2,7 @@ import os
 import pathlib
 import shutil
 import tempfile
+import csv
 
 import pandas as pd
 import pytest
@@ -37,6 +38,13 @@ def initialize_test_dir(clean=True):
     return test_directory
 
 def test_compressedCSV(initialize_test_dir):
-    custom_csv = pd.read_csv(test_directory / 'testfiles' / 'compression_test' / 'expected_record.csv', sep=';')
-    print(custom_csv)
-    result = compressed_record(test_directory / 'testfiles' / 'compression_test' / 'original_record.csv')
+    compressed_record(test_directory / 'testfiles' / 'compression_test' / 'original_record.csv')
+    f1 = open("test.csv", 'r')
+    f2 = open(test_directory / 'testfiles' / 'compression_test' / 'expected_record.csv', 'r')
+
+    output_file = f1.readlines()
+    expected_file = f2.readlines()
+
+    for line in expected_file:
+        if line not in output_file:
+            print("Error not similar csv")

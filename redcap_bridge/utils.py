@@ -88,6 +88,10 @@ def compressed_record(csv_file, compressed_file=None):
                 compressed_file[name] = compressed_file[[item]].agg(','.join, axis=1)
                 compressed_file.pop(item)
         else:
-            compressed_file[name] = compressed_file[[item]].agg(','.join, axis=1)
+            compressed_file[name] = compressed_file[[item]].agg(''.join, axis=1)
             compressed_file.pop(item)
+
+    print(compressed_file)
+
+    compressed_file.to_csv('test.csv', index=False)
     return compressed_file

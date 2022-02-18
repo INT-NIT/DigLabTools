@@ -1,8 +1,8 @@
-modality;cat
-'' ; ''
-'a' ; 's'
-'a,b' ; 'x,s'
-'a,b,c' ; 'z,x,s'
-'a,b,c' ; 'x,s'
-'a,b,c' ; 's'
-'' ; ''
+modality,cat
+",,",",,"
+"a,,",",,s"
+"a,b,",",x,s"
+"a,b,c","z,x,s"
+"a,b,c",",x,s"
+"a,b,c",",,s"
+",,",",,"
