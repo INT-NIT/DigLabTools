@@ -39,12 +39,12 @@ def initialize_test_dir(clean=True):
 
 def test_compressedCSV(initialize_test_dir):
     compressed_record(test_directory / 'testfiles' / 'compression_test' / 'original_record.csv')
-    f1 = open("test.csv", 'r')
-    f2 = open(test_directory / 'testfiles' / 'compression_test' / 'expected_record.csv', 'r')
+    #f1 = open("test.csv", 'r')
+    #f2 = open(test_directory / 'testfiles' / 'compression_test' / 'expected_record.csv', 'r')
 
-    output_file = f1.readlines()
-    expected_file = f2.readlines()
+    #output_file = f1.readlines()
+    #expected_file = f2.readlines()
 
-    for line in expected_file:
-        if line not in output_file:
-            print("Error not similar csv")
+    #for line in expected_file:
+       # if line not in output_file:
+            #print("Error not similar csv")

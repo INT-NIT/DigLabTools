@@ -68,6 +68,7 @@ def compressed_record(csv_file, compressed_file=None):
     custom_csv = pd.read_csv(csv_file)
     df = pd.DataFrame(custom_csv)
     compressed_file = df.filter(regex='.___.')
+    print(compressed_file)
     compressed_file.replace(0,'', inplace=True)
     for column in compressed_file:
         if 1 in compressed_file[column].values:
@@ -77,21 +78,11 @@ def compressed_record(csv_file, compressed_file=None):
             compressed_file.pop(column)
     list_column = compressed_file.columns.tolist()
 
-    for i, item in enumerate(list_column):
-        name = re.search('(.+?)___', item).group(1)
-        if i != 0:
-            get_previous = list_column[i-1]
-            if name in item and name in get_previous:
-                compressed_file[name] = compressed_file[[name, item]].agg(','.join, axis=1)
-                compressed_file.pop(item)
-            else:
-                compressed_file[name] = compressed_file[[item]].agg(','.join, axis=1)
-                compressed_file.pop(item)
-        else:
-            compressed_file[name] = compressed_file[[item]].agg(''.join, axis=1)
-            compressed_file.pop(item)
+    names = set([c.split('___')[0] for c in compressed_file.columns])
+    final_df = pd.DataFrame()
+    for name in names:
+        test = compressed_file.filter(regex=f'{name}___.').agg(','.join, axis=1)
+        final_df[name] = test
+    final_df.replace(to_replace='^,+|,+$|\w,,+/w', value='', regex=True)
+    return final_df
 
-    print(compressed_file)
-
-    compressed_file.to_csv('test.csv', index=False)
-    return compressed_file
