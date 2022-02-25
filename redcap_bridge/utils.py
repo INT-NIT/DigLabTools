@@ -69,6 +69,7 @@ def compressed_record(csv_file, compressed_file=None):
     df = pd.DataFrame(custom_csv)
     compressed_file = df.filter(regex='.___.')
     print(compressed_file)
+    df = df[df.columns.drop(list(df.filter(regex='.___.')))]
     compressed_file.replace(0,'', inplace=True)
     for column in compressed_file:
         if 1 in compressed_file[column].values:
@@ -83,6 +84,9 @@ def compressed_record(csv_file, compressed_file=None):
     for name in names:
         test = compressed_file.filter(regex=f'{name}___.').agg(','.join, axis=1)
         final_df[name] = test
-    final_df.replace(to_replace='^,+|,+$|\w,,+/w', value='', regex=True)
+    final_df = final_df.replace(to_replace='^,+|,+$|\w,,+/w', value='', regex=True)
+
+    result = pd.concat([final_df, df], axis=1)
+    print(result)
     return final_df
 
