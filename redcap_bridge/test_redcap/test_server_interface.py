@@ -1,10 +1,8 @@
 import pandas as pd
 import pytest
 
-from redcap_bridge.server_interface import (upload_datadict, download_records,
-                                            download_datadict, check_external_modules,
-                                            get_redcap_project)
-
+from redcap_bridge.server_interface import (upload_datadict, download_records, download_datadict,
+                                            get_redcap_project, check_external_modules)
 from redcap_bridge.test_redcap.test_utils import (test_directory,
                                                   initialize_test_dir)
 from redcap_bridge.utils import map_header_csv_to_json
