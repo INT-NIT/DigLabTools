@@ -5,7 +5,7 @@ import pytest
 
 import redcap
 from redcap_bridge.server_interface import (upload_datadict, download_records,
-                                            download_datadict)
+                                            download_datadict, check_external_modules)
 from redcap_bridge.test_redcap.test_utils import (test_directory,
                                                   initialize_test_dir)
 from redcap_bridge.utils import map_header_csv_to_json
@@ -108,3 +108,11 @@ def test_download_records(clean_server, initialize_test_dir):
     # compare content
     for oline, dline in zip(original_reader, download_reader):
         assert oline == dline
+
+
+def test_check_external_modules(clean_server, initialize_test_dir):
+    """
+    Download project info from server and compare to required external modules
+    """
+
+    assert check_external_modules(SERVER_CONFIG_YAML)

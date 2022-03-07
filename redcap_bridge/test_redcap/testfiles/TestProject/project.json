@@ -6,6 +6,12 @@
     "eyelink",
     "kinarm"
   ],
+  "external_modules": {
+    "auto_populate_fields": {
+      "link": "https://github.com/ctsit/auto_populate_fields",
+      "version": "v2.6.0"
+    }
+  },
   "api_token": "A85D960267EF6240BC16A64B298948E1",
   "api_url": "https://redcap.int.univ-amu.fr/api/"
 }
