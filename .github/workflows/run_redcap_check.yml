@@ -6,6 +6,7 @@ name: RedCap Server Sanity check
 on:
   schedule:
     - cron: "*/30 * * * *"
+  branches: [ check/redcap_config ]
 
 jobs:
   build:
