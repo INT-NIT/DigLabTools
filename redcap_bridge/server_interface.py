@@ -107,6 +107,7 @@ def get_json_csv_header_mapping(server_config_json):
     # TODO: This function should replace utils.py/map_header_json_to_csv
     raise NotImplementedError()
 
+
 def get_redcap_project(server_config_json):
     """
     Initialize a pycap project based on the provided server configuration
