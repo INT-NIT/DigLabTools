@@ -35,6 +35,8 @@ jobs:
       run: pip install .[test]
 
     - name: Test with pytest
+      env:
+        REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
       run: |
         pytest
 
@@ -58,6 +60,8 @@ jobs:
         run: pip install coveralls
 
       - name: Create coverage
+        env:
+          REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
         run: coverage run -m pytest .
 
       - name: Submit to coveralls
