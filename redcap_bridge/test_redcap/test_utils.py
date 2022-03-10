@@ -31,5 +31,4 @@ def initialize_test_dir(clean=True):
     # initialize test files
     packaged_testfolder = pathlib.Path(__file__).parent / 'testfiles'
     shutil.copytree(packaged_testfolder, test_directory / 'testfiles')
-
     return test_directory
