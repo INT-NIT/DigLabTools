@@ -110,8 +110,8 @@ def get_json_csv_header_mapping(server_config_json):
 def get_redcap_project(server_config_json):
     """
     Initialize a pycap project based on the provided server configuration
-    :param server_config_json:
-    :return:
+    :param server_config_json: json file containing the api_url and api_token
+    :return: pycap project
     """
     config = json.load(open(server_config_json, 'r'))
     if config['api_token'] in os.environ:
