@@ -1,11 +1,10 @@
-import json
-
 import pandas as pd
 import pytest
 
-import redcap
 from redcap_bridge.server_interface import (upload_datadict, download_records,
-                                            download_datadict, check_external_modules)
+                                            download_datadict, check_external_modules,
+                                            get_redcap_project)
+
 from redcap_bridge.test_redcap.test_utils import (test_directory,
                                                   initialize_test_dir)
 from redcap_bridge.utils import map_header_csv_to_json
@@ -21,7 +20,6 @@ def clean_server(initialize_test_dir):
     and records present
     """
     # replace existing datadict and record at server by default ones
-    config = json.load(open(SERVER_CONFIG_YAML, 'r'))
 
     # TODO: Add step 0: Initialize project (activate surveys and repeating
     #  instruments )
@@ -29,7 +27,7 @@ def clean_server(initialize_test_dir):
 
     # first initialize in lazy mode to configure metadata even if server status
     # is corrupted
-    redproj = redcap.Project(config['api_url'], config['api_token'], lazy=True)
+    redproj = get_redcap_project(SERVER_CONFIG_YAML)
 
     default_datadict = pd.DataFrame(data=[['record_id', 'my_first_instrument',
                                            'text', 'Record ID'] + [''] * 14],
@@ -37,7 +35,7 @@ def clean_server(initialize_test_dir):
     redproj.import_metadata(default_datadict, format='csv')
 
     # second initialize in non-lazy mode to configure records
-    redproj = redcap.Project(config['api_url'], config['api_token'], lazy=False)
+    redproj = get_redcap_project(SERVER_CONFIG_YAML)
     default_records = pd.DataFrame(columns=['record_id',
                                             'my_first_instrument_complete'])
     redproj.import_records(default_records,
@@ -69,8 +67,7 @@ def test_upload_records(clean_server, initialize_test_dir):
     `upload_records` method instead of pycap itself
     """
     # upload data records
-    config = json.load(open(SERVER_CONFIG_YAML, 'r'))
-    redproj = redcap.Project(config['api_url'], config['api_token'], lazy=False)
+    redproj = get_redcap_project(SERVER_CONFIG_YAML)
 
     upload_datadict(test_directory / 'testfiles' / 'metadata.csv',
                     SERVER_CONFIG_YAML)
