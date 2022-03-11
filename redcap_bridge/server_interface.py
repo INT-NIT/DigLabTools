@@ -1,4 +1,5 @@
 import os
+import warnings
 import json
 
 import pandas as pd
@@ -106,6 +107,42 @@ def get_json_csv_header_mapping(server_config_json):
 
     # TODO: This function should replace utils.py/map_header_json_to_csv
     raise NotImplementedError()
+
+
+def check_external_modules(server_config_json):
+    """
+    Download records from the redcap server.
+
+    Parameters
+    ----------
+    server_config_json: str
+        Path to the json file containing the redcap url, api token and required external modules
+
+    Returns
+    -------
+        bool: True if required external modules are present
+
+    """
+    config = json.load(open(server_config_json, 'r'))
+
+    if 'external_modules' not in config:
+        warnings.warn('No external_modules defined in project configuration')
+        return True
+
+    redproj = get_redcap_project(server_config_json)
+    proj_json = redproj.export_project_info(format='json')
+
+    missing_modules = []
+
+    for ext_mod in config['external_modules']:
+        if ext_mod not in proj_json['external_modules']:
+            missing_modules.append(ext_mod)
+
+    if missing_modules:
+        warnings.warn(f'Project on server is missing external modules: {missing_modules}')
+        return False
+    else:
+        return True
 
 
 def get_redcap_project(server_config_json):

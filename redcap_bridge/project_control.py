@@ -5,7 +5,8 @@ import tempfile
 
 from redcap_bridge.project_building import build_project, customize_project
 from redcap_bridge.project_validation import validate_project_against_template_parts
-from redcap_bridge.server_interface import upload_datadict, download_records
+from redcap_bridge.server_interface import (upload_datadict, download_records,
+                                            check_external_modules)
 
 def setup_project(proj_folder, working_dir=None, include_provenance=True):
     """
@@ -42,6 +43,7 @@ def setup_project(proj_folder, working_dir=None, include_provenance=True):
                       output_file=working_dir / 'customized.csv')
     validate_project_against_template_parts(working_dir / 'customized.csv',
                                             *proj_conf['validation'])
+    check_external_modules(proj_folder / 'project.json')
 
     upload_datadict(working_dir / 'customized.csv',
                     proj_folder / 'project.json')
