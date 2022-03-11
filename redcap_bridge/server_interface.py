@@ -178,8 +178,7 @@ def check_external_modules(server_config_json):
         warnings.warn('No external_modules defined in project configuration')
         return True
 
-    redproj = redcap.Project(config['api_url'], config['api_token'], lazy=False)
-    proj_json = redproj.export_project_info(format='json')
+    proj_json = get_redcap_project(server_config_json)
 
     missing_modules = []
 
@@ -192,6 +191,20 @@ def check_external_modules(server_config_json):
         return False
     else:
         return True
+
+
+def get_redcap_project(server_config_json):
+    """
+    Initialize a pycap project based on the provided server configuration
+    :param server_config_json: json file containing the api_url and api_token
+    :return: pycap project
+    """
+    config = json.load(open(server_config_json, 'r'))
+    if config['api_token'] in os.environ:
+        config['api_token'] = os.environ[config['api_token']]
+    redproj = redcap.Project(config['api_url'], config['api_token'], lazy=False)
+    return redproj
+>>>>>>> pep8 cleaning
 
 
 if __name__ == '__main__':
