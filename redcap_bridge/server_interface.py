@@ -129,7 +129,8 @@ def check_external_modules(server_config_json):
         warnings.warn('No external_modules defined in project configuration')
         return True
 
-    proj_json = get_redcap_project(server_config_json)
+    redproj = get_redcap_project(server_config_json)
+    proj_json = redproj.export_project_info(format='json')
 
     missing_modules = []
 
