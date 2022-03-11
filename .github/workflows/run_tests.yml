@@ -6,7 +6,7 @@ name: Python package
 on:
   push:
     branches: [ main ]
-  pull_request:
+  pull_request_target:
     branches: [ main ]
 
 jobs:
@@ -23,6 +23,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+
+    - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -35,6 +39,8 @@ jobs:
       run: pip install .[test]
 
     - name: Test with pytest
+      env:
+        REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
       run: |
         pytest
 
@@ -58,6 +64,8 @@ jobs:
         run: pip install coveralls
 
       - name: Create coverage
+        env:
+          REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
         run: coverage run -m pytest .
 
       - name: Submit to coveralls
