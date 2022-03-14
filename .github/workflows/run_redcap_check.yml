@@ -5,7 +5,7 @@ name: RedCap Server Availability Check
 
 on:
   schedule:
-    - cron: "*/55 * * * *"
+    - cron: "0 */12 * * *"
 
 jobs:
   build:
