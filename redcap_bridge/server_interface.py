@@ -183,11 +183,11 @@ def download_project_settings(server_config_json, format='json'):
     server_config_json: str
         Path to the json file containing the redcap url, api token and required external modules
     format: str
-        Return format to use (json, csv)
+        Return format to use (json, csv, xml, df)
 
     Returns
     -------
-        (dict|dataframe): The project settings in the corresponding format
+        (dict|list|xml|df): The project settings in the corresponding format
     """
 
     redproj = get_redcap_project(server_config_json)
