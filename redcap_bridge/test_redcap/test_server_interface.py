@@ -23,6 +23,7 @@ def clean_server(initialize_test_dir):
     # TODO: Add step 0: Initialize project (activate surveys and repeating
     #  instruments )
     #  -> requires extension of PyCap by `import_project_info` method
+    #  -> requires RedCap SUPER API TOKEN (64 characters), beyond standard user rights
 
     # first initialize in lazy mode to configure metadata even if server status
     # is corrupted
