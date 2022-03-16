@@ -71,8 +71,41 @@ def test_upload_records(clean_server, initialize_test_dir):
     assert res == 2
 
 
-
 def test_download_records(clean_server, initialize_test_dir):
+    """
+    Download datadict from server and compare to previously uploaded datadict
+    """
+    # uploading metadata csv files from testfile dataset and compare to
+    # return value of upload
+    original_record_csv = test_directory / 'testfiles' / 'record.csv'
+    upload_datadict(test_directory / 'testfiles' / 'metadata.csv', SERVER_CONFIG_YAML)
+    upload_records(test_directory / 'testfiles' / 'record.csv', SERVER_CONFIG_YAML)
+
+    downloaded_record_csv = test_directory / 'testfiles' / 'record_downloaded.csv'
+    download_records(downloaded_record_csv, SERVER_CONFIG_YAML)
+
+    import csv
+    original_reader = csv.reader(open(original_record_csv))
+    download_reader = csv.reader(open(downloaded_record_csv))
+
+    # comparing headers
+    original_header = original_reader.__next__()
+    downloaded_header = download_reader.__next__()
+    # ignore last column 'form_name_complete'
+    # TODO: Check why diglabform_complete is not exported by default.
+    for i, oh in enumerate(original_header[:-1]):
+        # check if all original header entries are preserved
+        assert oh in downloaded_header, f'{oh} not in downloaded header'
+
+    # compare content
+    for oline, dline in zip(original_reader, download_reader):
+        # ignore last column 'form_name_complete'
+        # TODO: Check why diglabform_complete is not exported by default.
+        oline = oline[:-1]
+        assert oline == dline
+
+
+def test_download_datadict(clean_server, initialize_test_dir):
     """
     Download datadict from server and compare to previously uploaded datadict
     """
