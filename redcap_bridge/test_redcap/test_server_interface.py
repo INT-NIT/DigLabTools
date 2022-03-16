@@ -31,14 +31,14 @@ def clean_server(initialize_test_dir):
     default_datadict = pd.DataFrame(data=[['record_id', 'my_first_instrument',
                                            'text', 'Record ID'] + [''] * 14],
                                     columns=map_header_csv_to_json)
-    redproj.import_metadata(default_datadict, format='csv')
+    redproj.import_metadata(default_datadict, import_format='csv')
 
     # second initialize in non-lazy mode to configure records
     redproj = get_redcap_project(SERVER_CONFIG_YAML)
     default_records = pd.DataFrame(columns=['record_id',
                                             'my_first_instrument_complete'])
     redproj.import_records(default_records,
-                           format='csv', return_format='json',
+                           import_format='csv', return_format_type='json',
                            overwrite="overwrite")
 
 
@@ -93,17 +93,11 @@ def test_download_records(clean_server, initialize_test_dir):
     # comparing headers
     original_header = original_reader.__next__()
     downloaded_header = download_reader.__next__()
-    # ignore last column 'form_name_complete'
-    # TODO: Check why diglabform_complete is not exported by default.
-    for i, oh in enumerate(original_header[:-1]):
-        # check if all original header entries are preserved
+    for i, oh in enumerate(original_header):
         assert oh in downloaded_header, f'{oh} not in downloaded header'
 
     # compare content
     for oline, dline in zip(original_reader, download_reader):
-        # ignore last column 'form_name_complete'
-        # TODO: Check why diglabform_complete is not exported by default.
-        oline = oline[:-1]
         assert oline == dline
 
 

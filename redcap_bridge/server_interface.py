@@ -29,7 +29,7 @@ def upload_datadict(csv_file, server_config_json):
 
     # Upload csv using pycap
     redproj = get_redcap_project(server_config_json)
-    n = redproj.import_metadata(df, format='csv', return_format='json')
+    n = redproj.import_metadata(df, import_format='df', return_format_type='json')
     return n
 
 
@@ -41,15 +41,12 @@ def download_datadict(save_to, server_config_json, format='csv'):
         Path where to save the retrieved data dictionary
     server_config_json: str
         Path to the json file containing the redcap url and api token
-    format:  'csv', 'json'
+    format:  'csv', 'json', 'df'
         Format of the retrieved data dictionary
-
-            Format of the retrieved data dictionary
-
     """
 
     redproj = get_redcap_project(server_config_json)
-    data_dict = redproj.export_metadata(format=format)
+    data_dict = redproj.export_metadata(format_type=format)
 
     if format == 'csv':
         with open(save_to, 'w') as save_file:
@@ -79,7 +76,7 @@ def download_records(save_to, server_config_json, format='csv'):
     """
 
     redproj = get_redcap_project(server_config_json)
-    records = redproj.export_records(format=format)
+    records = redproj.export_records(format_type=format)
 
     if format == 'csv':
         with open(save_to, 'w') as save_file:
@@ -92,6 +89,7 @@ def download_records(save_to, server_config_json, format='csv'):
     else:
         raise ValueError(f'Unknown format {format}. Valid formats are "csv" '
                          f'and "json".')
+
 
 def upload_records(csv_file, server_config_json):
     """
@@ -121,7 +119,7 @@ def upload_records(csv_file, server_config_json):
         redproj.import_repeating_instruments_events([{"form_name": form_name,
                                                       "custom_form_label": ""}])
 
-    n = redproj.import_records(df, format='csv', return_format='json')
+    n = redproj.import_records(df, import_format='df', return_format_type='json')
     return n['count']
 
 
@@ -161,7 +159,7 @@ def check_external_modules(server_config_json):
         return True
 
     redproj = get_redcap_project(server_config_json)
-    proj_json = redproj.export_project_info(format='json')
+    proj_json = redproj.export_project_info(format_type='json')
 
     missing_modules = []
 
@@ -193,7 +191,7 @@ def download_project_settings(server_config_json, format='json'):
     """
 
     redproj = get_redcap_project(server_config_json)
-    proj_settings = redproj.export_project_info(format=format)
+    proj_settings = redproj.export_project_info(format_type=format)
 
     return proj_settings
 
@@ -213,9 +211,7 @@ def configure_project_settings(server_config_json):
     """
 
     redproj = get_redcap_project(server_config_json)
-    proj_json = redproj.export_project_info(format='json')
-
-    # redproj.export_project_info(format='json')
+    proj_json = redproj.export_project_info(format_type='json')
 
     config = json.load(open(server_config_json, 'r'))
 
@@ -225,16 +221,6 @@ def configure_project_settings(server_config_json):
         warnings.warn(f'Surveys are not enabled for project {proj_json["project_title"]} '
                       f'(project_id {proj_json["project_id"]}). Visit the RedCap webinterface and '
                       f'enable surveys to be able to collect data via the survey URL')
-
-    if 'repeating_instrument' in config and config['repeating_instrument']:
-        proj_json['has_repeating_instruments_or_events'] = 1
-        # get name of current instrument
-        data_dicts = redproj.export_metadata()
-        assert len(data_dicts) == 1, f'Unexpected number of surveys {len(data_dicts)}'
-        form_name = data_dicts[0]['form_name']
-
-        redproj.import_repeating_instruments_events([{"form_name": form_name,
-                                                      "custom_form_label": ""}])
 
 
 def get_redcap_project(server_config_json):
@@ -246,7 +232,7 @@ def get_redcap_project(server_config_json):
     config = json.load(open(server_config_json, 'r'))
     if config['api_token'] in os.environ:
         config['api_token'] = os.environ[config['api_token']]
-    redproj = redcap.Project(config['api_url'], config['api_token'], lazy=False)
+    redproj = redcap.Project(config['api_url'], config['api_token'])
     return redproj
 
 
