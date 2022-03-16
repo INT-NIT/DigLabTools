@@ -2,7 +2,9 @@ import pandas as pd
 import pytest
 
 from redcap_bridge.server_interface import (upload_datadict, download_records, download_datadict,
-                                            get_redcap_project, check_external_modules)
+                                            check_external_modules, get_redcap_project,
+                                            upload_records)
+
 from redcap_bridge.test_redcap.test_utils import (test_directory,
                                                   initialize_test_dir)
 from redcap_bridge.utils import map_header_csv_to_json
@@ -64,15 +66,9 @@ def test_upload_records(clean_server, initialize_test_dir):
     TODO: Finally this test should test the corresponding redcap_bridge
     `upload_records` method instead of pycap itself
     """
-    # upload data records
-    redproj = get_redcap_project(SERVER_CONFIG_YAML)
+    upload_datadict(test_directory / 'testfiles' / 'metadata.csv', SERVER_CONFIG_YAML)
+    res = upload_records(test_directory / 'testfiles' / 'record.csv', SERVER_CONFIG_YAML)
 
-    upload_datadict(test_directory / 'testfiles' / 'metadata.csv',
-                    SERVER_CONFIG_YAML)
-
-    uploaded_records = pd.read_csv(test_directory / 'testfiles' / 'record.csv',
-                                   index_col=0, dtype='str')
-    redproj.import_records(uploaded_records, format='csv', overwrite='overwrite')
 
 
 def test_download_records(clean_server, initialize_test_dir):

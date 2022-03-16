@@ -93,6 +93,37 @@ def download_records(save_to, server_config_json, format='csv'):
         raise ValueError(f'Unknown format {format}. Valid formats are "csv" '
                          f'and "json".')
 
+def upload_records(csv_file, server_config_json):
+    """
+   Parameters
+   ----------
+   csv_file: str
+       Path to the csv file to be used as records
+   server_config_json: str
+       Path to the json file containing the redcap url and api token
+
+    Returns:
+    ----------
+
+    Returns:
+        (int): Number of uploaded records
+    """
+
+    df = pd.read_csv(csv_file, dtype=str)
+    df.rename(columns=map_header_csv_to_json, inplace=True)
+
+    # Upload csv using pycap
+    redproj = get_redcap_project(server_config_json)
+
+    # activate repeating instrument feature if present in records
+    if 'redcap_repeat_instrument' in df.columns:
+        form_name = df['redcap_repeat_instrument'].values[0]
+        redproj.import_repeating_instruments_events([{"form_name": form_name,
+                                                      "custom_form_label": ""}])
+
+    n = redproj.import_records(df, format='csv', return_format='json')
+    return n['count']
+
 
 def get_json_csv_header_mapping(server_config_json):
     """
