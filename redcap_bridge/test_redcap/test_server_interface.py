@@ -69,6 +69,9 @@ def test_upload_records(clean_server, initialize_test_dir):
     upload_datadict(test_directory / 'testfiles' / 'metadata.csv', SERVER_CONFIG_YAML)
     res = upload_records(test_directory / 'testfiles' / 'record.csv', SERVER_CONFIG_YAML)
 
+    # test record.csv contains 2 records
+    assert res == 2
+
 
 
 def test_download_records(clean_server, initialize_test_dir):
