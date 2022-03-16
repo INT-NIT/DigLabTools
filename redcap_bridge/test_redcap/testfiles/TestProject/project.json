@@ -12,6 +12,7 @@
       "version": "v2.6.0"
     }
   },
+  "repeating_instrument": true,
   "api_token": "REDCAP_API_TOKEN",
   "api_url": "https://redcap.int.univ-amu.fr/api/"
 }

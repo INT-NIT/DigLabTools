@@ -3,7 +3,8 @@ import pytest
 
 from redcap_bridge.server_interface import (upload_datadict, download_records, download_datadict,
                                             check_external_modules, get_redcap_project,
-                                            upload_records)
+                                            upload_records, download_project_settings,
+                                            configure_project_settings)
 
 from redcap_bridge.test_redcap.test_utils import (test_directory, initialize_test_dir)
 from redcap_bridge.utils import map_header_csv_to_json
@@ -56,6 +57,7 @@ def test_upload_datadict(clean_server, initialize_test_dir):
         exp = len(lines) - 1  # header row does not generate a record
 
     assert exp == res
+
 
 def test_upload_records(clean_server, initialize_test_dir):
     """
@@ -141,3 +143,32 @@ def test_check_external_modules(clean_server, initialize_test_dir):
     """
 
     assert check_external_modules(SERVER_CONFIG_YAML)
+
+
+def test_download_project_settings(clean_server):
+    """
+    Download project settings
+    """
+    res = download_project_settings(SERVER_CONFIG_YAML)
+    assert type(res) == dict
+    required_project_info = ['project_id', 'project_title', 'external_modules']
+    for key in required_project_info:
+        assert key in res
+
+
+def test_configure_project_settings(clean_server, initialize_test_dir):
+    """
+    Test configure server project based on default values and project.json
+    """
+    configure_project_settings(SERVER_CONFIG_YAML)
+
+    # confirm project settings on server are consistent with project configuration
+    proj_settings = download_project_settings(SERVER_CONFIG_YAML)
+    assert proj_settings['surveys_enabled']
+    assert len(proj_settings['external_modules'])
+
+    redproj = get_redcap_project(SERVER_CONFIG_YAML)
+    rep_inst_settings = redproj.export_repeating_instruments_events()
+    assert len(rep_inst_settings) == 1
+    assert "form_name" in rep_inst_settings[0]
+    assert "custom_form_label" in rep_inst_settings[0]

@@ -176,6 +176,67 @@ def check_external_modules(server_config_json):
         return True
 
 
+def download_project_settings(server_config_json, format='json'):
+    """
+    Get project specific settings from server
+
+    Parameters
+    ----------
+    server_config_json: str
+        Path to the json file containing the redcap url, api token and required external modules
+    format: str
+        Return format to use (json, csv)
+
+    Returns
+    -------
+        (dict|dataframe): The project settings in the corresponding format
+    """
+
+    redproj = get_redcap_project(server_config_json)
+    proj_settings = redproj.export_project_info(format=format)
+
+    return proj_settings
+
+
+def configure_project_settings(server_config_json):
+    """
+    Setting project specific settings on server
+
+    Parameters
+    ----------
+    server_config_json: str
+        Path to the json file containing the redcap url, api token and required external modules
+
+    Returns
+    -------
+        bool: True if required external modules are present
+    """
+
+    redproj = get_redcap_project(server_config_json)
+    proj_json = redproj.export_project_info(format='json')
+
+    # redproj.export_project_info(format='json')
+
+    config = json.load(open(server_config_json, 'r'))
+
+    # configure default settings (surveys) and configured settings
+    # setting project info requires a SUPER API token - not for standard usage
+    if not proj_json['surveys_enabled']:
+        warnings.warn(f'Surveys are not enabled for project {proj_json["project_title"]} '
+                      f'(project_id {proj_json["project_id"]}). Visit the RedCap webinterface and '
+                      f'enable surveys to be able to collect data via the survey URL')
+
+    if 'repeating_instrument' in config and config['repeating_instrument']:
+        proj_json['has_repeating_instruments_or_events'] = 1
+        # get name of current instrument
+        data_dicts = redproj.export_metadata()
+        assert len(data_dicts) == 1, f'Unexpected number of surveys {len(data_dicts)}'
+        form_name = data_dicts[0]['form_name']
+
+        redproj.import_repeating_instruments_events([{"form_name": form_name,
+                                                      "custom_form_label": ""}])
+
+
 def get_redcap_project(server_config_json):
     """
     Initialize a pycap project based on the provided server configuration
