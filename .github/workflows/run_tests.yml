@@ -35,10 +35,10 @@ jobs:
         run: python -c "import sys; print(sys.version)"
         
       - name: Update pip
-        run: pip install --upgrade pip
+        run: pip install --user --upgrade pip
 
       - name: Install package
-        run: pip install .[test]
+        run: pip install --user .[test]
 
       - name: Test with pytest
         env:
@@ -63,13 +63,13 @@ jobs:
         run: python -c "import sys; print(sys.version)"
         
       - name: Update pip
-        run: pip install --upgrade pip
+        run: pip install --user --upgrade pip
 
       - name: Install package
-        run: pip install .[test]
+        run: pip install --user .[test]
 
       - name: Install Python test dependencies
-        run: pip install coveralls
+        run: pip install --user coveralls
 
       - name: Create coverage
         env:
