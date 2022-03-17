@@ -45,5 +45,4 @@ def setup_project(proj_folder, working_dir=None, include_provenance=True):
                                             *proj_conf['validation'])
     check_external_modules(proj_folder / 'project.json')
 
-    upload_datadict(working_dir / 'customized.csv',
-                    proj_folder / 'project.json')
+    upload_datadict(working_dir / 'customized.csv', proj_folder / 'project.json')
