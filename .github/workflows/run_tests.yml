@@ -44,7 +44,13 @@ jobs:
         shell: bash
 
       - name: Install package
-        run: pip install --user .[test]
+        run: |
+          if [ "$RUNNER_OS" == "Windows" ]; then
+               pip install --user .[test]
+          else
+               pip install .[test]
+          fi
+        shell: bash
 
       - name: Test with pytest
         env:
@@ -78,7 +84,13 @@ jobs:
         shell: bash
 
       - name: Install package
-        run: pip install --user .[test]
+        run: |
+          if [ "$RUNNER_OS" == "Windows" ]; then
+               pip install --user .[test]
+          else
+               pip install .[test]
+          fi
+        shell: bash
 
       - name: Install Python test dependencies
         run: pip install --user coveralls
