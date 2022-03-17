@@ -1,6 +1,6 @@
 pandas
 pytest
 gitpython
-pycap>=2.0.0a0
+--pre pycap>=2.0.0a0
 
 
