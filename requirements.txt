@@ -1,6 +1,5 @@
+pip>=22.0
 pandas
 pytest
 gitpython
---pre pycap>=2.0.0a0
-
-
+pycap>=2.0.0a0
