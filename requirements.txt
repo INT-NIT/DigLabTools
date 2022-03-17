@@ -1,4 +1,3 @@
-pip>=22.0.0
 pandas
 pytest
 gitpython

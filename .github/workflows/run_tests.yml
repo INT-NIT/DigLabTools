@@ -83,6 +83,9 @@ jobs:
                fi
         shell: bash
 
+      - name: Update pip
+        run: pip install --upgrade pip
+
       - name: Install package
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
