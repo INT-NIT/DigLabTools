@@ -1,4 +1,4 @@
 pandas
 pytest
 gitpython
-git+https://github.com/JuliaSprenger/PyCap.git@add/imp_exp  # pycap>=2.0.0a0 + repeating instruments
+pycap @ git+https://github.com/JuliaSprenger/PyCap.git@add/imp_exp  # pycap>=2.0.0a0 + repeating instruments
