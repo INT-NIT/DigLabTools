@@ -1,4 +1,5 @@
 pandas
 pytest
 gitpython
+typing-extensions  # additional requirement for pycap (py 3.9)
 pycap @ git+https://github.com/JuliaSprenger/PyCap.git@add/imp_exp  # pycap>=2.0.0a0 + repeating instruments
