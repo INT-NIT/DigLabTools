@@ -88,7 +88,19 @@ def compress_record(csv_file, compressed_file=None):
     # merge multi-column fields
     names = set([c.split(' (choice=')[0] for c in df.filter(regex='. \(choice=.*\)').columns])
     for name in names:
-        sub_columns = df.filter(regex=f'^{name} \(choice=.').columns
+
+        if name in df.columns:
+            warnings.warn(f'Can not compress columns with name {name}. '
+                          f'Output column already exists.')
+            continue
+
+        # inactivate metacharacters of regex
+        metachars = '.^$*+?{}[]\|()'
+        regex_name = name
+        for metachar in metachars:
+            regex_name = regex_name.replace(metachar, '\\' +metachar)
+        # identify relevant columns to be merged
+        sub_columns = df.filter(regex=f'^{regex_name} \(choice=.').columns
         sub_indexes = df.columns.get_indexer(sub_columns)
         # insert column with merged columns
         df.insert(loc=int(sub_indexes[0]),
