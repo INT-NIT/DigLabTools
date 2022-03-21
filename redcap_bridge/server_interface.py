@@ -79,9 +79,9 @@ def download_records(save_to, server_config_json, format='csv', compressed=False
     """
 
     if compressed:
-        fixed_params = {'raw_label': 'label',
-                        'raw_label_header': 'label',
-                        'export_checkbox_label': True}
+        fixed_params = {'raw_or_label': 'label',
+                        'raw_or_label_headers': 'label',
+                        'export_checkbox_labels': True}
         for fix_key, fix_value in fixed_params.items():
             if fix_key in kwargs and kwargs[fix_key] != fix_value:
                 warnings.warn(f'`compressed` is overwriting current {fix_key} setting.')
@@ -108,7 +108,7 @@ def download_records(save_to, server_config_json, format='csv', compressed=False
             warnings.warn('Can only compress csv output. Ignoring `compressed` parameter.')
         else:
             # run compression in place
-            compress_record(save_file, save_file)
+            compress_record(save_to, save_to)
 
 
 def upload_records(csv_file, server_config_json):
