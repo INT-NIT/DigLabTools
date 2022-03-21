@@ -81,21 +81,24 @@ def compress_record(csv_file, compressed_file=None):
     # remove duplicate column
     df.drop(df.columns[embedded_indexes + 1], axis='columns', inplace=True)
 
+    # utility function for merging multiple values as a string
+    def merge_values(values):
+        return ', '.join([v for v in values if v != ''])
+
     # merge multi-column fields
-    names = set([c.split('(choice=')[0] for c in df.filter(regex='.\(choice=.*\)').columns])
+    names = set([c.split(' (choice=')[0] for c in df.filter(regex='. \(choice=.*\)').columns])
     for name in names:
-        sub_columns = df.filter(regex=f'^{name}\(choice=.').columns
+        sub_columns = df.filter(regex=f'^{name} \(choice=.').columns
         sub_indexes = df.columns.get_indexer(sub_columns)
         # insert column with merged columns
         df.insert(loc=int(sub_indexes[0]),
                   column=name,
-                  value=df[sub_columns].agg(', '.join, axis=1))
+                  value=df[sub_columns].agg(merge_values, axis=1))
         # remove sub-columns (that are now shifted by 1)
         df.drop(df.columns[sub_indexes + 1], axis='columns', inplace=True)
-    df = df.replace(to_replace='^(, )+|(, )+$', value='', regex=True).replace(to_replace='\w,,+/w', value=',', regex=True)
 
     if compressed_file is None:
         return df
     else:
-        df.to_csv(compressed_file)
+        df.to_csv(compressed_file, index=False)
 
