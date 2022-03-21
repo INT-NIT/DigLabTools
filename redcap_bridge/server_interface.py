@@ -243,19 +243,6 @@ def configure_project_settings(server_config_json):
                       f'enable surveys to be able to collect data via the survey URL')
 
 
-def get_redcap_project(server_config_json):
-    """
-    Initialize a pycap project based on the provided server configuration
-    :param server_config_json: json file containing the api_url and api_token
-    :return: pycap project
-    """
-    config = json.load(open(server_config_json, 'r'))
-    if config['api_token'] in os.environ:
-        config['api_token'] = os.environ[config['api_token']]
-    redproj = redcap.Project(config['api_url'], config['api_token'])
-    return redproj
-
-
 def check_external_modules(server_config_json):
     """
     Download records from the redcap server.
