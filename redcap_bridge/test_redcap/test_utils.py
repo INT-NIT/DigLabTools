@@ -2,12 +2,10 @@ import os
 import pathlib
 import shutil
 import tempfile
-import csv
 
-import pandas as pd
 import pytest
 
-from redcap_bridge.utils import compressed_record
+from redcap_bridge.utils import compress_record
 test_directory = pathlib.Path(tempfile.gettempdir()) / 'diglabtools_testfiles'
 project_dir = test_directory / 'testfiles' / 'TestProject'
 
@@ -38,13 +36,17 @@ def initialize_test_dir(clean=True):
     return test_directory
 
 def test_compressedCSV(initialize_test_dir):
-    compressed_record(test_directory / 'testfiles' / 'compression_test' / 'original_record.csv')
-    #f1 = open("test.csv", 'r')
-    #f2 = open(test_directory / 'testfiles' / 'compression_test' / 'expected_record.csv', 'r')
 
-    #output_file = f1.readlines()
-    #expected_file = f2.readlines()
+    test_dir = test_directory / 'testfiles' / 'compression_test'
 
-    #for line in expected_file:
-       # if line not in output_file:
-            #print("Error not similar csv")
+    compress_record(test_dir / 'original_record.csv', test_dir / 'compressed_record.csv')
+
+
+    with open(test_dir / 'compressed_record.csv') as comp_file:
+        with open(test_dir / 'expected_record.csv') as exp_file:
+            res = comp_file.read()
+            exp = exp_file.read()
+
+            assert res == exp
+
+

@@ -5,7 +5,7 @@ import json
 import pandas as pd
 
 import redcap
-from redcap_bridge.utils import map_header_csv_to_json
+from redcap_bridge.utils import map_header_csv_to_json, compress_record
 
 
 def upload_datadict(csv_file, server_config_json):
@@ -61,7 +61,7 @@ def download_datadict(save_to, server_config_json, format='csv'):
                          f'and "json".')
 
 
-def download_records(save_to, server_config_json, format='csv'):
+def download_records(save_to, server_config_json, format='csv', compressed=False, **kwargs):
     """
     Download records from the redcap server.
 
@@ -73,10 +73,27 @@ def download_records(save_to, server_config_json, format='csv'):
         Path to the json file containing the redcap url and api token
     format: 'csv', 'json'
         Format of the retrieved records
+    kwargs: dict
+        Additional arguments passed to PyCap `export_records`
+
     """
 
+    if compressed:
+        fixed_params = {'raw_label': 'label',
+                        'raw_label_header': 'label',
+                        'export_checkbox_label': True}
+        for fix_key, fix_value in fixed_params.items():
+            if fix_key in kwargs and kwargs[fix_key] != fix_value:
+                warnings.warn(f'`compressed` is overwriting current {fix_key} setting.')
+
+        kwargs.update(fixed_params)
+
     redproj = get_redcap_project(server_config_json)
+<<<<<<< HEAD
     records = redproj.export_records(format_type=format)
+=======
+    records = redproj.export_records(format=format, **kwargs)
+>>>>>>> first reformatting
 
     if format == 'csv':
         with open(save_to, 'w') as save_file:
@@ -89,6 +106,13 @@ def download_records(save_to, server_config_json, format='csv'):
     else:
         raise ValueError(f'Unknown format {format}. Valid formats are "csv" '
                          f'and "json".')
+
+    if compressed:
+        if format != 'csv':
+            warnings.warn('Can only compress csv output. Ignoring `compressed` parameter.')
+        else:
+            # run compression in place
+            compress_record(save_file, save_file)
 
 
 def upload_records(csv_file, server_config_json):

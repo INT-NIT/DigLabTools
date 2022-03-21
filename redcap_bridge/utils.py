@@ -2,6 +2,7 @@ import git
 import pathlib
 import pandas as pd
 import re as re
+import warnings
 
 # TODO: This can be extracted via the RedCap API
 header_json = ['field_name', 'form_name', 'section_header', 'field_type',
@@ -64,29 +65,37 @@ def get_repo_state(path):
     return commit_hash, clean
 
 
-def compressed_record(csv_file, compressed_file=None):
-    custom_csv = pd.read_csv(csv_file)
-    df = pd.DataFrame(custom_csv)
-    compressed_file = df.filter(regex='.___.')
-    print(compressed_file)
-    df = df[df.columns.drop(list(df.filter(regex='.___.')))]
-    compressed_file.replace(0,'', inplace=True)
-    for column in compressed_file:
-        if 1 in compressed_file[column].values:
-            style_moda = re.search('___(.+?)', column).group(1)
-            compressed_file[column].replace(1, style_moda, inplace=True)
-        else:
-            compressed_file.pop(column)
-    list_column = compressed_file.columns.tolist()
+def compress_record(csv_file, compressed_file=None):
+    warnings.warn(f'Compressing {csv_file} does not preserve all original information.'
+                  f'This operation is potentially irreversible.')
 
-    names = set([c.split('___')[0] for c in compressed_file.columns])
-    final_df = pd.DataFrame()
+    df = pd.read_csv(csv_file, na_filter=False, dtype='str')
+
+    # compressing embedded fields
+    embedding_columns = df.filter(regex='.\(choice=.*\{.*\}\)').columns
+    embedded_indexes = df.columns.get_indexer(embedding_columns)
+    # ensure header of next columns are empty
+    assert all([c.startswith('Unnamed: ') for c in df.columns[embedded_indexes + 1]])
+    # copy values to embedded column
+    df.iloc[:, embedded_indexes] = df.iloc[:, embedded_indexes + 1]
+    # remove duplicate column
+    df.drop(df.columns[embedded_indexes + 1], axis='columns', inplace=True)
+
+    # merge multi-column fields
+    names = set([c.split('(choice=')[0] for c in df.filter(regex='.\(choice=.*\)').columns])
     for name in names:
-        test = compressed_file.filter(regex=f'{name}___.').agg(','.join, axis=1)
-        final_df[name] = test
-    final_df = final_df.replace(to_replace='^,+|,+$|\w,,+/w', value='', regex=True)
+        sub_columns = df.filter(regex=f'^{name}\(choice=.').columns
+        sub_indexes = df.columns.get_indexer(sub_columns)
+        # insert column with merged columns
+        df.insert(loc=int(sub_indexes[0]),
+                  column=name,
+                  value=df[sub_columns].agg(', '.join, axis=1))
+        # remove sub-columns (that are now shifted by 1)
+        df.drop(df.columns[sub_indexes + 1], axis='columns', inplace=True)
+    df = df.replace(to_replace='^(, )+|(, )+$', value='', regex=True).replace(to_replace='\w,,+/w', value=',', regex=True)
 
-    result = pd.concat([final_df, df], axis=1)
-    print(result)
-    return final_df
+    if compressed_file is None:
+        return df
+    else:
+        df.to_csv(compressed_file)
 

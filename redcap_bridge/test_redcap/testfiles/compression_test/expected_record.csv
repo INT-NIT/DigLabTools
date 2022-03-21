@@ -1,8 +1,9 @@
-modality,cat
-",,",",,"
-"a,,",",,s"
-"a,b,",",x,s"
-"a,b,c","z,x,s"
-"a,b,c",",x,s"
-"a,b,c",",,s"
-",,",",,"
+Record ID,My Comment Field,Modality,Single Mode Modality
+1,blabla,"my first choice, my comment",yes
+2,more blabla,"my first choice, my second choice",yes
+3,,"my first choice, my third choice, no comment",yes
+4,,"my first choice, my second choice, my third choice, minimal comment",yes
+5,no bla,,
+6,,my second choice,
+7,,my third choice,
+8,,"my second choice, my third choice",
