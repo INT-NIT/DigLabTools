@@ -89,11 +89,7 @@ def download_records(save_to, server_config_json, format='csv', compressed=False
         kwargs.update(fixed_params)
 
     redproj = get_redcap_project(server_config_json)
-<<<<<<< HEAD
-    records = redproj.export_records(format_type=format)
-=======
-    records = redproj.export_records(format=format, **kwargs)
->>>>>>> first reformatting
+    records = redproj.export_records(format_type=format, **kwargs)
 
     if format == 'csv':
         with open(save_to, 'w') as save_file:
