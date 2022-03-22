@@ -24,8 +24,10 @@ def main(command_line=None):
                           help="The destination filename.")
     download.add_argument("config_json", nargs=1, metavar='config_json', type=str,
                           help="The json configuration file of the project")
-    download.add_argument("--format", type=str, nargs=1, metavar='format',
+    download.add_argument("-f", "--format", type=str, nargs=1, metavar='format',
                           help="Format to store the data (json/csv)")
+    download.add_argument("-c", "--compressed", action='store_true',
+                          help="Compress the output file (use labels and merge checkbox columns)")
 
     # parse arguments
     args = parser.parse_args(command_line)
@@ -33,7 +35,8 @@ def main(command_line=None):
     if args.debug:
         print("debug: " + str(args))
     if args.command == 'download':
-        download_records(args.destination[0], args.config_json[0])
+        download_records(args.destination[0], args.config_json[0], format=args.format[0],
+                         compressed=bool(args.compressed))
 
 
 if __name__ == '__main__':

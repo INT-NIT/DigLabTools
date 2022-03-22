@@ -72,7 +72,7 @@ def compress_record(csv_file, compressed_file=None):
     df = pd.read_csv(csv_file, na_filter=False, dtype='str')
 
     # compressing embedded fields
-    embedding_columns = df.filter(regex='.\(choice=.*\{.*\}\)').columns
+    embedding_columns = df.filter(regex=r'.\(choice=.*\{.*\}\)').columns
     embedded_indexes = df.columns.get_indexer(embedding_columns)
     # ensure header of next columns are empty
     assert all([c.startswith('Unnamed: ') for c in df.columns[embedded_indexes + 1]])
@@ -86,9 +86,9 @@ def compress_record(csv_file, compressed_file=None):
         return ', '.join([v for v in values if v != ''])
 
     # merge multi-column fields
-    names = set([c.split(' (choice=')[0] for c in df.filter(regex='. \(choice=.*\)').columns])
+    names = set([c.split(' (choice=')[0] for c in df.filter(regex=r'. \(choice=.*\)').columns])
     for name in names:
-        sub_columns = df.filter(regex=f'^{name} \(choice=.').columns
+        sub_columns = df.filter(regex=rf'^{name} \(choice=.').columns
         sub_indexes = df.columns.get_indexer(sub_columns)
         # insert column with merged columns
         df.insert(loc=int(sub_indexes[0]),
@@ -101,4 +101,3 @@ def compress_record(csv_file, compressed_file=None):
         return df
     else:
         df.to_csv(compressed_file, index=False)
-
