@@ -16,7 +16,7 @@ jobs:
       matrix:
         # Tests on Windows elicit errors so keeping only ubuntu/macos for now
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.7, 3.9]
+        python-version: [3.8, 3.9]
         # Only one job at a time to avoid parallel access of test server
       max-parallel: 1
     if: contains(github.event.pull_request.labels.*.name, 'safe to test')
