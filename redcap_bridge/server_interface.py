@@ -5,7 +5,7 @@ import json
 import pandas as pd
 
 import redcap
-from redcap_bridge.utils import map_header_csv_to_json
+from redcap_bridge.utils import map_header_csv_to_json, compress_record
 
 
 def upload_datadict(csv_file, server_config_json):
@@ -61,7 +61,7 @@ def download_datadict(save_to, server_config_json, format='csv'):
                          f'and "json".')
 
 
-def download_records(save_to, server_config_json, format='csv'):
+def download_records(save_to, server_config_json, format='csv', compressed=False, **kwargs):
     """
     Download records from the redcap server.
 
@@ -73,10 +73,23 @@ def download_records(save_to, server_config_json, format='csv'):
         Path to the json file containing the redcap url and api token
     format: 'csv', 'json'
         Format of the retrieved records
+    kwargs: dict
+        Additional arguments passed to PyCap `export_records`
+
     """
 
+    if compressed:
+        fixed_params = {'raw_or_label': 'label',
+                        'raw_or_label_headers': 'label',
+                        'export_checkbox_labels': True}
+        for fix_key, fix_value in fixed_params.items():
+            if fix_key in kwargs and kwargs[fix_key] != fix_value:
+                warnings.warn(f'`compressed` is overwriting current {fix_key} setting.')
+
+        kwargs.update(fixed_params)
+
     redproj = get_redcap_project(server_config_json)
-    records = redproj.export_records(format_type=format)
+    records = redproj.export_records(format_type=format, **kwargs)
 
     if format == 'csv':
         with open(save_to, 'w') as save_file:
@@ -89,6 +102,13 @@ def download_records(save_to, server_config_json, format='csv'):
     else:
         raise ValueError(f'Unknown format {format}. Valid formats are "csv" '
                          f'and "json".')
+
+    if compressed:
+        if format != 'csv':
+            warnings.warn('Can only compress csv output. Ignoring `compressed` parameter.')
+        else:
+            # run compression in place
+            compress_record(save_to, save_to)
 
 
 def upload_records(csv_file, server_config_json):
@@ -221,19 +241,6 @@ def configure_project_settings(server_config_json):
         warnings.warn(f'Surveys are not enabled for project {proj_json["project_title"]} '
                       f'(project_id {proj_json["project_id"]}). Visit the RedCap webinterface and '
                       f'enable surveys to be able to collect data via the survey URL')
-
-
-def get_redcap_project(server_config_json):
-    """
-    Initialize a pycap project based on the provided server configuration
-    :param server_config_json: json file containing the api_url and api_token
-    :return: pycap project
-    """
-    config = json.load(open(server_config_json, 'r'))
-    if config['api_token'] in os.environ:
-        config['api_token'] = os.environ[config['api_token']]
-    redproj = redcap.Project(config['api_url'], config['api_token'])
-    return redproj
 
 
 def check_external_modules(server_config_json):

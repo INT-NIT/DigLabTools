@@ -1,0 +1,9 @@
+Record ID,My Comment Field,Modality (choice=my first choice),Modality (choice=my second choice),Modality (choice=my third choice),Modality (choice=My custom choice {my_comment_field}),,Single Mode Modality (choice=yes)
+1,blabla,my first choice,,,My custom choice {my_comment_field},my comment,yes
+2,more blabla,my first choice,my second choice,,,,yes
+3,,my first choice,,my third choice,My custom choice {my_comment_field},no comment,yes
+4,,my first choice,my second choice,my third choice,My custom choice {my_comment_field},minimal comment,yes
+5,no bla,,,,,,
+6,,,my second choice,,,,
+7,,,,my third choice,,,
+8,,,my second choice,my third choice,,,

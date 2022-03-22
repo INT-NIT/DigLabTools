@@ -1,5 +1,8 @@
 import git
 import pathlib
+import pandas as pd
+import re as re
+import warnings
 
 # TODO: This can be extracted via the RedCap API
 header_json = ['field_name', 'form_name', 'section_header', 'field_type',
@@ -22,6 +25,7 @@ map_header_json_to_csv = {json: csv for json, csv in zip(header_json,
                                                          header_csv)}
 map_header_csv_to_json = {csv: json for csv, json in zip(header_csv,
                                                          header_json)}
+
 
 def get_repo_state(path):
     """
@@ -59,3 +63,41 @@ def get_repo_state(path):
         clean = False
 
     return commit_hash, clean
+
+
+def compress_record(csv_file, compressed_file=None):
+    warnings.warn(f'Compressing {csv_file} does not preserve all original information.'
+                  f'This operation is potentially irreversible.')
+
+    df = pd.read_csv(csv_file, na_filter=False, dtype='str')
+
+    # compressing embedded fields
+    embedding_columns = df.filter(regex=r'.\(choice=.*\{.*\}\)').columns
+    embedded_indexes = df.columns.get_indexer(embedding_columns)
+    # ensure header of next columns are empty
+    assert all([c.startswith('Unnamed: ') for c in df.columns[embedded_indexes + 1]])
+    # copy values to embedded column
+    df.iloc[:, embedded_indexes] = df.iloc[:, embedded_indexes + 1]
+    # remove duplicate column
+    df.drop(df.columns[embedded_indexes + 1], axis='columns', inplace=True)
+
+    # utility function for merging multiple values as a string
+    def merge_values(values):
+        return ', '.join([v for v in values if v != ''])
+
+    # merge multi-column fields
+    names = set([c.split(' (choice=')[0] for c in df.filter(regex=r'. \(choice=.*\)').columns])
+    for name in names:
+        sub_columns = df.filter(regex=rf'^{name} \(choice=.').columns
+        sub_indexes = df.columns.get_indexer(sub_columns)
+        # insert column with merged columns
+        df.insert(loc=int(sub_indexes[0]),
+                  column=name,
+                  value=df[sub_columns].agg(merge_values, axis=1))
+        # remove sub-columns (that are now shifted by 1)
+        df.drop(df.columns[sub_indexes + 1], axis='columns', inplace=True)
+
+    if compressed_file is None:
+        return df
+    else:
+        df.to_csv(compressed_file, index=False)
