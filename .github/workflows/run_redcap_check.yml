@@ -36,8 +36,7 @@ jobs:
       env:
         REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
       run: |
-        python -c \
-"
+        python -c "
 import redcap_bridge.server_interface as si
 from pathlib import Path
 test_project = Path(si.__file__).parent / 'test_redcap' / 'testfiles' / 'TestProject' / 'project.json'
