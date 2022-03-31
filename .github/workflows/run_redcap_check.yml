@@ -28,7 +28,7 @@ jobs:
       run: python -c "import sys; print(sys.version)"
 
     - name: Install package
-      run: pip install .
+      run: pip install -e .
 
     - name: Test with pytest
       env:

@@ -1,11 +1,13 @@
-import redcap_bridge.server_interface as si
+import redcap_bridge
+from redcap_bridge.server_interface import download_project_settings
 from pathlib import Path
 
 
 def check_connectivity():
-    test_project = Path(si.__file__).parent / 'test_redcap' / 'testfiles' / 'TestProject' / 'project.json'
+    print(f'RCB location: {Path(redcap_bridge.__file__).parent}')
+    test_project = Path(redcap_bridge.__file__).parent / 'test_redcap' / 'testfiles' / 'TestProject' / 'project.json'
 
-    res = si.download_project_settings(test_project)
+    res = download_project_settings(test_project)
     if not res['project_id']:
         raise ValueError('Unsuccessful download')
 
