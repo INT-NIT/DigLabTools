@@ -98,8 +98,6 @@ def compress_record(csv_file, compressed_file=None):
             assert new_name not in df.columns
             name = new_name
 
-
-
         for special_char in '\\.^$*+?{}[]|()':
             regex_compatible_name = regex_compatible_name.replace(special_char, "\\" + special_char)
         sub_columns = df.filter(regex=rf'^{regex_compatible_name} \(choice=.').columns
