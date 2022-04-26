@@ -1,9 +1,9 @@
-Record ID,My Comment Field,Modality,Single Mode Modality,Other Moduality (complex)
-1,blabla,"my first choice, my comment",yes,"A,B"
-2,more blabla,"my first choice, my second choice",yes,"A,B"
-3,,"my first choice, my third choice, no comment",yes,"A,B"
+Record ID,My Comment Field,Modality,Single Mode Modality,Other Modality (complex)
+1,blabla,"my first choice, my comment",yes,"A, B"
+2,more blabla,"my first choice, my second choice",yes,"A, B"
+3,,"my first choice, my third choice, no comment",yes,"A, B"
 4,,"my first choice, my second choice, my third choice, minimal comment",yes,
-5,no bla,,,"A,B"
+5,no bla,,,"A, B"
 6,,my second choice,,
 7,,my third choice,,
 8,,"my second choice, my third choice",,

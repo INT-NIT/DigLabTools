@@ -1,4 +1,4 @@
-Record ID,My Comment Field,Modality (choice=my first choice),Modality (choice=my second choice),Modality (choice=my third choice),Modality (choice=My custom choice {my_comment_field}),,Single Mode Modality (choice=yes),Other Modality (complex) (choice=A), Other Modality (complex) (choice=B),
+Record ID,My Comment Field,Modality (choice=my first choice),Modality (choice=my second choice),Modality (choice=my third choice),Modality (choice=My custom choice {my_comment_field}),,Single Mode Modality (choice=yes),Other Modality (complex) (choice=A),Other Modality (complex) (choice=B)
 1,blabla,my first choice,,,My custom choice {my_comment_field},my comment,yes,A,B
 2,more blabla,my first choice,my second choice,,,,yes,A,B
 3,,my first choice,,my third choice,My custom choice {my_comment_field},no comment,yes,A,B
