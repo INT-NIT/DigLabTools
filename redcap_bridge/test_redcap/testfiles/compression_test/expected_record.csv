@@ -1,4 +1,4 @@
-Record ID,My Comment Field,Modality,Single Mode Modality,Other Modality (complex),Modality
+Record ID,My Comment Field,Modality_compressed,Single Mode Modality,Other Modality (complex),Modality
 1,blabla,"my first choice, my comment",yes,"A, B",My modality name
 2,more blabla,"my first choice, my second choice",yes,"A, B",My modality name
 3,,"my first choice, my third choice, no comment",yes,"A, B",My modality name
