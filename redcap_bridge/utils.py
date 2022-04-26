@@ -89,7 +89,7 @@ def compress_record(csv_file, compressed_file=None):
     names = set([c.split(' (choice=')[0] for c in df.filter(regex=r'. \(choice=.*\)').columns])
     for name in names:
         deactivated_name = name
-        for special_char in '.^$*+?{}[]\|()':
+        for special_char in '\\.^$*+?{}[]|()':
             deactivated_name = deactivated_name.replace(special_char, "\\" + special_char)
         sub_columns = df.filter(regex=rf'^{deactivated_name} \(choice=.').columns
         sub_indexes = df.columns.get_indexer(sub_columns)
