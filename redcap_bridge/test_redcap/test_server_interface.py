@@ -63,9 +63,6 @@ def test_upload_datadict(clean_server, initialize_test_dir):
 def test_upload_records(clean_server, initialize_test_dir):
     """
     Test upload of records to the server
-
-    TODO: Finally this test should test the corresponding redcap_bridge
-    `upload_records` method instead of pycap itself
     """
     upload_datadict(test_directory / 'testfiles' / 'metadata.csv', SERVER_CONFIG_YAML)
     res = upload_records(test_directory / 'testfiles' / 'record.csv', SERVER_CONFIG_YAML)
