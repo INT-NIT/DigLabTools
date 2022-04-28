@@ -35,6 +35,9 @@ def main(command_line=None):
     if args.debug:
         print("debug: " + str(args))
     if args.command == 'download':
+        if not args.format:
+            args.format = ['csv']
+
         download_records(args.destination[0], args.config_json[0], format=args.format[0],
                          compressed=bool(args.compressed))
 
