@@ -12,10 +12,7 @@
 #
 import os
 import sys
-autodoc_mock_imports = ['git', 'pandas', 'numpy', 'pytest', 'redcap']
-sys.path.insert(0, os.path.abspath('../'))
-sys.path.insert(0, os.path.abspath('../..'))
-sys.path.insert(0, os.path.abspath('../redcap_bridge'))
+sys.path.insert(0, os.path.abspath('..'))
 
 
 # -- Project information -----------------------------------------------------
