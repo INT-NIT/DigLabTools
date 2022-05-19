@@ -1,5 +1,1 @@
 sphinx_rtd_theme
-pandas
-pytest
-gitpython
-pycap>=2.0.0
