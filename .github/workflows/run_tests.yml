@@ -77,14 +77,11 @@ jobs:
       - name: Update pip
         run:   |
                if [ "$RUNNER_OS" == "Windows" ]; then
-                    pip install --user --upgrade pip
+                    python -m pip install --user --upgrade pip
                else
                     pip install --upgrade pip
                fi
         shell: bash
-
-      - name: Update pip
-        run: pip install --upgrade pip
 
       - name: Install package
         run: |
