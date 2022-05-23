@@ -72,12 +72,14 @@ jobs:
           python-version: "3.9"
 
       - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+        run: |
+              python -c "import sys; print(sys.version)"
+              which python
         
       - name: Update pip
         run:   |
                if [ "$RUNNER_OS" == "Windows" ]; then
-                    c:\hostedtoolcache\windows\python\3.8.10\x64\python.exe -m pip install --user --upgrade pip
+                    python -m pip install --user --upgrade pip
                else
                     pip install --upgrade pip
                fi
