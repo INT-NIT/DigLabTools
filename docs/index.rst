@@ -6,15 +6,14 @@
 Welcome to DigLabTools's documentation!
 =======================================
 
------------
-Readme File
------------
-
-.. mdinclude:: ../../README.md
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+
+Readme File
+=======================================
+
+.. mdinclude:: ../../README.md
 
 
 
