@@ -77,7 +77,7 @@ jobs:
       - name: Update pip
         run:   |
                if [ "$RUNNER_OS" == "Windows" ]; then
-                    python -m pip install --user --upgrade pip
+                    c:\hostedtoolcache\windows\python\3.8.10\x64\python.exe -m pip install --user --upgrade pip
                else
                     pip install --upgrade pip
                fi
