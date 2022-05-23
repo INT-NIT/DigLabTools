@@ -10,9 +10,6 @@ Welcome to DigLabTools's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-Readme File
-=======================================
-
 .. mdinclude:: ../README.md
 
 
