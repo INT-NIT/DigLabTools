@@ -13,7 +13,7 @@ Welcome to DigLabTools's documentation!
 Readme File
 =======================================
 
-.. mdinclude:: ../../README.md
+.. mdinclude:: ../README.md
 
 
 
