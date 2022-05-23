@@ -10,7 +10,10 @@ Welcome to DigLabTools's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-.. mdinclude:: ../../README.md
+.. mdinclude:: ../README.md
+
+.. include:: ../README.md
+
 
 Indices and tables
 ==================
