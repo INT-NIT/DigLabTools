@@ -1,0 +1,4 @@
+include redcap_bridge/VERSION
+include README.md
+include requirements.txt
+global-include redcap_bridge/template_parts/*
