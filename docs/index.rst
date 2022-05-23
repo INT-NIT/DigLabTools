@@ -12,8 +12,6 @@ Welcome to DigLabTools's documentation!
 
 .. mdinclude:: ../README.md
 
-
-
 Indices and tables
 ==================
 
