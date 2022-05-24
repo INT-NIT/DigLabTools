@@ -56,6 +56,9 @@ jobs:
         env:
           REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
         run: |
+          # change directory to test installed and not local version
+          mkdir dummy_directory
+          cd dummy_directory
           pytest
 
   run-coverall:
