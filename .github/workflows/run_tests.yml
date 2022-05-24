@@ -59,7 +59,7 @@ jobs:
           # change directory to test installed and not local version
           mkdir dummy_directory
           cd dummy_directory
-          pytest
+          pytest ../${{ github.event.repository.name }}
 
   run-coverall:
     runs-on: [ubuntu-latest]
@@ -105,7 +105,7 @@ jobs:
             # change directory to test installed and not local version
             mkdir dummy_directory
             cd dummy_directory
-            coverage run -m pytest .
+            coverage run -m pytest ../${{ github.event.repository.name }}
 
       - name: Submit to coveralls
         env:
