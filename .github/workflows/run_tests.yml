@@ -55,8 +55,12 @@ jobs:
       - name: Test with pytest
         env:
           REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
+        shell: bash
         run: |
-          pytest
+          # change directory to test installed and not local version
+          mkdir -p dummy_directory
+          cd dummy_directory
+          pytest ../${{ github.event.repository.name }}
 
   run-coverall:
     runs-on: [ubuntu-latest]
@@ -98,7 +102,12 @@ jobs:
       - name: Create coverage
         env:
           REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
-        run: coverage run -m pytest .
+        shell: bash
+        run: |
+            # change directory to test installed and not local version
+            mkdir -p dummy_directory
+            cd dummy_directory
+            coverage run -m pytest ../${{ github.event.repository.name }}
 
       - name: Submit to coveralls
         env:
