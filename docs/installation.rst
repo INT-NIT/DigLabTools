@@ -1,6 +1,6 @@
 .. _installation:
 
-.. mdinclude:: ../USE.md
+.. mdinclude:: USE.md
 
 Indices and tables
 ==================
