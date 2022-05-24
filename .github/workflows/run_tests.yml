@@ -98,7 +98,11 @@ jobs:
       - name: Create coverage
         env:
           REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
-        run: coverage run -m pytest .
+        run: |
+            # change directory to test installed and not local version
+            mkdir dummy_directory
+            cd dummy_directory
+            coverage run -m pytest .
 
       - name: Submit to coveralls
         env:
