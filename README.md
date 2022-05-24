@@ -15,4 +15,4 @@ The main *RedCapBridge* features are:
 Important links
 ---------------
 
-- Official documentation: https://diglabtools.readthedocs.io/en/latest/
+- Official documentation: https://diglabtools.readthedocs.io
