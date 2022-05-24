@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 import os
 
 # Extract central version information
-with open(os.path.join(os.path.dirname(__file__), "VERSION")) as version_file:
+with open(os.path.join(os.path.dirname(__file__), "redcap_bridge/VERSION")) as version_file:
     version = version_file.read().strip()
 
 with open('requirements.txt') as f:
@@ -23,7 +23,7 @@ setup(
         # If any package contains *.json or *.csv files, include them:
         "": ["*.json", '*.csv', '*.zip'],
     },
-    data_files=[('.', ['VERSION', 'README.md', 'requirements.txt'])],
+    data_files=[('DigLabTools', ['redcap_bridge/VERSION', 'README.md', 'requirements.txt'])],
     author="Julia Sprenger, Jeremy Garcia",
     description="Tools to interact with the DigLab metadata collection standard",
     long_description_content_type="text/markdown",

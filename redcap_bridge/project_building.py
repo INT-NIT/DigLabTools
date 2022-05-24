@@ -72,7 +72,7 @@ def build_project(project_csv, output_file=None, include_provenance=True):
 
             # collect provenance infos
             diglabtools_hash, diglabtools_state = get_repo_state(redcap_bridge_dir.parent)
-            diglabtools_version = open(redcap_bridge_dir.parent / 'VERSION').read()
+            diglabtools_version = open(redcap_bridge_dir / 'VERSION').read()
             project_conf_repo_hash, project_conf_repo_state = get_repo_state(project_csv)
 
             if not diglabtools_state:
