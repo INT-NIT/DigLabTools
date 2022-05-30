@@ -2,7 +2,7 @@
 
 *DigLabTools* is a collection of libraries with digital labbook functionalities.
 
-The main component of *DigLabTools* is the *RedCapBridge* module, a tool to facilitate the generation and standardization of [RedCap](https://projectredcap.org/) surveys. It permits the generation of surveys based on templates and provides a framework for assembly and customization and interaction with of template-based surveys.
+The main component of *DigLabTools* is the *RedCapBridge* module, a tool to facilitate the generation and standardization of [RedCap](https://projectredcap.org/) surveys. It permits the generation of surveys based on templates and provides a framework for reproducible assembly and customization of surveys. In addition it provides a simple command line interface to retrieve the collected data from the RedCap server. 
 
 The main *RedCapBridge* features are:
 
