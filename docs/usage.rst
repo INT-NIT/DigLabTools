@@ -1,4 +1,4 @@
-.. _release:
+.. _usage:
 
 Indices and tables
 ==================
@@ -7,4 +7,4 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 * :ref:`Installation <installation>`
-* :ref:`Usage <usage>`
+* :ref:`Release <release>`

@@ -10,6 +10,7 @@
    modules
    installation
    release
+   usage
 
 .. mdinclude:: ../README.md
 
@@ -22,3 +23,5 @@ Indices and tables
 * :ref:`search`
 * :ref:`Installation <installation>`
 * :ref:`Release <release>`
+* :ref:`Usage <usage>`
+

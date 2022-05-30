@@ -24,8 +24,6 @@ You need to create a project configuration `json` file on your computer to store
 
 Replace the `<...>` entries with the corresponding values for your project. The `structure`, `customization` and `validation` entries are required for project building and not needed to download the collected metadata.
 
-## Usage
-
 ### Downloading metadata
 
 To download the metadata of a project you can use the command line tool `RedCapBridge`. Use the `RedCapBridge --help` to learn more about the different functions that `RedCapBridge` offers.
