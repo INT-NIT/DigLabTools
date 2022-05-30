@@ -3,17 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-*****************
-Table of Contents
-*****************
-
-* :doc:`Installation <installation>`
-* :doc:`Release <release>`
-
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-   installation.rst
+   :hidden:
+
+   modules
+   installation
    release.rst
 
 .. mdinclude:: ../README.md
