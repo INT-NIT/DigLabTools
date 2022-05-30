@@ -9,7 +9,7 @@
 
    modules
    installation
-   release.rst
+   release
 
 .. mdinclude:: ../README.md
 
