@@ -17,3 +17,4 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 * :ref:`Installation <installation>`
+* :ref:`Release <release>`
