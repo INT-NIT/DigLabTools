@@ -1,14 +1,6 @@
 redcap\_bridge package
 ======================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   redcap_bridge.test_redcap
-
 Submodules
 ----------
 
