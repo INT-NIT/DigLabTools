@@ -18,8 +18,8 @@ sys.path.insert(0, os.path.abspath('../redcap_bridge/*'))
 # -- Project information -----------------------------------------------------
 
 project = 'DigLabTools'
-copyright = '2022, NIT'
-author = 'NIT'
+copyright = '2022, Julia Sprenger, Sylvain Takerkart, Killian Rochet'
+author = 'Julia Sprenger, Sylvain Takerkart, Killian Rochet'
 
 
 # -- General configuration ---------------------------------------------------
