@@ -42,8 +42,9 @@ def test_validate_record_against_template(initialize_test_dir,
                                      test_directory / 'testfiles' / 'metadata.csv')
     validate_record_against_template(record_csv, project_dir / 'customized.csv')
 
+
 def test_validate_project_without_template(initialize_test_dir,
-                                                 setup_project_csvs):
+                                           setup_project_csvs):
     build_project(project_dir_template / 'structure.csv',
                   project_dir_template / 'build.csv')
     customize_project(project_dir_template / 'build.csv',
