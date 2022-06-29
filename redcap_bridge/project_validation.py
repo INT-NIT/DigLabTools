@@ -34,8 +34,7 @@ def validate_project_against_template_parts(project, *templates):
     dfs_templates = []
 
     if not templates:
-        raise ValueError(
-            'No template_parts to validate against were specified.')
+        print(f"No template selected list is empty")
 
     for template in templates:
         df_template = pd.read_csv((template_dir / template).with_suffix('.csv'))
