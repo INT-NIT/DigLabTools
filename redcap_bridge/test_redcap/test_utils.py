@@ -45,5 +45,4 @@ def test_compressedCSV(initialize_test_dir):
         with open(test_dir / 'expected_record.csv') as exp_file:
             res = comp_file.read()
             exp = exp_file.read()
-
             assert res == exp
