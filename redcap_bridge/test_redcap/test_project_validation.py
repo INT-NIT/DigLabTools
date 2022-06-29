@@ -41,3 +41,18 @@ def test_validate_record_against_template(initialize_test_dir,
     validate_record_against_template(record_csv,
                                      test_directory / 'testfiles' / 'metadata.csv')
     validate_record_against_template(record_csv, project_dir / 'customized.csv')
+
+def test_validate_project_without_template(initialize_test_dir,
+                                                 setup_project_csvs):
+    build_project(project_dir_template / 'structure.csv',
+                  project_dir_template / 'build.csv')
+    customize_project(project_dir_template / 'build.csv',
+                      project_dir_template / 'customizations.csv',
+                      output_file=project_dir_template / 'customized.csv')
+
+    with open(project_dir_template / 'project.json') as f:
+        project_dict = json.load(f)
+    template_parts = project_dict['validation']
+
+    validate_project_against_template_parts(project_dir_template / 'customized.csv',
+                                            *template_parts)
