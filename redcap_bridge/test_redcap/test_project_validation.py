@@ -45,11 +45,5 @@ def test_validate_record_against_template(initialize_test_dir,
 
 def test_validate_project_without_template(initialize_test_dir,
                                            setup_project_csvs):
-    build_project(project_dir_no_validation / 'structure.csv',
-                  project_dir_no_validation / 'build.csv')
-    customize_project(project_dir_no_validation / 'build.csv',
-                      project_dir_no_validation / 'customizations.csv',
-                      output_file=project_dir_no_validation / 'customized.csv')
-
     # test with an empty list of template parts
     validate_project_against_template_parts(project_dir / 'customized.csv')
