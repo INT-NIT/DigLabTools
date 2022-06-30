@@ -51,9 +51,5 @@ def test_validate_project_without_template(initialize_test_dir,
                       project_dir_no_validation / 'customizations.csv',
                       output_file=project_dir_no_validation / 'customized.csv')
 
-    with open(project_dir_no_validation / 'project.json') as f:
-        project_dict = json.load(f)
-    template_parts = project_dict['validation']
-
-    validate_project_against_template_parts(project_dir_no_validation / 'customized.csv',
-                                            *template_parts)
+    # test with an empty list of template parts
+    validate_project_against_template_parts(project_dir / 'customized.csv')
