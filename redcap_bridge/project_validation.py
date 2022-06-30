@@ -1,6 +1,7 @@
 import pathlib
 
 import pandas as pd
+import warnings
 
 import redcap_bridge
 from redcap_bridge.utils import map_header_json_to_csv
@@ -34,7 +35,7 @@ def validate_project_against_template_parts(project, *templates):
     dfs_templates = []
 
     if not templates:
-        print(f"No template selected list is empty")
+        warnings.warn('No template selected list is empty')
 
     for template in templates:
         df_template = pd.read_csv((template_dir / template).with_suffix('.csv'))

@@ -9,7 +9,7 @@ from redcap_bridge.test_redcap.test_utils import (test_directory,
                                                   initialize_test_dir)
 
 project_dir = test_directory / 'testfiles' / 'TestProject'
-project_dir_template = test_directory / 'testfiles' / 'TestProject2'
+project_dir_no_validation = test_directory / 'testfiles' / 'TestProject2'
 
 
 
@@ -45,15 +45,15 @@ def test_validate_record_against_template(initialize_test_dir,
 
 def test_validate_project_without_template(initialize_test_dir,
                                            setup_project_csvs):
-    build_project(project_dir_template / 'structure.csv',
-                  project_dir_template / 'build.csv')
-    customize_project(project_dir_template / 'build.csv',
-                      project_dir_template / 'customizations.csv',
-                      output_file=project_dir_template / 'customized.csv')
+    build_project(project_dir_no_validation / 'structure.csv',
+                  project_dir_no_validation / 'build.csv')
+    customize_project(project_dir_no_validation / 'build.csv',
+                      project_dir_no_validation / 'customizations.csv',
+                      output_file=project_dir_no_validation / 'customized.csv')
 
-    with open(project_dir_template / 'project.json') as f:
+    with open(project_dir_no_validation / 'project.json') as f:
         project_dict = json.load(f)
     template_parts = project_dict['validation']
 
-    validate_project_against_template_parts(project_dir_template / 'customized.csv',
+    validate_project_against_template_parts(project_dir_no_validation / 'customized.csv',
                                             *template_parts)
