@@ -9,9 +9,6 @@ from redcap_bridge.test_redcap.test_utils import (test_directory,
                                                   initialize_test_dir)
 
 project_dir = test_directory / 'testfiles' / 'TestProject'
-project_dir_no_validation = test_directory / 'testfiles' / 'TestProject2'
-
-
 
 @pytest.fixture
 def setup_project_csvs():
