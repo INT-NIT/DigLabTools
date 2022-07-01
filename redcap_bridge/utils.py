@@ -122,4 +122,3 @@ def remove_columns(csv_file, compressed_file=None):
 def exportCSVtoXLS(csv_file, compressed_file=None):
     read_file = pd.read_csv(csv_file, na_filter=False, dtype='str')
     read_file.to_excel(r'Path', index=None, header=True)
-
