@@ -92,6 +92,8 @@ def test_download_records(clean_server, initialize_test_dir):
     original_header = original_reader.__next__()
     downloaded_header = download_reader.__next__()
     for i, oh in enumerate(original_header):
+        # uploading of records can fail if the record cache on the server is not clean
+        # in this case reset the record cache on the webinterface of redcap
         assert oh in downloaded_header, f'{oh} not in downloaded header'
 
     # compare content
