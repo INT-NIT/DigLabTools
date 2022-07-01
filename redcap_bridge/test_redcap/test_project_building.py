@@ -9,7 +9,6 @@ from redcap_bridge.test_redcap.test_utils import (test_directory,
 
 project_dir = test_directory / 'testfiles' / 'TestProject'
 
-
 def test_build_and_customize_project(initialize_test_dir):
     """
     Test building and customizing a project based on its project specifications

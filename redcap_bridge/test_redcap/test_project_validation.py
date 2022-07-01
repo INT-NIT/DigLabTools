@@ -10,7 +10,6 @@ from redcap_bridge.test_redcap.test_utils import (test_directory,
 
 project_dir = test_directory / 'testfiles' / 'TestProject'
 
-
 @pytest.fixture
 def setup_project_csvs():
     # pre-build project csvs based on project definition
@@ -39,3 +38,9 @@ def test_validate_record_against_template(initialize_test_dir,
     validate_record_against_template(record_csv,
                                      test_directory / 'testfiles' / 'metadata.csv')
     validate_record_against_template(record_csv, project_dir / 'customized.csv')
+
+
+def test_validate_project_without_template(initialize_test_dir,
+                                           setup_project_csvs):
+    # test with an empty list of template parts
+    validate_project_against_template_parts(project_dir / 'customized.csv')

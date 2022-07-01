@@ -113,3 +113,12 @@ def compress_record(csv_file, compressed_file=None):
         return df
     else:
         df.to_csv(compressed_file, index=False)
+
+
+def remove_columns(csv_file, compressed_file=None):
+    df = pd.read_csv(csv_file, na_filter=False, dtype='str')
+
+
+def exportCSVtoXLS(csv_file, compressed_file=None):
+    read_file = pd.read_csv(csv_file, na_filter=False, dtype='str')
+    read_file.to_excel(r'Path', index=None, header=True)
