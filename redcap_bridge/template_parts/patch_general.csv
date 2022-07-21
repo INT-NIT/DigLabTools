@@ -14,7 +14,7 @@ species_type,diglabform,,dropdown,Species Type,"species_type_wild, Wild Type | s
 species_genotype,diglabform,,dropdown,Species Genotype,"species_genotype_cross_breeding, Cross-breeding | species_genotype_viral, Viral Infection","Species genotype",autocomplete,,,,,y,,,,,
 weight,diglabform,,text,Weight,,"in kg; The weight of the subject",number,0,,,,y,,,,,
 age,diglabform,,text,Age,,"in days; The age of the subject since birth",number,0,,,,y,,,,,
-sex,diglabform,,checkbox,Sex,"sex_m, male | sex_f | female","the sex of the subject",,,,,,y,,,,,
+sex,diglabform,,checkbox,Sex,"sex_m, male | sex_f, female","the sex of the subject",,,,,,y,,,,,
 preparation,diglabform,,dropdown,Experiment Name," prep_snc_organotopic, SNc Organotopic | prep_snc_acute, SNc Acute | prep_hippocampus, Hippocampus","Preparation",autocomplete,,,,,y,,,,,
 sample_type,diglabform,,radio,Sample preparation,"sample_type_slice, Slice | sample_type_culture, Culture | sample_type_dissociated, Dissociated | sample_type_whole_mount, Whole-mount | sample_type_in_vivo, In Vivo | sample_type_hemi_section, Hemi-section | sample_type_transverse, Transverse | sample_type_longitudinal, Longitudinal","The type of sample preparation",,,,,,y,,,,,
 brain_region,diglabform,,dropdown,Brain region,"lumbar_spinal, lumbar spinal | thoracic_spinal, thoracic spinal | snc, SNc | striatum, striatum | other, other","The brain area recorded from",,,,,,y,,,,,
