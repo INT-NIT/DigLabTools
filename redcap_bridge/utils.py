@@ -122,3 +122,33 @@ def remove_columns(csv_file, compressed_file=None):
 def exportCSVtoXLS(csv_file, compressed_file=None):
     read_file = pd.read_csv(csv_file, na_filter=False, dtype='str')
     read_file.to_excel(r'Path', index=None, header=True)
+
+def conversion_csv_to_json(csv_file):
+    """
+    Test conversion function
+    """
+    df = pd.read_csv(csv_file)
+    df.to_json(r'/Users/killianrochet/PycharmProjects/DigLabTools/redcap_bridge/test_redcap/testfiles/elabConversion/pandaJsonConversion..json')
+    json_df = pd.read_json('/Users/killianrochet/PycharmProjects/DigLabTools/redcap_bridge/test_redcap/testfiles/elabConversion/pandaJsonConversion..json')
+    for i in json_df.columns:
+        for j in json_df.index:
+            match json_df[i][j]:
+                case 'dropdown': json_df[i][j] = dropdown_to_json()
+                case 'text': json_df[i][j] = text_to_json()
+                case 'notes': json_df[i][j] = notes_to_json()
+                #case re.match('@DEFAULT=*', json_df[i][j]): Need to solve this regex grrr
+                    #print("MATCH")
+                case default: print("Other types")
+
+
+def text_to_json():
+    #text mean multiples types in json. Need to define all of them
+    return 'number'
+
+def dropdown_to_json():
+    #dropdown is always select type in json
+    return 'select'
+
+def notes_to_json():
+    #notes is always text type in json
+    return 'text'

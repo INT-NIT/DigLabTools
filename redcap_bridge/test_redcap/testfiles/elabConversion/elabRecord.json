@@ -1,0 +1,68 @@
+{
+  "extra_fields": {
+    "User": {
+      "type": "select",
+      "options": [
+        "Julia Sprenger",
+        "Sylvain Takerkart"
+      ]
+    },
+    "Modality": {
+      "type": "radio",
+      "options": [
+        "Behaviour (eye)",
+        "Behaviour (hand)",
+        "Single electrode",
+        "Multi electrode",
+        "EMG",
+        "Optical Imaging (int)",
+        "Optical Imaging (VSDi)",
+        "ECoG",
+        "SEEG"
+      ]
+    },
+    "Session date": {
+      "type": "date",
+      "value": "2021-06-09"
+    },
+    "Subject GUID": {
+      "type": "select",
+      "options": [
+        "Ernie",
+        "Bert"
+      ]
+    },
+    "Pressure (Pa)": {
+      "type": "number",
+      "value": "12"
+    },
+    "Session Number": {
+      "type": "select"
+    },
+    "Experiment Name": {
+      "type": "select",
+      "options": [
+        "encoding experiment",
+        "decoding experiment"
+      ]
+    },
+    "Wavelength (nm)": {
+      "type": "radio",
+      "value": "405",
+      "options": [
+        "488",
+        "405",
+        "647"
+      ]
+    },
+    "Ethical Protocol Identifier": {
+      "type": "select",
+      "value": "20X",
+      "options": [
+        "123456",
+        "100000",
+        "20000"
+      ]
+    }
+  }
+}
