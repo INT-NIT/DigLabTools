@@ -131,16 +131,18 @@ def conversion_csv_to_json(csv_file):
     df = pd.read_csv(csv_file)
     json_df = df.to_dict()
 
-    for key, values in json_df['Field Type'].items():
-        if values == 'dropdown':
-            values = dropdown_to_json()
-        elif values == 'text':
-            values = text_to_json()
-        elif values == 'notes':
-            values = notes_to_json()
+    list_of_dict = df.to_dict('records')
+    for redcap_field_dict in list_of_dict:
+        if redcap_field_dict['Field Type'] == 'text':
+            if redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'number' or redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'integer':
+                redcap_field_dict['Field Type'] = text_to_json()
+        elif redcap_field_dict['Field Type'] == 'dropdown':
+            redcap_field_dict['Field Type'] = dropdown_to_json()
+        elif redcap_field_dict['Field Type'] == 'notes':
+            redcap_field_dict['Field Type'] = notes_to_json()
         else:
             pass
-
+        print(redcap_field_dict['Field Type'])
 def text_to_json():
     # text mean multiples types in json. Need to define all of them
     return 'number'
