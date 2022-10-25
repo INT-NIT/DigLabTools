@@ -129,25 +129,19 @@ def conversion_csv_to_json(csv_file):
     Test conversion function
     """
     df = pd.read_csv(csv_file)
-    df.to_json(
-        r'/Users/killianrochet/PycharmProjects/DigLabTools/redcap_bridge/test_redcap/testfiles/elabConversion/pandaJsonConversion..json')
-    json_df = pd.read_json(
-        '/Users/killianrochet/PycharmProjects/DigLabTools/redcap_bridge/test_redcap/testfiles/elabConversion/pandaJsonConversion..json')
-    for i in json_df.columns:
-        for j in json_df.index:
-            if json_df[i][j] == 'dropdown':
-                json_df[i][j] = dropdown_to_json()
-            elif json_df[i][j] == 'text':
-                json_df[i][j] = text_to_json()
-            elif json_df[i][j] == 'notes':
-                json_df[i][j] = notes_to_json()
-            elif re.search(r'@DEFAULT=.', str(json_df[i][j])):
-                print(f"MATCH")
-                json_df[i][j] = default_value_to_json()
-            else:
-                print(f"Other type")
-
-
+    json_df = df.to_dict()
+    for key, values in json_df.items():
+        if key == 'Field Type':
+            for k, csv_values in values.items():
+                if csv_values == 'dropdown':
+                    csv_values = dropdown_to_json()
+                elif csv_values == 'text':
+                    csv_values = text_to_json()
+                elif csv_values == 'notes':
+                    csv_values = notes_to_json()
+                else:
+                    pass
+                print(csv_values)
 
 def text_to_json():
     # text mean multiples types in json. Need to define all of them
