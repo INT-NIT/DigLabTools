@@ -137,29 +137,45 @@ def conversion_csv_to_json(csv_file):
     for redcap_field_dict in list_of_dict:
         if redcap_field_dict['Field Type'] == 'text':
             if redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'number' or redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'integer':
-                elab_dict = text_to_json(redcap_field_dict)
+                elab_dict = number_to_dict(redcap_field_dict)
         elif redcap_field_dict['Field Type'] == 'dropdown':
-            redcap_field_dict['Field Type'] = dropdown_to_json()
+            redcap_field_dict['Field Type'] = dropdown_to_dict()
         elif redcap_field_dict['Field Type'] == 'notes':
-            redcap_field_dict['Field Type'] = notes_to_json()
+            redcap_field_dict['Field Type'] = notes_to_dict()
+        elif redcap_field_dict['Field Type'] == 'radio':
+            elab_dict = radio_to_dict(redcap_field_dict)
         else:
             pass
         elab_json.update(elab_dict)
     print(elab_json)
-def text_to_json(redcap_field_dict):
+def number_to_dict(redcap_field_dict):
     # text mean multiples types in json. Need to define all of them
-    temp_elab_json = {redcap_field_dict['Field Label']: {
+    temp_elab_dict = {redcap_field_dict['Field Label']: {
       "type": "number"},
     }
-    return temp_elab_json
-def dropdown_to_json():
+    return temp_elab_dict
+
+def radio_to_dict(redcap_field_dict):
+    redcap_split = redcap_field_dict["Choices, Calculations, OR Slider Labels"].split('|')
+    redcap_list_option_values = []
+    for elem in redcap_split:
+        redcap_list_option_values.append(re.sub(r'.*,', '', elem))
+    temp_elab_dict = {redcap_field_dict['Field Label']: {
+      "type": "radio",
+      "options":
+          redcap_list_option_values
+      },
+    }
+    return temp_elab_dict
+def dropdown_to_dict():
     # dropdown is always select type in json
     return 'select'
 
 
-def notes_to_json():
+def notes_to_dict():
     # notes is always text type in json
     return 'text'
 
-def default_value_to_json():
+def default_value_to_dict():
     return 'defaultValue'
+
