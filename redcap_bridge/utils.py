@@ -144,6 +144,8 @@ def conversion_csv_to_json(csv_file):
             redcap_field_dict['Field Type'] = notes_to_dict()
         elif redcap_field_dict['Field Type'] == 'radio':
             elab_dict = radio_to_dict(redcap_field_dict)
+        elif redcap_field_dict['Field Type'] == 'checkbox':
+            elab_dict = checkbox_to_dict(redcap_field_dict)
         else:
             pass
         elab_json.update(elab_dict)
@@ -162,6 +164,19 @@ def radio_to_dict(redcap_field_dict):
         redcap_list_option_values.append(re.sub(r'.*,', '', elem))
     temp_elab_dict = {redcap_field_dict['Field Label']: {
       "type": "radio",
+      "options":
+          redcap_list_option_values
+      },
+    }
+    return temp_elab_dict
+
+def checkbox_to_dict(redcap_field_dict):
+    redcap_split = redcap_field_dict["Choices, Calculations, OR Slider Labels"].split('|')
+    redcap_list_option_values = []
+    for elem in redcap_split:
+        redcap_list_option_values.append(re.sub(r'.*,', '', elem))
+    temp_elab_dict = {redcap_field_dict['Field Label']: {
+      "type": "checkbox",
       "options":
           redcap_list_option_values
       },
