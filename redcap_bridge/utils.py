@@ -138,6 +138,10 @@ def conversion_csv_to_json(csv_file):
         if redcap_field_dict['Field Type'] == 'text':
             if redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'number' or redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'integer':
                 elab_dict = number_to_dict(redcap_field_dict)
+            elif redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'date_dmy':
+                elab_dict = date_to_dict(redcap_field_dict)
+            else:
+                elab_dict = text_to_dict(redcap_field_dict)
         elif redcap_field_dict['Field Type'] == 'dropdown':
             elab_dict = dropdown_to_dict(redcap_field_dict)
         elif redcap_field_dict['Field Type'] == 'notes':
@@ -152,10 +156,24 @@ def conversion_csv_to_json(csv_file):
     print(elab_json)
 
 
+def text_to_dict(redcap_field_dict):
+    temp_elab_dict = {redcap_field_dict['Field Label']: {
+      "type": "text"},
+    }
+    return temp_elab_dict
+
+
 def number_to_dict(redcap_field_dict):
     # text mean multiples types in json. Need to define all of them
     temp_elab_dict = {redcap_field_dict['Field Label']: {
       "type": "number"},
+    }
+    return temp_elab_dict
+
+
+def date_to_dict(redcap_field_dict):
+    temp_elab_dict = {redcap_field_dict['Field Label']: {
+      "type": "date"},
     }
     return temp_elab_dict
 
@@ -220,6 +238,4 @@ def notes_to_dict():
     return 'text'
 
 
-def default_value_to_dict():
-    return 'defaultValue'
 
