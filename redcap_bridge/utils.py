@@ -139,7 +139,7 @@ def conversion_csv_to_json(csv_file):
             if redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'number' or redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'integer':
                 elab_dict = number_to_dict(redcap_field_dict)
         elif redcap_field_dict['Field Type'] == 'dropdown':
-            redcap_field_dict['Field Type'] = dropdown_to_dict()
+            elab_dict = dropdown_to_dict(redcap_field_dict)
         elif redcap_field_dict['Field Type'] == 'notes':
             redcap_field_dict['Field Type'] = notes_to_dict()
         elif redcap_field_dict['Field Type'] == 'radio':
@@ -150,12 +150,15 @@ def conversion_csv_to_json(csv_file):
             pass
         elab_json.update(elab_dict)
     print(elab_json)
+
+
 def number_to_dict(redcap_field_dict):
     # text mean multiples types in json. Need to define all of them
     temp_elab_dict = {redcap_field_dict['Field Label']: {
       "type": "number"},
     }
     return temp_elab_dict
+
 
 def radio_to_dict(redcap_field_dict):
     redcap_split = redcap_field_dict["Choices, Calculations, OR Slider Labels"].split('|')
@@ -170,6 +173,7 @@ def radio_to_dict(redcap_field_dict):
     }
     return temp_elab_dict
 
+
 def checkbox_to_dict(redcap_field_dict):
     redcap_split = redcap_field_dict["Choices, Calculations, OR Slider Labels"].split('|')
     redcap_list_option_values = []
@@ -182,14 +186,39 @@ def checkbox_to_dict(redcap_field_dict):
       },
     }
     return temp_elab_dict
-def dropdown_to_dict():
+
+
+def dropdown_to_dict(redcap_field_dict):
     # dropdown is always select type in json
-    return 'select'
+    redcap_split = redcap_field_dict["Choices, Calculations, OR Slider Labels"].split('|')
+    redcap_list_option_values = []
+    redcap_list_tag_values = []
+    for elem in redcap_split:
+        redcap_list_option_values.append(re.sub(r'.*,', '', elem))
+
+    if re.match('@DEFAULT=*', str(redcap_field_dict['Field Annotation'])):
+        redcap_list_tag_values.append(re.sub('@DEFAULT=*', '', redcap_field_dict['Field Annotation']))
+        temp_elab_dict = {redcap_field_dict['Field Label']: {
+            "type": "select",
+            "value": redcap_list_tag_values,
+            "options":
+                redcap_list_option_values
+        },
+        }
+    else:
+        temp_elab_dict = {redcap_field_dict['Field Label']: {
+            "type": "select",
+            "options":
+                redcap_list_option_values
+        },
+        }
+    return temp_elab_dict
 
 
 def notes_to_dict():
     # notes is always text type in json
     return 'text'
+
 
 def default_value_to_dict():
     return 'defaultValue'
