@@ -145,7 +145,7 @@ def conversion_csv_to_json(csv_file):
         elif redcap_field_dict['Field Type'] == 'dropdown':
             elab_dict = dropdown_to_dict(redcap_field_dict)
         elif redcap_field_dict['Field Type'] == 'notes':
-            redcap_field_dict['Field Type'] = notes_to_dict()
+            elab_dict = notes_to_dict(redcap_field_dict)
         elif redcap_field_dict['Field Type'] == 'radio':
             elab_dict = radio_to_dict(redcap_field_dict)
         elif redcap_field_dict['Field Type'] == 'checkbox':
@@ -233,9 +233,10 @@ def dropdown_to_dict(redcap_field_dict):
     return temp_elab_dict
 
 
-def notes_to_dict():
-    # notes is always text type in json
-    return 'text'
-
+def notes_to_dict(redcap_field_dict):
+    temp_elab_dict = {"Comment on the" + redcap_field_dict['Field Label']: {
+        "type": "text"},
+    }
+    return temp_elab_dict
 
 
