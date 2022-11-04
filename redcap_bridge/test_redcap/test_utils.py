@@ -1,3 +1,4 @@
+import json
 import os
 import pathlib
 import shutil
@@ -50,6 +51,8 @@ def test_compressedCSV(initialize_test_dir):
 
 def test_conversion_csv_to_json(initialize_test_dir):
 
-    conversion_csv_to_json('/Users/killianrochet/PycharmProjects/DigLabTools/redcap_bridge/test_redcap/testfiles/elabConversion/csvRecord.csv')
-
+    f = open("/Users/killianrochet/PycharmProjects/DigLabTools/redcap_bridge/test_redcap/testfiles/elabConversion/elabFinal.json")
+    elab_final = json.load(f)
+    elab_conversion = conversion_csv_to_json('/Users/killianrochet/PycharmProjects/DigLabTools/redcap_bridge/test_redcap/testfiles/elabConversion/csvRecord.csv')
+    #assert elab_conversion == elab_final
 

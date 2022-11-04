@@ -3,6 +3,7 @@ import pathlib
 import pandas as pd
 import re as re
 import warnings
+import json
 
 # TODO: This can be extracted via the RedCap API
 header_json = ['field_name', 'form_name', 'section_header', 'field_type',
@@ -129,9 +130,9 @@ def conversion_csv_to_json(csv_file):
     Test conversion function
     """
     df = pd.read_csv(csv_file)
-    json_df = df.to_dict()
     elab_json = {}
     elab_dict = {}
+    pos = 1
 
     list_of_dict = df.to_dict('records')
     for redcap_field_dict in list_of_dict:
@@ -152,13 +153,23 @@ def conversion_csv_to_json(csv_file):
             elab_dict = checkbox_to_dict(redcap_field_dict)
         else:
             pass
+
         elab_json.update(elab_dict)
-    print(elab_json)
+    final_elab = {
+        "extra_fields": elab_json
+    }
+
+    for key in final_elab["extra_fields"].keys():
+        final_elab["extra_fields"][key].update({"position": pos})
+        pos += 1
+
+    return final_elab
 
 
 def text_to_dict(redcap_field_dict):
     temp_elab_dict = {redcap_field_dict['Field Label']: {
-      "type": "text"},
+        "type": "text",
+        "value": ""},
     }
     return temp_elab_dict
 
@@ -166,14 +177,16 @@ def text_to_dict(redcap_field_dict):
 def number_to_dict(redcap_field_dict):
     # text mean multiples types in json. Need to define all of them
     temp_elab_dict = {redcap_field_dict['Field Label']: {
-      "type": "number"},
+        "type": "number",
+        "value": ""},
     }
     return temp_elab_dict
 
 
 def date_to_dict(redcap_field_dict):
     temp_elab_dict = {redcap_field_dict['Field Label']: {
-      "type": "date"},
+        "type": "date",
+        "value": ""},
     }
     return temp_elab_dict
 
@@ -184,10 +197,11 @@ def radio_to_dict(redcap_field_dict):
     for elem in redcap_split:
         redcap_list_option_values.append(re.sub(r'.*,', '', elem))
     temp_elab_dict = {redcap_field_dict['Field Label']: {
-      "type": "radio",
-      "options":
-          redcap_list_option_values
-      },
+        "type": "radio",
+        "value": "",
+        "options":
+            redcap_list_option_values
+        },
     }
     return temp_elab_dict
 
@@ -198,10 +212,11 @@ def checkbox_to_dict(redcap_field_dict):
     for elem in redcap_split:
         redcap_list_option_values.append(re.sub(r'.*,', '', elem))
     temp_elab_dict = {redcap_field_dict['Field Label']: {
-      "type": "checkbox",
-      "options":
-          redcap_list_option_values
-      },
+        "type": "checkbox",
+        "value": "",
+        "options":
+            redcap_list_option_values
+        },
     }
     return temp_elab_dict
 
@@ -218,7 +233,7 @@ def dropdown_to_dict(redcap_field_dict):
         redcap_list_tag_values.append(re.sub('@DEFAULT=*', '', redcap_field_dict['Field Annotation']))
         temp_elab_dict = {redcap_field_dict['Field Label']: {
             "type": "select",
-            "value": redcap_list_tag_values,
+            "value": str(redcap_list_tag_values)[1:-1],
             "options":
                 redcap_list_option_values
         },
@@ -226,6 +241,7 @@ def dropdown_to_dict(redcap_field_dict):
     else:
         temp_elab_dict = {redcap_field_dict['Field Label']: {
             "type": "select",
+            "value": "",
             "options":
                 redcap_list_option_values
         },
@@ -235,7 +251,8 @@ def dropdown_to_dict(redcap_field_dict):
 
 def notes_to_dict(redcap_field_dict):
     temp_elab_dict = {"Comment on the" + redcap_field_dict['Field Label']: {
-        "type": "text"},
+        "type": "text",
+        "value": ""},
     }
     return temp_elab_dict
 

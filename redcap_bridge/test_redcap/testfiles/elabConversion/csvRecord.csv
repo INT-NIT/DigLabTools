@@ -1,54 +1,8 @@
 Variable / Field Name,Form Name,Section Header,Field Type,Field Label,"Choices, Calculations, OR Slider Labels",Field Note,Text Validation Type OR Show Slider Number,Text Validation Min,Text Validation Max,Identifier?,Branching Logic (Show field only if...),Required Field?,Custom Alignment,Question Number (surveys only),Matrix Group Name,Matrix Ranking?,Field Annotation
 record_id,diglabform,,text,Record ID,,,,,,,,,,,,,
-diglab,diglabform,General,descriptive,,,,,,,,,,,,,,
-diglab_version,diglabform,,descriptive,DigLab Version 1.0,,,,,,,,,,,,,@HIDDEN
-redcap_form_version,diglabform,,descriptive,RedCap Form Version 0.0.1b,,,,,,,,,,,,,@HIDDEN
 ethical_protocol_id,diglabform,,dropdown,Ethical Protocol Identifier,"000000, 000000",,,,,,,y,,,,,@DEFAULT='000000'
-user,diglabform,,dropdown,User,"sprenger.j, Julia Sprenger | man.b, Bat Man",,,,,,,y,,,,,
 date,diglabform,,text,Session date,,,date_dmy,,,,,y,,,,,@TODAY
-exp_name,diglabform,,dropdown,Experiment Name,"rise, rising experiment | fall, falling experiment",,autocomplete,,,,,y,,,,,
-guid,diglabform,,dropdown,Subject GUID,"1234, Ernie | 1235, Bert",,,,,,,y,,,,,
 ses_number,diglabform,,text,Session Number,,,integer,1,,,,y,,,,,
 modality,diglabform,,checkbox,Modality,"behaviour_eye, Behaviour (eye) | behaviour_hand, Behaviour (hand) | single_electrode, Single Electrode | multi_electrode, Multi Electrode | emg, EMG | int, Optical Imaging (int) | vsdi, Optical Imaging (VSDi) | ecog, ECoG | seeg, SEEG",,,,,,,y,,,,,
 stimulation,diglabform,,radio,Stimulation,"yes, yes",Does the recording involve stimulation?,,,,,,,,,,,
 weight,diglabform,,text,Weight,,in kg,number,0,,,,,,,,,
-comments_exp,diglabform,Comments on the ...,notes,Experiment,,,,,,,,,,,,,
-comments_setup,diglabform,,notes,Setup / Recording,,,,,,,,,,,,,
-comments_subject,diglabform,,notes,Subject Behaviour,,,,,,,,,,,,,
-data_quality,diglabform,,radio,Electrophysiology Data quality,"very_good, Very good | good, Good | noisy, Noisy | no_data, No data",,,,,,,y,,,,,
-incomplete,diglabform,,radio,Incomplete session,"yes, yes",,,,,,,,,,,,
-subject_behaviour,diglabform,,checkbox,Subject Behaviour,"very_motivated, Very motivated | working, Working | thirsty, Thirsty | sleepy, Sleepy | unmotivated, Unmotivated | agitated, Agitated",,,,,,,y,,,,,
-subject_behaviour_multi,diglabform,,radio,Data recorded after last trial?,"yes, yes",,,,,,,,,,,,
-time_last_trial,diglabform,,text,Estimated time of last trial,,time from recording start,time,,,,[subject_behaviour_multi] = 'yes',,,,,,
-subject_behaviour_2,diglabform,,checkbox,Subject Behaviour (post-trial),"agitated, Agitated | resting, Resting | sleeping, Sleeping | working, Sparse trials",,,,,,[subject_behaviour_multi] = 'yes',,,,,,
-reward_fluid,diglabform,,text,Fluid (reward),,in ml; Total volume of fluid reward received during the recording,number_comma_decimal,,,,,,,,,,
-reward_fluid_additional,diglabform,,text,Fluid (additional),,in ml; Total volume of fluid reward received outside of the recording,number,,,,,,,,,,
-reward_fluid_type,diglabform,,checkbox,Type of fluid reward,"water, Water | apple, Apple Juice | mixed, Juice Mix | other, Other {reward_fluid_type_other}",The kind of fluid reward that was provided,,,,,[reward_fluid] <> '',,,,,,
-reward_fluid_type_other,diglabform,,text,,,,,,,,,,,,,,
-reward_other,diglabform,,checkbox,Other reward (additional),"fruit_fresh, Fruit (fresh) | fruit_dry, Fruit (dry) | seeds, Seeds | treats, Treats | insects, Insects",The kind of additional reward that was provided,,,,,,,,,,,
-special_event_0,diglabform,,text,"Special event (alarm, fight, perturbation,...)",,,,,,,,,,,,,
-special_event_time_0,diglabform,,text,Time of the special event,,,time,,,,,,,,,,
-special_event_1,diglabform,,text,"Special event (alarm, fight, perturbation,...)",,,,,,,,,,,,,
-special_event_time_1,diglabform,,text,Time of the special event,,,time,,,,,,,,,,
-special_event_2,diglabform,,text,"Special event (alarm, fight, perturbation,...)",,,,,,,,,,,,,
-special_event_time_2,diglabform,,text,Time of the special event,,,time,,,,,,,,,,
-comments_3,diglabform,,descriptive,--Project specific data --,,,,,,,,,,,,,@HIDDEN
-kinarm_form_version,diglabform,,descriptive,Kinarm Form Version 0.0.1b,,,,,,,,,,,,,@HIDDEN
-kinarm_recorded_hand,diglabform,,dropdown,Recorded Hand,"left, Left | right, Right | both, Both | none, None",,,,,,,,,,,,@DEFAULT='right'
-kinarm_shoulder,diglabform,,text,Shoulder,,in inch,number,,,,,y,,,,,
-kinarm_elbow,diglabform,,text,Elbow,,in cm,number,,,,,y,,,,,
-data_quality_hand,diglabform,,radio,Hand movement data quality,"very_good, Very good | good, Good | noisy, Noisy | no_data, No data",,,,,,,y,,,,,
-eyelink_form_version,diglabform,,descriptive,Eyelink Form Version 0.0.1b,,,,,,,,,,,,,@HIDDEN
-eyelink_recorded_eye,diglabform,,dropdown,Recorded Eye,"left, Left | right, Right | both, Both | none, None",,,,,,,,,,,,@DEFAULT='left'
-eyelink_offset_x,diglabform,,text,Offset X,,in V,,,,,,y,,,,,
-eyelink_offset_y,diglabform,,text,Offset Y,,in V,,,,,,y,,,,,
-eyelink_gain_x,diglabform,,text,Gain X,,,,,,,,y,,,,,
-eyelink_gain_y,diglabform,,text,Gain Y,,,,,,,,y,,,,,
-eyelink_pupil_detection_threshold,diglabform,,text,Pupil detection treshold,,,number,,,,,y,,,,,
-eyelink_cornea_detection_threshold,diglabform,,text,Cornea detection threshold,,,number,,,,,y,,,,,
-data_quality_eye,diglabform,,radio,Eye movement data quality,"very_good, Very good | good, Good | bad_calibration, Bad calibration | noisy, Noisy | no_data, No data",,,,,,,y,,,,,
-eye_screen_distance,diglabform,,descriptive,Eye Screen Distance,,,,,,,,,,,,,
-eye_screen_distance_x,diglabform,,text,X,,in cm,number,,,,,y,,,,,
-eye_screen_distance_y,diglabform,,text,Y,,in cm,number,,,,,y,,,,,
-eye_screen_distance_z,diglabform,,text,Z,,in cm,number,,,,,y,,,,,
-custom_field,diglabform,,text,my custom field,,my custom description,,,,,,,,,,,

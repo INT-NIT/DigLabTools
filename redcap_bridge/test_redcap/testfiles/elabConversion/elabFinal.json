@@ -1,0 +1,56 @@
+{
+    "extra_fields": {
+        "Record ID": {
+            "type": "text",
+            "value": "",
+            "position": 1
+        },
+        "Ethical Protocol Identifier": {
+            "type": "select",
+            "value": "000000",
+            "options": [
+                " 000000"
+            ],
+            "position": 2
+        },
+        "Session date": {
+            "type": "date",
+            "value": "",
+            "position": 3
+        },
+        "Session Number": {
+            "type": "number",
+            "value": "",
+            "position": 4
+        },
+        "Modality": {
+            "type": "checkbox",
+            "value": "",
+            "options": [
+                " Behaviour (eye) ",
+                " Behaviour (hand) ",
+                " Single Electrode ",
+                " Multi Electrode ",
+                " EMG ",
+                " Optical Imaging (int) ",
+                " Optical Imaging (VSDi) ",
+                " ECoG ",
+                " SEEG"
+            ],
+            "position": 5
+        },
+        "Stimulation": {
+            "type": "radio",
+            "value": "",
+            "options": [
+                " yes"
+            ],
+            "position": 6
+        },
+        "Weight": {
+            "type": "number",
+            "value": "",
+            "position": 7
+        }
+    }
+}
