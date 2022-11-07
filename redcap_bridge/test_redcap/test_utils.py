@@ -56,5 +56,5 @@ def test_conversion_csv_to_json(initialize_test_dir):
     f = open(test_dir / 'elabFinal.json')
     elab_final = json.load(f)
     elab_conversion = conversion_csv_to_json(test_dir / 'csvRecord.csv')
-    #assert elab_conversion == elab_final
+    assert elab_conversion == elab_final
 
