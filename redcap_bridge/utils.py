@@ -129,7 +129,7 @@ def conversion_csv_to_json(csv_file):
     """
     Test conversion function
     """
-    df = pd.read_csv(csv_file)
+    df = pd.read_csv(csv_file, na_filter=False, dtype='str')
     elab_json = {}
     elab_dict = {}
     pos = 1
