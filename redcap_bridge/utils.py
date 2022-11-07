@@ -167,26 +167,29 @@ def conversion_csv_to_json(csv_file):
 
 
 def text_to_dict(redcap_field_dict):
-    temp_elab_dict = {redcap_field_dict['Field Label']: {
-        "type": "text",
-        "value": ""},
+    temp_elab_dict = {
+        redcap_field_dict['Field Label']: {
+            "type": "text",
+            "value": ""},
     }
     return temp_elab_dict
 
 
 def number_to_dict(redcap_field_dict):
     # text mean multiples types in json. Need to define all of them
-    temp_elab_dict = {redcap_field_dict['Field Label']: {
-        "type": "number",
-        "value": ""},
+    temp_elab_dict = {
+        redcap_field_dict['Field Label']: {
+            "type": "number",
+            "value": ""},
     }
     return temp_elab_dict
 
 
 def date_to_dict(redcap_field_dict):
-    temp_elab_dict = {redcap_field_dict['Field Label']: {
-        "type": "date",
-        "value": ""},
+    temp_elab_dict = {
+        redcap_field_dict['Field Label']: {
+            "type": "date",
+            "value": ""},
     }
     return temp_elab_dict
 
