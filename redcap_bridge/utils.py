@@ -229,7 +229,7 @@ def dropdown_to_dict(redcap_field_dict):
     for elem in redcap_split:
         redcap_list_option_values.append(re.sub(r'.*,', '', elem))
 
-    if re.match('@DEFAULT=*', str(redcap_field_dict['Field Annotation'])):
+    if re.match('@DEFAULT="*"', str(redcap_field_dict['Field Annotation'])):
         redcap_list_tag_values.append(re.sub('@DEFAULT=*', '', redcap_field_dict['Field Annotation']))
         temp_elab_dict = {redcap_field_dict['Field Label']: {
             "type": "select",
