@@ -7,9 +7,12 @@
         },
         "Ethical Protocol Identifier": {
             "type": "select",
-            "value": "000000",
+            "value": "fourth choice",
             "options": [
-                " 000000"
+                "first",
+                "second choice",
+                "third choice",
+                "fourth choice"
             ],
             "position": 2
         },
@@ -27,15 +30,15 @@
             "type": "checkbox",
             "value": "",
             "options": [
-                " Behaviour (eye) ",
-                " Behaviour (hand) ",
-                " Single Electrode ",
-                " Multi Electrode ",
-                " EMG ",
-                " Optical Imaging (int) ",
-                " Optical Imaging (VSDi) ",
-                " ECoG ",
-                " SEEG"
+                "Behaviour (eye)",
+                "Behaviour (hand)",
+                "Single Electrode",
+                "Multi Electrode",
+                "EMG",
+                "Optical Imaging (int)",
+                "Optical Imaging (VSDi)",
+                "ECoG",
+                "SEEG"
             ],
             "position": 5
         },
@@ -43,7 +46,7 @@
             "type": "radio",
             "value": "",
             "options": [
-                " yes"
+                "yes"
             ],
             "position": 6
         },
