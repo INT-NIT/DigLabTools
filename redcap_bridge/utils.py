@@ -192,60 +192,49 @@ def date_to_dict(redcap_field_dict):
 
 
 def radio_to_dict(redcap_field_dict):
-    redcap_split = redcap_field_dict["Choices, Calculations, OR Slider Labels"].split('|')
-    redcap_list_option_values = []
-    for elem in redcap_split:
-        redcap_list_option_values.append(re.sub(r'.*,', '', elem))
-    temp_elab_dict = {redcap_field_dict['Field Label']: {
-        "type": "radio",
-        "value": "",
-        "options":
-            redcap_list_option_values
+    assert redcap_field_dict["Field Type"] == "radio"
+    redcap_choice_str = redcap_field_dict["Choices, Calculations, OR Slider Labels"]
+    redcap_annotation_str = redcap_field_dict["Field Annotation"]
+    choice_labels, default_choice_label = parse_choices(redcap_choice_str, redcap_annotation_str)
+    temp_elab_dict = {
+        redcap_field_dict['Field Label']: {
+            "type": "radio",
+            "value": default_choice_label,
+            "options": choice_labels
         },
     }
     return temp_elab_dict
 
 
 def checkbox_to_dict(redcap_field_dict):
-    redcap_split = redcap_field_dict["Choices, Calculations, OR Slider Labels"].split('|')
-    redcap_list_option_values = []
-    for elem in redcap_split:
-        redcap_list_option_values.append(re.sub(r'.*,', '', elem))
-    temp_elab_dict = {redcap_field_dict['Field Label']: {
-        "type": "checkbox",
-        "value": "",
-        "options":
-            redcap_list_option_values
+    assert redcap_field_dict["Field Type"] == "checkbox"
+    redcap_choice_str = redcap_field_dict["Choices, Calculations, OR Slider Labels"]
+    redcap_annotation_str = redcap_field_dict["Field Annotation"]
+    choice_labels, default_choice_label = parse_choices(redcap_choice_str, redcap_annotation_str)
+    temp_elab_dict = {
+        redcap_field_dict['Field Label']: {
+            "type": "checkbox",
+            "value": default_choice_label,
+            "options": choice_labels
         },
     }
     return temp_elab_dict
 
 
 def dropdown_to_dict(redcap_field_dict):
-    # dropdown is always select type in json
-    redcap_split = redcap_field_dict["Choices, Calculations, OR Slider Labels"].split('|')
-    redcap_list_option_values = []
-    redcap_list_tag_values = []
-    for elem in redcap_split:
-        redcap_list_option_values.append(re.sub(r'.*,', '', elem))
+    assert redcap_field_dict["Field Type"] == "dropdown"
+    redcap_choice_str = redcap_field_dict["Choices, Calculations, OR Slider Labels"]
+    redcap_annotation_str = redcap_field_dict["Field Annotation"]
+    choice_labels, default_choice_label = parse_choices(redcap_choice_str, redcap_annotation_str)
 
-    if re.match('@DEFAULT="*"', str(redcap_field_dict['Field Annotation'])):
-        redcap_list_tag_values.append(re.sub('@DEFAULT=*', '', redcap_field_dict['Field Annotation']))
-        temp_elab_dict = {redcap_field_dict['Field Label']: {
+    # dropdown is always select type in json
+    temp_elab_dict = {
+        redcap_field_dict['Field Label']: {
             "type": "select",
-            "value": str(redcap_list_tag_values)[1:-1],
-            "options":
-                redcap_list_option_values
+            "value": default_choice_label,
+            "options": choice_labels
         },
-        }
-    else:
-        temp_elab_dict = {redcap_field_dict['Field Label']: {
-            "type": "select",
-            "value": "",
-            "options":
-                redcap_list_option_values
-        },
-        }
+    }
     return temp_elab_dict
 
 
