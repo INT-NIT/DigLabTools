@@ -13,6 +13,5 @@
     }
   },
   "api_token": "REDCAP_API_TOKEN",
-  "api_url": "https://redcap.int.univ-amu.fr/api/",
-  "template_location": "/"
+  "api_url": "https://redcap.int.univ-amu.fr/api/"
 }
