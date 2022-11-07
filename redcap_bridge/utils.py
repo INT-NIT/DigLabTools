@@ -257,3 +257,33 @@ def notes_to_dict(redcap_field_dict):
     return temp_elab_dict
 
 
+def parse_choices(choice_str, annotation_str):
+    """
+    Extract choice labels and default choice label from redcap
+    "Choices, Calculations, OR Slider Labels" and "Annotations"
+
+    Returns
+    -------
+    (list, str)
+        first entry is the list of default choice labels
+        second entry is the default choice labels (is value of first entry)
+
+    """
+    # default return values
+    default_choice_label = ''
+
+    choice_match = re.findall('(?:\|?)\s?(?P<choice>\w+)\s?,\s?(?P<label>[^,|]+?)\s*(?:\||$)', choice_str)
+    if choice_match:
+        choice_keys, choice_labels = zip(*choice_match)
+        if '@DEFAULT=' in annotation_str:
+            choice_selector = '|'.join(choice_keys)
+            match = re.match('@DEFAULT=["\'](' + choice_selector + ')["\']', annotation_str)
+            if match:
+                default_choice_key = match.groups()[0]
+                default_choice_label = choice_labels[choice_keys.index(default_choice_key)]
+            else:
+                warnings.warn(f'Could not determine default choice for {annotation_str}')
+
+    return list(choice_labels), default_choice_label
+
+
