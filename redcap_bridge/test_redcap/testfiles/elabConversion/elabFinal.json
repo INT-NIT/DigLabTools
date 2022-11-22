@@ -26,21 +26,50 @@
             "value": "",
             "position": 4
         },
-        "Modality": {
+        "Behaviour (eye)": {
             "type": "checkbox",
             "value": "",
-            "options": [
-                "Behaviour (eye)",
-                "Behaviour (hand)",
-                "Single Electrode",
-                "Multi Electrode",
-                "EMG",
-                "Optical Imaging (int)",
-                "Optical Imaging (VSDi)",
-                "ECoG",
-                "SEEG"
-            ],
             "position": 5
+        },
+        "Behaviour (hand)": {
+            "type": "checkbox",
+            "value": "",
+            "position": 6
+        },
+        "Single Electrode": {
+            "type": "checkbox",
+            "value": "",
+            "position": 7
+        },
+        "Multi Electrode": {
+            "type": "checkbox",
+            "value": "",
+            "position": 8
+        },
+        "EMG": {
+            "type": "checkbox",
+            "value": "",
+            "position": 9
+        },
+        "Optical Imaging (int)": {
+            "type": "checkbox",
+            "value": "",
+            "position": 10
+        },
+        "Optical Imaging (VSDi)": {
+            "type": "checkbox",
+            "value": "",
+            "position": 11
+        },
+        "ECoG": {
+            "type": "checkbox",
+            "value": "",
+            "position": 12
+        },
+        "SEEG": {
+            "type": "checkbox",
+            "value": "",
+            "position": 13
         },
         "Stimulation": {
             "type": "radio",
@@ -48,12 +77,12 @@
             "options": [
                 "yes"
             ],
-            "position": 6
+            "position": 14
         },
         "Weight": {
             "type": "number",
             "value": "",
-            "position": 7
+            "position": 15
         }
     }
 }

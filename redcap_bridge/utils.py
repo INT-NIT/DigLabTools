@@ -150,7 +150,7 @@ def conversion_csv_to_json(csv_file):
         elif redcap_field_dict['Field Type'] == 'radio':
             elab_dict = radio_to_dict(redcap_field_dict)
         elif redcap_field_dict['Field Type'] == 'checkbox':
-            elab_dict = checkbox_to_dict(redcap_field_dict)
+            elab_dict = checkbox_mult(redcap_field_dict)
         else:
             pass
 
@@ -223,6 +223,22 @@ def checkbox_to_dict(redcap_field_dict):
     }
     return temp_elab_dict
 
+def checkbox_mult(redcap_field_dict):
+    final_dict = {}
+    assert redcap_field_dict["Field Type"] == "checkbox"
+    redcap_choice_str = redcap_field_dict["Choices, Calculations, OR Slider Labels"]
+    redcap_annotation_str = redcap_field_dict["Field Annotation"]
+    choice_labels, default_choice_label = parse_choices(redcap_choice_str, redcap_annotation_str)
+    for choices in choice_labels:
+        temp_elab_dict = {
+            choices: {
+                "type": "checkbox",
+                "value": default_choice_label,
+            },
+        }
+        final_dict.update(temp_elab_dict)
+    return final_dict
+
 
 def dropdown_to_dict(redcap_field_dict):
     assert redcap_field_dict["Field Type"] == "dropdown"
@@ -263,6 +279,7 @@ def parse_choices(choice_str, annotation_str):
     """
     # default return values
     default_choice_label = ''
+    choice_labels = []
 
     choice_match = re.findall('(?:\|?)\s?(?P<choice>\w+)\s?,\s?(?P<label>[^,|]+?)\s*(?:\||$)', choice_str)
     if choice_match:
