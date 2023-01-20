@@ -150,10 +150,9 @@ def conversion_csv_to_json(csv_file):
         elif redcap_field_dict['Field Type'] == 'radio':
             elab_dict = radio_to_dict(redcap_field_dict)
         elif redcap_field_dict['Field Type'] == 'checkbox':
-            elab_dict = checkbox_to_dict(redcap_field_dict)
+            elab_dict = checkbox_to_multiselect_dict(redcap_field_dict)
         else:
             pass
-
         elab_json.update(elab_dict)
     final_elab = {
         "extra_fields": elab_json
@@ -163,6 +162,7 @@ def conversion_csv_to_json(csv_file):
         final_elab["extra_fields"][key].update({"position": pos})
         pos += 1
 
+    print(final_elab)
     return final_elab
 
 
@@ -209,18 +209,21 @@ def radio_to_dict(redcap_field_dict):
     return temp_elab_dict
 
 
-def checkbox_to_dict(redcap_field_dict):
+def checkbox_to_multiselect_dict(redcap_field_dict):
     assert redcap_field_dict["Field Type"] == "checkbox"
     redcap_choice_str = redcap_field_dict["Choices, Calculations, OR Slider Labels"]
     redcap_annotation_str = redcap_field_dict["Field Annotation"]
     choice_labels, default_choice_label = parse_choices(redcap_choice_str, redcap_annotation_str)
     temp_elab_dict = {
         redcap_field_dict['Field Label']: {
-            "type": "checkbox",
+            "type": "select",
             "value": default_choice_label,
-            "options": choice_labels
+            "options": choice_labels,
+            "allow_multi_values": True
         },
     }
+    for key in temp_elab_dict[redcap_field_dict['Field Label']]:
+        json.dumps(temp_elab_dict[redcap_field_dict['Field Label']])
     return temp_elab_dict
 
 
