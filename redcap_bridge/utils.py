@@ -162,7 +162,6 @@ def conversion_csv_to_json(csv_file):
         final_elab["extra_fields"][key].update({"position": pos})
         pos += 1
 
-    print(final_elab)
     return final_elab
 
 
@@ -222,8 +221,10 @@ def checkbox_to_multiselect_dict(redcap_field_dict):
             "allow_multi_values": True
         },
     }
+
     for key in temp_elab_dict[redcap_field_dict['Field Label']]:
         json.dumps(temp_elab_dict[redcap_field_dict['Field Label']])
+
     return temp_elab_dict
 
 
