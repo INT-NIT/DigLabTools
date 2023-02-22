@@ -222,9 +222,6 @@ def checkbox_to_dict(redcap_field_dict):
         },
     }
 
-    for key in temp_elab_dict[redcap_field_dict['Field Label']]:
-        json.dumps(temp_elab_dict[redcap_field_dict['Field Label']])
-
     return temp_elab_dict
 
 
