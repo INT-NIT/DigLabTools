@@ -27,7 +27,7 @@
             "position": 4
         },
         "Modality": {
-            "type": "checkbox",
+            "type": "select",
             "value": "",
             "options": [
                 "Behaviour (eye)",
@@ -40,6 +40,7 @@
                 "ECoG",
                 "SEEG"
             ],
+            "allow_multi_values": true,
             "position": 5
         },
         "Stimulation": {

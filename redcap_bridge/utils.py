@@ -153,7 +153,6 @@ def conversion_csv_to_json(csv_file):
             elab_dict = checkbox_to_dict(redcap_field_dict)
         else:
             pass
-
         elab_json.update(elab_dict)
     final_elab = {
         "extra_fields": elab_json
@@ -216,11 +215,13 @@ def checkbox_to_dict(redcap_field_dict):
     choice_labels, default_choice_label = parse_choices(redcap_choice_str, redcap_annotation_str)
     temp_elab_dict = {
         redcap_field_dict['Field Label']: {
-            "type": "checkbox",
+            "type": "select",
             "value": default_choice_label,
-            "options": choice_labels
+            "options": choice_labels,
+            "allow_multi_values": True
         },
     }
+
     return temp_elab_dict
 
 
