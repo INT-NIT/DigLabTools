@@ -55,13 +55,14 @@ jobs:
       - name: Test with pytest
         env:
           REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
+          ELAB_API_TOKEN: ${{ secrets.ELAB_API_TOKEN }}
         shell: bash
         run: |
           # change directory to test installed and not local version
           ls -lh
           pwd
           cd ..
-          pytest ${{ github.event.repository.name }}
+          pytest ${{ github.event.repository.name }}    
 
   run-coverall:
     runs-on: [ubuntu-latest]
@@ -103,6 +104,7 @@ jobs:
       - name: Create coverage
         env:
           REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
+          ELAB_API_TOKEN: ${{ secrets.ELAB_API_TOKEN }}
         shell: bash
         run: |
             # change directory to test installed and not local version
