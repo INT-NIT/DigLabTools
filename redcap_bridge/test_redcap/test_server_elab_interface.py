@@ -8,6 +8,7 @@ json_file = "/Users/killianrochet/PycharmProjects/DigLabTools/redcap_bridge/test
 
 elab_config = "/Users/killianrochet/PycharmProjects/DigLabTools/redcap_bridge/test_redcap/testfiles/TestProject/elab_config.json"
 
+
 def test_create_template_without_metadata():
 
     res = create_template_without_metadata(server_config_json=elab_config, template_file=json_file)
