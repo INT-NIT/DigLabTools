@@ -6,6 +6,43 @@ import pandas as pd
 import elabapi_python
 from elabapi_python.rest import ApiException
 
+def create_template_with_metadata(server_config_json, template_file):
+    """
+    Create a template with metadata.
+
+    Parameters
+    ----------
+    server_config_json: str
+        Path to the json file containing the redcap url, api token and required external modules
+    template_file: str
+        Path to the template you want to create
+
+    Returns
+    -------
+        location_response: location of the new template
+
+    """
+
+    api_client = get_elab_config(server_config_json)
+    template_api = elabapi_python.ExperimentsTemplatesApi(api_client)
+
+    if json.load(open(template_file, 'r')):
+        template = json.load(open(template_file, 'r'))
+        response = template_api.post_experiment_template_with_http_info(body={"title": template['title']})
+        location_response = response[2].get('Location')
+
+        itemId = int(location_response.split('/').pop())
+
+        if template['metadata']:
+            template_api.patch_experiment_template(itemId, body={'metadata': template['metadata']})
+        else:
+            raise ValueError(f'No metadata No metadata in the template')
+    else:
+        raise ValueError(f'Unknown format or template. Valid format is "json".')
+
+    return location_response
+
+
 def create_template_without_metadata(server_config_json, template_file):
     """
     Create a simple template with a title without metadata.
@@ -19,7 +56,7 @@ def create_template_without_metadata(server_config_json, template_file):
 
     Returns
     -------
-        bool: True if required external modules are present
+        location_response: location of the new template
 
     """
 
