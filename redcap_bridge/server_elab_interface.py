@@ -6,6 +6,7 @@ import pandas as pd
 import elabapi_python
 from elabapi_python.rest import ApiException
 
+
 def create_template_with_metadata(server_config_json, template_file):
     """
     Create a template with metadata.
