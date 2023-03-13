@@ -32,10 +32,10 @@ def create_template_with_metadata(server_config_json, template_file):
         response = template_api.post_experiment_template_with_http_info(body={"title": template['title']})
         location_response = response[2].get('Location')
 
-        itemId = int(location_response.split('/').pop())
+        item_id = int(location_response.split('/').pop())
 
         if template['metadata']:
-            template_api.patch_experiment_template(itemId, body={'metadata': template['metadata']})
+            template_api.patch_experiment_template(item_id, body={'metadata': template['metadata']})
         else:
             raise ValueError(f'No metadata No metadata in the template')
     else:
