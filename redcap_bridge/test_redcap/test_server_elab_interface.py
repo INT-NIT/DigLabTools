@@ -7,7 +7,7 @@ from redcap_bridge.test_redcap.test_utils import (test_directory, initialize_tes
 SERVER_CONFIG_YAML = (test_directory / 'testfiles' / 'TestProject' / 'elab_config.json').resolve()
 
 
-def test_create_template_without_metadata():
+def test_create_template_without_metadata(initialize_test_dir):
 
     template_file = test_directory / 'testfiles' / 'elab_template.json'
 
