@@ -93,7 +93,7 @@ def get_elab_config(server_config_json):
     configuration.verify_ssl = False
 
     api_client = elabapi_python.ApiClient(configuration)
-    api_client.set_default_header(header_name='Authorization', header_value=config['api_key'])
+    api_client.set_default_header(header_name='Authorization', header_value=os.environ[config['api_key']])
 
     return api_client
 
