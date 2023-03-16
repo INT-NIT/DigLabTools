@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Debug print
-        run: echo "$GITHUB_CONTEXT"
+        run: echo '${{ toJSON(github) }}'
     
       - uses: actions/checkout@v2
         with:
