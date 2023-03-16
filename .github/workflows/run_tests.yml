@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Debug print
-        run: echo ${{ github.event.name }}
+        run: echo "${{ github.event.name }}"
     
       - uses: actions/checkout@v2
         with:
