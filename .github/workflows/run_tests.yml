@@ -19,7 +19,7 @@ jobs:
         python-version: [3.8, 3.9]
         # Only one job at a time to avoid parallel access of test server
       max-parallel: 1
-    if: contains(github.event.pull_request.labels.*.name, 'safe to test')  || (github.event_name == "workflow_dispatch")
+    if: (contains(github.event.pull_request.labels.*.name, 'safe to test')  || (github.event_name == 'workflow_dispatch'))
 
     steps:
       - name: Debug print
