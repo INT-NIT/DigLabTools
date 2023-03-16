@@ -117,16 +117,16 @@ def get_elab_config(server_config_json):
     config = json.load(open(server_config_json, 'r'))
     configuration = elabapi_python.Configuration()
 
-    if config['api_key'] in os.environ:
-        configuration.api_key['api_key'] = os.environ[config['api_key']]
+    if config['api_elab_key'] in os.environ:
+        configuration.api_key['api_key'] = os.environ[config['api_elab_key']]
         configuration.api_key_prefix['api_key'] = 'Authorization'
 
-    configuration.host = config['api_url']
+    configuration.host = config['api_elab_url']
     configuration.debug = True
     configuration.verify_ssl = False
 
     api_client = elabapi_python.ApiClient(configuration)
-    api_client.set_default_header(header_name='Authorization', header_value=os.environ[config['api_key']])
+    api_client.set_default_header(header_name='Authorization', header_value=os.environ[config['api_elab_key']])
 
     return api_client
 
