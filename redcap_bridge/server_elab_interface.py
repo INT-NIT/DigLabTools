@@ -119,6 +119,10 @@ def get_elab_config(server_config_json):
 
     if config['api_elab_key'] in os.environ:
         configuration.api_key['api_key'] = os.environ[config['api_elab_key']]
+        if configuration.api_key['api_key']:
+            print("Key is here")
+        if os.environ[config['api_elab_key']]:
+            print("Environ is here")
         configuration.api_key_prefix['api_key'] = 'Authorization'
 
     configuration.host = config['api_elab_url']
