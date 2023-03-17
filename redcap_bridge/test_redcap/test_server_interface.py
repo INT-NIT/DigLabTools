@@ -33,14 +33,14 @@ def clean_server(initialize_test_dir):
     default_datadict = pd.DataFrame(data=[['record_id', 'my_first_instrument',
                                            'text', 'Record ID'] + [''] * 14],
                                     columns=map_header_csv_to_json)
-    redproj.import_metadata(default_datadict, import_format='csv')
+    redproj.import_metadata(default_datadict, import_format='df')
 
     # second initialize in non-lazy mode to configure records
     redproj = get_redcap_project(SERVER_CONFIG_YAML)
     default_records = pd.DataFrame(columns=['record_id',
                                             'my_first_instrument_complete'])
     redproj.import_records(default_records,
-                           import_format='csv', return_format_type='json',
+                           import_format='df', return_format_type='json',
                            overwrite="overwrite")
 
 
