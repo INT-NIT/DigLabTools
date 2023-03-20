@@ -225,9 +225,6 @@ def configure_project_settings(server_config_json):
     server_config_json: str
         Path to the json file containing the redcap url, api token and required external modules
 
-    Returns
-    -------
-        bool: True if required external modules are present
     """
 
     redproj = get_redcap_project(server_config_json)
@@ -241,41 +238,6 @@ def configure_project_settings(server_config_json):
         warnings.warn(f'Surveys are not enabled for project {proj_json["project_title"]} '
                       f'(project_id {proj_json["project_id"]}). Visit the RedCap webinterface and '
                       f'enable surveys to be able to collect data via the survey URL')
-
-
-def check_external_modules(server_config_json):
-    """
-    Download records from the redcap server.
-
-    Parameters
-    ----------
-    server_config_json: str
-        Path to the json file containing the redcap url, api token and required external modules
-
-    Returns
-    -------
-        bool: True if required external modules are present
-
-    """
-    config = json.load(open(server_config_json, 'r'))
-
-    if 'external_modules' not in config:
-        warnings.warn('No external_modules defined in project configuration')
-        return True
-
-    proj_json = json.load(open(server_config_json, 'r'))
-
-    missing_modules = []
-
-    for ext_mod in config['external_modules']:
-        if ext_mod not in proj_json['external_modules']:
-            missing_modules.append(ext_mod)
-
-    if missing_modules:
-        warnings.warn(f'Project on server is missing external modules: {missing_modules}')
-        return False
-    else:
-        return True
 
 
 def get_redcap_project(server_config_json):
