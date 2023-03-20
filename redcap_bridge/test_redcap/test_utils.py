@@ -1,3 +1,4 @@
+import json
 import os
 import pathlib
 import shutil
@@ -6,6 +7,7 @@ import tempfile
 import pytest
 
 from redcap_bridge.utils import compress_record
+from redcap_bridge.utils import conversion_csv_to_json
 test_directory = pathlib.Path(tempfile.gettempdir()) / 'diglabtools_testfiles'
 project_dir = test_directory / 'testfiles' / 'TestProject'
 
@@ -46,3 +48,13 @@ def test_compressedCSV(initialize_test_dir):
             res = comp_file.read()
             exp = exp_file.read()
             assert res == exp
+
+def test_conversion_csv_to_json(initialize_test_dir):
+
+    test_dir = test_directory / 'testfiles' / 'elabConversion'
+
+    f = open(test_dir / 'elabFinal.json')
+    elab_final = json.load(f)
+    elab_conversion = conversion_csv_to_json(test_dir / 'csvRecord.csv')
+    assert elab_conversion == elab_final
+
