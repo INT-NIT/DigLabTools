@@ -162,8 +162,16 @@ def test_configure_project_settings(clean_server, initialize_test_dir):
     assert proj_settings['surveys_enabled']
     assert len(proj_settings['external_modules'])
 
+    # no repeating instruments set at this time as no records were imported
+    # redproj = get_redcap_project(SERVER_CONFIG_YAML)
+    # rep_inst_settings = redproj.export_repeating_instruments_events()
+    # assert len(rep_inst_settings) == 1
+    # assert "form_name" in rep_inst_settings[0]
+    # assert "custom_form_label" in rep_inst_settings[0]
+
     redproj = get_redcap_project(SERVER_CONFIG_YAML)
-    rep_inst_settings = redproj.export_repeating_instruments_events()
-    assert len(rep_inst_settings) == 1
-    assert "form_name" in rep_inst_settings[0]
-    assert "custom_form_label" in rep_inst_settings[0]
+    metadata = redproj.export_metadata()
+    records = redproj.export_records()
+    assert 'field_name' in metadata[0]
+    assert 'record_id' in records[0]
+
