@@ -33,14 +33,14 @@ def clean_server(initialize_test_dir):
     default_datadict = pd.DataFrame(data=[['record_id', 'my_first_instrument',
                                            'text', 'Record ID'] + [''] * 14],
                                     columns=map_header_csv_to_json)
-    redproj.import_metadata(default_datadict, import_format='csv')
+    redproj.import_metadata(default_datadict, import_format='df')
 
     # second initialize in non-lazy mode to configure records
     redproj = get_redcap_project(SERVER_CONFIG_YAML)
     default_records = pd.DataFrame(columns=['record_id',
                                             'my_first_instrument_complete'])
     redproj.import_records(default_records,
-                           import_format='csv', return_format_type='json',
+                           import_format='df', return_format_type='json',
                            overwrite="overwrite")
 
 
@@ -162,8 +162,16 @@ def test_configure_project_settings(clean_server, initialize_test_dir):
     assert proj_settings['surveys_enabled']
     assert len(proj_settings['external_modules'])
 
+    # no repeating instruments set at this time as no records were imported
+    # redproj = get_redcap_project(SERVER_CONFIG_YAML)
+    # rep_inst_settings = redproj.export_repeating_instruments_events()
+    # assert len(rep_inst_settings) == 1
+    # assert "form_name" in rep_inst_settings[0]
+    # assert "custom_form_label" in rep_inst_settings[0]
+
     redproj = get_redcap_project(SERVER_CONFIG_YAML)
-    rep_inst_settings = redproj.export_repeating_instruments_events()
-    assert len(rep_inst_settings) == 1
-    assert "form_name" in rep_inst_settings[0]
-    assert "custom_form_label" in rep_inst_settings[0]
+    metadata = redproj.export_metadata()
+    records = redproj.export_records()
+    assert 'field_name' in metadata[0]
+    assert 'record_id' in records[0]
+
