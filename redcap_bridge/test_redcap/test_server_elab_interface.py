@@ -26,8 +26,7 @@ def test_create_template_with_metadata(initialize_test_dir):
 def test_create_template_with_converted_csv(initialize_test_dir):
     csv_file = test_directory / 'testfiles' / 'metadata.csv'
 
-
     res = create_template_with_converted_csv(server_config_json=SERVER_CONFIG_YAML, csv_file=csv_file,
-                                             title='AUTO CSV')
+                                             title='General Template')
 
     assert res is not None
