@@ -169,7 +169,8 @@ def text_to_dict(redcap_field_dict):
     temp_elab_dict = {
         redcap_field_dict['Field Label']: {
             "type": "text",
-            "value": ""},
+            "value": "",
+            "description": redcap_field_dict['Field Note']},
     }
     return temp_elab_dict
 
@@ -179,7 +180,8 @@ def number_to_dict(redcap_field_dict):
     temp_elab_dict = {
         redcap_field_dict['Field Label']: {
             "type": "number",
-            "value": ""},
+            "value": "",
+            "description": redcap_field_dict['Field Note']},
     }
     return temp_elab_dict
 
@@ -188,7 +190,8 @@ def date_to_dict(redcap_field_dict):
     temp_elab_dict = {
         redcap_field_dict['Field Label']: {
             "type": "date",
-            "value": ""},
+            "value": "",
+            "description": redcap_field_dict['Field Note']},
     }
     return temp_elab_dict
 
@@ -202,7 +205,8 @@ def radio_to_dict(redcap_field_dict):
         redcap_field_dict['Field Label']: {
             "type": "radio",
             "value": default_choice_label,
-            "options": choice_labels
+            "options": choice_labels,
+            "description": redcap_field_dict['Field Note']
         },
     }
     return temp_elab_dict
@@ -218,6 +222,7 @@ def checkbox_to_dict(redcap_field_dict):
             "type": "select",
             "value": default_choice_label,
             "options": choice_labels,
+            "description": redcap_field_dict['Field Note'],
             "allow_multi_values": True
         },
     }
@@ -236,7 +241,8 @@ def dropdown_to_dict(redcap_field_dict):
         redcap_field_dict['Field Label']: {
             "type": "select",
             "value": default_choice_label,
-            "options": choice_labels
+            "options": choice_labels,
+            "description": redcap_field_dict['Field Note']
         },
     }
     return temp_elab_dict
@@ -245,7 +251,8 @@ def dropdown_to_dict(redcap_field_dict):
 def notes_to_dict(redcap_field_dict):
     temp_elab_dict = {"Comment on the" + redcap_field_dict['Field Label']: {
         "type": "text",
-        "value": ""},
+        "value": "",
+        "description": redcap_field_dict['Field Note']},
     }
     return temp_elab_dict
 
