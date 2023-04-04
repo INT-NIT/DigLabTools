@@ -130,6 +130,7 @@ def conversion_csv_to_json(csv_file):
     Test conversion function
     """
     df = pd.read_csv(csv_file, na_filter=False, dtype='str')
+    df = df.drop(df.index[df['Variable / Field Name'] == 'record_id'])
     elab_json = {}
     elab_dict = {}
     pos = 1

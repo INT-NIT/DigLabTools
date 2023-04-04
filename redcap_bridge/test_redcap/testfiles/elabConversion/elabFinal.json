@@ -1,11 +1,5 @@
 {
     "extra_fields": {
-        "Record ID": {
-            "type": "text",
-            "value": "",
-            "description": "",
-            "position": 1
-        },
         "Ethical Protocol Identifier": {
             "type": "select",
             "value": "fourth choice",
@@ -16,19 +10,19 @@
                 "fourth choice"
             ],
             "description": "",
-            "position": 2
+            "position": 1
         },
         "Session date": {
             "type": "date",
             "value": "",
             "description": "",
-            "position": 3
+            "position": 2
         },
         "Session Number": {
             "type": "number",
             "value": "",
             "description": "",
-            "position": 4
+            "position": 3
         },
         "Modality": {
             "type": "select",
@@ -46,7 +40,7 @@
             ],
             "description": "",
             "allow_multi_values": true,
-            "position": 5
+            "position": 4
         },
         "Stimulation": {
             "type": "radio",
@@ -55,13 +49,13 @@
                 "yes"
             ],
             "description": "Does the recording involve stimulation?",
-            "position": 6
+            "position": 5
         },
         "Weight": {
             "type": "number",
             "value": "",
             "description": "in kg",
-            "position": 7
+            "position": 6
         }
     }
 }
