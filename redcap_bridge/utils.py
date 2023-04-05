@@ -136,12 +136,14 @@ def conversion_csv_to_json(csv_file):
 
     list_of_dict = df.to_dict('records')
     for redcap_field_dict in list_of_dict:
+        # Skip the logic fields because ElabFTW does not understand them
         if redcap_field_dict['Branching Logic (Show field only if...)'] != '':
             continue
         if redcap_field_dict['Variable / Field Name'] == 'record_id':
             continue
         if redcap_field_dict['Field Type'] == 'text':
-            if redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'number' or redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'integer':
+            if redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'number' or redcap_field_dict[
+                'Text Validation Type OR Show Slider Number'] == 'integer':
                 elab_dict = number_to_dict(redcap_field_dict)
             elif redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'date_dmy':
                 elab_dict = date_to_dict(redcap_field_dict)
@@ -289,8 +291,7 @@ def parse_choices(choice_str, annotation_str):
                 warnings.warn(f'Could not determine default choice for {annotation_str}')
 
     choice_labels = [re.sub(r'\{.*?\}', '', label) for label in choice_labels]
-    # Removal of {} and their contents
+    # Removal of embedded fields used in RedCap ( {...} ) as there is no equivalent in ElabFTW
     default_choice_label = re.sub(r'\{.*?\}', '', default_choice_label)
 
     return list(choice_labels), default_choice_label
-
