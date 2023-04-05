@@ -56,6 +56,15 @@
             "value": "",
             "description": "in kg",
             "position": 6
+        },
+        "Immuno?": {
+            "type": "radio",
+            "value": "",
+            "options": [
+                "yes immono_custom"
+            ],
+            "description": "",
+            "position": 7
         }
     }
 }
