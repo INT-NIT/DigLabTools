@@ -61,7 +61,7 @@
             "type": "radio",
             "value": "",
             "options": [
-                "yes immono_custom"
+                "yes "
             ],
             "description": "",
             "position": 7
