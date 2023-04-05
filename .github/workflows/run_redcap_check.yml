@@ -4,8 +4,9 @@
 name: RedCap Server Availability Check
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: "0 */12 * * *"
+  - cron: "0 */24 * * *"
 
 jobs:
   build:
@@ -18,19 +19,19 @@ jobs:
         python-version: [3.9]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Display Python version
-      run: python -c "import sys; print(sys.version)"
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
 
-    - name: Install package
-      run: pip install -e .
+      - name: Install package
+        run: pip install -e .
 
-    - name: Test with pytest
-      env:
-        REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
-      run: python redcap_bridge/test_redcap/check_connectivity.py
+      - name: Test with pytest
+        env:
+          REDCAP_API_TOKEN: ${{ secrets.REDCAP_API_TOKEN }}
+        run: python redcap_bridge/test_redcap/check_connectivity.py
