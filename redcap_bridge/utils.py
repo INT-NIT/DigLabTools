@@ -255,7 +255,7 @@ def dropdown_to_dict(redcap_field_dict):
 
 
 def notes_to_dict(redcap_field_dict):
-    temp_elab_dict = {"Comment on the" + redcap_field_dict['Field Label']: {
+    temp_elab_dict = {redcap_field_dict['Field Label']: {
         "type": "text",
         "value": "",
         "description": redcap_field_dict['Field Note']},
