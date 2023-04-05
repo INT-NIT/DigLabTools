@@ -1,10 +1,5 @@
 {
     "extra_fields": {
-        "Record ID": {
-            "type": "text",
-            "value": "",
-            "position": 1
-        },
         "Ethical Protocol Identifier": {
             "type": "select",
             "value": "fourth choice",
@@ -14,17 +9,20 @@
                 "third choice",
                 "fourth choice"
             ],
-            "position": 2
+            "description": "",
+            "position": 1
         },
         "Session date": {
             "type": "date",
             "value": "",
-            "position": 3
+            "description": "",
+            "position": 2
         },
         "Session Number": {
             "type": "number",
             "value": "",
-            "position": 4
+            "description": "",
+            "position": 3
         },
         "Modality": {
             "type": "select",
@@ -40,8 +38,9 @@
                 "ECoG",
                 "SEEG"
             ],
+            "description": "",
             "allow_multi_values": true,
-            "position": 5
+            "position": 4
         },
         "Stimulation": {
             "type": "radio",
@@ -49,11 +48,22 @@
             "options": [
                 "yes"
             ],
-            "position": 6
+            "description": "Does the recording involve stimulation?",
+            "position": 5
         },
         "Weight": {
             "type": "number",
             "value": "",
+            "description": "in kg",
+            "position": 6
+        },
+        "Immuno?": {
+            "type": "radio",
+            "value": "",
+            "options": [
+                "yes "
+            ],
+            "description": "",
             "position": 7
         }
     }
