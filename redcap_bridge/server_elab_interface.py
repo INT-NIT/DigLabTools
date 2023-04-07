@@ -117,7 +117,7 @@ def get_elab_config(server_config_json):
     config = json.load(open(server_config_json, 'r'))
     configuration = elabapi_python.Configuration()
 
-    if 'api_elab_key' in os.environ:
+    if config['api_elab_key'] in os.environ:
         print("Key in os environ")
 
     if config['api_elab_key'] in os.environ:
