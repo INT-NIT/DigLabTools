@@ -120,6 +120,7 @@ def get_elab_config(server_config_json):
     print(os.environ.keys())
 
     if config['api_elab_key'] in os.environ:
+        print("Key is on environ")
         configuration.api_key['api_key'] = os.environ[config['api_elab_key']]
         if configuration.api_key['api_key']:
             print("Key is here")
