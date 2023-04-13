@@ -136,8 +136,14 @@ def conversion_csv_to_json(csv_file):
 
     list_of_dict = df.to_dict('records')
     for redcap_field_dict in list_of_dict:
+        # Skip the logic fields because ElabFTW does not understand them
+        if redcap_field_dict['Branching Logic (Show field only if...)'] != '':
+            continue
+        if redcap_field_dict['Variable / Field Name'] == 'record_id':
+            continue
         if redcap_field_dict['Field Type'] == 'text':
-            if redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'number' or redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'integer':
+            if redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'number' or redcap_field_dict[
+                'Text Validation Type OR Show Slider Number'] == 'integer':
                 elab_dict = number_to_dict(redcap_field_dict)
             elif redcap_field_dict['Text Validation Type OR Show Slider Number'] == 'date_dmy':
                 elab_dict = date_to_dict(redcap_field_dict)
@@ -169,7 +175,8 @@ def text_to_dict(redcap_field_dict):
     temp_elab_dict = {
         redcap_field_dict['Field Label']: {
             "type": "text",
-            "value": ""},
+            "value": "",
+            "description": redcap_field_dict['Field Note']},
     }
     return temp_elab_dict
 
@@ -179,7 +186,8 @@ def number_to_dict(redcap_field_dict):
     temp_elab_dict = {
         redcap_field_dict['Field Label']: {
             "type": "number",
-            "value": ""},
+            "value": "",
+            "description": redcap_field_dict['Field Note']},
     }
     return temp_elab_dict
 
@@ -188,7 +196,8 @@ def date_to_dict(redcap_field_dict):
     temp_elab_dict = {
         redcap_field_dict['Field Label']: {
             "type": "date",
-            "value": ""},
+            "value": "",
+            "description": redcap_field_dict['Field Note']},
     }
     return temp_elab_dict
 
@@ -202,7 +211,8 @@ def radio_to_dict(redcap_field_dict):
         redcap_field_dict['Field Label']: {
             "type": "radio",
             "value": default_choice_label,
-            "options": choice_labels
+            "options": choice_labels,
+            "description": redcap_field_dict['Field Note']
         },
     }
     return temp_elab_dict
@@ -218,6 +228,7 @@ def checkbox_to_dict(redcap_field_dict):
             "type": "select",
             "value": default_choice_label,
             "options": choice_labels,
+            "description": redcap_field_dict['Field Note'],
             "allow_multi_values": True
         },
     }
@@ -236,16 +247,18 @@ def dropdown_to_dict(redcap_field_dict):
         redcap_field_dict['Field Label']: {
             "type": "select",
             "value": default_choice_label,
-            "options": choice_labels
+            "options": choice_labels,
+            "description": redcap_field_dict['Field Note']
         },
     }
     return temp_elab_dict
 
 
 def notes_to_dict(redcap_field_dict):
-    temp_elab_dict = {"Comment on the" + redcap_field_dict['Field Label']: {
+    temp_elab_dict = {redcap_field_dict['Field Label']: {
         "type": "text",
-        "value": ""},
+        "value": "",
+        "description": redcap_field_dict['Field Note']},
     }
     return temp_elab_dict
 
@@ -277,6 +290,8 @@ def parse_choices(choice_str, annotation_str):
             else:
                 warnings.warn(f'Could not determine default choice for {annotation_str}')
 
+    choice_labels = [re.sub(r'\{.*?\}', '', label) for label in choice_labels]
+    # Removal of embedded fields used in RedCap ( {...} ) as there is no equivalent in ElabFTW
+    default_choice_label = re.sub(r'\{.*?\}', '', default_choice_label)
+
     return list(choice_labels), default_choice_label
-
-
