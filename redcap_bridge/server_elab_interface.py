@@ -6,6 +6,17 @@ import elabapi_python
 from redcap_bridge.utils import conversion_csv_to_json
 
 
+
+def download_experiment(server_config_json, id):
+
+    api_client = get_elab_config(server_config_json)
+    experiment_api = elabapi_python.ExperimentsApi(api_client)
+
+    exp = experiment_api.get_experiment(id)
+
+    return exp
+
+
 def create_template_with_metadata(server_config_json, template_file):
     """
     Create a template with metadata.
