@@ -6,9 +6,7 @@ import elabapi_python
 from redcap_bridge.utils import conversion_csv_to_json
 
 
-
 def download_experiment(server_config_json, id):
-
     api_client = get_elab_config(server_config_json)
     experiment_api = elabapi_python.ExperimentsApi(api_client)
 
@@ -47,18 +45,21 @@ def create_template(server_config_json, template_file, metadata):
     if metadata:
         response = template_api.post_experiment_template_with_http_info(body={"title": template['title']})
         location_response = response[2].get('Location')
-
         item_id = int(location_response.split('/').pop())
 
         if template['metadata']:
-            template_api.patch_experiment_template(item_id, body={'metadata': template['metadata']})
+            response = template_api.patch_experiment_template_with_http_info(
+                item_id, body={'metadata': template['metadata']})
+            status_code = response[1]
+
         else:
             raise ValueError(f'No metadata No metadata in the template')
     else:
         response = template_api.post_experiment_template_with_http_info(body={"title": template['title']})
+        status_code = response[1]
         location_response = response[2].get('Location')
 
-    return location_response
+    return location_response, status_code
 
 
 def create_template_with_converted_csv(server_config_json, csv_file, title):
@@ -90,9 +91,10 @@ def create_template_with_converted_csv(server_config_json, csv_file, title):
     location_response = response[2].get('Location')
     item_id = int(location_response.split('/').pop())
 
-    template_api.patch_experiment_template(item_id, body={'metadata': final_json})
+    template_api.patch_experiment_template_with_http_info(item_id, body={'metadata': final_json})
+    status_code = response[1]
 
-    return location_response
+    return location_response, status_code
 
 
 def get_elab_config(server_config_json):

@@ -10,22 +10,22 @@ test_file = (test_directory / 'testfiles' / 'elabConversion' / 'csvRecord.csv')
 def test_create_template(initialize_test_dir):
     template_file = test_directory / 'testfiles' / 'elab_template.json'
 
-    res = create_template(server_config_json=SERVER_CONFIG_YAML, template_file=template_file, metadata=True)
+    res, http_stat_code = create_template(server_config_json=SERVER_CONFIG_YAML, template_file=template_file,
+                                          metadata=True)
 
-    assert res is not None
+    assert http_stat_code == 200 or http_stat_code == 201
 
 
 def test_create_template_with_converted_csv(initialize_test_dir):
     csv_file = test_directory / 'testfiles' / 'metadata.csv'
 
-    res = create_template_with_converted_csv(server_config_json=SERVER_CONFIG_YAML, csv_file=csv_file,
+    res, http_stat_code = create_template_with_converted_csv(server_config_json=SERVER_CONFIG_YAML, csv_file=csv_file,
                                              title='General Template')
 
-    assert res is not None
+    assert http_stat_code == 201
 
 
 def test_download_experiment(initialize_test_dir):
-
     res = download_experiment(server_config_json=SERVER_CONFIG_YAML, id=232)
 
     assert res is not None
