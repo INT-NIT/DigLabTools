@@ -36,6 +36,4 @@ def test_download_experiment(initialize_test_dir):
 
     res = download_experiment(server_config_json=SERVER_CONFIG_YAML, id=232)
 
-    print(res)
-
     assert res is not None

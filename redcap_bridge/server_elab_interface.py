@@ -36,9 +36,9 @@ def create_template_with_metadata(server_config_json, template_file):
 
     api_client = get_elab_config(server_config_json)
     template_api = elabapi_python.ExperimentsTemplatesApi(api_client)
+    template = json.load(open(template_file, 'r'))
 
-    if json.load(open(template_file, 'r')):
-        template = json.load(open(template_file, 'r'))
+    if template:
         response = template_api.post_experiment_template_with_http_info(body={"title": template['title']})
         location_response = response[2].get('Location')
 
@@ -73,9 +73,9 @@ def create_template_without_metadata(server_config_json, template_file):
 
     api_client = get_elab_config(server_config_json)
     template_api = elabapi_python.ExperimentsTemplatesApi(api_client)
+    template = json.load(open(template_file, 'r'))
 
-    if json.load(open(template_file, 'r')):
-        template = json.load(open(template_file, 'r'))
+    if template:
         response = template_api.post_experiment_template_with_http_info(body={"title": template['title']})
         location_response = response[2].get('Location')
     else:
@@ -103,8 +103,8 @@ def create_template_with_converted_csv(server_config_json, csv_file, title):
 
     """
 
-    json_conversion_file = conversion_csv_to_json(csv_file)
-    json_conversion_file = json.dumps(json_conversion_file)
+    conversion_json = conversion_csv_to_json(csv_file)
+    final_json = json.dumps(conversion_json)
 
     api_client = get_elab_config(server_config_json)
     template_api = elabapi_python.ExperimentsTemplatesApi(api_client)
@@ -113,7 +113,7 @@ def create_template_with_converted_csv(server_config_json, csv_file, title):
     location_response = response[2].get('Location')
     item_id = int(location_response.split('/').pop())
 
-    template_api.patch_experiment_template(item_id, body={'metadata': json_conversion_file})
+    template_api.patch_experiment_template(item_id, body={'metadata': final_json})
 
     return location_response
 
@@ -128,15 +128,8 @@ def get_elab_config(server_config_json):
     config = json.load(open(server_config_json, 'r'))
     configuration = elabapi_python.Configuration()
 
-    print(os.environ.keys())
-
     if config['api_elab_key'] in os.environ:
-        print("Key is on environ")
         configuration.api_key['api_key'] = os.environ[config['api_elab_key']]
-        if configuration.api_key['api_key']:
-            print("Key is here")
-        if os.environ[config['api_elab_key']]:
-            print("Environ is here")
         configuration.api_key_prefix['api_key'] = 'Authorization'
 
     configuration.host = config['api_elab_url']
