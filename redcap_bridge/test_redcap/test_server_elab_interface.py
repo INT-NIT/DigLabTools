@@ -1,5 +1,5 @@
-from redcap_bridge.server_elab_interface import (create_template_without_metadata, create_template_with_metadata,
-                                                 create_template_with_converted_csv, download_experiment, create_template)
+from redcap_bridge.server_elab_interface import (create_template_with_converted_csv, download_experiment,
+                                                 create_template)
 from redcap_bridge.test_redcap.test_utils import (test_directory, initialize_test_dir)
 
 SERVER_CONFIG_YAML = (test_directory / 'testfiles' / 'TestProject' / 'project.json').resolve()
