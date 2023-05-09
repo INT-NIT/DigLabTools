@@ -1,18 +1,18 @@
 import json
 import os
-
 import elabapi_python
 
 from redcap_bridge.utils import conversion_csv_to_json
 
 
-def download_experiment(server_config_json, id):
+def download_experiment(server_config_json, experiment_id):
     api_client = get_elab_config(server_config_json)
     experiment_api = elabapi_python.ExperimentsApi(api_client)
 
-    exp = experiment_api.get_experiment(id)
+    exp = experiment_api.get_experiment_with_http_info(experiment_id)
+    status_code = exp[1]
 
-    return exp
+    return exp, status_code
 
 
 def create_template(server_config_json, template_file, metadata):
@@ -21,6 +21,8 @@ def create_template(server_config_json, template_file, metadata):
 
     Parameters
     ----------
+    metadata: bool
+        If template have metadata (extra fields) or not
     server_config_json: str
         Path to the json file containing the redcap url, api token and required external modules
     template_file: str
@@ -70,7 +72,7 @@ def create_template_with_converted_csv(server_config_json, csv_file, title):
     ----------
     server_config_json: str
         Path to the json file containing the redcap url, api token and required external modules
-    template_file: str
+    csv_file: str
         Path to the csv file you want to convert into an Elab version
     title: str
         Title of the template created
