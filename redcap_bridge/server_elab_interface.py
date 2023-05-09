@@ -15,7 +15,7 @@ def download_experiment(server_config_json, experiment_id):
     return exp, status_code
 
 
-def create_template(server_config_json, template_file, metadata):
+def upload_template(server_config_json, template_file, metadata):
     """
     Create a template with metadata.
 
@@ -36,14 +36,13 @@ def create_template(server_config_json, template_file, metadata):
 
     try:
         with open(template_file, 'r') as f:
-            json.load(f)
+            template = json.load(f)
     except json.JSONDecodeError:
         raise ValueError(f'Invalid JSON file: {template_file}')
 
     api_client = get_elab_config(server_config_json)
     template_api = elabapi_python.ExperimentsTemplatesApi(api_client)
 
-    template = json.load(open(template_file, 'r'))
     if metadata:
         response = template_api.post_experiment_template_with_http_info(body={"title": template['title']})
         location_response = response[2].get('Location')
@@ -64,7 +63,7 @@ def create_template(server_config_json, template_file, metadata):
     return location_response, status_code
 
 
-def create_template_with_converted_csv(server_config_json, csv_file, title):
+def upload_template_from_csv(server_config_json, csv_file, title):
     """
     Creating a template with an old csv file.
 
