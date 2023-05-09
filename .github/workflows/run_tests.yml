@@ -63,7 +63,7 @@ jobs:
           ls -lh
           pwd
           cd ..
-          pytest ${{ github.event.repository.name }}    
+          pytest ${{ github.event.repository.name }}
 
   run-coverall:
     runs-on: [ubuntu-latest]
