@@ -15,14 +15,12 @@ def download_experiment(server_config_json, experiment_id):
     return exp, status_code
 
 
-def upload_template(server_config_json, template_file, metadata):
+def upload_template(server_config_json, template_file):
     """
     Create a template with metadata.
 
     Parameters
     ----------
-    metadata: bool
-        If template have metadata (extra fields) or not
     server_config_json: str
         Path to the json file containing the redcap url, api token and required external modules
     template_file: str
@@ -43,18 +41,14 @@ def upload_template(server_config_json, template_file, metadata):
     api_client = get_elab_config(server_config_json)
     template_api = elabapi_python.ExperimentsTemplatesApi(api_client)
 
-    if metadata:
+    if template['metadata']:
         response = template_api.post_experiment_template_with_http_info(body={"title": template['title']})
         location_response = response[2].get('Location')
         item_id = int(location_response.split('/').pop())
+        response = template_api.patch_experiment_template_with_http_info(
+            item_id, body={'metadata': template['metadata']})
+        status_code = response[1]
 
-        if template['metadata']:
-            response = template_api.patch_experiment_template_with_http_info(
-                item_id, body={'metadata': template['metadata']})
-            status_code = response[1]
-
-        else:
-            raise ValueError(f'No metadata No metadata in the template')
     else:
         response = template_api.post_experiment_template_with_http_info(body={"title": template['title']})
         status_code = response[1]

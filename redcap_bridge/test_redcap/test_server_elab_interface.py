@@ -10,8 +10,7 @@ test_file = (test_directory / 'testfiles' / 'elabConversion' / 'csvRecord.csv')
 def test_create_template(initialize_test_dir):
     template_file = test_directory / 'testfiles' / 'elab_template.json'
 
-    res, http_stat_code = upload_template(server_config_json=SERVER_CONFIG_YAML, template_file=template_file,
-                                          metadata=True)
+    res, http_stat_code = upload_template(server_config_json=SERVER_CONFIG_YAML, template_file=template_file)
 
     # 200 is for creation of a template with metadata / 201 is for creation of a template without metadata
     assert http_stat_code == 200 or http_stat_code == 201
