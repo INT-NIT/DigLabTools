@@ -297,7 +297,7 @@ def parse_choices(choice_str, annotation_str):
     return list(choice_labels), default_choice_label
 
 
-def conversion_to_odml_table_descriptor(full_elabbook_csv, session_number):
+def conversion_to_odmltables_descriptor(full_elabbook_csv, session_number):
     """
     Create odml descriptor file base on the full elabbook csv file
 
