@@ -68,7 +68,7 @@ def upload_template_from_csv(server_config_json, csv_file, title):
     csv_file: str
         Path to the csv file you want to convert into an Elab version
     title: str
-        Title of the template upload
+        Title of the template to upload
 
     Returns
     -------
