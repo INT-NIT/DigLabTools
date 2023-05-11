@@ -7,7 +7,7 @@ SERVER_CONFIG_YAML = (test_directory / 'testfiles' / 'TestProject' / 'project.js
 test_file = (test_directory / 'testfiles' / 'elabConversion' / 'csvRecord.csv')
 
 
-def test_create_template(initialize_test_dir):
+def test_upload_template(initialize_test_dir):
     template_file = test_directory / 'testfiles' / 'elab_template.json'
 
     res, http_stat_code = upload_template(server_config_json=SERVER_CONFIG_YAML, template_file=template_file)
@@ -16,7 +16,7 @@ def test_create_template(initialize_test_dir):
     assert http_stat_code == 200 or http_stat_code == 201
 
 
-def test_create_template_with_converted_csv(initialize_test_dir):
+def test_upload_template_from_csv(initialize_test_dir):
     csv_file = test_directory / 'testfiles' / 'metadata.csv'
 
     res, http_stat_code = upload_template_from_csv(server_config_json=SERVER_CONFIG_YAML, csv_file=csv_file,
