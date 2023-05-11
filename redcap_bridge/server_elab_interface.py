@@ -17,14 +17,14 @@ def download_experiment(server_config_json, experiment_id):
 
 def upload_template(server_config_json, template_file):
     """
-    Create a template with metadata.
+    Upload a template with metadata.
 
     Parameters
     ----------
     server_config_json: str
         Path to the json file containing the redcap url, api token and required external modules
     template_file: str
-        Path to the template you want to create
+        Path to the template you want to upload
 
     Returns
     -------
@@ -59,7 +59,7 @@ def upload_template(server_config_json, template_file):
 
 def upload_template_from_csv(server_config_json, csv_file, title):
     """
-    Creating a template with an old csv file.
+    Upload a template with an old csv file.
 
     Parameters
     ----------
@@ -68,7 +68,7 @@ def upload_template_from_csv(server_config_json, csv_file, title):
     csv_file: str
         Path to the csv file you want to convert into an Elab version
     title: str
-        Title of the template created
+        Title of the template upload
 
     Returns
     -------
