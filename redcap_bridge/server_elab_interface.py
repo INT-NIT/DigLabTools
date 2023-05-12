@@ -15,19 +15,15 @@ def download_experiment(server_config_json, experiment_id):
 
     metadata = json.loads(exp[0].metadata)
 
-    keys_list = []
-    values_list = []
+    extra_fields_data = metadata.get("extra_fields", {})
 
-    for key, value in metadata['extra_fields'].items():
-        print(f'{key} : {value}')
-        keys_list.append(key)
-        values_list.append(value["value"])
+    print(f'{extra_fields_data}')
 
-    df = pd.DataFrame({'Field Name': keys_list, 'Field value': values_list})
+    df = pd.DataFrame.from_dict(extra_fields_data, orient='columns')
 
-    print(df)
+    print(f'{df}')
 
-    return exp, status_code
+    return exp, status_code, df
 
 
 def upload_template(server_config_json, template_file):

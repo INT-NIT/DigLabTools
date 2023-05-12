@@ -26,6 +26,9 @@ def test_upload_template_from_csv(initialize_test_dir):
 
 
 def test_download_experiment(initialize_test_dir):
-    res, http_stat_code = download_experiment(server_config_json=SERVER_CONFIG_YAML, experiment_id=232)
+    csv_file = test_directory / 'testfiles' / 'elabConversion' / 'download_to_csv.csv'
+    res, http_stat_code, df = download_experiment(server_config_json=SERVER_CONFIG_YAML, experiment_id=232)
+
+    df.to_csv(csv_file, index=False)
 
     assert http_stat_code == 200
