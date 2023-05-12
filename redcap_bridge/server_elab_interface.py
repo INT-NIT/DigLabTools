@@ -1,6 +1,7 @@
 import json
 import os
 import elabapi_python
+import pandas as pd
 
 from redcap_bridge.utils import conversion_csv_to_json
 
@@ -11,6 +12,20 @@ def download_experiment(server_config_json, experiment_id):
 
     exp = experiment_api.get_experiment_with_http_info(experiment_id)
     status_code = exp[1]
+
+    metadata = json.loads(exp[0].metadata)
+
+    keys_list = []
+    values_list = []
+
+    for key, value in metadata['extra_fields'].items():
+        print(f'{key} : {value}')
+        keys_list.append(key)
+        values_list.append(value["value"])
+
+    df = pd.DataFrame({'Field Name': keys_list, 'Field value': values_list})
+
+    print(df)
 
     return exp, status_code
 
