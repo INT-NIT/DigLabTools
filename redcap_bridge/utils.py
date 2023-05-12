@@ -295,3 +295,30 @@ def parse_choices(choice_str, annotation_str):
     default_choice_label = re.sub(r'\{.*?\}', '', default_choice_label)
 
     return list(choice_labels), default_choice_label
+
+def conversion_to_odml_table_descriptor(full_elabbook_csv, session_number):
+    """
+    Create odml descriptor file base on the full elabbook csv file
+
+    Args:
+        full_elabbook_csv: path to the full csv file
+        session_number: number of the session you want to create descriptor csv file
+
+    Returns:
+        descriptor_elabbook_csv: csv descriptor file of the specific session given
+
+    """
+
+    df = pd.read_csv(full_elabbook_csv)
+
+    df_ses = df.loc[df['ses_number'] == session_number]
+
+    cols_to_melt = df_ses.columns[df_ses.columns.get_loc('ethical_protocol_id'):]
+
+    print(cols_to_melt)
+
+    df_melted = df_ses.melt(id_vars='record_id', value_vars=cols_to_melt)
+
+    df_melted = df_melted.rename(columns={'variable': 'Property name'})
+
+    print(df_melted.to_string())

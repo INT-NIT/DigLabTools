@@ -7,7 +7,7 @@ import tempfile
 import pytest
 
 from redcap_bridge.utils import compress_record
-from redcap_bridge.utils import conversion_csv_to_json
+from redcap_bridge.utils import conversion_csv_to_json, conversion_to_odml_table_descriptor
 test_directory = pathlib.Path(tempfile.gettempdir()) / 'diglabtools_testfiles'
 project_dir = test_directory / 'testfiles' / 'TestProject'
 
@@ -58,3 +58,7 @@ def test_conversion_csv_to_json(initialize_test_dir):
     elab_conversion = conversion_csv_to_json(test_dir / 'csvRecord.csv')
     assert elab_conversion == elab_final
 
+def test_conversion_to_odml_table_descriptor(initialize_test_dir):
+    test_dir = test_directory / 'testfiles' / 'conversionDescriptor'
+
+    conversion_to_odml_table_descriptor(test_dir / 'Vision4Action_DATA_2023-04-13_1110.csv', session_number=5)
