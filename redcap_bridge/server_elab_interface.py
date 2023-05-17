@@ -6,7 +6,25 @@ import pandas as pd
 from redcap_bridge.utils import conversion_csv_to_json
 
 
-def download_experiment(server_config_json, experiment_id):
+def download_experiment(server_config_json, experiment_id, experiment_axis):
+    """
+    Download an individual experiment.
+
+    Parameters
+    ----------
+    server_config_json: str
+        Path to the json file containing the redcap url, api token and required external modules
+    experiment_id: int
+        ID of the experiment you want to download
+    experiment_axis: str
+        Option to control whether experiments are arranged in columns or rows
+
+    Returns
+    -------
+        status_code: Return code of the API request
+        df: Dataframe of the experiment
+    """
+
     api_client = get_elab_config(server_config_json)
     experiment_api = elabapi_python.ExperimentsApi(api_client)
 
@@ -19,11 +37,16 @@ def download_experiment(server_config_json, experiment_id):
 
     print(f'{extra_fields_data}')
 
-    df = pd.DataFrame.from_dict(extra_fields_data, orient='columns')
+    if experiment_axis == "columns":
+        df = pd.DataFrame.from_dict(extra_fields_data, orient='columns')
+    elif experiment_axis == "row":
+        df = pd.DataFrame.from_dict(extra_fields_data, orient='index')
+    else:
+        raise ValueError("Invalid experiment_axis value. Must be 'columns' or 'row'.")
 
     print(f'{df}')
 
-    return exp, status_code, df
+    return status_code, df
 
 
 def upload_template(server_config_json, template_file):
