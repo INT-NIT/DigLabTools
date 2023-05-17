@@ -34,13 +34,16 @@ def download_experiment(server_config_json, experiment_id, experiment_axis):
     metadata = json.loads(exp[0].metadata)
 
     extra_fields_data = metadata.get("extra_fields", {})
+    unwanted_columns = ["position", "options", "allow_multi_values", "blank_value_on_duplicate"]
 
     print(f'{extra_fields_data}')
 
     if experiment_axis == "columns":
         df = pd.DataFrame.from_dict(extra_fields_data, orient='columns')
+        df = df.drop(unwanted_columns, axis=0)  # Delete unwanted columns
     elif experiment_axis == "row":
         df = pd.DataFrame.from_dict(extra_fields_data, orient='index')
+        df = df.drop(unwanted_columns, axis=1)
     else:
         raise ValueError("Invalid experiment_axis value. Must be 'columns' or 'row'.")
 
