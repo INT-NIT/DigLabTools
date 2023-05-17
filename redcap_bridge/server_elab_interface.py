@@ -41,7 +41,7 @@ def download_experiment(server_config_json, experiment_id, experiment_axis):
     if experiment_axis == "columns":
         df = pd.DataFrame.from_dict(extra_fields_data, orient='columns')
         df = df.drop(unwanted_columns, axis=0)  # Delete unwanted columns
-    elif experiment_axis == "row":
+    elif experiment_axis == "rows":
         df = pd.DataFrame.from_dict(extra_fields_data, orient='index')
         df = df.drop(unwanted_columns, axis=1)
     else:
