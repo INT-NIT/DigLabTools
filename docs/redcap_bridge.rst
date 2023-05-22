@@ -51,11 +51,3 @@ redcap\_bridge.utils module
    :members:
    :undoc-members:
    :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: redcap_bridge
-   :members:
-   :undoc-members:
-   :show-inheritance:

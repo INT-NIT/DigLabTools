@@ -9,7 +9,7 @@
 
    modules
    installation
-   release
+   setup
    usage
 
 .. mdinclude:: ../README.md
@@ -18,10 +18,7 @@
 Indices and tables
 ==================
 
-* :ref:`genindex`
 * :ref:`modindex`
+* :ref:`genindex`
 * :ref:`search`
-* :ref:`Installation <installation>`
-* :ref:`Release <release>`
-* :ref:`Usage <usage>`
 

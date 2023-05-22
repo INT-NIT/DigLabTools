@@ -1,8 +1,12 @@
-DigLabTools
-===========
+DigLabTools Modules
+===================
 
 .. toctree::
    :maxdepth: 4
 
    redcap_bridge
-   setup
+
+.. automodule:: redcap_bridge
+   :members:
+   :undoc-members:
+   :show-inheritance:
