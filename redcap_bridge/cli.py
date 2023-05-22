@@ -11,7 +11,7 @@ def main(command_line=None):
     import argparse
 
     # create a parser object
-    parser = argparse.ArgumentParser(description="A simple Python interface for RedCap and elabftw")
+    parser = argparse.ArgumentParser(description="A simple Python interface for RedCap")
 
     parser.add_argument(
         '--debug',
@@ -19,22 +19,22 @@ def main(command_line=None):
         help='Print debug info'
     )
 
-    parser.add_argument(
-        'command',
-        choices=['redcap', 'elabftw'],
-        help='Choose the server to download from (redcap or elabftw)'
-    )
+    subparsers = parser.add_subparsers(dest='command')
 
-    parser.add_argument("destination", metavar='destination', type=str,
-                        help="The destination filename.")
-    parser.add_argument("config_json", metavar='config_json', type=str,
-                        help="The json configuration file of the project")
-    parser.add_argument("-f", "--format", type=str, metavar='format',
-                        help="Format to store the data (json/csv)")
-    parser.add_argument("-c", "--compressed", action='store_true',
-                        help="Compress the output file (use labels and merge checkbox columns)")
-    parser.add_argument("experiment_id", metavar='experiment', type=str,
-                        help="Experiment id")
+    # Download command
+    download = subparsers.add_parser('download', help='Downloads the data records')
+    download.add_argument("destination", nargs=1, metavar='destination', type=str,
+                          help="The destination filename.")
+    download.add_argument("config_json", nargs=1, metavar='config_json', type=str,
+                          help="The json configuration file of the project")
+    download.add_argument("-f", "--format", type=str, nargs=1, metavar='format',
+                          help="Format to store the data (json/csv)")
+    download.add_argument("-c", "--compressed", action='store_true',
+                          help="Compress the output file (use labels and merge checkbox columns)")
+    download.add_argument("--serveur", type=str, nargs=1, metavar='serveur',
+                          help="Server name")
+    download.add_argument("experiment_id", nargs=1, metavar='experiment_id', type=str,
+                          help="Experiment id.")
 
     # parse arguments
     args = parser.parse_args(command_line)
@@ -42,17 +42,17 @@ def main(command_line=None):
     if args.debug:
         print("debug: " + str(args))
 
-    if args.command == 'redcap':
+    if args.command == 'download':
         if not args.format:
-            args.format = 'csv'
+            args.format = ['csv']
 
-        download_records(args.destination, args.config_json, format=args.format,
-                         compressed=bool(args.compressed))
-    elif args.command == 'elabftw':
-        if not args.format:
-            args.format = 'csv'
-
-        download_experiment(args.config_json, args.experiment_id)
+        if args.serveur[0] == 'redcap':
+            download_records(args.destination[0], args.config_json[0], format=args.format[0],
+                             compressed=bool(args.compressed))
+        elif args.serveur[0] == 'elabftw':
+            download_experiment(args.config_json[0], args.experiment_id[0])
+        else:
+            print("Unknown server name.")
 
 
 if __name__ == '__main__':
