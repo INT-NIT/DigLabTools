@@ -46,10 +46,10 @@ def main(command_line=None):
         if not args.format:
             args.format = ['csv']
 
-        if args.serveur[0] == 'redcap':
+        if args.server[0] == 'redcap':
             download_records(args.destination[0], args.config_json[0], format=args.format[0],
                              compressed=bool(args.compressed))
-        elif args.serveur[0] == 'elabftw':
+        elif args.server[0] == 'elabftw':
             download_experiment(args.config_json[0], args.experiment_id[0])
         else:
             print("Unknown server name.")
