@@ -32,7 +32,7 @@ def main(command_line=None):
     download.add_argument("-c", "--compressed", action='store_true',
                           help="Compress the output file (use labels and merge checkbox columns)")
     download.add_argument("--server", type=str, nargs=1, metavar='server',
-                          help="Server name")
+                          help="The two server choices are redcap or elabftw", default='redcap')
     download.add_argument("experiment_id", nargs=1, metavar='experiment_id', type=str,
                           help="Experiment id.")
 
