@@ -1,6 +1,7 @@
 """
 Provide CLI for the main functionalities of the redcap bridge
 """
+import sys
 
 from redcap_bridge.server_interface import download_records
 from redcap_bridge.server_elab_interface import download_experiment
@@ -31,9 +32,10 @@ def main(command_line=None):
                           help="Format to store the data (json/csv)")
     download.add_argument("-c", "--compressed", action='store_true',
                           help="Compress the output file (use labels and merge checkbox columns)")
-    download.add_argument("--server", type=str, nargs=1, metavar='server',
+    download.add_argument("--server", required=False, type=str, nargs=1, metavar='server',
                           help="The two server choices are redcap or elabftw", default='redcap')
-    download.add_argument("experiment_id", nargs=1, metavar='experiment_id', type=str,
+    download.add_argument("experiment_id", required='--server elabftw' in sys.argv, nargs=1, metavar='experiment_id',
+                          type=str,
                           help="Experiment id.")
 
     # parse arguments
