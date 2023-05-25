@@ -30,7 +30,7 @@ def test_download(initialize_test_dir):
     output_file = test_directory / 'cli_download_test.csv'
 
     # download with default arguments
-    result = subprocess.run(['RedCapBridge', 'download', output_file, SERVER_CONFIG_YAML, '--server', 'redcap'],
+    result = subprocess.run(['RedCapBridge', 'download', output_file, SERVER_CONFIG_YAML],
                             stdout=subprocess.PIPE)
     assert 'error' not in str(result.stdout)
     assert output_file.exists()
@@ -38,7 +38,7 @@ def test_download(initialize_test_dir):
 
     # download in compressed mode
     result = subprocess.run(['RedCapBridge', 'download', '--compressed', output_file,
-                             SERVER_CONFIG_YAML, '--server', 'redcap'],
+                             SERVER_CONFIG_YAML],
                             stdout=subprocess.PIPE)
     assert 'error' not in str(result.stdout)
     assert pathlib.Path(output_file).exists()
@@ -46,7 +46,15 @@ def test_download(initialize_test_dir):
 
     # download with format argument
     result = subprocess.run(['RedCapBridge', 'download', '--format', 'csv', output_file,
-                             SERVER_CONFIG_YAML, '--server', 'redcap'],
+                             SERVER_CONFIG_YAML],
                             stdout=subprocess.PIPE)
     assert 'error' not in str(result.stdout)
     assert pathlib.Path(output_file).exists()
+
+    # download with Elabftw server
+    result = subprocess.run(['RedCapBridge', 'download', '--format', 'csv', output_file,
+                             SERVER_CONFIG_YAML, '--server', 'elabftw', 232],
+                            stdout=subprocess.PIPE)
+    assert 'error' not in str(result.stdout)
+    assert pathlib.Path(output_file).exists()
+

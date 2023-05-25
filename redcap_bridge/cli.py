@@ -32,19 +32,16 @@ def main(command_line=None):
                           help="Format to store the data (json/csv)")
     download.add_argument("-c", "--compressed", action='store_true',
                           help="Compress the output file (use labels and merge checkbox columns)")
-    download.add_argument("--server", required=False, type=str, nargs=1, metavar='server',
+    download.add_argument("-s", "--server", type=str, nargs=1, metavar='server',
                           help="The two server choices are redcap or elabftw", default='redcap')
-    download.add_argument("experiment_id", nargs='?', metavar='experiment_id', type=str, help="Experiment id.")
+    download.add_argument("experiment_id", required=False, nargs=1, metavar='experiment_id', type=str,
+                          help="Experiment id.")
 
     # parse arguments
-    args, experiment_argument = parser.parse_known_args(command_line)
+    args = parser.parse_known_args(command_line)
 
     if args.debug:
         print("debug: " + str(args))
-
-    if args.command == 'download' and args.server != 'elabftw':
-        if 'experiment_id' in experiment_argument:
-            parser.error("Argument 'experiment_id' is only allowed when '--server elabftw' is specified.")
 
     if args.command == 'download':
         if not args.format:
