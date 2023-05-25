@@ -39,7 +39,7 @@ def main(command_line=None):
                           help="Experiment id.")
 
     # parse arguments
-    args = parser.parse_known_args(command_line)
+    args = parser.parse_args(command_line)
 
     if args.debug:
         print("debug: " + str(args))
