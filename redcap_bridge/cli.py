@@ -35,7 +35,7 @@ def main(command_line=None):
     download.add_argument("-s", "--server", type=str, nargs=1, metavar='server',
                           choices=['redcap', 'elabftw'], help="The two server choices are redcap or elabftw",
                           default='redcap')
-    download.add_argument("experiment_id", nargs='?', metavar='experiment_id', type=str,
+    download.add_argument("experiment_id", nargs='?', metavar='experiment_id', type=int,
                           help="Experiment id.")
 
     # parse arguments

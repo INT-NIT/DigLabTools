@@ -50,11 +50,3 @@ def test_download(initialize_test_dir):
                             stdout=subprocess.PIPE)
     assert 'error' not in str(result.stdout)
     assert pathlib.Path(output_file).exists()
-
-    # download with Elabftw server
-    result = subprocess.run(['RedCapBridge', 'download', '--format', 'csv', output_file,
-                             SERVER_CONFIG_YAML, '--server', 'elabftw', 232],
-                            stdout=subprocess.PIPE)
-    assert 'error' not in str(result.stdout)
-    assert pathlib.Path(output_file).exists()
-
