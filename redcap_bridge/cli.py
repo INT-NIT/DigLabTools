@@ -33,7 +33,8 @@ def main(command_line=None):
     download.add_argument("-c", "--compressed", action='store_true',
                           help="Compress the output file (use labels and merge checkbox columns)")
     download.add_argument("-s", "--server", type=str, nargs=1, metavar='server',
-                          help="The two server choices are redcap or elabftw", default='redcap')
+                          choices=['redcap', 'elabftw'], help="The two server choices are redcap or elabftw",
+                          default='redcap')
     download.add_argument("experiment_id", required=False, nargs=1, metavar='experiment_id', type=str,
                           help="Experiment id.")
 
@@ -47,13 +48,13 @@ def main(command_line=None):
         if not args.format:
             args.format = ['csv']
 
-        if args.server[0] == 'redcap':
+        if args.server == 'elabftw':
+            if not args.experiment_id:
+                parser.error("The experiment_id argument is required when --server elabftw is specified.")
+            download_experiment(args.config_json[0], args.experiment_id[0])
+        else:
             download_records(args.destination[0], args.config_json[0], format=args.format[0],
                              compressed=bool(args.compressed))
-        elif args.server[0] == 'elabftw':
-            download_experiment(args.config_json[0], args.experiment_id)
-        else:
-            print("Unknown server name.")
 
 
 if __name__ == '__main__':
