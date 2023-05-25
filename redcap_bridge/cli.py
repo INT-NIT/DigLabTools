@@ -34,15 +34,17 @@ def main(command_line=None):
                           help="Compress the output file (use labels and merge checkbox columns)")
     download.add_argument("--server", required=False, type=str, nargs=1, metavar='server',
                           help="The two server choices are redcap or elabftw", default='redcap')
-    download.add_argument("experiment_id", required='--server elabftw' in sys.argv, nargs=1, metavar='experiment_id',
-                          type=str,
-                          help="Experiment id.")
+    download.add_argument("experiment_id", nargs='?', metavar='experiment_id', type=str, help="Experiment id.")
 
     # parse arguments
-    args = parser.parse_args(command_line)
+    args, experiment_argument = parser.parse_known_args(command_line)
 
     if args.debug:
         print("debug: " + str(args))
+
+    if args.command == 'download' and args.server != 'elabftw':
+        if 'experiment_id' in experiment_argument:
+            parser.error("Argument 'experiment_id' is only allowed when '--server elabftw' is specified.")
 
     if args.command == 'download':
         if not args.format:
@@ -52,7 +54,7 @@ def main(command_line=None):
             download_records(args.destination[0], args.config_json[0], format=args.format[0],
                              compressed=bool(args.compressed))
         elif args.server[0] == 'elabftw':
-            download_experiment(args.config_json[0], args.experiment_id[0])
+            download_experiment(args.config_json[0], args.experiment_id)
         else:
             print("Unknown server name.")
 
