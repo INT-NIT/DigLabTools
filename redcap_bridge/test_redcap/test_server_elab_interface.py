@@ -25,7 +25,7 @@ def test_upload_template_from_csv(initialize_test_dir):
 
 def test_download_experiment(initialize_test_dir):
     csv_file = test_directory / 'testfiles' / 'elabConversion' / 'download_to_csv.csv'
-    http_stat_code, df = download_experiment(save_to= "/Users/killianrochet/PycharmProjects/DigLabTools/redcap_bridge/test_redcap/testfiles/elabConversion/download_to_csv.csv", server_config_json=SERVER_CONFIG_YAML, experiment_id=232,
+    http_stat_code, df = download_experiment(save_to=csv_file, server_config_json=SERVER_CONFIG_YAML, experiment_id=232,
                                              experiment_axis='columns')
 
     df.to_csv(csv_file, index=False)
