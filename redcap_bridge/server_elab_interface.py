@@ -6,7 +6,7 @@ import pandas as pd
 from redcap_bridge.utils import conversion_csv_to_json
 
 
-def download_experiment(server_config_json, experiment_id, experiment_axis):
+def download_experiment(save_to, server_config_json, experiment_id, experiment_axis):
     """
     Download an individual experiment.
 
@@ -36,18 +36,16 @@ def download_experiment(server_config_json, experiment_id, experiment_axis):
     extra_fields_data = metadata.get("extra_fields", {})
     unwanted_columns = ["position", "options", "allow_multi_values", "blank_value_on_duplicate"]
 
-    print(f'{extra_fields_data}')
-
     if experiment_axis == "columns":
         df = pd.DataFrame.from_dict(extra_fields_data, orient='columns')
         df = df.drop(unwanted_columns, axis=0)  # Delete unwanted columns
+        df.to_csv(save_to, index=False)
     elif experiment_axis == "rows":
         df = pd.DataFrame.from_dict(extra_fields_data, orient='index')
         df = df.drop(unwanted_columns, axis=1)
+        df.to_csv(save_to, index=True)
     else:
         raise ValueError("Invalid experiment_axis value. Must be 'columns' or 'row'.")
-
-    print(f'{df}')
 
     return status_code, df
 
