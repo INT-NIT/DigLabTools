@@ -6,14 +6,20 @@ import pandas as pd
 from redcap_bridge.utils import conversion_csv_to_json
 
 
-def download_experiment(save_to, server_config_json, experiment_id, experiment_axis):
+import json
+
+def download_experiment(save_to, server_config_json, experiment_id, experiment_axis='columns', format='csv'):
     """
     Download an individual experiment.
 
     Parameters
     ----------
+    save_to: str
+        Path where to save the retrieved experiment data
     server_config_json: str
         Path to the json file containing the redcap url, api token and required external modules
+    format: 'csv', 'json'
+        Format of the retrieved records
     experiment_id: int
         ID of the experiment you want to download
     experiment_axis: str
@@ -39,15 +45,26 @@ def download_experiment(save_to, server_config_json, experiment_id, experiment_a
     if experiment_axis == "columns":
         df = pd.DataFrame.from_dict(extra_fields_data, orient='columns')
         df = df.drop(unwanted_columns, axis=0)  # Delete unwanted columns
-        df.to_csv(save_to, index=False)
+        if format == "csv":
+            df.to_csv(save_to, index=False)
+        elif format == "json":
+            df.to_json(save_to, orient='records')
+        else:
+            raise ValueError("Invalid format value. Must be 'csv' or 'json'.")
     elif experiment_axis == "rows":
         df = pd.DataFrame.from_dict(extra_fields_data, orient='index')
         df = df.drop(unwanted_columns, axis=1)
-        df.to_csv(save_to, index=True)
+        if format == "csv":
+            df.to_csv(save_to, index=True)
+        elif format == "json":
+            df.to_json(save_to, orient='index')
+        else:
+            raise ValueError("Invalid format value. Must be 'csv' or 'json'.")
     else:
-        raise ValueError("Invalid experiment_axis value. Must be 'columns' or 'row'.")
+        raise ValueError("Invalid experiment_axis value. Must be 'columns' or 'rows'.")
 
     return status_code, df
+
 
 
 def upload_template(server_config_json, template_file):
