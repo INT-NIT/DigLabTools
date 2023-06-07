@@ -7,7 +7,7 @@ from redcap_bridge.project_building import (build_project, customize_project,
 from redcap_bridge.test_redcap.test_utils import (test_directory,
                                                   initialize_test_dir)
 
-project_dir = test_directory / 'testfiles' / 'TestProject'
+project_dir = test_directory / 'testfiles_redcap' / 'TestProject'
 
 def test_build_and_customize_project(initialize_test_dir):
     """

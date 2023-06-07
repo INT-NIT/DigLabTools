@@ -13,7 +13,5 @@
     }
   },
   "api_token": "REDCAP_API_TOKEN",
-  "api_url": "https://redcap.int.univ-amu.fr/api/",
-  "api_elab_key": "ELAB_API_TOKEN",
-  "api_elab_url": "https://lnc.elab.one/api/v2"
+  "api_url": "https://redcap.int.univ-amu.fr/api/"
 }

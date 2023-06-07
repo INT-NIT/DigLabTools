@@ -8,7 +8,7 @@ from redcap_bridge.project_validation import \
 from redcap_bridge.test_redcap.test_utils import (test_directory,
                                                   initialize_test_dir)
 
-project_dir = test_directory / 'testfiles' / 'TestProject'
+project_dir = test_directory / 'testfiles_redcap' / 'TestProject'
 
 @pytest.fixture
 def setup_project_csvs():
@@ -32,11 +32,11 @@ def test_validate_project_against_template_parts(initialize_test_dir,
 
 def test_validate_record_against_template(initialize_test_dir,
                                           setup_project_csvs):
-    record_csv = test_directory / 'testfiles' / 'record.csv'
+    record_csv = test_directory / 'testfiles_redcap' / 'record.csv'
 
     # validate against provided project metadata and constructed metadata
     validate_record_against_template(record_csv,
-                                     test_directory / 'testfiles' / 'metadata.csv')
+                                     test_directory / 'testfiles_redcap' / 'metadata.csv')
     validate_record_against_template(record_csv, project_dir / 'customized.csv')
 
 

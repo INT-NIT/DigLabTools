@@ -10,7 +10,7 @@ from redcap_bridge.server_interface import (upload_datadict, download_records, d
 from redcap_bridge.test_redcap.test_utils import (test_directory, initialize_test_dir)
 from redcap_bridge.utils import map_header_csv_to_json
 
-SERVER_CONFIG_YAML = (test_directory / 'testfiles' / 'TestProject' / 'project.json').resolve()
+SERVER_CONFIG_YAML = (test_directory / 'testfiles_redcap' / 'TestProject' / 'project.json').resolve()
 
 
 @pytest.fixture
