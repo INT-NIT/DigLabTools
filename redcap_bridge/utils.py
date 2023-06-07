@@ -3,7 +3,6 @@ import pathlib
 import pandas as pd
 import re as re
 import warnings
-import json
 
 # TODO: This can be extracted via the RedCap API
 header_json = ['field_name', 'form_name', 'section_header', 'field_type',
@@ -276,6 +275,7 @@ def parse_choices(choice_str, annotation_str):
 
     """
     # default return values
+    choice_labels = []
     default_choice_label = ''
 
     choice_match = re.findall('(?:\|?)\s?(?P<choice>\w+)\s?,\s?(?P<label>[^,|]+?)\s*(?:\||$)', choice_str)
