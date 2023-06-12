@@ -1,0 +1,7 @@
+{
+  "structure": "structure.json",
+  "customization": "customization.json",
+  "validation": [],
+  "api_token": "ELAB_API_TOKEN",
+  "api_url": "https://lnc.elab.one/api/v2"
+}
