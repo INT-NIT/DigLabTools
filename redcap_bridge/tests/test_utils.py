@@ -4,7 +4,7 @@ from diglab_utils.test_utils import test_directory, initialize_test_dir
 
 def test_compressedCSV(initialize_test_dir):
 
-    test_dir = test_directory / 'testfiles' / 'compression_test'
+    test_dir = test_directory / 'testfiles_redcap' / 'compression_test'
 
     compress_record(test_dir / 'original_record.csv', test_dir / 'compressed_record.csv')
     with open(test_dir / 'compressed_record.csv') as comp_file:

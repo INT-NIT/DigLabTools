@@ -7,7 +7,7 @@ from redcap_bridge.server_interface import (upload_datadict, download_records, d
                                             upload_records, download_project_settings,
                                             configure_project_settings)
 
-from redcap_bridge.test_redcap.test_utils import (test_directory, initialize_test_dir)
+from redcap_bridge.tests.test_utils import (test_directory, initialize_test_dir)
 from redcap_bridge.utils import map_header_csv_to_json
 
 SERVER_CONFIG_YAML = (test_directory / 'testfiles_redcap' / 'TestProject' / 'project.json').resolve()
@@ -50,7 +50,7 @@ def test_upload_datadict(clean_server, initialize_test_dir):
     """
     # uploading metadata csv files from testfile dataset and compare to
     # return value of upload
-    metadata_csv = test_directory / 'testfiles' / 'metadata.csv'
+    metadata_csv = test_directory / 'testfiles_redcap' / 'metadata.csv'
     res = upload_datadict(metadata_csv, SERVER_CONFIG_YAML)
 
     # count number of non-empty lines in original csv
@@ -65,8 +65,8 @@ def test_upload_records(clean_server, initialize_test_dir):
     """
     Test upload of records to the server
     """
-    upload_datadict(test_directory / 'testfiles' / 'metadata.csv', SERVER_CONFIG_YAML)
-    res = upload_records(test_directory / 'testfiles' / 'record.csv', SERVER_CONFIG_YAML)
+    upload_datadict(test_directory / 'testfiles_redcap' / 'metadata.csv', SERVER_CONFIG_YAML)
+    res = upload_records(test_directory / 'testfiles_redcap' / 'record.csv', SERVER_CONFIG_YAML)
 
     # test record.csv contains 2 records
     assert res == 2
@@ -78,11 +78,11 @@ def test_download_records(clean_server, initialize_test_dir):
     """
     # uploading metadata csv files from testfile dataset and compare to
     # return value of upload
-    original_record_csv = test_directory / 'testfiles' / 'record.csv'
-    upload_datadict(test_directory / 'testfiles' / 'metadata.csv', SERVER_CONFIG_YAML)
-    upload_records(test_directory / 'testfiles' / 'record.csv', SERVER_CONFIG_YAML)
+    original_record_csv = test_directory / 'testfiles_redcap' / 'record.csv'
+    upload_datadict(test_directory / 'testfiles_redcap' / 'metadata.csv', SERVER_CONFIG_YAML)
+    upload_records(test_directory / 'testfiles_redcap' / 'record.csv', SERVER_CONFIG_YAML)
 
-    downloaded_record_csv = test_directory / 'testfiles' / 'record_downloaded.csv'
+    downloaded_record_csv = test_directory / 'testfiles_redcap' / 'record_downloaded.csv'
     download_records(downloaded_record_csv, SERVER_CONFIG_YAML)
 
     import csv
@@ -108,11 +108,11 @@ def test_download_datadict(clean_server, initialize_test_dir):
     """
     # uploading metadata csv files from testfile dataset and compare to
     # return value of upload
-    original_metadata_csv = test_directory / 'testfiles' / 'metadata.csv'
+    original_metadata_csv = test_directory / 'testfiles_redcap' / 'metadata.csv'
     upload_datadict(original_metadata_csv, SERVER_CONFIG_YAML)
 
 
-    downloaded_metadata_csv = test_directory / 'testfiles' / 'metadata_downloaded.csv'
+    downloaded_metadata_csv = test_directory / 'testfiles_redcap' / 'metadata_downloaded.csv'
     download_datadict(downloaded_metadata_csv, SERVER_CONFIG_YAML)
 
 

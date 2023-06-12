@@ -5,8 +5,8 @@ import pytest
 from redcap_bridge.project_building import build_project, customize_project
 from redcap_bridge.project_validation import \
     validate_project_against_template_parts, validate_record_against_template
-from redcap_bridge.test_redcap.test_utils import (test_directory,
-                                                  initialize_test_dir)
+from redcap_bridge.tests.test_utils import (test_directory,
+                                            initialize_test_dir)
 
 project_dir = test_directory / 'testfiles_redcap' / 'TestProject'
 

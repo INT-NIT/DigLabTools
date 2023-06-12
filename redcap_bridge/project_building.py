@@ -8,7 +8,8 @@ import pandas as pd
 import redcap_bridge
 from redcap_bridge.project_validation import \
     validate_project_against_template_parts
-from redcap_bridge.utils import map_header_json_to_csv, get_repo_state
+from redcap_bridge.utils import map_header_json_to_csv
+from diglab_utils.provenance import get_repo_state
 
 diglabtools_dir = pathlib.Path(redcap_bridge.__file__).parents[1]
 template_dir = diglabtools_dir / 'redcap_bridge'/ 'template_parts'

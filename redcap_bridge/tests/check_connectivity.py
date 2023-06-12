@@ -5,7 +5,7 @@ from pathlib import Path
 
 def check_connectivity():
     print(f'RCB location: {Path(redcap_bridge.__file__).parent}')
-    test_project = Path(redcap_bridge.__file__).parent / 'test_redcap' / 'testfiles' / 'TestProject' / 'project.json'
+    test_project = Path(redcap_bridge.__file__).parent / 'tests' / 'testfiles_redcap' / 'TestProject' / 'project.json'
 
     res = download_project_settings(test_project)
     if not res['project_id']:

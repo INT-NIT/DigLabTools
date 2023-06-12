@@ -2,10 +2,10 @@ import subprocess
 import pathlib
 
 from redcap_bridge.server_interface import upload_datadict, upload_records
-from redcap_bridge.test_redcap.test_utils import (test_directory, initialize_test_dir)
-from redcap_bridge.test_redcap.test_server_interface import SERVER_CONFIG_YAML
+from redcap_bridge.tests.test_utils import (test_directory, initialize_test_dir)
+from redcap_bridge.tests.test_server_interface import SERVER_CONFIG_YAML
 
-project_dir = test_directory / 'testfiles' / 'TestProject'
+project_dir = test_directory / 'testfiles_redcap' / 'TestProject'
 
 
 def test_installed(initialize_test_dir):
@@ -22,9 +22,9 @@ def test_download(initialize_test_dir):
     """
 
     # Set up project on server
-    metadata_csv = test_directory / 'testfiles' / 'metadata.csv'
+    metadata_csv = test_directory / 'testfiles_redcap' / 'metadata.csv'
     upload_datadict(metadata_csv, SERVER_CONFIG_YAML)
-    records_csv = test_directory / 'testfiles' / 'record.csv'
+    records_csv = test_directory / 'testfiles_redcap' / 'record.csv'
     upload_records(records_csv, SERVER_CONFIG_YAML)
 
     output_file = test_directory / 'cli_download_test.csv'
