@@ -1,7 +1,8 @@
 {
+  "title": "Testproject",
   "structure": "structure.json",
   "customization": "customization.json",
-  "validation": [],
+  "validation": ["general"],
   "api_token": "ELAB_API_TOKEN",
   "api_url": "https://lnc.elab.one/api/v2"
 }
