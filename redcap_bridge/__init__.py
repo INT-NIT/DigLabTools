@@ -1,7 +1,8 @@
 import os.path
 # Extract central version information
-with open(os.path.join(os.path.dirname(__file__), "../VERSION")) as version_file:
-    version = version_file.read().strip()
+
+from importlib.metadata import version
+version = version('DigLabTools')
 
 __version__ = version
 __licence__ = 'MIT'
