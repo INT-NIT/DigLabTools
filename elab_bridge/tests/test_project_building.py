@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 from elab_bridge.project_building import (build_project, customize_project,
                                             extract_customization)
-from elab_bridge.tests.test_utils import (test_directory, initialize_test_dir)
+from diglab_utils.test_utils import (test_directory, initialize_test_dir)
 
 project_dir = test_directory / 'testfiles_elab' / 'TestProject'
 
@@ -23,6 +23,7 @@ def test_build_and_customize_project(initialize_test_dir):
                       project_dir / 'customizations.json',
                       output_file=project_dir / 'customized.json')
     assert (project_dir / 'customized.json').exists()
+
 
 @pytest.mark.skip("provenance is not supported yet")
 def test_project_build_with_provenance():

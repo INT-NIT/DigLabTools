@@ -63,14 +63,15 @@ def download_experiment(save_to, server_config_json, experiment_id, experiment_a
     return status_code, df
 
 
-def upload_template(template_file, server_config_json, template_title=''):
+def upload_template(template_file, server_config_json, template_title):
     """
     Upload a template with metadata.
 
     Parameters
     ----------
     template_file: str
-        Path to the template you want to upload
+        Path to the template you want to upload. This has to be a json file
+        containing the keys `elabftw' and `extra_fields`.
     server_config_json: str
         Path to the json file containing the redcap url, api token and required external modules
     template_title: str
@@ -84,29 +85,25 @@ def upload_template(template_file, server_config_json, template_title=''):
 
     try:
         with open(template_file, 'r') as f:
-            template = json.load(f)
+            template_json = json.load(f)
     except json.JSONDecodeError:
         raise ValueError(f'Invalid JSON file: {template_file}')
 
+    if 'extra_fields' not in template_json:
+        raise ValueError('Mandatory field "extra_fields" not present in template')
+
+    with open(template_file, 'r') as f:
+        template_form_string = f.read()
+
     api_client = get_elab_config(server_config_json)
     template_api = elabapi_python.ExperimentsTemplatesApi(api_client)
-
-    if 'title' in template:
-        template_title = template['title']
-        template_form = template.get('metadata', {})
-    elif 'extra_fields' in template:
-        template_form = template
-        if template_title == '':
-            warnings.warn('No template name provided')
-    else:
-        raise ValueError('Neither "name" and "metadata" nor "extra_fields" found in template.')
 
     response = template_api.post_experiment_template_with_http_info(body={"title": template_title})
     location_response = response[2].get('Location')
     item_id = int(location_response.split('/').pop())
     response = template_api.patch_experiment_template_with_http_info(
         item_id,
-        body={'metadata': template_form}
+        body={'metadata': template_form_string}
     )
     status_code = response[1]
 

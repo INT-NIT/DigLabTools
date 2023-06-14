@@ -5,9 +5,9 @@ SERVER_CONFIG_YAML = (test_directory / 'testfiles_elab' / 'TestProject' / 'proje
 
 
 def test_upload_template(initialize_test_dir):
-    template_file = test_directory / 'testfiles_elab' / 'elab_template.json'
+    template_file = test_directory / 'testfiles_elab' / 'template.json'
 
-    res, http_stat_code = upload_template(server_config_json=SERVER_CONFIG_YAML, template_file=template_file)
+    res, http_stat_code = upload_template(server_config_json=SERVER_CONFIG_YAML, template_file=template_file, template_title='Testproject')
 
     # 200 is for creation of a template with metadata / 201 is for creation of a template without metadata
     assert http_stat_code == 200 or http_stat_code == 201

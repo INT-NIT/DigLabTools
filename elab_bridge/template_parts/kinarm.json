@@ -1,0 +1,44 @@
+{
+  "elabftw": {
+    "display_main_text": false,
+    "extra_fields_groups": []
+  },
+  "extra_fields": {
+    "Recorded Hand": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "Left",
+        "Right",
+        "Both",
+        "None"
+      ],
+      "description": "",
+      "position": 1
+    },
+    "Shoulder": {
+      "type": "number",
+      "value": "",
+      "description": "",
+      "position": 2
+    },
+    "Elbow": {
+      "type": "number",
+      "value": "",
+      "description": "",
+      "position": 3
+    },
+    "Hand movement data quality": {
+      "type": "radio",
+      "value": "",
+      "options": [
+        "Very good",
+        "Good",
+        "Noisy",
+        "No data"
+      ],
+      "description": "",
+      "position": 4
+    }
+  }
+}

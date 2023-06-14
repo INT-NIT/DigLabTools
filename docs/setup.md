@@ -14,7 +14,8 @@ You need to create a project configuration `json` file on your computer to store
   "customization": "customization.csv",
   "validation": [],
   "api_token": "<paste your API token here>",
-  "api_url": "<put the url of your RedCap server here>/api/"
+  "api_url": "<put the url of your RedCap server here>/api/",
+  "title": "MyProject"
 }
 ```
 
