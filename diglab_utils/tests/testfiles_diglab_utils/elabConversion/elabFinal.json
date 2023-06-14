@@ -1,0 +1,70 @@
+{
+    "extra_fields": {
+        "Ethical Protocol Identifier": {
+            "type": "select",
+            "value": "fourth choice",
+            "options": [
+                "first",
+                "second choice",
+                "third choice",
+                "fourth choice"
+            ],
+            "description": "",
+            "position": 1
+        },
+        "Session date": {
+            "type": "date",
+            "value": "",
+            "description": "",
+            "position": 2
+        },
+        "Session Number": {
+            "type": "number",
+            "value": "",
+            "description": "",
+            "position": 3
+        },
+        "Modality": {
+            "type": "select",
+            "value": "",
+            "options": [
+                "Behaviour (eye)",
+                "Behaviour (hand)",
+                "Single Electrode",
+                "Multi Electrode",
+                "EMG",
+                "Optical Imaging (int)",
+                "Optical Imaging (VSDi)",
+                "ECoG",
+                "SEEG"
+            ],
+            "description": "",
+            "allow_multi_values": true,
+            "position": 4
+        },
+        "Stimulation": {
+            "type": "radio",
+            "value": "",
+            "options": [
+                "yes"
+            ],
+            "description": "Does the recording involve stimulation?",
+            "position": 5
+        },
+        "Weight": {
+            "type": "number",
+            "value": "",
+            "description": "in kg",
+            "position": 6
+        },
+        "Immuno?": {
+            "type": "radio",
+            "value": "",
+            "options": [
+                "yes "
+            ],
+            "description": "",
+            "position": 7
+        }
+    }
+}

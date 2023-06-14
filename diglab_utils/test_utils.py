@@ -30,7 +30,8 @@ def initialize_test_dir(clean=True):
     # initialize test files
     packaged_testfolders = [
         pathlib.Path(__file__).parents[1] / 'redcap_bridge' / 'tests' /'testfiles_redcap',
-        pathlib.Path(__file__).parents[1] / 'elab_bridge' / 'tests' / 'testfiles_elab']
-    for server, packaged_testfolder in zip(['redcap', 'elab'], packaged_testfolders):
+        pathlib.Path(__file__).parents[1] / 'elab_bridge' / 'tests' / 'testfiles_elab',
+        pathlib.Path(__file__).parents[1] / 'diglab_utils' / 'tests' / 'testfiles_diglab_utils']
+    for server, packaged_testfolder in zip(['redcap', 'elab', 'diglab_utils'], packaged_testfolders):
         shutil.copytree(packaged_testfolder, test_directory / packaged_testfolder.name)
     return test_directory
