@@ -1,6 +1,5 @@
 import os.path
 # Extract central version information
-
 from importlib.metadata import version
 version = version('DigLabTools')
 

@@ -1,0 +1,201 @@
+{
+  "elabftw": {
+    "display_main_text": false,
+    "extra_fields_groups": []
+  },
+  "extra_fields": {
+    "Ethical Protocol Identifier": {
+      "type": "select",
+      "value": "A",
+      "options": [
+        "A",
+        "B",
+        "C"
+      ],
+      "description": "The official ethical protocol id in '5X-16X-vX' format",
+      "position": 1
+    },
+    "User": {
+      "type": "select",
+      "value": "Bat Man",
+      "options": [
+        "Bat Man"
+      ],
+      "description": "The name of the experimenter",
+      "position": 2
+    },
+    "Session date": {
+      "type": "date",
+      "value": "",
+      "description": "The date of the recording",
+      "position": 3
+    },
+    "Experiment Name": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "my awesome experiment 1",
+        "my awesome experiment 2"
+      ],
+      "description": "The name of the experiment",
+      "position": 4
+    },
+    "Subject GUID": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "00001",
+        "00010"
+      ],
+      "description": "The globally unique identifier of the subject",
+      "position": 5
+    },
+    "Session Number": {
+      "type": "number",
+      "value": "",
+      "description": "The consecutive number of this recording session",
+      "position": 6
+    },
+    "Modality": {
+      "type": "select",
+      "value": "EMG",
+      "options": [
+        "Behaviour (eye)",
+        "Behaviour (hand)",
+        "Single Electrode",
+        "Multi Electrode",
+        "EMG",
+        "Optical Imaging (int)",
+        "Optical Imaging (VSDi)",
+        "ECoG",
+        "SEEG"
+      ],
+      "description": "The modalities recorded [tick all applicable]",
+      "allow_multi_values": true,
+      "position": 7
+    },
+    "Comments on the experiment": {
+      "type": "text",
+      "value": "",
+      "description": "Comments on the experiment",
+      "position": 8,
+      "blank_value_on_duplicate": true
+    },
+    "Stimulation": {
+      "type": "radio",
+      "value": "",
+      "options": [
+        "yes"
+      ],
+      "description": "Does the recording involve stimulation?",
+      "position": 9
+    },
+    "Data recorded after last trial?": {
+      "type": "radio",
+      "value": "",
+      "options": [
+        "yes"
+      ],
+      "description": "Is there an extended recording duration after the last trial, i.e. sleeping?",
+      "position": 10
+    },
+    "Comments on the setup / recording": {
+      "type": "text",
+      "value": "",
+      "description": "Comments on the setup and recording",
+      "position": 11
+    },
+    "Electrophysiology Data quality": {
+      "type": "radio",
+      "value": "",
+      "options": [
+        "Very good",
+        "Good",
+        "Noisy",
+        "No data"
+      ],
+      "description": "Observed quality of the recorded data",
+      "position": 12
+    },
+    "Incomplete session": {
+      "type": "radio",
+      "value": "",
+      "options": [
+        "yes"
+      ],
+      "description": "Was this session not completed?",
+      "position": 13
+    },
+    "Special event (alarm, fight, perturbation,...)": {
+      "type": "text",
+      "value": "",
+      "description": "Unexpected interruption or distraction during the recording",
+      "position": 14
+    },
+    "Time of the special event": {
+      "type": "text",
+      "value": "",
+      "description": "Time at which the unexpected interruption or distraction occurred",
+      "position": 15
+    },
+    "Subject behaviour": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "Very motivated",
+        "Working",
+        "Thirsty",
+        "Sleepy",
+        "Unmotivated",
+        "Agitated"
+      ],
+      "description": "Observed state of the subject [tick all applicable]",
+      "allow_multi_values": true,
+      "position": 16
+    },
+    "Comments on the subject": {
+      "type": "text",
+      "value": "",
+      "description": "Comments on the subject",
+      "position": 17
+    },
+    "Weight": {
+      "type": "number",
+      "value": "",
+      "description": "in kg; The weight of the subject",
+      "position": 18
+    },
+    "Fluid (reward)": {
+      "type": "text",
+      "value": "",
+      "description": "in ml; Total volume of fluid reward received during the recording",
+      "position": 19
+    },
+    "Fluid (additional)": {
+      "type": "number",
+      "value": "",
+      "description": "in ml; Total volume of fluid reward received outside of the recording",
+      "position": 20
+    },
+    "": {
+      "type": "text",
+      "value": "",
+      "description": "",
+      "position": 21
+    },
+    "Other reward (additional)": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "Fruit (fresh)",
+        "Fruit (dry)",
+        "Seeds",
+        "Treats",
+        "Insects"
+      ],
+      "description": "The kind of additional reward that was provided",
+      "allow_multi_values": true,
+      "position": 22
+    }
+  }
+}

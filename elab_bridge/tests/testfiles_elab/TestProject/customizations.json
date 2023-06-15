@@ -1,0 +1,53 @@
+{
+  "elabftw": {
+    "display_main_text": false,
+    "extra_fields_groups": []
+  },
+  "extra_fields": {
+    "Ethical Protocol Identifier": {
+      "value": "A",
+      "options": ["A", "B", "C"]
+    },
+    "User": {
+      "value": "Bat Man",
+      "options": ["Bat Man"]
+    },
+    "Experiment Name": {
+      "options": ["my awesome experiment 1", "my awesome experiment 2"]
+    },
+    "Subject GUID": {
+      "options": ["00001", "00010"]
+    },
+    "Session Number": {
+      "type": "number",
+      "value": "",
+      "description": "The consecutive number of this recording session",
+      "position": 6
+    },
+    "Modality": {
+      "type": "select",
+      "value": "EMG",
+      "options": [
+        "Behaviour (eye)",
+        "Behaviour (hand)",
+        "Single Electrode",
+        "Multi Electrode",
+        "EMG",
+        "Optical Imaging (int)",
+        "Optical Imaging (VSDi)",
+        "ECoG",
+        "SEEG"
+      ],
+      "description": "The modalities recorded [tick all applicable]",
+      "allow_multi_values": true,
+      "position": 7
+    },
+    "Comments on the experiment": {
+      "type": "text",
+      "value": "",
+      "description": "Comments on the experiment",
+      "position": 8,
+      "blank_value_on_duplicate": true
+    }
+  }
+}

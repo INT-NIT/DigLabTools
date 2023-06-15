@@ -1,0 +1,12 @@
+{
+  "elabftw": {
+    "display_main_text": false,
+    "extra_fields_groups": []
+  },
+  "include_templates": [
+    "general"
+  ]
+}
+
+
+

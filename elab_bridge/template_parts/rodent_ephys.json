@@ -1,0 +1,639 @@
+{
+  "elabftw": {
+    "display_main_text": false,
+    "extra_fields_groups": [
+      {
+        "id": 1,
+        "name": "General"
+      },
+      {
+        "id": 2,
+        "name": "Ephys Session"
+      },
+      {
+        "id": 3,
+        "name": "Subject"
+      },
+      {
+        "id": 4,
+        "name": "Weighing"
+      },
+      {
+        "id": 5,
+        "name": "Habituation Handling"
+      },
+      {
+        "id": 6,
+        "name": "Water Restriction"
+      },
+      {
+        "id": 7,
+        "name": "Water Supplements"
+      },
+      {
+        "id": 8,
+        "name": "Surgery"
+      },
+      {
+        "id": 9,
+        "name": "Cage"
+      },
+      {
+        "id": 10,
+        "name": "Culling"
+      }
+    ]
+  },
+  "extra_fields": {
+    "Project": {
+      "type": "text",
+      "value": "",
+      "group_id": "1",
+      "position": "1",
+      "description": "The project this experiment belongs to"
+    },
+    "Project Leader": {
+      "type": "text",
+      "value": "",
+      "group_id": "1",
+      "position": "2",
+      "description": "The name of the principle investigator responsible for the project"
+    },
+    "Ethical Protocol Identifier": {
+      "type": "text",
+      "value": "",
+      "group_id": "1",
+      "position": "3",
+      "description": "The official ethical protocol id (in '5X-16X-vX' format)"
+    },
+    "Subject GUID": {
+      "type": "text",
+      "value": "",
+      "group_id": "1",
+      "position": "4",
+      "description": "The global unique identifier of the subject"
+    },
+    "Sex": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "male",
+        "female"
+      ],
+      "group_id": "1",
+      "position": "5",
+      "description": "The sex of the subject"
+    },
+    "Birth Date": {
+      "type": "date",
+      "value": "",
+      "group_id": "1",
+      "position": "6",
+      "description": "The birth date of the subject [in yyyy-mm-dd]"
+    },
+    "User": {
+      "type": "text",
+      "value": "",
+      "group_id": "2",
+      "position": "1",
+      "description": "The name of the experimenter"
+    },
+    "Session date": {
+      "type": "date",
+      "value": "",
+      "group_id": "2",
+      "position": "2",
+      "description": "The date of the recording"
+    },
+    "Session Number": {
+      "type": "text",
+      "value": "",
+      "group_id": "2",
+      "position": "3",
+      "description": "The consecutive number of this recording session"
+    },
+    "Experiment Name": {
+      "type": "text",
+      "value": "",
+      "group_id": "2",
+      "position": "4",
+      "description": "The name of the experiment"
+    },
+    "Modality": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "extracellular microelectrode signals",
+        "intracellular microelectrode signals",
+        "optical imaging"
+      ],
+      "group_id": "2",
+      "position": "5",
+      "description": "The modalities recorded",
+      "allow_multi_values": true
+    },
+    "Notes (General)": {
+      "type": "text",
+      "value": "",
+      "group_id": "2",
+      "position": "6",
+      "description": "General comments on the ephys session",
+      "blank_value_on_duplicate": true
+    },
+    "Start Time": {
+      "type": "text",
+      "value": "",
+      "group_id": "2",
+      "position": "7",
+      "description": "Start time of the session"
+    },
+    "End time": {
+      "type": "text",
+      "value": "",
+      "group_id": "2",
+      "position": "8",
+      "description": "End time of the session"
+    },
+    "Probe type used": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "chronic",
+        "acute",
+        "array",
+        "laminar",
+        "tetrode"
+      ],
+      "group_id": "2",
+      "position": "9",
+      "description": "The type of probe used for the recording",
+      "allow_multi_values": true
+    },
+    "Probe identifier": {
+      "type": "text",
+      "value": "",
+      "group_id": "2",
+      "position": "10",
+      "description": "The unique identifier of the probe used",
+      "allow_multi_values": true
+    },
+    "Weight before session": {
+      "type": "number",
+      "value": "",
+      "group_id": "2",
+      "position": "11",
+      "description": "The weight of the subject [in g]",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
+    "Complete Session": {
+      "type": "select",
+      "value": "yes",
+      "options": [
+        "yes",
+        "no",
+        "",
+        ""
+      ],
+      "group_id": "2",
+      "position": "12",
+      "description": "Was the session completed as planned?",
+      "blank_value_on_duplicate": true
+    },
+    "Number of  trials": {
+      "type": "number",
+      "value": "",
+      "group_id": "2",
+      "position": "13",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
+    "Subject behaviour": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "very motivated",
+        "working",
+        "thirsty",
+        "sleepy",
+        "unmotivated",
+        "agited"
+      ],
+      "group_id": "2",
+      "position": "14",
+      "description": "The unique identifier of the probe used",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
+    "Notes on the Subject": {
+      "type": "text",
+      "value": "",
+      "group_id": "2",
+      "position": "15",
+      "blank_value_on_duplicate": true
+    },
+    "Electrophysiology data quality": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "very good",
+        "good",
+        "noisy",
+        "no data"
+      ],
+      "group_id": "2",
+      "position": "16",
+      "description": "Comments on the experiment",
+      "blank_value_on_duplicate": true
+    },
+    "Fluid reward": {
+      "type": "number",
+      "value": "",
+      "group_id": "2",
+      "position": "17",
+      "description": "Fluid reward administered during session",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
+    "Type of fluid reward": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "water",
+        "water with sucrose",
+        "apple juice",
+        "juice mix",
+        "other"
+      ],
+      "group_id": "2",
+      "position": "18",
+      "description": "The kind of fluid reward that was provided",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
+    "Number of correct trials": {
+      "type": "number",
+      "value": "",
+      "group_id": "2",
+      "position": "19",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
+    "Other reward (additional)": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "Fruit (fresh)",
+        "Fruit (dry)",
+        "Seeds",
+        "Treats",
+        "Insects",
+        ""
+      ],
+      "group_id": "2",
+      "position": "20",
+      "description": "Additional reward administered",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
+    "Litter": {
+      "type": "text",
+      "value": "",
+      "group_id": "3",
+      "position": "1",
+      "description": "The litter id of the subject",
+      "blank_value_on_duplicate": false
+    },
+    "Strain": {
+      "type": "text",
+      "value": "",
+      "group_id": "3",
+      "position": "2",
+      "description": "The strain of the subject",
+      "blank_value_on_duplicate": false
+    },
+    "Line": {
+      "type": "text",
+      "value": "",
+      "group_id": "3",
+      "position": "3",
+      "description": "The line of the subject. Use same value as strain for wildtype.",
+      "blank_value_on_duplicate": false
+    },
+    "Cage": {
+      "type": "text",
+      "value": "",
+      "group_id": "3",
+      "position": "4",
+      "description": "The cage id of the subject",
+      "blank_value_on_duplicate": true
+    },
+    "Ear mark": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "R",
+        "L",
+        "RL",
+        "RR",
+        "LL"
+      ],
+      "group_id": "3",
+      "position": "5",
+      "description": "The ear mark of the subject",
+      "blank_value_on_duplicate": false
+    },
+    "Weighing Date": {
+      "type": "date",
+      "value": "",
+      "group_id": "4",
+      "position": "1",
+      "description": "The date of the weighing",
+      "blank_value_on_duplicate": true
+    },
+    "Weight": {
+      "type": "number",
+      "value": "",
+      "group_id": "4",
+      "position": "2",
+      "description": "The weight of the subject [in g]",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
+    "Handling Date": {
+      "type": "date",
+      "value": "",
+      "group_id": "5",
+      "position": "1",
+      "description": "The date of the handling",
+      "blank_value_on_duplicate": true
+    },
+    "Notes on the Handling": {
+      "type": "text",
+      "value": "",
+      "group_id": "5",
+      "position": "2",
+      "description": "Comments on the handling procedure",
+      "blank_value_on_duplicate": true
+    },
+    "Water Restriction Date": {
+      "type": "date",
+      "value": "",
+      "group_id": "6",
+      "position": "1",
+      "description": "The date of change in water restriction",
+      "blank_value_on_duplicate": true
+    },
+    "Reference implant weight": {
+      "type": "number",
+      "value": "",
+      "group_id": "6",
+      "position": "2",
+      "description": "Weight of the implant [in g]",
+      "blank_value_on_duplicate": true
+    },
+    "Reference subject weight": {
+      "type": "number",
+      "value": "",
+      "group_id": "6",
+      "position": "3",
+      "description": "Weight of the subject [in g]",
+      "blank_value_on_duplicate": true
+    },
+    "Type Water Restriction Change": {
+      "type": "select",
+      "value": "",
+      "group_id": "6",
+      "position": "4",
+      "options": [
+        "start",
+        "stop",
+        "change"
+      ],
+      "description": "The type of change in water restriction",
+      "blank_value_on_duplicate": true
+    },
+    "Notes on the Water Restriction": {
+      "type": "text",
+      "value": "",
+      "group_id": "6",
+      "position": "5",
+      "description": "Comments on the water restriction",
+      "blank_value_on_duplicate": true
+    },
+    "Fluid Supplement Date": {
+      "type": "date",
+      "value": "",
+      "group_id": "7",
+      "position": "1",
+      "description": "The date at which the water supplement was administered",
+      "blank_value_on_duplicate": true
+    },
+    "Fluid Supplement Volume": {
+      "type": "number",
+      "value": "",
+      "group_id": "7",
+      "position": "2",
+      "description": "Fluid supplement administered",
+      "blank_value_on_duplicate": true
+    },
+    "Fluid supplement type": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "Water",
+        "Water (10% Sucrose)",
+        "Water (15% Sucrose)",
+        "Water (2% Citric Acid)",
+        "Hydrogel",
+        "Hydrogel (5% Citric Acid)"
+      ],
+      "group_id": "7",
+      "position": "3",
+      "description": "Additional reward administered",
+      "allow_multi_values": false,
+      "blank_value_on_duplicate": true
+    },
+    "Surgery Date": {
+      "type": "date",
+      "value": "",
+      "group_id": "8",
+      "position": "1",
+      "description": "The date at which the surgery was performed",
+      "blank_value_on_duplicate": true
+    },
+    "Surgery type": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "Clear skull cap",
+        "Corrective procedure",
+        "Coverslip implant",
+        "Coverslip replacement",
+        "Cannula implant",
+        "Headpost implant",
+        "Chamber implant",
+        "Electrode implant"
+      ],
+      "group_id": "8",
+      "position": "2",
+      "description": "Additional reward administered",
+      "allow_multi_values": false,
+      "blank_value_on_duplicate": true
+    },
+    "Surgery start time": {
+      "type": "text",
+      "value": "",
+      "group_id": "8",
+      "position": "3",
+      "description": "The time at which the surgery was started",
+      "blank_value_on_duplicate": true
+    },
+    "Surgery end time": {
+      "type": "text",
+      "value": "",
+      "group_id": "8",
+      "position": "4",
+      "description": "The time at which the surgery ended",
+      "blank_value_on_duplicate": true
+    },
+    "Notes on the Surgery": {
+      "type": "text",
+      "value": "",
+      "group_id": "8",
+      "position": "5",
+      "description": "Comments on the surgery procedure",
+      "blank_value_on_duplicate": true
+    },
+    "Cage Update Date": {
+      "type": "date",
+      "value": "",
+      "group_id": "9",
+      "position": "1",
+      "description": "The date at which the subject was moved to another cage",
+      "blank_value_on_duplicate": true
+    },
+    "Cage Identifier": {
+      "type": "text",
+      "value": "",
+      "group_id": "9",
+      "position": "2",
+      "description": "The unique identifier of the cage",
+      "blank_value_on_duplicate": true
+    },
+    "Cage type": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "IVC",
+        "???"
+      ],
+      "group_id": "9",
+      "position": "3",
+      "description": "The type of the cage",
+      "allow_multi_values": false,
+      "blank_value_on_duplicate": true
+    },
+    "Cage enrichment": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "Nesting",
+        "empty",
+        "???"
+      ],
+      "group_id": "9",
+      "position": "4",
+      "description": "The type of enrichment of the cage",
+      "allow_multi_values": false,
+      "blank_value_on_duplicate": true
+    },
+    "Cage light cycle": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "normal",
+        "inverted",
+        "???"
+      ],
+      "group_id": "9",
+      "position": "5",
+      "description": "The light cycle of the cage",
+      "allow_multi_values": false,
+      "blank_value_on_duplicate": true
+    },
+    "Cage food": {
+      "type": "text",
+      "value": "",
+      "group_id": "9",
+      "position": "6",
+      "description": "The food provided in the cage",
+      "allow_multi_values": false,
+      "blank_value_on_duplicate": true
+    },
+    "Cage cleaning cycle": {
+      "type": "number",
+      "value": "",
+      "group_id": "9",
+      "position": "7",
+      "description": "The cleaning cycle of the cage [in days]",
+      "allow_multi_values": false,
+      "blank_value_on_duplicate": true
+    },
+    "Cage comments": {
+      "type": "text",
+      "value": "",
+      "group_id": "9",
+      "position": "8",
+      "description": "Comments on the cage",
+      "allow_multi_values": false,
+      "blank_value_on_duplicate": true
+    },
+    "Cull Date": {
+      "type": "date",
+      "value": "",
+      "group_id": "10",
+      "position": "1",
+      "description": "The date of death of the subject",
+      "blank_value_on_duplicate": true
+    },
+    "Cull Reason": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "infection or illness",
+        "regular experiment end",
+        "acute injury",
+        "underweight",
+        "issue during surgery",
+        "time limit reached",
+        "benign experimental impediments"
+      ],
+      "group_id": "10",
+      "position": "2",
+      "description": "The reason for the culling",
+      "allow_multi_values": false,
+      "blank_value_on_duplicate": true
+    },
+    "Cull Method": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "???"
+      ],
+      "group_id": "10",
+      "position": "3",
+      "description": "The method used for the culling",
+      "allow_multi_values": false,
+      "blank_value_on_duplicate": true
+    },
+    "Notes on the Culling": {
+      "type": "text",
+      "value": "",
+      "group_id": "10",
+      "position": "4",
+      "description": "Comment on the culling",
+      "blank_value_on_duplicate": true
+    }
+  }
+}

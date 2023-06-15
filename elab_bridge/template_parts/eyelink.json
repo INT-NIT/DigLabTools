@@ -1,0 +1,87 @@
+{
+  "elabftw": {
+    "display_main_text": false,
+    "extra_fields_groups": []
+  },
+  "extra_fields": {
+    "Recorded Eye": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "Left",
+        "Right",
+        "Both",
+        "None"
+      ],
+      "description": "",
+      "position": 1
+    },
+    "Offset X": {
+      "type": "text",
+      "value": "",
+      "description": "",
+      "position": 2
+    },
+    "Offset Y": {
+      "type": "text",
+      "value": "",
+      "description": "",
+      "position": 3
+    },
+    "Gain X": {
+      "type": "text",
+      "value": "",
+      "description": "",
+      "position": 4
+    },
+    "Gain Y": {
+      "type": "text",
+      "value": "",
+      "description": "",
+      "position": 5
+    },
+    "Pupil detection threshold": {
+      "type": "number",
+      "value": "",
+      "description": "",
+      "position": 6
+    },
+    "Cornea detection threshold": {
+      "type": "number",
+      "value": "",
+      "description": "",
+      "position": 7
+    },
+    "Eye movement data quality": {
+      "type": "radio",
+      "value": "",
+      "options": [
+        "Very good",
+        "Good",
+        "Bad calibration",
+        "Noisy",
+        "No data"
+      ],
+      "description": "",
+      "position": 8
+    },
+    "X": {
+      "type": "number",
+      "value": "",
+      "description": "in cm",
+      "position": 9
+    },
+    "Y": {
+      "type": "number",
+      "value": "",
+      "description": "in cm",
+      "position": 10
+    },
+    "Z": {
+      "type": "number",
+      "value": "",
+      "description": "in cm",
+      "position": 11
+    }
+  }
+}

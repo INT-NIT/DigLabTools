@@ -1,11 +1,8 @@
 import json
 import os
+import warnings
 import elabapi_python
 import pandas as pd
-
-from redcap_bridge.utils import conversion_csv_to_json
-
-import json
 
 
 def download_experiment(save_to, server_config_json, experiment_id, experiment_axis='columns', format='csv'):
@@ -23,7 +20,7 @@ def download_experiment(save_to, server_config_json, experiment_id, experiment_a
     experiment_id: int
         ID of the experiment you want to download
     experiment_axis: str
-        Option to control whether experiments are arranged in columns or rows
+        Option to control whether experiments are arranged in columns or rows. Default: 'columns'
 
     Returns
     -------
@@ -66,16 +63,19 @@ def download_experiment(save_to, server_config_json, experiment_id, experiment_a
     return status_code, df
 
 
-def upload_template(server_config_json, template_file):
+def upload_template(template_file, server_config_json, template_title):
     """
     Upload a template with metadata.
 
     Parameters
     ----------
+    template_file: str
+        Path to the template you want to upload. This has to be a json file
+        containing the keys `elabftw' and `extra_fields`.
     server_config_json: str
         Path to the json file containing the redcap url, api token and required external modules
-    template_file: str
-        Path to the template you want to upload
+    template_title: str
+        The title of the template you want to upload
 
     Returns
     -------
@@ -85,84 +85,56 @@ def upload_template(server_config_json, template_file):
 
     try:
         with open(template_file, 'r') as f:
-            template = json.load(f)
+            template_json = json.load(f)
     except json.JSONDecodeError:
         raise ValueError(f'Invalid JSON file: {template_file}')
 
-    api_client = get_elab_config(server_config_json)
-    template_api = elabapi_python.ExperimentsTemplatesApi(api_client)
+    if 'extra_fields' not in template_json:
+        raise ValueError('Mandatory field "extra_fields" not present in template')
 
-    if template['metadata']:
-        response = template_api.post_experiment_template_with_http_info(body={"title": template['title']})
-        location_response = response[2].get('Location')
-        item_id = int(location_response.split('/').pop())
-        response = template_api.patch_experiment_template_with_http_info(
-            item_id, body={'metadata': template['metadata']})
-        status_code = response[1]
-
-    else:
-        response = template_api.post_experiment_template_with_http_info(body={"title": template['title']})
-        status_code = response[1]
-        location_response = response[2].get('Location')
-
-    return location_response, status_code
-
-
-def upload_template_from_csv(server_config_json, csv_file, title):
-    """
-    Upload a template with an old csv file.
-
-    Parameters
-    ----------
-    server_config_json: str
-        Path to the json file containing the redcap url, api token and required external modules
-    csv_file: str
-        Path to the csv file you want to convert into an Elab version
-    title: str
-        Title of the template to upload
-
-    Returns
-    -------
-        location_response: location of the new template
-
-    """
-
-    conversion_json = conversion_csv_to_json(csv_file)
-    final_json = json.dumps(conversion_json)
+    with open(template_file, 'r') as f:
+        template_form_string = f.read()
 
     api_client = get_elab_config(server_config_json)
     template_api = elabapi_python.ExperimentsTemplatesApi(api_client)
 
-    response = template_api.post_experiment_template_with_http_info(body={"title": title})
+    response = template_api.post_experiment_template_with_http_info(body={"title": template_title})
     location_response = response[2].get('Location')
     item_id = int(location_response.split('/').pop())
-
-    template_api.patch_experiment_template_with_http_info(item_id, body={'metadata': final_json})
+    response = template_api.patch_experiment_template_with_http_info(
+        item_id,
+        body={'metadata': template_form_string}
+    )
     status_code = response[1]
+
 
     return location_response, status_code
 
 
 def get_elab_config(server_config_json):
     """
-    Initialize a pycap project based on the provided server configuration
-    :param server_config_json: json file containing the api_key and api_url
-    :return: pycap project
+    Initialize an elab project based on the provided server configuration
+    :param server_config_json: json file containing the api_token and api_url
+    :return: elab api client
     """
 
     config = json.load(open(server_config_json, 'r'))
     configuration = elabapi_python.Configuration()
 
-    if config['api_elab_key'] in os.environ:
-        configuration.api_key['api_key'] = os.environ[config['api_elab_key']]
-        configuration.api_key_prefix['api_key'] = 'Authorization'
+    if config['api_token'] in os.environ:
+        api_token = os.environ[config['api_token']]
+    else:
+        api_token = config['api_token']
 
-    configuration.host = config['api_elab_url']
+    configuration.api_key['api_token'] = api_token
+    configuration.api_key_prefix['api_token'] = 'Authorization'
+
+    configuration.host = config['api_url']
     configuration.debug = True
     configuration.verify_ssl = False
 
     api_client = elabapi_python.ApiClient(configuration)
-    api_client.set_default_header(header_name='Authorization', header_value=os.environ[config['api_elab_key']])
+    api_client.set_default_header(header_name='Authorization', header_value=api_token)
 
     return api_client
 
