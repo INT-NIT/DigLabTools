@@ -12,34 +12,42 @@
       },
       {
         "id": 3,
-        "name": "Subject"
+        "name": "Optogenetic Stimulation"
       },
       {
         "id": 4,
-        "name": "Weighing"
+        "name": "Subject"
       },
       {
         "id": 5,
-        "name": "Habituation Handling"
+        "name": "Weighing"
       },
       {
         "id": 6,
-        "name": "Water Restriction"
+        "name": "Habituation Handling"
       },
       {
         "id": 7,
-        "name": "Water Supplements"
+        "name": "Water Restriction"
       },
       {
         "id": 8,
-        "name": "Surgery"
+        "name": "Water Supplements"
       },
       {
         "id": 9,
-        "name": "Cage"
+        "name": "Surgery"
       },
       {
         "id": 10,
+        "name": "Cage"
+      },
+      {
+        "id": 11,
+        "name": "Cage Cleaning"
+      },
+      {
+        "id": 12,
         "name": "Culling"
       }
     ]
@@ -132,6 +140,20 @@
       "description": "The modalities recorded",
       "allow_multi_values": true
     },
+    "Stimulation modality": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "no stimulation",
+        "visual",
+        "tactile",
+        "optogenetic"
+      ],
+      "group_id": "2",
+      "position": "9",
+      "description": "The stimulation provided during the recording",
+      "allow_multi_values": true
+    },
     "Notes (General)": {
       "type": "text",
       "value": "",
@@ -162,12 +184,14 @@
         "acute",
         "array",
         "laminar",
-        "tetrode"
+        "tetrode",
+        "neuropixel"
       ],
       "group_id": "2",
       "position": "9",
       "description": "The type of probe used for the recording",
-      "allow_multi_values": true
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": false
     },
     "Probe identifier": {
       "type": "text",
@@ -191,9 +215,7 @@
       "value": "yes",
       "options": [
         "yes",
-        "no",
-        "",
-        ""
+        "no"
       ],
       "group_id": "2",
       "position": "12",
@@ -251,7 +273,7 @@
       "value": "",
       "group_id": "2",
       "position": "17",
-      "description": "Fluid reward administered during session",
+      "description": "Fluid reward administered during session [in μl]",
       "allow_multi_values": true,
       "blank_value_on_duplicate": true
     },
@@ -259,11 +281,12 @@
       "type": "select",
       "value": "",
       "options": [
-        "water",
-        "water with sucrose",
-        "apple juice",
-        "juice mix",
-        "other"
+        "Water",
+        "Water (10% Sucrose)",
+        "Water (15% Sucrose)",
+        "Water (2% Citric Acid)",
+        "Hydrogel",
+        "Hydrogel (5% Citric Acid)"
       ],
       "group_id": "2",
       "position": "18",
@@ -296,10 +319,41 @@
       "allow_multi_values": true,
       "blank_value_on_duplicate": true
     },
+    "Laser power": {
+      "type": "number",
+      "value": "",
+      "group_id": "3",
+      "position": "10",
+      "description": "The power of the laser used for stimulation [in mW]",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
+    "Laser wavelength": {
+      "type": "number",
+      "value": "",
+      "group_id": "3",
+      "position": "10",
+      "description": "The wavelength of the laser used for stimulation [in nm]",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
+    "Illumination protocol": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "free field",
+        "???"
+      ],
+      "group_id": "3",
+      "position": "10",
+      "description": "The protocol used for laser stimulation",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
     "Litter": {
       "type": "text",
       "value": "",
-      "group_id": "3",
+      "group_id": "4",
       "position": "1",
       "description": "The litter id of the subject",
       "blank_value_on_duplicate": false
@@ -307,7 +361,7 @@
     "Strain": {
       "type": "text",
       "value": "",
-      "group_id": "3",
+      "group_id": "4",
       "position": "2",
       "description": "The strain of the subject",
       "blank_value_on_duplicate": false
@@ -315,7 +369,7 @@
     "Line": {
       "type": "text",
       "value": "",
-      "group_id": "3",
+      "group_id": "4",
       "position": "3",
       "description": "The line of the subject. Use same value as strain for wildtype.",
       "blank_value_on_duplicate": false
@@ -323,7 +377,7 @@
     "Cage": {
       "type": "text",
       "value": "",
-      "group_id": "3",
+      "group_id": "4",
       "position": "4",
       "description": "The cage id of the subject",
       "blank_value_on_duplicate": true
@@ -338,7 +392,7 @@
         "RR",
         "LL"
       ],
-      "group_id": "3",
+      "group_id": "4",
       "position": "5",
       "description": "The ear mark of the subject",
       "blank_value_on_duplicate": false
@@ -346,7 +400,7 @@
     "Weighing Date": {
       "type": "date",
       "value": "",
-      "group_id": "4",
+      "group_id": "5",
       "position": "1",
       "description": "The date of the weighing",
       "blank_value_on_duplicate": true
@@ -354,7 +408,7 @@
     "Weight": {
       "type": "number",
       "value": "",
-      "group_id": "4",
+      "group_id": "5",
       "position": "2",
       "description": "The weight of the subject [in g]",
       "allow_multi_values": true,
@@ -363,7 +417,7 @@
     "Handling Date": {
       "type": "date",
       "value": "",
-      "group_id": "5",
+      "group_id": "6",
       "position": "1",
       "description": "The date of the handling",
       "blank_value_on_duplicate": true
@@ -371,7 +425,7 @@
     "Notes on the Handling": {
       "type": "text",
       "value": "",
-      "group_id": "5",
+      "group_id": "6",
       "position": "2",
       "description": "Comments on the handling procedure",
       "blank_value_on_duplicate": true
@@ -379,7 +433,7 @@
     "Water Restriction Date": {
       "type": "date",
       "value": "",
-      "group_id": "6",
+      "group_id": "7",
       "position": "1",
       "description": "The date of change in water restriction",
       "blank_value_on_duplicate": true
@@ -387,7 +441,7 @@
     "Reference implant weight": {
       "type": "number",
       "value": "",
-      "group_id": "6",
+      "group_id": "7",
       "position": "2",
       "description": "Weight of the implant [in g]",
       "blank_value_on_duplicate": true
@@ -395,7 +449,7 @@
     "Reference subject weight": {
       "type": "number",
       "value": "",
-      "group_id": "6",
+      "group_id": "7",
       "position": "3",
       "description": "Weight of the subject [in g]",
       "blank_value_on_duplicate": true
@@ -403,7 +457,7 @@
     "Type Water Restriction Change": {
       "type": "select",
       "value": "",
-      "group_id": "6",
+      "group_id": "7",
       "position": "4",
       "options": [
         "start",
@@ -416,7 +470,7 @@
     "Notes on the Water Restriction": {
       "type": "text",
       "value": "",
-      "group_id": "6",
+      "group_id": "7",
       "position": "5",
       "description": "Comments on the water restriction",
       "blank_value_on_duplicate": true
@@ -424,7 +478,7 @@
     "Fluid Supplement Date": {
       "type": "date",
       "value": "",
-      "group_id": "7",
+      "group_id": "8",
       "position": "1",
       "description": "The date at which the water supplement was administered",
       "blank_value_on_duplicate": true
@@ -432,9 +486,9 @@
     "Fluid Supplement Volume": {
       "type": "number",
       "value": "",
-      "group_id": "7",
+      "group_id": "8",
       "position": "2",
-      "description": "Fluid supplement administered",
+      "description": "Fluid supplement administered in [μl]",
       "blank_value_on_duplicate": true
     },
     "Fluid supplement type": {
@@ -448,7 +502,7 @@
         "Hydrogel",
         "Hydrogel (5% Citric Acid)"
       ],
-      "group_id": "7",
+      "group_id": "8",
       "position": "3",
       "description": "Additional reward administered",
       "allow_multi_values": false,
@@ -457,7 +511,7 @@
     "Surgery Date": {
       "type": "date",
       "value": "",
-      "group_id": "8",
+      "group_id": "9",
       "position": "1",
       "description": "The date at which the surgery was performed",
       "blank_value_on_duplicate": true
@@ -475,7 +529,7 @@
         "Chamber implant",
         "Electrode implant"
       ],
-      "group_id": "8",
+      "group_id": "9",
       "position": "2",
       "description": "Additional reward administered",
       "allow_multi_values": false,
@@ -484,7 +538,7 @@
     "Surgery start time": {
       "type": "text",
       "value": "",
-      "group_id": "8",
+      "group_id": "9",
       "position": "3",
       "description": "The time at which the surgery was started",
       "blank_value_on_duplicate": true
@@ -492,7 +546,7 @@
     "Surgery end time": {
       "type": "text",
       "value": "",
-      "group_id": "8",
+      "group_id": "9",
       "position": "4",
       "description": "The time at which the surgery ended",
       "blank_value_on_duplicate": true
@@ -500,7 +554,7 @@
     "Notes on the Surgery": {
       "type": "text",
       "value": "",
-      "group_id": "8",
+      "group_id": "9",
       "position": "5",
       "description": "Comments on the surgery procedure",
       "blank_value_on_duplicate": true
@@ -508,7 +562,7 @@
     "Cage Update Date": {
       "type": "date",
       "value": "",
-      "group_id": "9",
+      "group_id": "10",
       "position": "1",
       "description": "The date at which the subject was moved to another cage",
       "blank_value_on_duplicate": true
@@ -516,7 +570,7 @@
     "Cage Identifier": {
       "type": "text",
       "value": "",
-      "group_id": "9",
+      "group_id": "10",
       "position": "2",
       "description": "The unique identifier of the cage",
       "blank_value_on_duplicate": true
@@ -525,10 +579,10 @@
       "type": "select",
       "value": "",
       "options": [
-        "IVC",
-        "???"
+        "cohoused",
+        "individual"
       ],
-      "group_id": "9",
+      "group_id": "10",
       "position": "3",
       "description": "The type of the cage",
       "allow_multi_values": false,
@@ -538,14 +592,14 @@
       "type": "select",
       "value": "",
       "options": [
-        "Nesting",
-        "empty",
-        "???"
+        "nesting",
+        "wheel",
+        "empty"
       ],
-      "group_id": "9",
+      "group_id": "10",
       "position": "4",
       "description": "The type of enrichment of the cage",
-      "allow_multi_values": false,
+      "allow_multi_values": true,
       "blank_value_on_duplicate": true
     },
     "Cage light cycle": {
@@ -556,7 +610,7 @@
         "inverted",
         "???"
       ],
-      "group_id": "9",
+      "group_id": "10",
       "position": "5",
       "description": "The light cycle of the cage",
       "allow_multi_values": false,
@@ -565,7 +619,7 @@
     "Cage food": {
       "type": "text",
       "value": "",
-      "group_id": "9",
+      "group_id": "10",
       "position": "6",
       "description": "The food provided in the cage",
       "allow_multi_values": false,
@@ -574,7 +628,7 @@
     "Cage cleaning cycle": {
       "type": "number",
       "value": "",
-      "group_id": "9",
+      "group_id": "10",
       "position": "7",
       "description": "The cleaning cycle of the cage [in days]",
       "allow_multi_values": false,
@@ -583,16 +637,24 @@
     "Cage comments": {
       "type": "text",
       "value": "",
-      "group_id": "9",
+      "group_id": "10",
       "position": "8",
       "description": "Comments on the cage",
       "allow_multi_values": false,
       "blank_value_on_duplicate": true
     },
+    "Cage Cleaning Date": {
+      "type": "date",
+      "value": "",
+      "group_id": "11",
+      "position": "1",
+      "description": "The date of cage cleaning",
+      "blank_value_on_duplicate": true
+    },
     "Cull Date": {
       "type": "date",
       "value": "",
-      "group_id": "10",
+      "group_id": "12",
       "position": "1",
       "description": "The date of death of the subject",
       "blank_value_on_duplicate": true
@@ -609,7 +671,7 @@
         "time limit reached",
         "benign experimental impediments"
       ],
-      "group_id": "10",
+      "group_id": "12",
       "position": "2",
       "description": "The reason for the culling",
       "allow_multi_values": false,
@@ -619,9 +681,11 @@
       "type": "select",
       "value": "",
       "options": [
-        "???"
+        "perfusion",
+        "CO2",
+        "cervical dislocation"
       ],
-      "group_id": "10",
+      "group_id": "12",
       "position": "3",
       "description": "The method used for the culling",
       "allow_multi_values": false,
@@ -630,7 +694,7 @@
     "Notes on the Culling": {
       "type": "text",
       "value": "",
-      "group_id": "10",
+      "group_id": "12",
       "position": "4",
       "description": "Comment on the culling",
       "blank_value_on_duplicate": true
