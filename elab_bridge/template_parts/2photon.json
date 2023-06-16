@@ -1,0 +1,108 @@
+{
+  "elabftw": {
+    "display_main_text": false,
+    "extra_fields_groups": [
+      {
+        "id": 1,
+        "name": "Imaging Session"
+      }
+    ]
+  },
+  "extra_fields": {
+    "User [2P]": {
+      "type": "text",
+      "value": "",
+      "group_id": "1",
+      "position": "1",
+      "description": "The name of the experimenter"
+    },
+    "Session date [2P]": {
+      "type": "date",
+      "value": "",
+      "group_id": "1",
+      "position": "2",
+      "description": "The date of the recording"
+    },
+    "Session Number [2P]" : {
+      "type": "text",
+      "value": "",
+      "group_id": "1",
+      "position": "3",
+      "description": "The consecutive number of this recording session"
+    },
+    "Experiment Name [2P]": {
+      "type": "text",
+      "value": "",
+      "group_id": "1",
+      "position": "4",
+      "description": "The name of the experiment"
+    },
+    "Modality [2P]": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "2photon",
+        "???"
+      ],
+      "group_id": "1",
+      "position": "5",
+      "description": "The modalities recorded",
+      "allow_multi_values": true
+    },
+    "Notes (General) [2P]": {
+      "type": "text",
+      "value": "",
+      "group_id": "1",
+      "position": "6",
+      "description": "General comments on the imaging session",
+      "blank_value_on_duplicate": true
+    },
+    "Start Time [2P]": {
+      "type": "text",
+      "value": "",
+      "group_id": "1",
+      "position": "7",
+      "description": "Start time of the session"
+    },
+    "End time [2P]": {
+      "type": "text",
+      "value": "",
+      "group_id": "1",
+      "position": "8",
+      "description": "End time of the session"
+    },
+    "Microscope type used [2P]": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "???",
+        "???"
+      ],
+      "group_id": "1",
+      "position": "9",
+      "description": "The type of microscope used for the recording",
+      "allow_multi_values": true
+    },
+    "Imaging data quality": {
+      "type": "select",
+      "value": "",
+      "options": [
+        "very good",
+        "good",
+        "noisy",
+        "no data"
+      ],
+      "group_id": "1",
+      "position": "16",
+      "description": "Comments on the experiment",
+      "blank_value_on_duplicate": true
+    },
+    "??? More imaging parameters ??? [2P]": {
+      "type": "text",
+      "value": "",
+      "group_id": "1",
+      "position": "8",
+      "description": "<To be extended>"
+    }
+  }
+}
