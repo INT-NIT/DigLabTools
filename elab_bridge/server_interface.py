@@ -63,6 +63,52 @@ def download_experiment(save_to, server_config_json, experiment_id, experiment_a
     return status_code, df
 
 
+def upload_experiment(experiment_file, server_config_json, experiment_title):
+    """
+    Upload an experiment.
+
+    Parameters
+    ----------
+    experiment_file: str
+        Path to the experiment you want to upload. This has to be a json file
+        containing the keys `elabftw' and `extra_fields`.
+    server_config_json: str
+        Path to the json file containing the redcap url, api token and required external modules
+    experiment_title: str
+        The title of the experiment you want to upload
+
+    Returns
+    -------
+        location_response: location of the new template
+    """
+
+    try:
+        with open(experiment_file, 'r') as f:
+            template_json = json.load(f)
+    except json.JSONDecodeError:
+        raise ValueError(f'Invalid JSON file: {experiment_file}')
+
+    if 'extra_fields' not in template_json:
+        raise ValueError('Mandatory field "extra_fields" not present in template')
+
+    with open(experiment_file, 'r') as f:
+        template_form_string = f.read()
+
+    api_client = get_elab_config(server_config_json)
+    experiment_api = elabapi_python.ExperimentsApi(api_client)
+
+    response = experiment_api.post_experiment_with_http_info(body={"category_id": -1})
+    location_response = response[2].get('Location')
+    item_id = int(location_response.split('/').pop())
+    response = experiment_api.patch_experiment_with_http_info(
+        item_id,
+        body={'title': experiment_title, 'metadata': template_form_string}
+    )
+    status_code = response[1]
+
+    return location_response, status_code
+
+
 def upload_template(template_file, server_config_json, template_title):
     """
     Upload a template with metadata.
@@ -106,7 +152,6 @@ def upload_template(template_file, server_config_json, template_title):
         body={'metadata': template_form_string}
     )
     status_code = response[1]
-
 
     return location_response, status_code
 
