@@ -215,7 +215,7 @@
       "blank_value_on_duplicate": false
     },
     "Probe identifier": {
-      "type": "text",
+      "type": "select",
       "value": "",
       "group_id": "2",
       "position": "10",
