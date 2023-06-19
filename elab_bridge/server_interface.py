@@ -14,7 +14,7 @@ def download_experiment(save_to, server_config_json, experiment_id, experiment_a
     save_to: str
         Path where to save the retrieved experiment data
     server_config_json: str
-        Path to the json file containing the redcap url, api token and required external modules
+        Path to the json file containing the eLabFTW url, api token and required external modules
     format: 'csv', 'json'
         Format of the retrieved records
     experiment_id: int
@@ -73,7 +73,7 @@ def upload_experiment(experiment_file, server_config_json, experiment_title):
         Path to the experiment you want to upload. This has to be a json file
         containing the keys `elabftw' and `extra_fields`.
     server_config_json: str
-        Path to the json file containing the redcap url, api token and required external modules
+        Path to the json file containing the eLabFTW url, api token and required external modules
     experiment_title: str
         The title of the experiment you want to upload
 
@@ -84,15 +84,15 @@ def upload_experiment(experiment_file, server_config_json, experiment_title):
 
     try:
         with open(experiment_file, 'r') as f:
-            template_json = json.load(f)
+            experiment_json = json.load(f)
     except json.JSONDecodeError:
         raise ValueError(f'Invalid JSON file: {experiment_file}')
 
-    if 'extra_fields' not in template_json:
-        raise ValueError('Mandatory field "extra_fields" not present in template')
+    if 'extra_fields' not in experiment_json:
+        raise ValueError('Mandatory field "extra_fields" not present in experiment')
 
     with open(experiment_file, 'r') as f:
-        template_form_string = f.read()
+        experiment_form_string = f.read()
 
     api_client = get_elab_config(server_config_json)
     experiment_api = elabapi_python.ExperimentsApi(api_client)
@@ -102,7 +102,7 @@ def upload_experiment(experiment_file, server_config_json, experiment_title):
     item_id = int(location_response.split('/').pop())
     response = experiment_api.patch_experiment_with_http_info(
         item_id,
-        body={'title': experiment_title, 'metadata': template_form_string}
+        body={"title": experiment_title, "metadata": experiment_form_string}
     )
     status_code = response[1]
 
@@ -119,7 +119,7 @@ def upload_template(template_file, server_config_json, template_title):
         Path to the template you want to upload. This has to be a json file
         containing the keys `elabftw' and `extra_fields`.
     server_config_json: str
-        Path to the json file containing the redcap url, api token and required external modules
+        Path to the json file containing the eLabFTW url, api token and required external modules
     template_title: str
         The title of the template you want to upload
 
