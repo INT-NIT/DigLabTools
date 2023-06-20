@@ -128,7 +128,7 @@ def validate_experiment_against_template(experiment_json, template_json):
     assert 'extra_fields' in template
     assert 'extra_fields' in experiment
     
-    _validate_extra_fields(experiment['metadata']['extra_fields'],
+    _validate_extra_fields(experiment['extra_fields'],
                            template['extra_fields'],
                            validate_values=['type', 'options',
                                             'allow_multi_values',
