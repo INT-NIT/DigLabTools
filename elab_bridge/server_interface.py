@@ -14,7 +14,7 @@ def download_experiment(save_to, server_config_json, experiment_id, experiment_a
     save_to: str
         Path where to save the retrieved experiment data
     server_config_json: str
-        Path to the json file containing the eLabFTW url, api token and required external modules
+        Path to the json file containing the api_url, api_token and required external modules
     format: 'csv', 'json'
         Format of the retrieved records
     experiment_id: int
@@ -73,7 +73,7 @@ def upload_experiment(experiment_file, server_config_json, experiment_title):
         Path to the experiment you want to upload. This has to be a json file
         containing the keys `elabftw' and `extra_fields`.
     server_config_json: str
-        Path to the json file containing the eLabFTW url, api token and required external modules
+        Path to the json file containing the api_url, api_token and required external modules
     experiment_title: str
         The title of the experiment you want to upload
 
@@ -119,7 +119,7 @@ def upload_template(template_file, server_config_json, template_title):
         Path to the template you want to upload. This has to be a json file
         containing the keys `elabftw' and `extra_fields`.
     server_config_json: str
-        Path to the json file containing the eLabFTW url, api token and required external modules
+        Path to the json file containing the api_url, api_token and required external modules
     template_title: str
         The title of the template you want to upload
 
