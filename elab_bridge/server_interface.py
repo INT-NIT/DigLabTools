@@ -77,7 +77,7 @@ def upload_experiment(experiment_file, server_config_json, experiment_title):
 
     Returns
     -------
-        location_response: location of the new template
+        (dict) Content of the experiment as registered on the server
     """
 
     try:
@@ -95,16 +95,26 @@ def upload_experiment(experiment_file, server_config_json, experiment_title):
     api_client = get_elab_config(server_config_json)
     experiment_api = elabapi_python.ExperimentsApi(api_client)
 
-    response = experiment_api.post_experiment_with_http_info(body={"category_id": -1})
-    location_response = response[2].get('Location')
-    item_id = int(location_response.split('/').pop())
-    response = experiment_api.patch_experiment_with_http_info(
+    res = experiment_api.post_experiment_with_http_info(body={"category_id": -1})
+    _, status_creation, http_dict = res
+    if status_creation != 201:
+        raise ValueError('Creation of experiment on server failed.'
+                         ' Check your internet connection and permissions.')
+    item_id = http_dict.get('Location').split('/')[-1]
+    item_id = int(item_id)
+    res = experiment_api.patch_experiment_with_http_info(
         item_id,
         body={"title": experiment_title, "metadata": experiment_form_string}
     )
-    status_code = response[1]
+    experiment_obj, status_population, http_dict = res
 
-    return location_response, status_code
+    if status_population != 200:
+        raise ValueError('Population of experiment on server failed. '
+                         'Check your internet connection and permissions.')
+
+    metadata = json.loads(experiment_obj.metadata)
+
+    return metadata
 
 
 def upload_template(template_file, server_config_json, template_title):
@@ -123,7 +133,7 @@ def upload_template(template_file, server_config_json, template_title):
 
     Returns
     -------
-        (dict) Settings of the template as registered on the server
+        (dict) Content of the template as registered on the server
     """
 
     try:

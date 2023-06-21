@@ -17,24 +17,22 @@ def test_upload_template(initialize_test_dir):
 def test_upload_experiment(initialize_test_dir):
     template_file = test_directory / 'testfiles_elab' / 'experiment.json'
 
-    res, http_stat_code = upload_experiment(server_config_json=SERVER_CONFIG_YAML,
-                                            experiment_file=template_file,
-                                            experiment_title='TestExperiment')
+    experiment = upload_experiment(server_config_json=SERVER_CONFIG_YAML,
+                                   experiment_file=template_file,
+                                   experiment_title='TestExperiment')
 
-    # 200 is for creation of a experiment with metadata / 201 is for creation of a template without metadata
-    assert http_stat_code == 200 or http_stat_code == 201
+    assert 'extra_fields' in experiment
 
 
 def test_download_experiment(initialize_test_dir):
     json_file = test_directory / 'testfiles_elab' / 'downloaded_experiment.json'
     experiment = download_experiment(save_to=json_file,
-                                          server_config_json=SERVER_CONFIG_YAML,
-                                          experiment_id=232,
-                                          format='json')
+                                     server_config_json=SERVER_CONFIG_YAML,
+                                     experiment_id=232,
+                                     format='json')
 
     assert json_file.exists()
     assert 'extra_fields' in experiment
 
     # cleanup
     json_file.unlink()
-
