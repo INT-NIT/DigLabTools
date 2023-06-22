@@ -26,10 +26,17 @@ def test_upload_experiment(initialize_test_dir):
 
 def test_download_experiment(initialize_test_dir):
     json_file = test_directory / 'testfiles_elab' / 'downloaded_experiment.json'
+    upload_experiment_file = test_directory / 'testfiles_elab' / 'experiment.json'
+    upload, experiment_id = upload_experiment(server_config_json=SERVER_CONFIG_YAML,
+                               experiment_file=upload_experiment_file,
+                               experiment_title='UploadExperiment')
+
     experiment = download_experiment(save_to=json_file,
                                      server_config_json=SERVER_CONFIG_YAML,
-                                     experiment_id=232,
+                                     experiment_id=experiment_id,
                                      format='json')
+
+    assert upload == experiment
 
     assert json_file.exists()
     assert 'extra_fields' in experiment

@@ -114,7 +114,7 @@ def upload_experiment(experiment_file, server_config_json, experiment_title):
 
     metadata = json.loads(experiment_obj.metadata)
 
-    return metadata
+    return metadata, item_id
 
 
 def upload_template(template_file, server_config_json, template_title):
