@@ -195,7 +195,7 @@ def upload_template(template_file, server_config_json, template_title):
 
     metadata = json.loads(template_obj.metadata)
 
-    return metadata
+    return metadata, template_id
 
 
 def delete_template(template_id, server_config_json):
