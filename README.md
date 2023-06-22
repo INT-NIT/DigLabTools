@@ -2,15 +2,20 @@
 
 *DigLabTools* is a collection of libraries with digital labbook functionalities.
 
-The main component of *DigLabTools* is the *RedCapBridge* module, a tool to facilitate the generation and standardization of [RedCap](https://projectredcap.org/) surveys. It permits the generation of surveys based on templates and provides a framework for reproducible assembly and customization of surveys. In addition it provides a simple command line interface to retrieve the collected data from the RedCap server. 
+The main functionality of *DigLabTools* to facilitate the generation and standardization of surveys for metadata collection. It permits the generation of surveys based on templates and provides a framework for reproducible assembly and customization of surveys. In addition it provides a simple command line interface to retrieve the collected data from metadata server. 
 
-The main *RedCapBridge* features are:
+*DigLabTools* supports two types of servers for metadata collection: *RedCap* and *eLabFTW*.
+
+
+For both types of servers the main *DigLabTools* features are:
 
 - **Template based** survey generation for standardized survey layouts
 - **Inherent provenance tracking** for reproducible survey generation
-- **Python interface** for generation of surveys and setup on a RedCap server
-- **Command line interface** for quick data (record) retrieval from RedCap server
+- **Python interface** for generation of surveys and setup on a the metadata server
+- **Command line interface** for quick data (record) retrieval from the metadata server
 - **Compression of data** to improve readability of retrieved data
+
+These functionalities are implemented in the *RedCapBridge* and *ElabBridge* modules, correspondingly.
 
 Important links
 ---------------
