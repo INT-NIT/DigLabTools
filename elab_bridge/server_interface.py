@@ -78,6 +78,7 @@ def upload_experiment(experiment_file, server_config_json, experiment_title):
     Returns
     -------
         (dict) Content of the experiment as registered on the server
+        (int) ID of the experiment
     """
 
     try:
@@ -156,6 +157,7 @@ def upload_template(template_file, server_config_json, template_title):
     Returns
     -------
         (dict) Content of the template as registered on the server
+        (int) ID of the template
     """
 
     try:
