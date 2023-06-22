@@ -117,6 +117,28 @@ def upload_experiment(experiment_file, server_config_json, experiment_title):
     return metadata, item_id
 
 
+def delete_experiment(experiment_id, server_config_json):
+    """
+    Delete an existing experiment.
+
+    Parameters
+    ----------
+    experiment_id: int
+        ID of the experiment you want to delete
+    server_config_json: str
+        Path to the json file containing the api_url and the api_token
+    """
+    api_client = get_elab_config(server_config_json)
+    experiment_api = elabapi_python.ExperimentsApi(api_client)
+
+    res = experiment_api.delete_experiment_with_http_info(id=experiment_id)
+    status_delete = res[1]
+
+    if status_delete != 204:
+        raise ValueError('Deletion of an experiment on server failed.'
+                         ' Check your internet connection and permissions.')
+
+
 def upload_template(template_file, server_config_json, template_title):
     """
     Upload a template with metadata.
@@ -174,6 +196,28 @@ def upload_template(template_file, server_config_json, template_title):
     metadata = json.loads(template_obj.metadata)
 
     return metadata
+
+
+def delete_template(template_id, server_config_json):
+    """
+    Delete an existing template.
+
+    Parameters
+    ----------
+    template_id: int
+        ID of the experiment you want to delete
+    server_config_json: str
+        Path to the json file containing the api_url and the api_token
+    """
+    api_client = get_elab_config(server_config_json)
+    template_api = elabapi_python.ExperimentsTemplatesApi(api_client)
+
+    res = template_api.delete_experiment_template_with_http_info(id=template_id)
+    status_delete = res[1]
+
+    if status_delete != 204:
+        raise ValueError('Deletion of an template on server failed.'
+                         ' Check your internet connection and permissions.')
 
 
 def get_elab_config(server_config_json):
