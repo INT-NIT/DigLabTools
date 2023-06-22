@@ -1,34 +1,38 @@
-from elab_bridge.server_interface import (download_experiment, upload_template, upload_experiment)
 from diglab_utils.test_utils import (test_directory, initialize_test_dir)
+from elab_bridge.server_interface import (download_experiment, upload_template, upload_experiment)
 
 SERVER_CONFIG_YAML = (test_directory / 'testfiles_elab' / 'TestProject' / 'project.json').resolve()
 
 
 def test_upload_template(initialize_test_dir):
     template_file = test_directory / 'testfiles_elab' / 'template.json'
+    template = upload_template(server_config_json=SERVER_CONFIG_YAML,
+                               template_file=template_file,
+                               template_title='Testproject')
 
-    res, http_stat_code = upload_template(server_config_json=SERVER_CONFIG_YAML, template_file=template_file,
-                                          template_title='Testproject')
-
-    # 200 is for creation of a template with metadata / 201 is for creation of a template without metadata
-    assert http_stat_code == 200 or http_stat_code == 201
+    assert 'elabftw' in template
+    assert 'extra_fields' in template
 
 
 def test_upload_experiment(initialize_test_dir):
     template_file = test_directory / 'testfiles_elab' / 'experiment.json'
 
-    res, http_stat_code = upload_experiment(server_config_json=SERVER_CONFIG_YAML, experiment_file=template_file,
-                                            experiment_title='TestExperiment')
+    experiment = upload_experiment(server_config_json=SERVER_CONFIG_YAML,
+                                   experiment_file=template_file,
+                                   experiment_title='TestExperiment')
 
-    # 200 is for creation of a experiment with metadata / 201 is for creation of a template without metadata
-    assert http_stat_code == 200 or http_stat_code == 201
+    assert 'extra_fields' in experiment
 
 
 def test_download_experiment(initialize_test_dir):
-    csv_file = test_directory / 'testfiles_elab' / 'downloaded_experiment.csv'
-    http_stat_code, df = download_experiment(save_to=csv_file, server_config_json=SERVER_CONFIG_YAML, experiment_id=232,
-                                             experiment_axis='columns', format='csv')
+    json_file = test_directory / 'testfiles_elab' / 'downloaded_experiment.json'
+    experiment = download_experiment(save_to=json_file,
+                                     server_config_json=SERVER_CONFIG_YAML,
+                                     experiment_id=232,
+                                     format='json')
 
-    df.to_csv(csv_file, index=False)
+    assert json_file.exists()
+    assert 'extra_fields' in experiment
 
-    assert http_stat_code == 200
+    # cleanup
+    json_file.unlink()
