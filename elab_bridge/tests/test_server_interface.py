@@ -43,9 +43,7 @@ def test_download_experiment(initialize_test_dir):
                                      experiment_id=experiment_id,
                                      format='json')
 
-    if len(upload) != len(experiment):
-        assert False
-
+    assert len(upload) == len(experiment)
     assert upload == experiment
 
     assert json_file.exists()
