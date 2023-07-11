@@ -142,15 +142,14 @@
       "type": "select",
       "value": "",
       "options": [
-        "Behaviour (eye)",
-        "Behaviour (hand)",
-        "Single Electrode",
-        "Multi Electrode",
+        "extracellular microelectrode signals",
+        "intracellular microelectrode signals",
+        "EEG",
         "EMG",
-        "Optical Imaging (int)",
-        "Optical Imaging (VSDi)",
-        "ECoG",
-        "SEEG"
+        "ECog",
+        "optical imaging",
+        "behaviour",
+        "stimulation (specify below)"
       ],
       "group_id": "2",
       "position": "5",
