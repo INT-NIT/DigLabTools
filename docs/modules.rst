@@ -6,7 +6,7 @@ DigLabTools Modules
 
    redcap_bridge
 
-.. automodule:: redcap_bridge
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   elab_bridge
+
+   diglab_utils
+

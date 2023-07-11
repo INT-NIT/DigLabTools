@@ -12,13 +12,15 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../redcap_bridge/*'))
+# sys.path.insert(0, os.path.abspath('../redcap_bridge/*'))
+sys.path.insert(0, os.path.abspath('../elab_bridge/*'))
+sys.path.insert(0, os.path.abspath('../diglab_utils/*'))
 
 
 # -- Project information -----------------------------------------------------
 
 project = 'DigLabTools'
-copyright = '2022, Julia Sprenger, Sylvain Takerkart, Killian Rochet'
+copyright = '2022-2023, Julia Sprenger, Sylvain Takerkart, Killian Rochet'
 author = 'Julia Sprenger, Sylvain Takerkart, Killian Rochet'
 
 
@@ -40,7 +42,7 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['redcap_bridge.test*']
+exclude_patterns = ['redcap_bridge.test*', 'elab_bridge.test*', 'diglab_utils.test*']
 
 
 # -- Options for HTML output -------------------------------------------------

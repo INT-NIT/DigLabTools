@@ -61,7 +61,9 @@ def _extend_extra_fields(extra_fields, extra_fields_to_add, group_id_map):
         extra_fields to be extended
     """
 
-    assert extra_fields.keys().isdisjoint(extra_fields_to_add), 'Overlapping keys detected.'
+    overlapping_keys = set(extra_fields).intersection(extra_fields_to_add)
+    if overlapping_keys:
+        raise ValueError(f'Overlapping keys detected: {overlapping_keys}')
 
     # update group_ids of groups to be added
     for extra_field in extra_fields_to_add:

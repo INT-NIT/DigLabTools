@@ -17,10 +17,8 @@ def upload_datadict(csv_file, server_config_json):
    server_config_json: str
        Path to the json file containing the redcap url and api token
 
-    Returns:
-    ----------
-
-    Returns:
+    Returns
+    -------
         (int): The number of uploaded fields
     """
 
@@ -120,10 +118,8 @@ def upload_records(csv_file, server_config_json):
    server_config_json: str
        Path to the json file containing the redcap url and api token
 
-    Returns:
-    ----------
-
-    Returns:
+    Returns
+    -------
         (int): Number of uploaded records
     """
 
@@ -145,13 +141,10 @@ def upload_records(csv_file, server_config_json):
 
 def get_json_csv_header_mapping(server_config_json):
     """
-    Retruns
-    ----------
+    Returns
+    -------
     dict: 
         Mapping of json to csv headers
-
-    Returns:
-        dict: Mapping of json to csv headers
     """
 
     # TODO: This function should replace utils.py/map_header_json_to_csv

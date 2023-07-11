@@ -2,7 +2,7 @@
 
 ### Downloading metadata
 
-To download the metadata of a project you can use the command line tool `RedCapBridge`. Use the `RedCapBridge --help` to learn more about the different functions that `RedCapBridge` offers.
+To download the metadata of a project you can use the command line tool `RedCapBridge` or `ElabBridge`, depending on your choice of metadata server. Use the `RedCapBridge --help` (or `ElabBridge --help`) to learn more about the different functions that the server interface offers.
 
 ### Building projects
 
