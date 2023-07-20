@@ -1,0 +1,8 @@
+{
+  "title": "<My Project Title>",
+  "structure": "structure.csv",
+  "customization": "customization.csv",
+  "validation": [],
+  "api_token": "<paste your API token here>",
+  "api_url": "<put the url of your metadata server here>",
+}
