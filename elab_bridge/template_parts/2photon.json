@@ -83,7 +83,7 @@
       "description": "The type of microscope used for the recording",
       "allow_multi_values": true
     },
-    "Imaging data quality": {
+    "Imaging data quality [2P]": {
       "type": "select",
       "value": "",
       "options": [

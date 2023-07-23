@@ -53,33 +53,38 @@
     ]
   },
   "extra_fields": {
-    "Project": {
+    "Project Name": {
       "type": "text",
       "value": "",
       "group_id": "1",
       "position": "1",
-      "description": "The project this experiment belongs to"
+      "description": "The project this experiment belongs to",
+      "blank_value_on_duplicate": false
     },
     "Project Leader": {
-      "type": "text",
+      "type": "select",
       "value": "",
+      "options": [],
       "group_id": "1",
       "position": "2",
-      "description": "The name of the principle investigator responsible for the project"
+      "description": "The name of the principle investigator responsible for the project",
+      "blank_value_on_duplicate": false
     },
     "Ethical Protocol Identifier": {
       "type": "text",
       "value": "",
       "group_id": "1",
       "position": "3",
-      "description": "The official ethical protocol id (in '5X-16X-vX' format)"
+      "description": "The official ethical protocol id (in '5X-16X-vX' format)",
+      "blank_value_on_duplicate": false
     },
     "Subject GUID": {
       "type": "text",
       "value": "",
       "group_id": "1",
       "position": "4",
-      "description": "The global unique identifier of the subject"
+      "description": "The global unique identifier of the subject",
+      "blank_value_on_duplicate": false
     },
     "Sex": {
       "type": "select",
@@ -90,42 +95,48 @@
       ],
       "group_id": "1",
       "position": "5",
-      "description": "The sex of the subject"
+      "description": "The sex of the subject",
+      "blank_value_on_duplicate": false
     },
     "Birth Date": {
       "type": "date",
       "value": "",
       "group_id": "1",
       "position": "6",
-      "description": "The birth date of the subject [in yyyy-mm-dd]"
+      "description": "The birth date of the subject [in yyyy-mm-dd]",
+      "blank_value_on_duplicate": false
     },
     "User": {
       "type": "text",
       "value": "",
       "group_id": "2",
       "position": "1",
-      "description": "The name of the experimenter"
+      "description": "The name of the experimenter",
+      "blank_value_on_duplicate": true
     },
     "Session date": {
       "type": "date",
       "value": "",
       "group_id": "2",
       "position": "2",
-      "description": "The date of the recording"
+      "description": "The date of the recording",
+      "blank_value_on_duplicate": true
     },
     "Session Number": {
       "type": "text",
       "value": "",
       "group_id": "2",
       "position": "3",
-      "description": "The consecutive number of this recording session"
+      "description": "The consecutive number of this recording session",
+      "blank_value_on_duplicate": true
     },
     "Experiment Name": {
       "type": "text",
       "value": "",
       "group_id": "2",
       "position": "4",
-      "description": "The name of the experiment"
+      "description": "The name of the experiment",
+      "blank_value_on_duplicate": true
     },
     "Modality": {
       "type": "select",
@@ -133,12 +144,18 @@
       "options": [
         "extracellular microelectrode signals",
         "intracellular microelectrode signals",
-        "optical imaging"
+        "EEG",
+        "EMG",
+        "ECog",
+        "optical imaging",
+        "behaviour",
+        "stimulation (specify below)"
       ],
       "group_id": "2",
       "position": "5",
       "description": "The modalities recorded",
-      "allow_multi_values": true
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
     },
     "Stimulation modality": {
       "type": "select",
@@ -152,7 +169,8 @@
       "group_id": "2",
       "position": "9",
       "description": "The stimulation provided during the recording",
-      "allow_multi_values": true
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
     },
     "Notes (General)": {
       "type": "text",
@@ -167,14 +185,16 @@
       "value": "",
       "group_id": "2",
       "position": "7",
-      "description": "Start time of the session"
+      "description": "Start time of the session",
+      "blank_value_on_duplicate": true
     },
     "End time": {
       "type": "text",
       "value": "",
       "group_id": "2",
       "position": "8",
-      "description": "End time of the session"
+      "description": "End time of the session",
+      "blank_value_on_duplicate": true
     },
     "Probe type used": {
       "type": "select",
@@ -194,12 +214,12 @@
       "blank_value_on_duplicate": false
     },
     "Probe identifier": {
-      "type": "text",
+      "type": "select",
       "value": "",
       "group_id": "2",
       "position": "10",
       "description": "The unique identifier of the probe used",
-      "allow_multi_values": true
+      "blank_value_on_duplicate": false
     },
     "Weight before session": {
       "type": "number",
@@ -207,7 +227,6 @@
       "group_id": "2",
       "position": "11",
       "description": "The weight of the subject [in g]",
-      "allow_multi_values": true,
       "blank_value_on_duplicate": true
     },
     "Complete Session": {
@@ -222,12 +241,11 @@
       "description": "Was the session completed as planned?",
       "blank_value_on_duplicate": true
     },
-    "Number of  trials": {
+    "Number of trials": {
       "type": "number",
       "value": "",
       "group_id": "2",
       "position": "13",
-      "allow_multi_values": true,
       "blank_value_on_duplicate": true
     },
     "Subject behaviour": {
@@ -243,7 +261,7 @@
       ],
       "group_id": "2",
       "position": "14",
-      "description": "The unique identifier of the probe used",
+      "description": "The observed behaviour of the subject",
       "allow_multi_values": true,
       "blank_value_on_duplicate": true
     },
@@ -265,7 +283,7 @@
       ],
       "group_id": "2",
       "position": "16",
-      "description": "Comments on the experiment",
+      "description": "Qualitative rating of the ephys data",
       "blank_value_on_duplicate": true
     },
     "Fluid reward": {
@@ -274,7 +292,6 @@
       "group_id": "2",
       "position": "17",
       "description": "Fluid reward administered during session [in μl]",
-      "allow_multi_values": true,
       "blank_value_on_duplicate": true
     },
     "Type of fluid reward": {
@@ -291,7 +308,7 @@
       "group_id": "2",
       "position": "18",
       "description": "The kind of fluid reward that was provided",
-      "allow_multi_values": true,
+      "allow_multi_values": false,
       "blank_value_on_duplicate": true
     },
     "Number of correct trials": {
@@ -299,7 +316,6 @@
       "value": "",
       "group_id": "2",
       "position": "19",
-      "allow_multi_values": true,
       "blank_value_on_duplicate": true
     },
     "Other reward (additional)": {
@@ -335,7 +351,7 @@
       "position": "10",
       "description": "The wavelength of the laser used for stimulation [in nm]",
       "allow_multi_values": true,
-      "blank_value_on_duplicate": true
+      "blank_value_on_duplicate": false
     },
     "Illumination protocol": {
       "type": "select",
@@ -374,7 +390,7 @@
       "description": "The line of the subject. Use same value as strain for wildtype.",
       "blank_value_on_duplicate": false
     },
-    "Cage": {
+    "Cage identifier": {
       "type": "text",
       "value": "",
       "group_id": "4",
@@ -411,7 +427,6 @@
       "group_id": "5",
       "position": "2",
       "description": "The weight of the subject [in g]",
-      "allow_multi_values": true,
       "blank_value_on_duplicate": true
     },
     "Handling Date": {
@@ -504,7 +519,7 @@
       ],
       "group_id": "8",
       "position": "3",
-      "description": "Additional reward administered",
+      "description": "Additional fluid reward administered",
       "allow_multi_values": false,
       "blank_value_on_duplicate": true
     },
@@ -567,7 +582,7 @@
       "description": "The date at which the subject was moved to another cage",
       "blank_value_on_duplicate": true
     },
-    "Cage Identifier": {
+    "Cage Identifier [updated]": {
       "type": "text",
       "value": "",
       "group_id": "10",
@@ -585,7 +600,6 @@
       "group_id": "10",
       "position": "3",
       "description": "The type of the cage",
-      "allow_multi_values": false,
       "blank_value_on_duplicate": true
     },
     "Cage enrichment": {
@@ -622,7 +636,6 @@
       "group_id": "10",
       "position": "6",
       "description": "The food provided in the cage",
-      "allow_multi_values": false,
       "blank_value_on_duplicate": true
     },
     "Cage cleaning cycle": {
@@ -631,7 +644,6 @@
       "group_id": "10",
       "position": "7",
       "description": "The cleaning cycle of the cage [in days]",
-      "allow_multi_values": false,
       "blank_value_on_duplicate": true
     },
     "Cage comments": {
@@ -688,7 +700,6 @@
       "group_id": "12",
       "position": "3",
       "description": "The method used for the culling",
-      "allow_multi_values": false,
       "blank_value_on_duplicate": true
     },
     "Notes on the Culling": {
