@@ -11,6 +11,8 @@
    installation
    setup
    usage
+   data_manager
+   developer
 
 .. mdinclude:: ../README.md
 
