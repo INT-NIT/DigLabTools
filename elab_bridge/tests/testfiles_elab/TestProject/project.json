@@ -4,5 +4,5 @@
   "customization": "customization.json",
   "validation": ["general"],
   "api_token": "ELAB_API_TOKEN",
-  "api_url": "https://lnc.elab.one/api/v2"
+  "api_url": "https://int.cle.cnrs.fr/api/v2"
 }
