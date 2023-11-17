@@ -81,3 +81,32 @@ def remove_columns(csv_file, compressed_file=None):
 def exportCSVtoXLS(csv_file, compressed_file=None):
     read_file = pd.read_csv(csv_file, na_filter=False, dtype='str')
     read_file.to_excel(r'Path', index=None, header=True)
+
+def conversion_to_odml_table_descriptor(full_elabbook_csv, session_number):
+    """
+    Create odml descriptor file based on the full elabbook csv file
+    Args:
+        full_elabbook_csv: path to the full csv file
+        session_number: number of the session you want to create a descriptor csv file for
+    Returns:
+        descriptor_elabbook_csv: csv descriptor file of the specific session given
+    """
+    df = pd.read_csv(full_elabbook_csv)
+
+    df_ses = df.loc[df['ses_number'] == session_number]
+    cols_to_melt = df_ses.columns[df_ses.columns.get_loc('ethical_protocol_id'):]
+
+    df_melted = df_ses.melt(id_vars='record_id', value_vars=cols_to_melt)
+    df_melted = df_melted.rename(columns={'variable': 'Property name'})
+
+    value_types = df_melted['value'].apply(type).astype(str)
+
+    # Extract only type of the value
+    value_types = value_types.str.split("'").str[1]
+
+    # Add the Type value corresponding to the type of the value
+    df_melted['Type'] = value_types
+
+    print(df_melted.to_string())
+
+
