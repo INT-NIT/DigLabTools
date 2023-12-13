@@ -4,6 +4,22 @@ import elabapi_python
 import pandas as pd
 
 
+def extended_download(server_config_json, experiment_tags):
+    api_client = get_elab_config(server_config_json)
+    experiment_api = elabapi_python.ExperimentsApi(api_client)
+
+    response = experiment_api.read_experiments_with_http_info(tags=experiment_tags)
+
+    experiments = response[0]
+
+    experiment_ids = []
+
+    for experiment in experiments:
+        experiment_ids.append(experiment.id)
+
+    return experiment_ids
+
+
 def download_experiment(save_to, server_config_json, experiment_id, format='json', experiment_axis='columns'):
     """
     Download an individual experiment.

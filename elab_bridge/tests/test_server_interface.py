@@ -1,6 +1,6 @@
 from diglab_utils.test_utils import (test_directory, initialize_test_dir)
 from elab_bridge.server_interface import (download_experiment, upload_template, upload_experiment,
-                                          delete_template, delete_experiment)
+                                          delete_template, delete_experiment, extended_download)
 
 SERVER_CONFIG_YAML = (test_directory / 'testfiles_elab' / 'TestProject' / 'project.json').resolve()
 
@@ -51,4 +51,23 @@ def test_download_experiment(initialize_test_dir):
 
     # cleanup
     delete_experiment(server_config_json=SERVER_CONFIG_YAML, experiment_id=experiment_id)
+    json_file.unlink()
+
+
+def test_extended_download(initialize_test_dir):
+    json_file = test_directory / 'testfiles_elab' / 'downloaded_experiment.json'
+
+    experiments_ids = extended_download(server_config_json=SERVER_CONFIG_YAML, experiment_tags=['BIDS'])
+    print(experiments_ids)
+
+    for experiment_id in experiments_ids:
+
+        experiment = download_experiment(save_to=json_file,
+                                         server_config_json=SERVER_CONFIG_YAML,
+                                         experiment_id=experiment_id,
+                                         format='json')
+        assert json_file.exists()
+        assert 'extra_fields' in experiment
+
+    # cleanup
     json_file.unlink()
