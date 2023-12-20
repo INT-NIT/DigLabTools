@@ -9,7 +9,7 @@
   "external_modules": {
     "auto_populate_fields": {
       "link": "https://github.com/ctsit/auto_populate_fields",
-      "version": "v2.5.2"
+      "version": "v2.6.0"
     }
   },
   "api_token": "REDCAP_API_TOKEN",

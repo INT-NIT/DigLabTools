@@ -57,17 +57,12 @@ def test_download_experiment(initialize_test_dir):
 def test_extended_download(initialize_test_dir):
     json_file = test_directory / 'testfiles_elab' / 'downloaded_experiment.json'
 
-    experiments_ids = extended_download(server_config_json=SERVER_CONFIG_YAML,
+    experiment = extended_download(save_to=json_file, server_config_json=SERVER_CONFIG_YAML,
                                         experiment_tags=['BIDS'])
-    print(experiments_ids)
 
-    for experiment_id in experiments_ids:
-        experiment = download_experiment(save_to=json_file,
-                                         server_config_json=SERVER_CONFIG_YAML,
-                                         experiment_id=experiment_id,
-                                         format='json')
-        assert json_file.exists()
-        assert 'extra_fields' in experiment
+    assert json_file.exists()
+    for exp in experiment:
+        assert 'extra_fields' in exp
 
     # cleanup
     json_file.unlink()
