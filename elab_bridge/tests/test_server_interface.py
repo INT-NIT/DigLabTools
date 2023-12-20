@@ -58,7 +58,7 @@ def test_extended_download(initialize_test_dir):
     json_file = test_directory / 'testfiles_elab' / 'downloaded_experiment.json'
 
     experiment = extended_download(save_to=json_file, server_config_json=SERVER_CONFIG_YAML,
-                                        experiment_tags=['BIDS'])
+                                   experiment_tags=['BIDS'])
 
     assert json_file.exists()
     for exp in experiment:
