@@ -4,6 +4,46 @@ import elabapi_python
 import pandas as pd
 
 
+def extended_download(save_to, server_config_json, experiment_tags):
+    """
+    Download an individual experiment.
+
+    Parameters
+    ----------
+    save_to: str
+        Path where to save the retrieved experiment data
+    server_config_json: str
+        Path to the json file containing the api_url and the api_token
+    experiment_tags: list
+        List of tags of your experiments
+
+    Returns
+    -------
+        (list) List of the experiment downloaded
+    """
+
+    api_client = get_elab_config(server_config_json)
+    experiment_api = elabapi_python.ExperimentsApi(api_client)
+
+    response = experiment_api.read_experiments_with_http_info(tags=experiment_tags)
+
+    experiments = response[0]
+
+    experiment_ids = []
+
+    for experiment in experiments:
+        experiment_ids.append(experiment.id)
+
+    downloaded_experiments = []
+
+    for experiment_id in experiment_ids:
+        metadata = download_experiment(save_to, server_config_json, experiment_id, format='json',
+                                       experiment_axis='columns')
+        downloaded_experiments.append(metadata)
+
+    return downloaded_experiments
+
+
 def download_experiment(save_to, server_config_json, experiment_id, format='json', experiment_axis='columns'):
     """
     Download an individual experiment.
@@ -48,10 +88,10 @@ def download_experiment(save_to, server_config_json, experiment_id, format='json
     elif format == 'csv':
         if experiment_axis == 'columns':
             df = pd.DataFrame.from_dict(extra_fields, orient='columns')
-            df.to_csv(save_to, index=False)
+            df.to_csv(save_to, mode='a', index=False)
         elif experiment_axis == 'rows':
             df = pd.DataFrame.from_dict(extra_fields, orient='index')
-            df.to_csv(save_to, index=True)
+            df.to_csv(save_to, mode='a', index=True)
         else:
             raise ValueError(f'Unknown experiment axis: {experiment_axis}. Valid arguments are '
                              f'"columns" and "rows".')
