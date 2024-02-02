@@ -88,10 +88,11 @@ def download_experiment(save_to, server_config_json, experiment_id, format='json
     elif format == 'csv':
         if experiment_axis == 'columns':
             df = pd.DataFrame.from_dict(extra_fields, orient='columns')
-            df.to_csv(save_to, mode='a', index=False)
+            df.iloc[[1]].to_csv(save_to, mode='a', index=False)
         elif experiment_axis == 'rows':
             df = pd.DataFrame.from_dict(extra_fields, orient='index')
-            df.to_csv(save_to, mode='a', index=True)
+            df = df[['value']]
+            df.to_csv(save_to, mode='a', index=True, header=False)
         else:
             raise ValueError(f'Unknown experiment axis: {experiment_axis}. Valid arguments are '
                              f'"columns" and "rows".')

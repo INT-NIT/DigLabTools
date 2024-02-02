@@ -39,6 +39,8 @@ def main(command_line=None):
                                           help="The json configuration file of the project")
     extended_download_parser.add_argument("tags", nargs='+', metavar='tags', type=str,
                                           help="List of tags of the experiments to download")
+    extended_download_parser.add_argument("-f", "--format", type=str, nargs=1, metavar='format',
+                                          help="Format to store the data (json/csv)")
 
     # parse arguments
     args = parser.parse_args(command_line)
