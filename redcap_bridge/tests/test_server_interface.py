@@ -131,7 +131,7 @@ def test_download_datadict(clean_server, initialize_test_dir):
     for oline, dline in zip(original_reader, download_reader):
         assert oline == dline
 
-
+@pytest.mark.skip('RedCap not use')
 def test_check_external_modules(clean_server, initialize_test_dir):
     """
     Download project info from server and compare to required external modules
