@@ -132,6 +132,7 @@ def test_download_datadict(clean_server, initialize_test_dir):
         assert oline == dline
 
 
+@pytest.mark.skip('RedCap not use')
 def test_check_external_modules(clean_server, initialize_test_dir):
     """
     Download project info from server and compare to required external modules
@@ -151,6 +152,7 @@ def test_download_project_settings(clean_server):
         assert key in res
 
 
+@pytest.mark.skip('RedCap not use')
 def test_configure_project_settings(clean_server, initialize_test_dir):
     """
     Test configure server project based on default values and project.json
