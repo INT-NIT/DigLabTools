@@ -30,9 +30,11 @@ def main(command_line=None):
                           help="Compress the output file (use labels and merge checkbox columns)")
 
     extended_download_parser = subparsers.add_parser('extended_download',
-                                                     help='Download experiments with extended options')
+                                                     help='Download experiments'
+                                                          ' with extended options')
     extended_download_parser.add_argument("destination", nargs=1, metavar='destination', type=str,
-                                          help="The destination directory to save the downloaded experiments.")
+                                          help="The destination directory"
+                                               " to save the downloaded experiments.")
     extended_download_parser.add_argument("config_json", nargs=1, metavar='config_json', type=str,
                                           help="The json configuration file of the project")
     extended_download_parser.add_argument("tags", nargs='+', metavar='tags', type=str,
