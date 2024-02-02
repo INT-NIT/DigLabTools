@@ -62,10 +62,9 @@ def test_extended_download(initialize_test_dir):
     tags = ['BIDS']
     output_file = test_directory / 'cli_download_test.csv'
 
-    result = subprocess.run(['ElabBridge', 'extended_download', output_file, SERVER_CONFIG_YAML] + tags,
-                            stdout=subprocess.PIPE)
+    result = subprocess.run(['ElabBridge', 'extended_download', output_file,
+                             SERVER_CONFIG_YAML] + tags, stdout=subprocess.PIPE)
 
     assert 'error' not in str(result.stdout)
     assert output_file.exists()
     output_file.unlink()
-

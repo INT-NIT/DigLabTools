@@ -131,6 +131,7 @@ def test_download_datadict(clean_server, initialize_test_dir):
     for oline, dline in zip(original_reader, download_reader):
         assert oline == dline
 
+
 @pytest.mark.skip('RedCap not use')
 def test_check_external_modules(clean_server, initialize_test_dir):
     """
@@ -149,6 +150,7 @@ def test_download_project_settings(clean_server):
     required_project_info = ['project_id', 'project_title', 'external_modules']
     for key in required_project_info:
         assert key in res
+
 
 @pytest.mark.skip('RedCap not use')
 def test_configure_project_settings(clean_server, initialize_test_dir):
