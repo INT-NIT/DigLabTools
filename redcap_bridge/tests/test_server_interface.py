@@ -150,7 +150,7 @@ def test_download_project_settings(clean_server):
     for key in required_project_info:
         assert key in res
 
-
+@pytest.mark.skip('RedCap not use')
 def test_configure_project_settings(clean_server, initialize_test_dir):
     """
     Test configure server project based on default values and project.json
