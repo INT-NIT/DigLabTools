@@ -4,7 +4,7 @@ import elabapi_python
 import pandas as pd
 
 
-def extended_download(save_to, server_config_json, experiment_tags):
+def extended_download(save_to, server_config_json, experiment_tags, format='csv'):
     """
     Download an individual experiment.
 
@@ -37,7 +37,7 @@ def extended_download(save_to, server_config_json, experiment_tags):
     downloaded_experiments = []
 
     for experiment_id in experiment_ids:
-        metadata = download_experiment(save_to, server_config_json, experiment_id, format='json',
+        metadata = download_experiment(save_to, server_config_json, experiment_id, format=format,
                                        experiment_axis='columns')
         downloaded_experiments.append(metadata)
 
