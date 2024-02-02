@@ -29,7 +29,8 @@ def main(command_line=None):
     download.add_argument("-c", "--compressed", action='store_true',
                           help="Compress the output file (use labels and merge checkbox columns)")
 
-    extended_download_parser = subparsers.add_parser('extended_download', help='Download experiments with extended options')
+    extended_download_parser = subparsers.add_parser('extended_download',
+                                                     help='Download experiments with extended options')
     extended_download_parser.add_argument("destination", nargs=1, metavar='destination', type=str,
                                           help="The destination directory to save the downloaded experiments.")
     extended_download_parser.add_argument("config_json", nargs=1, metavar='config_json', type=str,
@@ -51,7 +52,7 @@ def main(command_line=None):
             args.format = ['csv']
 
         download_experiment(args.destination[0], args.config_json[0], format=args.format[0],
-                         compressed=bool(args.compressed))
+                            compressed=bool(args.compressed))
 
     elif args.command == 'extended_download':
         extended_download(args.destination[0], args.config_json[0], args.tags)
