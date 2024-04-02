@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="72ceb14c-155a-40e8-9be6-6e5d80f0ffb1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/DigLabTools.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Common_structure.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Createdirectory.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Createfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Datatype.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DirectoryStructure.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Entity.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/CHANGES" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/CITATION.cff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/README.md.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/README.md.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/dataset_description.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/genetic_info.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/participants.tsv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/participants.tsv.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/samples.tsv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Essaie/samples.tsv.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Filestructure.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Modality.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../helper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/ressources.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/BIDS_VERSION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/SCHEMA_VERSION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/meta/associations.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/meta/context.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/meta/expression_tests.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/meta/versions.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/objects/columns.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/objects/common_principles.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/objects/datatypes.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/objects/entities.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/objects/enums.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/objects/extensions.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/objects/files.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/objects/formats.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/objects/metadata.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/objects/modalities.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/objects/suffixes.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/anat.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/asl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/common_derivatives.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/dataset.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/dwi.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/events.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/fmap.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/func.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/general.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/hints.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/micr.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/mri.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/nifti.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/nirs.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/privacy.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/checks/references.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/common_principles.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/dataset_metadata.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/directories.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/entities.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/errors.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/common/core.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/common/tables.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/deriv/imaging.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/deriv/preprocessed_data.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/anat.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/beh.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/channels.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/dwi.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/eeg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/fmap.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/func.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/ieeg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/meg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/micr.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/motion.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/nirs.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/perf.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/pet.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/photo.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/files/raw/task.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/modalities.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/anat.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/asl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/beh.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/continuous.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/derivatives/common_derivatives.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/dwi.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/eeg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/entity_rules.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/events.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/fmap.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/func.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/ieeg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/meg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/micr.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/motion.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/mri.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/nirs.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/sidecars/pet.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/tabular_data/derivatives/common_derivatives.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/tabular_data/eeg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/tabular_data/ieeg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/tabular_data/meg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/tabular_data/modality_agnostic.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/tabular_data/motion.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/tabular_data/nirs.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/tabular_data/perf.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/tabular_data/pet.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/tabular_data/physio.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema/rules/tabular_data/task.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../elab_bridge/Datastructures.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../elab_bridge/Test_export_bids.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../requirements.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2eXJ7hipyFQoSMAXANztKAb576A" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;elab/testexportbids&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/pourtoi/PycharmProjects/DigLabTools/bep32v01/ressources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-5a2391486177-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13763.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="72ceb14c-155a-40e8-9be6-6e5d80f0ffb1" name="Changes" comment="" />
+      <created>1712044823700</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712044823700</updated>
+      <workItem from="1712044824875" duration="10629000" />
+      <workItem from="1712072011762" duration="904000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
