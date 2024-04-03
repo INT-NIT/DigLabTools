@@ -45,10 +45,10 @@ class Createdirectory:
 
                 else:
                     path = dir
-                print(f"{dir} ==========> {path}")
+
                 self.dir_name.append(path)
 
-    def build_top_folder(self):
+    def build(self):
         for dir in self.dir_name:
             first_level_dir = os.path.join(self.output_path, dir)
             print("path: ", first_level_dir)
@@ -71,7 +71,7 @@ def main():
     output_path = "Essaie"  # Change this to your desired output path
     creator = Createdirectory(output_path)
     creator.layout_folder()
-    creator.build_top_folder()
+    creator.build()
     print("Directory layout created successfully.")
 
 

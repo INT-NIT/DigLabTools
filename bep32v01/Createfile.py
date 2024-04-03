@@ -43,7 +43,7 @@ class CreatFile:
     def dataset_description(self):
         self.create_file('dataset_description.json')
 
-    def creat_all_files(self):
+    def build(self):
         self.layout_file()
         for filename in self.file_name:
             self.create_empty_file(filename)
@@ -55,16 +55,24 @@ class CreatFile:
         all_file = self.filestructure.get_top_level_files_list()
 
         for filename in all_file:
+
             info = self.filestructure.get_detail_for_file(filename)
+
             if 'path' in info:
                 self.file_name.append(info['path'])
+
             elif 'stem' in info:
+
+                path = " "
                 path = info['stem']
+
                 for extension in info['extensions']:
                     path = path + extension
-                    print(path)
+                    #print(path)
                     self.file_name.append(path)
-                    path = path[:len(extension)]
+                    if extension != '':
+                        path = path[:-len(extension)]
+
         return self.file_name
 
 
@@ -72,5 +80,5 @@ if __name__ == "__main__":
     creatfile = CreatFile('Essaie')
     # d = creatfile.get_file_structure()
     # creatfile.layout_file()
-    creatfile.creat_all_files()
+    creatfile.build()
     # print(d.get_top_level_files_list())
