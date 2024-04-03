@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 class Createdirectory:
-    def __init__(self, output_path, sub_id=1, session_id=1, modality="micrs"):
+    def __init__(self, output_path, sub_id=1, session_id=1, modality="micr"):
         self.session_path = None
         self.output_path = output_path
         self.dir_name = []

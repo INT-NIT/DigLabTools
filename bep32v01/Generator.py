@@ -13,6 +13,11 @@ class Generator:
     def generate(self):
         self.directoy_builder.build()
         self.file_builder.build()
+
+
+
+
+
 if __name__ == "__main__":
     outpout = input("Enter the output folder path: ")
     generator = Generator(outpout)

@@ -64,6 +64,7 @@ class CreatFile:
                     path = path + extension
                     print(path)
                     self.file_name.append(path)
+                    path = path[:len(extension)]
         return self.file_name
 
 
