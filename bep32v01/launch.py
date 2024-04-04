@@ -16,15 +16,17 @@ SERVER_CONFIG_YAML = ('/home/pourtoi/PycharmProjects/DigLabTools/elab_bridge/tes
 
 
 def main():
-    output = input("Entrez le chemin du dossier de sortie : ")
+    output = input(
+        "Entrez le chemin du dossier de sortie : ex : /home/pourtoi/PycharmProjects/DigLabTools/bep32v01/Essaie")
 
     csv_file = os.path.join(output, 'fichier.csv')
 
     jsonformat = elab_bridge.server_interface.download_experiment(csv_file, SERVER_CONFIG_YAML, 247, format='csv')
     df = read_csv(csv_file)
-    print(df['id'])
+    print(df)
+    print(df['id'][0])
 
-    generator = Generator(output, df['id'], df['session_id'], "TestProject")
+    generator = Generator(output, df['id'][0], df['session_id'][0], "micr")
 
 
 if __name__ == "__main__":
