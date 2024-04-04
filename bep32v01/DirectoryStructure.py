@@ -16,12 +16,11 @@ class DirectoryStructure:
         self.sub_directory = None
         self.get_detail()
 
-
     def load_all_directories(self, relative_path):
-        # Obtenir le chemin absolu du fichier YAML en utilisant le chemin relatif fourni
+        # retrieve absolute path
         absolute_path = Path(relative_path).resolve()
 
-        # Vérifier si le fichier existe
+        # check if the file exist
         if absolute_path.exists():
             with open(absolute_path, 'r') as file:
                 directory_rules = yaml.safe_load(file)
@@ -72,16 +71,12 @@ class DirectoryStructure:
         return self.top_level_directory
 
 
-# Exemple d'utilisation
 if __name__ == "__main__":
-    # Chemin relatif vers le fichier YAML des règles de répertoires
     relative_path = "ressources/schema/rules/directories.yaml"
 
-    # Création d'une instance de la classe DirectoryStructure
     common_structure = DirectoryStructure()
     common_structure.get_detail()
 
-    # Affichage des répertoires chargés en utilisant les getters
     print("All:", common_structure.get_all_directory())
     print("Entity:", common_structure.get_entity_directory())
     print("par Valeur  :", common_structure.get_value_directory())

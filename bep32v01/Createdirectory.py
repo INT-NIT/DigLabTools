@@ -37,11 +37,8 @@ class Createdirectory:
                 if dir in entity_dir:
                     path = self.entity.get_entity_name(dir) + f'-{str(self.sub_id)}'
 
-
-
                 elif dir in value_dir:
                     path = self.dataType.get_data_type_value(dir)
-
 
                 else:
                     path = dir

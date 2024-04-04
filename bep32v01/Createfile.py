@@ -68,7 +68,6 @@ class CreatFile:
 
                 for extension in info['extensions']:
                     path = path + extension
-                    #print(path)
                     self.file_name.append(path)
                     if extension != '':
                         path = path[:-len(extension)]
@@ -77,8 +76,4 @@ class CreatFile:
 
 
 if __name__ == "__main__":
-    creatfile = CreatFile('Essaie')
-    # d = creatfile.get_file_structure()
-    # creatfile.layout_file()
-    creatfile.build()
-    # print(d.get_top_level_files_list())
+    pass

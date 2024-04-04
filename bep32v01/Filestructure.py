@@ -11,7 +11,6 @@ class FileStructure:
         self.top_level_directory_detail = {}
         self.get_detail()
 
-
     def get_all_files(self):
         with open("ressources/schema/objects/files.yaml", 'r') as file:
             file_rules = yaml.safe_load(file)
@@ -45,7 +44,7 @@ class FileStructure:
     def get_detail_for_directory(self, directory_name):
         return self.top_level_directory_detail.get(directory_name)
 
-    # Getters pour tous les attributs
+    # attributes Getters
     def get_relative_path(self):
         return self.relative_path
 
@@ -69,11 +68,6 @@ def main():
     file_structure = FileStructure()
     file_structure.get_detail()
     print(file_structure.get_all_files_list())
-   # print("Détail pour le fichier README:")
-    #print(file_structure.get_detail_for_file("README"))
-
-    print("Détail pour le répertoire code:")
-    #print(file_structure.get_detail_for_directory("code"))
 
 
 if __name__ == "__main__":
