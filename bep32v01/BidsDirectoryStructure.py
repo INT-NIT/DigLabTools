@@ -5,6 +5,9 @@ import helper
 
 class DirectoryStructure:
     def __init__(self):
+        """
+        Initialize a DirectoryStructure object with default parameters.
+        """
         self.relative_path = "ressources/schema/rules/directories.yaml"
         self.entity_directory = []
         self.all_directory = None
@@ -17,10 +20,19 @@ class DirectoryStructure:
         self.get_detail()
 
     def load_all_directories(self, relative_path):
-        # retrieve absolute path
+        """
+        Load all directories from a YAML file.
+
+        Args:
+            relative_path (str): The relative path to the YAML file.
+
+        Returns:
+            list: A list of all directories.
+        """
+        # Retrieve absolute path
         absolute_path = Path(relative_path).resolve()
 
-        # check if the file exist
+        # Check if the file exists
         if absolute_path.exists():
             with open(absolute_path, 'r') as file:
                 directory_rules = yaml.safe_load(file)
@@ -34,40 +46,86 @@ class DirectoryStructure:
         return self.all_directory
 
     def load_all_directoires_all_details(self, relative_path):
+        """
+        Load all directory details from a YAML file.
+
+        Args:
+            relative_path (str): The relative path to the YAML file.
+        """
         self.entity_directory, self.value_directory, self.required_directory, self.optional_directory, self.recommended_directory, self.top_level_directory = helper.get_directories_with_details(
             relative_path)
 
     def get_detail(self):
+        """
+        Get details of all directories.
+        """
         self.load_all_directories(self.relative_path)
         self.load_all_directoires_all_details(self.relative_path)
         return self
 
-    # Getter pour all_directory
+    # Getters for attributes
+
     def get_all_directory(self):
+        """
+        Get all directories.
+
+        Returns:
+            list: A list of all directories.
+        """
         return self.all_directory
 
-    # Getter pour entity_directory
     def get_entity_directory(self):
+        """
+        Get entity directories.
+
+        Returns:
+            list: A list of entity directories.
+        """
         return self.entity_directory
 
-    # Getter pour value_directory
     def get_value_directory(self):
+        """
+        Get value directories.
+
+        Returns:
+            list: A list of value directories.
+        """
         return self.value_directory
 
-    # Getter pour required_directory
     def get_required_directory(self):
+        """
+        Get required directories.
+
+        Returns:
+            list: A list of required directories.
+        """
         return self.required_directory
 
-    # Getter pour optional_directory
     def get_optional_directory(self):
+        """
+        Get optional directories.
+
+        Returns:
+            list: A list of optional directories.
+        """
         return self.optional_directory
 
-    # Getter pour recommended_directory
     def get_recommended_directory(self):
+        """
+        Get recommended directories.
+
+        Returns:
+            list: A list of recommended directories.
+        """
         return self.recommended_directory
 
-    # Getter pour top_level_directory
     def get_top_level_directory(self):
+        """
+        Get top-level directories.
+
+        Returns:
+            list: A list of top-level directories.
+        """
         return self.top_level_directory
 
 

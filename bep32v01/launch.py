@@ -5,7 +5,7 @@ from pandas import read_csv
 import elab_bridge
 import json
 from elab_bridge import server_interface
-from Generator import Generator
+from BidsEmptyRepositoryGenerator import Generator
 import os
 
 from diglab_utils.test_utils import (test_directory, initialize_test_dir)

@@ -3,6 +3,12 @@ import yaml
 
 class Modality:
     def __init__(self, relative_path="ressources/schema/objects/modalities.yaml"):
+        """
+        Initialize a Modality object with a relative path to a YAML file containing modalities.
+
+        Args:
+            relative_path (str): The relative path to the YAML file containing modalities.
+        """
         self.relative_path = relative_path
         self.modalities = []
 
@@ -13,6 +19,9 @@ class Modality:
 
 
 def main():
+    """
+    Main function to demonstrate the usage of the Modality class.
+    """
     modality = Modality()
     print("Modalités :")
     print(modality.modalities)

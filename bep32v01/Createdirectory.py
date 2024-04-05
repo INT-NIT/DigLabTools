@@ -1,16 +1,22 @@
 import json
 import os
-from Filestructure import FileStructure
-from DirectoryStructure import DirectoryStructure
-
-from Entity import Entity
-from Datatype import DataTypes
-
+from BidsFilestructure import FileStructure
+from BidsDirectoryStructure import DirectoryStructure
+from BidsEntity import Entity
+from BidsDatatype import DataTypes
 from pathlib import Path
-
 
 class Createdirectory:
     def __init__(self, output_path, sub_id=1, session_id=1, modality="micr"):
+        """
+        Initialize a Createdirectory object with output path, subject ID, session ID, and modality.
+
+        Args:
+            output_path (str): The path where directories will be created.
+            sub_id (int): Subject ID.
+            session_id (int): Session ID.
+            modality (str): Modality name.
+        """
         self.session_path = None
         self.output_path = output_path
         self.dir_name = []
@@ -21,10 +27,13 @@ class Createdirectory:
         self.dataType = DataTypes()
         self.sub_id = sub_id
         self.session_id = session_id
-        sub_directory = []
         self.modality = modality
+        sub_directory = []
 
     def layout_folder(self):
+        """
+        Create directory layout based on BIDS directory structure.
+        """
         top_level_dir = self.directorystructure.get_top_level_directory()
         entity_dir = self.directorystructure.get_entity_directory()
         value_dir = self.directorystructure.get_value_directory()
@@ -33,7 +42,6 @@ class Createdirectory:
 
             path = ""
             if dir in top_level_dir:
-                # print(dir)
                 if dir in entity_dir:
                     path = self.entity.get_entity_name(dir) + f'-{str(self.sub_id)}'
 
@@ -46,6 +54,9 @@ class Createdirectory:
                 self.dir_name.append(path)
 
     def build(self):
+        """
+        Build the directory structure.
+        """
         for dir in self.dir_name:
             first_level_dir = os.path.join(self.output_path, dir)
             print("path: ", first_level_dir)
@@ -65,6 +76,9 @@ class Createdirectory:
 
 
 def main():
+    """
+    Main function to create directory layout.
+    """
     output_path = "Essaie"  # Change this to your desired output path
     creator = Createdirectory(output_path)
     creator.layout_folder()
