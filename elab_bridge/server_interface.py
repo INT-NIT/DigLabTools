@@ -45,7 +45,8 @@ def extended_download(save_to, server_config_json, experiment_tags=None,
     combined_df = pd.DataFrame()
 
     for exp_id in experiment_ids:
-        experiment_body, status_get, http_dict = experiment_api.get_experiment_with_http_info(exp_id)
+        experiment_body, status_get, http_dict = (
+            experiment_api.get_experiment_with_http_info(exp_id))
 
         if status_get != 200:
             raise ValueError('Could not download experiment. '
