@@ -1,7 +1,7 @@
 import subprocess
 import pytest
 
-from elab_bridge.server_interface import upload_template, download_experiment
+from elab_bridge.server_interface import upload_template
 from diglab_utils.test_utils import (test_directory, initialize_test_dir)
 from elab_bridge.tests.test_server_interface import SERVER_CONFIG_YAML
 
