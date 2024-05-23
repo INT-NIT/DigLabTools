@@ -4,9 +4,9 @@ import elabapi_python
 import pandas as pd
 
 
-def extended_download(save_to, server_config_json, experiment_tags, format='csv'):
+def extended_download(save_to, server_config_json, experiment_tags=None, format='csv', experiment_axis='columns'):
     """
-    Download an individual experiment.
+    Download experiments based on tags or a specific experiment by ID.
 
     Parameters
     ----------
@@ -14,92 +14,69 @@ def extended_download(save_to, server_config_json, experiment_tags, format='csv'
         Path where to save the retrieved experiment data
     server_config_json: str
         Path to the json file containing the api_url and the api_token
-    experiment_tags: list
-        List of tags of your experiments
-
-    Returns
-    -------
-        (list) List of the experiment downloaded
-    """
-
-    api_client = get_elab_config(server_config_json)
-    experiment_api = elabapi_python.ExperimentsApi(api_client)
-
-    response = experiment_api.read_experiments_with_http_info(tags=experiment_tags)
-
-    experiments = response[0]
-
-    experiment_ids = []
-
-    for experiment in experiments:
-        experiment_ids.append(experiment.id)
-
-    downloaded_experiments = []
-
-    for experiment_id in experiment_ids:
-        metadata = download_experiment(save_to, server_config_json, experiment_id, format=format,
-                                       experiment_axis='columns')
-        downloaded_experiments.append(metadata)
-
-    return downloaded_experiments
-
-
-def download_experiment(save_to, server_config_json, experiment_id, format='json', experiment_axis='columns'):
-    """
-    Download an individual experiment.
-
-    Parameters
-    ----------
-    save_to: str
-        Path where to save the retrieved experiment data
-    server_config_json: str
-        Path to the json file containing the api_url and the api_token
-    experiment_id: int
-        ID of the experiment you want to download
-    format: 'csv', 'json'
-        Format of the retrieved records.
-        Default: 'json'
+    experiment_tags: list, optional
+        List of tags of your experiments. Default is None.
+    experiment_id: int, optional
+        ID of the experiment you want to download. Default is None.
+    format: str
+        Format of the retrieved records. Options are 'csv' or 'json'. Default: 'csv'
     experiment_axis: str
         Option to control whether in the csv format experiments are arranged in columns or rows.
         Default: 'columns'
 
     Returns
     -------
-        (dict) Experiment body as registered on the server
+    list
+        List of the experiment(s) downloaded
     """
 
     api_client = get_elab_config(server_config_json)
     experiment_api = elabapi_python.ExperimentsApi(api_client)
 
-    experiment_body, status_get, http_dict = experiment_api.get_experiment_with_http_info(experiment_id)
-
-    if status_get != 200:
-        raise ValueError('Could not download experiment. '
-                         'Check your internet connection and permissions.')
-
-    experiment_json = experiment_body.metadata
-    metadata = json.loads(experiment_json)
-    extra_fields = metadata.get("extra_fields", {})
-
-    if format == 'json':
-        with open(save_to, 'w') as f:
-            json.dump(extra_fields, f)
-
-    elif format == 'csv':
-        if experiment_axis == 'columns':
-            df = pd.DataFrame.from_dict(extra_fields, orient='columns')
-            df.iloc[[1]].to_csv(save_to, mode='a', index=False)
-        elif experiment_axis == 'rows':
-            df = pd.DataFrame.from_dict(extra_fields, orient='index')
-            df = df[['value']]
-            df.to_csv(save_to, mode='a', index=True, header=False)
-        else:
-            raise ValueError(f'Unknown experiment axis: {experiment_axis}. Valid arguments are '
-                             f'"columns" and "rows".')
+    if experiment_tags:
+        response = experiment_api.read_experiments_with_http_info(tags=experiment_tags)
+        experiments = response[0]
+        experiment_ids = [experiment.id for experiment in experiments]
     else:
-        raise ValueError(f'Unknows format: {format}. Valid arguments are "json" and "csv".')
+        raise ValueError("Either experiment_tags or experiment_id must be provided.")
 
-    return metadata
+    downloaded_experiments = []
+    combined_df = pd.DataFrame()
+
+    for exp_id in experiment_ids:
+        experiment_body, status_get, http_dict = experiment_api.get_experiment_with_http_info(exp_id)
+
+        if status_get != 200:
+            raise ValueError('Could not download experiment. '
+                             'Check your internet connection and permissions.')
+
+        experiment_json = experiment_body.metadata
+        metadata = json.loads(experiment_json)
+        extra_fields = metadata.get("extra_fields", {})
+
+        if format == 'json':
+            with open(save_to, 'w') as f:
+                json.dump(extra_fields, f)
+        elif format == 'csv':
+            if experiment_axis == 'columns':
+                df = pd.DataFrame.from_dict(extra_fields, orient='columns')
+                combined_df = pd.concat([combined_df, df.iloc[[1]]], ignore_index=True, sort=False)
+            elif experiment_axis == 'rows':
+                df = pd.DataFrame.from_dict(extra_fields, orient='index')
+                df = df[['value']].transpose()
+                combined_df = pd.concat([combined_df, df], ignore_index=True, sort=False)
+            else:
+                raise ValueError(f'Unknown experiment axis: {experiment_axis}. Valid arguments are '
+                                 f'"columns" and "rows".')
+        else:
+            raise ValueError(f'Unknown format: {format}. Valid arguments are "json" and "csv".')
+
+        downloaded_experiments.append(metadata)
+
+    if format == 'csv':
+        combined_df.to_csv(save_to, index=False)
+
+    return downloaded_experiments
 
 
 def upload_experiment(experiment_file, server_config_json, experiment_title):
