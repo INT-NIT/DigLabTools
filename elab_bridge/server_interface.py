@@ -4,7 +4,8 @@ import elabapi_python
 import pandas as pd
 
 
-def extended_download(save_to, server_config_json, experiment_tags=None, format='csv', experiment_axis='columns'):
+def extended_download(save_to, server_config_json, experiment_tags=None,
+                      format='csv', experiment_axis='columns'):
     """
     Download experiments based on tags or a specific experiment by ID.
 
