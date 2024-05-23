@@ -71,6 +71,7 @@ def test_upload_records(clean_server, initialize_test_dir):
     # test record.csv contains 2 records
     assert res == 2
 
+
 @pytest.mark.skip('RedCap not up to date')
 def test_download_records(clean_server, initialize_test_dir):
     """
