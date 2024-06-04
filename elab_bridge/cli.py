@@ -2,7 +2,7 @@
 Provide CLI for the main functionalities of the elab bridge
 """
 
-from elab_bridge.server_interface import download_experiment, extended_download
+from elab_bridge.server_interface import extended_download
 
 
 def main(command_line=None):
