@@ -72,6 +72,7 @@ def test_upload_records(clean_server, initialize_test_dir):
     assert res == 2
 
 
+@pytest.mark.skip('RedCap not up to date')
 def test_download_records(clean_server, initialize_test_dir):
     """
     Download datadict from server and compare to previously uploaded datadict
