@@ -2,7 +2,11 @@ import json
 
 import argparse
 
-import argparse
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def loadfile(jsonfile):
@@ -196,13 +200,67 @@ def complete_jsonfile1_with_jsonfile2_groupefield(jsonfiletocompleted, jsonfilet
                             output_jsonfile=json_completed)
 
 
+def orderjsonfile(jsonfile, list_group_field_name, output_jsonfile=None):
+    try:
+        # Loading the JSON file
+        Data = loadfile(jsonfile)
+        Dict_group_field_map = {}
+
+        if output_jsonfile is None:
+            output_jsonfile = jsonfile
+
+        list_group_field = [group['name'] for group in Data['elabftw']['extra_fields_groups']]
+
+        # Assert that all group names are in the list
+        assert all([group_name in list_group_field for group_name in list_group_field_name])
+
+        for group in Data['elabftw']['extra_fields_groups']:
+            for field_name in list_group_field:
+                if group['name'] == field_name:
+                    Dict_group_field_map[group['id']] = list_group_field_name.index(field_name)
+                    break
+
+        # Reorganizing group fields
+        for group in Data['elabftw']['extra_fields_groups']:
+            group['id'] = Dict_group_field_map[group['id']]
+
+        # Reorganizing fields
+        for field in Data['extra_fields'].values():
+            field['group_id'] = Dict_group_field_map[field['group_id']]
+
+        # Saving the modified file
+        savefile(jsonfile, Data)
+        return Data
+
+    except AssertionError:
+        # Constructing the error message
+        error_message = (f"Error: The list {list_group_field_name} contains elements that are not "
+                         f"present in {list_group_field}.")
+
+        # Displaying the error message to the user
+        print(error_message)
+
+        # Recording the error in the log
+        logging.error(error_message)
+
+    except Exception as e:
+        # Handling unexpected errors
+        error_message = f"An unexpected error occurred: {str(e)}"
+
+        # Displaying the error message to the user
+        print(error_message)
+
+        # Recording the error in the log
+        logging.error(error_message)
+
+
 if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description="Extract and merge JSON files.")
     parser.add_argument(
         "operation",
-        choices=["extract", "merge"],
+        choices=["extract", "merge", "order"],
         help="Specify the operation to perform: 'extract' to extract fields or 'merge' to combine "
              "files.",
     )
@@ -222,6 +280,13 @@ if __name__ == '__main__':
     parser.add_argument("--new_indice", help="The new groupfield ID for the target JSON file.",
                         type=int)
     parser.add_argument("--json_completed", help="The path to save the completed JSON file.",
+                        type=str, default=None)
+
+    # Arguments for ordering
+    parser.add_argument("--jsonfile", help="The JSON file path for ordering.", type=str)
+    parser.add_argument("--list_group_field_name", help="The list of group field names to order.",
+                        type=str, nargs='+')
+    parser.add_argument("--output_jsonfile", help="The path to save the ordered JSON file.",
                         type=str, default=None)
 
     args = parser.parse_args()
@@ -248,3 +313,10 @@ if __name__ == '__main__':
                 args.json_completed,
             )
             print(f"Merging completed and saved to {args.json_completed}.")
+    elif args.operation == "order":
+        if not all([args.jsonfile, args.list_group_field_name]):
+            print("Error: Missing arguments for the 'order' operation.")
+        else:
+            orderjsonfile(args.jsonfile, args.list_group_field_name, args.output_jsonfile)
+            print(f"Ordering completed and saved to {args.jsonfile}.")
+
