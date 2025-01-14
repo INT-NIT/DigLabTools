@@ -196,9 +196,6 @@ def complete_jsonfile1_with_jsonfile2_groupefield(jsonfiletocompleted, jsonfilet
                             output_jsonfile=json_completed)
 
 
-
-
-
 if __name__ == '__main__':
     import argparse
 
@@ -206,7 +203,8 @@ if __name__ == '__main__':
     parser.add_argument(
         "operation",
         choices=["extract", "merge"],
-        help="Specify the operation to perform: 'extract' to extract fields or 'merge' to combine files.",
+        help="Specify the operation to perform: 'extract' to extract fields or 'merge' to combine "
+             "files.",
     )
 
     # Arguments for extracting
