@@ -204,54 +204,55 @@ def orderjsonfile(jsonfile, list_group_field_name, output_jsonfile=None):
     try:
         # Loading the JSON file
         Data = loadfile(jsonfile)
-        Dict_group_field_map = {}
-
         if output_jsonfile is None:
             output_jsonfile = jsonfile
 
+        # Ensure required keys are present
+        if 'elabftw' not in Data or 'extra_fields_groups' not in Data['elabftw']:
+            raise KeyError("Missing 'extra_fields_groups' in JSON data.")
+
         list_group_field = [group['name'] for group in Data['elabftw']['extra_fields_groups']]
+        logger.debug(f"List of group fields: {list_group_field}")
 
-        # Assert that all group names are in the list
-        assert all([group_name in list_group_field for group_name in list_group_field_name])
+        # Validate group names
+        missing_groups = [group_name for group_name in list_group_field_name if group_name not in list_group_field]
+        if missing_groups:
+            raise ValueError(f"Missing groups in data: {missing_groups}")
 
+        # Create mapping for group IDs
+        Dict_group_field_map = {}
         for group in Data['elabftw']['extra_fields_groups']:
-            for field_name in list_group_field:
-                if group['name'] == field_name:
-                    Dict_group_field_map[group['id']] = list_group_field_name.index(field_name)
-                    break
+            if group['name'] in list_group_field_name:
+                Dict_group_field_map[group['id']] = list_group_field_name.index(group['name'])+1
+        logger.debug(f"Group field map: {Dict_group_field_map}")
 
-        # Reorganizing group fields
+        # Reorganize group fields
         for group in Data['elabftw']['extra_fields_groups']:
-            group['id'] = Dict_group_field_map[group['id']]
+            if group['id'] in Dict_group_field_map:
+                group['id'] = Dict_group_field_map[group['id']]
+        Data['elabftw']['extra_fields_groups'] = sorted(Data['elabftw']['extra_fields_groups'], key=lambda x: x['id'])
+        logger.debug(f"Reorganized group fields: {Data['elabftw']['extra_fields_groups']}")
 
-        # Reorganizing fields
-        for field in Data['extra_fields'].values():
-            field['group_id'] = Dict_group_field_map[field['group_id']]
+        # Reorganize fields
+        for field in Data.get('extra_fields', {}).values():
+            if field['group_id'] in Dict_group_field_map:
+                field['group_id'] = Dict_group_field_map[field['group_id']]
+        logger.debug(f"Reorganized fields: {Data.get('extra_fields')}")
 
-        # Saving the modified file
-        savefile(jsonfile, Data)
+        # Save the updated JSON
+        savefile(output_jsonfile, Data)
+        logger.info(f"Updated JSON saved to {output_jsonfile}")
         return Data
 
-    except AssertionError:
-        # Constructing the error message
-        error_message = (f"Error: The list {list_group_field_name} contains elements that are not "
-                         f"present in {list_group_field}.")
-
-        # Displaying the error message to the user
-        print(error_message)
-
-        # Recording the error in the log
-        logging.error(error_message)
-
+    except AssertionError as e:
+        logger.error(f"AssertionError: {str(e)}")
+    except KeyError as e:
+        logger.error(f"KeyError: {str(e)}")
+    except ValueError as e:
+        logger.error(f"ValueError: {str(e)}")
     except Exception as e:
-        # Handling unexpected errors
-        error_message = f"An unexpected error occurred: {str(e)}"
-
-        # Displaying the error message to the user
-        print(error_message)
-
-        # Recording the error in the log
-        logging.error(error_message)
+        logger.error(f"An unexpected error occurred: {str(e)}")
+    return None
 
 
 if __name__ == '__main__':
@@ -319,4 +320,3 @@ if __name__ == '__main__':
         else:
             orderjsonfile(args.jsonfile, args.list_group_field_name, args.output_jsonfile)
             print(f"Ordering completed and saved to {args.jsonfile}.")
-
