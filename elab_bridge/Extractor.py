@@ -13,6 +13,12 @@ def loadfile(jsonfile):
     try:
         with open(jsonfile, 'r') as f:
             data = json.load(f)
+            # tranforme to int all id an dgroupe id in the json file
+            for group in data['elabftw']['extra_fields_groups']:
+                group['id'] = int(group['id'])
+            for field in data['extra_fields'].values():
+                field['group_id'] = int(field['group_id'])
+
             return data
     except json.JSONDecodeError as e:
         raise ValueError(f"Error decoding JSON: {e}")
@@ -108,32 +114,37 @@ def add_a_groupfield(jsonfile, indice, groupfield_dict_list, group_name, output_
     :param output_jsonfile: The path to save the updated JSON file.
     :return: The updated JSON data.
     """
-    with open(jsonfile, 'r') as f:
-        data = json.load(f)
 
+    data = loadfile(jsonfile)
+
+    # Increment IDs of existing groups if they are greater than or equal to the new index
     for group in data['elabftw']['extra_fields_groups']:
         if group['id'] >= indice:
             group['id'] += 1
 
+    # Add the new group
     data['elabftw']['extra_fields_groups'].append({'id': indice, 'name': group_name})
     data['elabftw']['extra_fields_groups'] = sorted(data['elabftw']['extra_fields_groups'],
                                                     key=lambda x: x['id'])
 
+    # Update the group_id in existing extra fields
     extra_fields = data.get('extra_fields', {})
-
     for k, v in extra_fields.items():
-        if int(v.get('group_id')) >= indice:
-            v['group_id'] += 1
+        group_id = int(v.get('group_id', 0))
+        if group_id >= indice:
+            v['group_id'] = group_id + 1
 
+    # Add the new fields to the extra fields
     for a_dict in groupfield_dict_list:
-        for k, v in a_dict.items():
-            extra_fields[k] = v
+        for field_name, field_data in a_dict.items():
+            field_data['group_id'] = indice  # Assign the new group ID as an integer
+            extra_fields[field_name] = field_data
 
     data['extra_fields'] = extra_fields
 
     if output_jsonfile is not None:
-        with open(output_jsonfile, "w") as f:
-            json.dump(data, f, indent=4)
+        with open(output_jsonfile, 'w') as f_out:
+            json.dump(data, f_out, indent=4)
 
     return data
 
@@ -215,7 +226,8 @@ def orderjsonfile(jsonfile, list_group_field_name, output_jsonfile=None):
         logger.debug(f"List of group fields: {list_group_field}")
 
         # Validate group names
-        missing_groups = [group_name for group_name in list_group_field_name if group_name not in list_group_field]
+        missing_groups = [group_name for group_name in list_group_field_name if
+                          group_name not in list_group_field]
         if missing_groups:
             raise ValueError(f"Missing groups in data: {missing_groups}")
 
@@ -223,14 +235,15 @@ def orderjsonfile(jsonfile, list_group_field_name, output_jsonfile=None):
         Dict_group_field_map = {}
         for group in Data['elabftw']['extra_fields_groups']:
             if group['name'] in list_group_field_name:
-                Dict_group_field_map[group['id']] = list_group_field_name.index(group['name'])+1
+                Dict_group_field_map[group['id']] = list_group_field_name.index(group['name']) + 1
         logger.debug(f"Group field map: {Dict_group_field_map}")
 
         # Reorganize group fields
         for group in Data['elabftw']['extra_fields_groups']:
             if group['id'] in Dict_group_field_map:
                 group['id'] = Dict_group_field_map[group['id']]
-        Data['elabftw']['extra_fields_groups'] = sorted(Data['elabftw']['extra_fields_groups'], key=lambda x: x['id'])
+        Data['elabftw']['extra_fields_groups'] = sorted(Data['elabftw']['extra_fields_groups'],
+                                                        key=lambda x: x['id'])
         logger.debug(f"Reorganized group fields: {Data['elabftw']['extra_fields_groups']}")
 
         # Reorganize fields

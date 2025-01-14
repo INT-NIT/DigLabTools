@@ -75,7 +75,6 @@ class TestJsonOperations(unittest.TestCase):
         )
         os.unlink(output_file.name)
 
-
     def test_orderjsonfile(self):
         """Test ordering JSON file."""
         # Define ordered group names
@@ -104,6 +103,60 @@ class TestJsonOperations(unittest.TestCase):
         # Additional debug print (optional)
         print(
             f"Ordered data groups: {[group['name'] for group in ordered_data['elabftw']['extra_fields_groups']]}")
+
+    def test_add_a_groupfield(self):
+        """Test adding groupfields at various indices."""
+        # Define new groupfields
+        new_field1 = [{"field_3": {"group_id": 2, "value": "Test 3"}}]
+        groupe_name1 = "new group 1"
+
+        new_field2 = [{"field_4": {"group_id": 5, "value": "Test 4"}}]
+        groupe_name2 = "middle group"
+
+        new_field3 = [{"field_5": {"group_id": 10, "value": "Test 5"}}]
+        groupe_name3 = "final group"
+
+        # Add a groupfield at index 1
+        result1 = add_a_groupfield(self.temp_file.name, 1, new_field1, groupe_name1)
+
+        # Add another groupfield in the middle (index 5)
+        result2 = add_a_groupfield(self.temp_file.name, 5, new_field2, groupe_name2)
+
+        # Add another groupfield at the final index (index 10)
+        result3 = add_a_groupfield(self.temp_file.name, 10, new_field3, groupe_name3)
+
+        # Assertions for the first group
+        self.assertIn("elabftw", result1, "'elabftw' key missing in result")
+        self.assertIn("extra_fields_groups", result1["elabftw"],
+                      "'extra_fields_groups' key missing")
+        self.assertTrue(
+            any(group['id'] == 1 and group['name'] == groupe_name1 for group in
+                result1["elabftw"]["extra_fields_groups"]),
+            "New groupfield 1 not added"
+        )
+        self.assertIn("field_3", result1["extra_fields"], "'field_3' missing in extra_fields")
+        self.assertEqual(result1["extra_fields"]["field_3"]["group_id"], 1,
+                         "Incorrect group_id for field_3")
+
+        # Assertions for the middle group
+        self.assertTrue(
+            any(group['id'] == 5 and group['name'] == groupe_name2 for group in
+                result2["elabftw"]["extra_fields_groups"]),
+            "Middle groupfield not added"
+        )
+        self.assertIn("field_4", result2["extra_fields"], "'field_4' missing in extra_fields")
+        self.assertEqual(result2["extra_fields"]["field_4"]["group_id"], 5,
+                         "Incorrect group_id for field_4")
+
+        # Assertions for the final group
+        self.assertTrue(
+            any(group['id'] == 10 and group['name'] == groupe_name3 for group in
+                result3["elabftw"]["extra_fields_groups"]),
+            "Final groupfield not added"
+        )
+        self.assertIn("field_5", result3["extra_fields"], "'field_5' missing in extra_fields")
+        self.assertEqual(result3["extra_fields"]["field_5"]["group_id"], 10,
+                         "Incorrect group_id for field_5")
 
 
 if __name__ == '__main__':
