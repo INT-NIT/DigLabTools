@@ -1,0 +1,53 @@
+{
+  "elabftw": {
+    "display_main_text": false,
+    "extra_fields_groups": [
+      {
+        "id": 8,
+        "name": "General EEG Infos"
+      },
+      {
+        "id": 10,
+        "name": "Default"
+      }
+    ]
+  },
+  "extra_fields": {
+    "EEGGround": {
+      "type": "text",
+      "value": "",
+      "group_id": 8,
+      "description": "Location of the ground electrode. Ex: 'placed on right mastoid (M2)'"
+    },
+    "default EEG": {
+      "type": "text",
+      "value": "",
+      "group_id": 10
+    },
+    "EEGReference": {
+      "type": "text",
+      "value": "",
+      "group_id": 8,
+      "required": true,
+      "description": "General description of the reference scheme used (when applicable) of location of the reference electrode in the raw recordings.  \n Ex: 'N/A or Single electrode placed on FCz or Multiple references'"
+    },
+    "SoftwareFilters": {
+      "type": "text",
+      "value": "",
+      "group_id": 8,
+      "required": true,
+      "description": "Object of temporal software filters applied. Each key-value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key-value                pairs. \n Ex: '{\"Anti-aliasing filter\": {\"half-amplitude cutoff (Hz)\": 500, \"Roll-off\": \"6dB/Octave\"}} or N/A'"
+    },
+    "SamplingFrequency": {
+      "type": "number",
+      "unit": "Hz",
+      "units": [
+        "Hz"
+      ],
+      "value": "",
+      "group_id": 8,
+      "required": true,
+      "description": "Sampling frequency (in Hz) of all the data in the recording, regardless of their type. \n Ex: '2400' "
+    }
+  }
+}

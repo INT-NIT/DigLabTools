@@ -1,0 +1,260 @@
+{
+  "elabftw": {
+    "extra_fields_groups": [
+      {
+        "id": 1,
+        "name": "EyeTracking_BIDS_METADATA"
+      }
+    ]
+  },
+  "extra_fields": {
+    "Columns": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 3,
+      "description": "Names of columns in file.",
+      "blank_value_on_duplicate": false
+    },
+    "Comment": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "description": "Add comments if needed"
+    },
+    "PhysioType": {
+      "type": "text",
+      "value": "eyetrack",
+      "group_id": 1,
+      "position": 8,
+      "description": "Defines the specific type of physiological recording",
+      "blank_value_on_duplicate": false
+    },
+    "RecordedEye": {
+      "type": "select",
+      "value": [
+        "left"
+      ],
+      "options": [
+        "left",
+        "right",
+        "cyclopean"
+      ],
+      "group_id": 1,
+      "position": 14,
+      "description": "Indicates the eye tracked",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": false
+    },
+    "Manufacturer": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 5,
+      "description": "Manufacturer of the equipment that produced the measurements.",
+      "blank_value_on_duplicate": false
+    },
+    "PupilFitMethod": {
+      "type": "select",
+      "value": "centre-of-mass",
+      "options": [
+        "centre-of-mass",
+        "ellipse"
+      ],
+      "group_id": 1,
+      "position": 24,
+      "description": "The method employed for fitting the pupil",
+      "blank_value_on_duplicate": false
+    },
+    "RawDataFilters": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 25,
+      "description": "Filter settings applied to eye-movement raw data.",
+      "blank_value_on_duplicate": false
+    },
+    "CalibrationType": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 16,
+      "description": "The type of the calibration procedure executed last",
+      "blank_value_on_duplicate": false
+    },
+    "CalibrationUnit": {
+      "type": "select",
+      "value": "pixel",
+      "options": [
+        "pixel",
+        "mm",
+        "cm"
+      ],
+      "group_id": 1,
+      "position": 17,
+      "description": "Unit of \"CalibrationPosition\". ",
+      "blank_value_on_duplicate": false
+    },
+    "CalibrationCount": {
+      "type": "number",
+      "unit": "",
+      "units": [],
+      "value": "",
+      "group_id": 1,
+      "position": 14,
+      "description": "The number of calibrations corresponding to this run.",
+      "blank_value_on_duplicate": false
+    },
+    "SoftwareVersions": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 7,
+      "description": "Manufacturer's designation of software version",
+      "blank_value_on_duplicate": false
+    },
+    "EyeCameraSettings": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 18,
+      "description": "A field to store any settings that influence the resolution and quality of the eye imagery",
+      "blank_value_on_duplicate": false
+    },
+    "EyeTrackingMethod": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 24,
+      "description": "Method used to track gaze or pupil position",
+      "blank_value_on_duplicate": false
+    },
+    "SamplingFrequency": {
+      "type": "number",
+      "unit": "",
+      "units": [],
+      "value": "",
+      "group_id": 1,
+      "position": 1,
+      "description": "Sampling frequency (in Hz) of all the data in the recording",
+      "blank_value_on_duplicate": false
+    },
+    "DeviceSerialNumber": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 4,
+      "description": "The serial number of the equipment that produced the measurements",
+      "blank_value_on_duplicate": false
+    },
+    "EyeTrackerDistance": {
+      "type": "number",
+      "unit": "meter",
+      "units": [
+        "meter",
+        "cm"
+      ],
+      "value": "",
+      "group_id": 1,
+      "position": 19,
+      "description": "Distance (in meters) between the eye-tracker and the participant eye(s).",
+      "blank_value_on_duplicate": false
+    },
+    "CalibrationPosition": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 15,
+      "description": "The type of the calibration procedure executed last",
+      "blank_value_on_duplicate": false
+    },
+    "GazeMappingSettings": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 22,
+      "description": "Description of gaze-mapping settings. ",
+      "blank_value_on_duplicate": false
+    },
+    "ScreenAOIDefinition": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 26,
+      "description": "A description of the shape of the Screen AOIs and what coordinates are used.",
+      "blank_value_on_duplicate": false
+    },
+    "SampleCoordinateUnits": {
+      "type": "select",
+      "value": "pixel",
+      "options": [
+        "pixel",
+        "mm",
+        "cm"
+      ],
+      "group_id": 1,
+      "position": 11,
+      "blank_value_on_duplicate": false
+    },
+    "EnvironmentCoordinates": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 9,
+      "description": "Coordinates origin (or zero), for gaze-on-screen coordinates",
+      "blank_value_on_duplicate": false
+    },
+    "ManufacturersModelName": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 6,
+      "description": "Manufacturer's model name of the equipment that produced the measurements.",
+      "blank_value_on_duplicate": false
+    },
+    "SampleCoordinateSystem": {
+      "type": "select",
+      "value": "gaze-on-screen",
+      "options": [
+        "gaze-on-screen",
+        "eye-in-head",
+        "gaze-in-world"
+      ],
+      "group_id": 1,
+      "position": 12,
+      "description": "Coordinate system of the gaze position recordings",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": false
+    },
+    "AverageCalibrationError": {
+      "type": "number",
+      "unit": "",
+      "units": [],
+      "value": "",
+      "group_id": 1,
+      "position": 13,
+      "description": "Average calibration error in visual degree. ",
+      "blank_value_on_duplicate": false
+    },
+    "MaximalCalibrationError": {
+      "type": "number",
+      "unit": "degrees",
+      "units": [
+        "degrees"
+      ],
+      "value": "",
+      "group_id": 1,
+      "position": 23,
+      "description": "Maximal calibration error in degrees",
+      "blank_value_on_duplicate": false
+    },
+    "FeatureDetectionSettings": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 21,
+      "description": "Description of feature detection settings. For example, minimum/maximum pupil size.",
+      "blank_value_on_duplicate": false
+    }
+  }
+}

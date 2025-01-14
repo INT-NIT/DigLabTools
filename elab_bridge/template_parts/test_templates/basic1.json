@@ -1,0 +1,241 @@
+{
+  "elabftw": {
+    "display_main_text": false,
+    "extra_fields_groups": [
+      {
+        "id": 1,
+        "name": "Project_BIDS_Metadata"
+      },
+      {
+        "id": 2,
+        "name": "Subject_BIDS_Metadata"
+      },
+      {
+        "id": 3,
+        "name": "Recording_BIDS_Metadata"
+      }
+    ]
+  },
+  "extra_fields": {
+    "Age": {
+      "type": "number",
+      "unit": "",
+      "units": [
+        "years",
+        "months",
+        "days"
+      ],
+      "value": "",
+      "group_id": 2,
+      "position": 4,
+      "description": "in years, month or days",
+      "blank_value_on_duplicate": false
+    },
+    "Sex": {
+      "type": "radio",
+      "options": [
+        "F",
+        "M",
+        "Others"
+      ],
+      "group_id": 2,
+      "position": 7,
+      "description": "",
+      "blank_value_on_duplicate": false
+    },
+    "Group": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 9,
+      "description": "Experimental group. Ex: 'control, under 10 years, ...'",
+      "blank_value_on_duplicate": false
+    },
+    "Strain": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 3,
+      "description": "The strain of the subject",
+      "blank_value_on_duplicate": false
+    },
+    "Weight": {
+      "type": "number",
+      "unit": "",
+      "units": [
+        "kg",
+        "g"
+      ],
+      "value": "",
+      "group_id": 2,
+      "position": 10,
+      "description": "Ex: '53.5 or 55'",
+      "blank_value_on_duplicate": false
+    },
+    "Authors": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 2,
+      "description": "List of individuals who contributed to the creation of the project.",
+      "blank_value_on_duplicate": false
+    },
+    "Comment": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 12,
+      "blank_value_on_duplicate": false
+    },
+    "Species": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 2,
+      "blank_value_on_duplicate": false
+    },
+    "BirthDate": {
+      "type": "datetime-local",
+      "value": "",
+      "group_id": 2,
+      "position": 6,
+      "blank_value_on_duplicate": false
+    },
+    "SessionId": {
+      "type": "text",
+      "value": "",
+      "group_id": 3,
+      "position": 0,
+      "required": true,
+      "description": "Ex: 01, predrug , 20231206 , 20231206S01",
+      "blank_value_on_duplicate": false
+    },
+    "DatasetDOI": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 3,
+      "description": "The Digital Object Identifier of the dataset (not the corresponding paper).",
+      "blank_value_on_duplicate": false
+    },
+    "Handedness": {
+      "type": "radio",
+      "options": [
+        "left",
+        "right",
+        "ambidextrous"
+      ],
+      "group_id": 2,
+      "position": 8,
+      "description": "GDPR",
+      "blank_value_on_duplicate": false
+    },
+    "Modalities": {
+      "type": "select",
+      "value": [
+        "intracellular microelectrode signals"
+      ],
+      "options": [
+        "MRI",
+        "MEG",
+        "EEG",
+        "iEEG",
+        "Physio (cardiac, respiration, etc.)",
+        "Behaviour",
+        "Genetic descriptor",
+        "PET",
+        "Microscopy",
+        "NIRS",
+        "Motion",
+        "MRS",
+        "Microelectode Electrophysiology",
+        "Video",
+        "EyeTracking"
+      ],
+      "group_id": 2,
+      "position": 5,
+      "description": "The modalities recorded",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
+    "Subject ID": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 0,
+      "description": "subject number or monkey name or etc",
+      "blank_value_on_duplicate": false
+    },
+    "DatasetType": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 4,
+      "description": "The interpretation of the dataset. Must be one of: 'raw', 'derivative'.",
+      "blank_value_on_duplicate": false
+    },
+    "GeneratedBy": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 5,
+      "description": "Used to specify provenance of the dataset.",
+      "blank_value_on_duplicate": false
+    },
+    "ProjectName": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 0,
+      "description": "Experiment name including around X subjects",
+      "blank_value_on_duplicate": false
+    },
+    "SessionDate": {
+      "type": "date",
+      "value": "",
+      "group_id": 3,
+      "position": 2,
+      "blank_value_on_duplicate": false
+    },
+    "SubjectGUID": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 1,
+      "blank_value_on_duplicate": false
+    },
+    "DatasetLinks": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 6,
+      "description": "Used to map a given <dataset-name> from a BIDS URI of the form bids:",
+      "blank_value_on_duplicate": false
+    },
+    "SessionComment": {
+      "type": "text",
+      "value": "",
+      "group_id": 3
+    },
+    "HeadCircumference": {
+      "type": "number",
+      "unit": "",
+      "units": [
+        "cm"
+      ],
+      "value": "",
+      "group_id": 2,
+      "position": 11,
+      "description": "Ex: '53.5 or 55'",
+      "blank_value_on_duplicate": false
+    },
+    "Ethical Protocol Identifier": {
+      "type": "text",
+      "value": "default format in '5X-16X-vX'",
+      "group_id": 1,
+      "position": 1,
+      "description": "The official ethical protocol id",
+      "blank_value_on_duplicate": false
+    }
+  }
+}

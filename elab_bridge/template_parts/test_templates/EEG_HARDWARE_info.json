@@ -1,0 +1,135 @@
+{
+  "elabftw": {
+    "display_main_text": true,
+    "extra_fields_groups": [
+      {
+        "id": 3,
+        "name": "Hardware"
+      },
+      {
+        "id": 2,
+        "name": "Session"
+      },
+      {
+        "id": 3,
+        "name": "Run "
+      }
+    ]
+  },
+  "extra_fields": {
+    "age": {
+      "type": "number",
+      "unit": "",
+      "units": [
+        "years",
+        "months"
+      ],
+      "value": "",
+      "group_id": 1,
+      "position": 2,
+      "description": "GDPR !!!. In years or months. Ex: '42 or 0.4'"
+    },
+    "sex": {
+      "type": "radio",
+      "options": [
+        "F",
+        "M",
+        "Others"
+      ],
+      "group_id": 1,
+      "position": 3,
+      "description": "GDPR"
+    },
+    "group": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 4,
+      "description": "Experimental group. Ex: 'control, under 10 years, ...'"
+    },
+    "EEG cap": {
+      "type": "items",
+      "value": "",
+      "group_id": 3,
+      "position": 9,
+      "description": "Type EEGcap and select the cap"
+    },
+    "TaskName": {
+      "type": "text",
+      "value": "",
+      "group_id": 3,
+      "position": 1,
+      "required": true,
+      "description": "Code name of the task (no space and only alphanumeric characters).\n Ex: 'rest or facesnback or headnodding'"
+    },
+    "EEG system": {
+      "type": "items",
+      "group_id": 3,
+      "position": 10,
+      "description": "Type EEGsystem and select the system"
+    },
+    "Subject ID": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 0,
+      "description": "subject number  or monkey name"
+    },
+    "handedness": {
+      "type": "radio",
+      "options": [
+        "left",
+        "right",
+        "ambidextrous"
+      ],
+      "group_id": 1,
+      "position": 5,
+      "description": "GDPR"
+    },
+    "Run comment": {
+      "type": "text",
+      "value": "",
+      "group_id": 3,
+      "position": 100,
+      "description": "Comment about the subject behavior during the run."
+    },
+    "Subject GUID": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 1
+    },
+    "TaskDescription": {
+      "type": "text",
+      "value": "",
+      "group_id": 3,
+      "position": 2,
+      "description": "Description of the task"
+    },
+    "EEG cap position": {
+      "type": "text",
+      "value": "",
+      "group_id": 3,
+      "position": 11,
+      "description": "Ex: 'CZ at 10cm from nasion'"
+    },
+    "Hardware comment": {
+      "type": "text",
+      "value": "",
+      "group_id": 3,
+      "position": 12,
+      "description": "Ex: 'Dysfunction of electrode #3, ...'"
+    },
+    "HeadCircumference": {
+      "type": "number",
+      "unit": "",
+      "units": [
+        "cm"
+      ],
+      "value": "",
+      "group_id": 1,
+      "position": 6,
+      "description": "Ex: '53.5 or 55'"
+    }
+  }
+}
