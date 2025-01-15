@@ -97,8 +97,7 @@ def construct_extracted_json(jsonfile, id, new_id, json_output=None):
     }
 
     if json_output is not None:
-        with open(json_output, 'w') as f:
-            json.dump(new_json_structure, f, indent=4)
+        savefile(json_output, new_json_structure)
 
     return new_json_structure
 
@@ -163,8 +162,7 @@ def complete_groupfield_in_jsonfile(jsonfile, groupfield_name, groupfield_detail
     is_completed = False
     new_id = None
 
-    with open(jsonfile, 'r') as f:
-        data = json.load(f)
+    data = loadfile(jsonfile)
 
     for group in data['elabftw']['extra_fields_groups']:
         if groupfield_name == group['name']:

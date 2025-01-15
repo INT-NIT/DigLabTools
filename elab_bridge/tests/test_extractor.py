@@ -27,8 +27,8 @@ class TestJsonOperations(unittest.TestCase):
                 ]
             },
             "extra_fields": {
-                "field_1": {"group_id": "1", "value": "Test 1"},
-                "field_2": {"group_id": "2", "value": "Test 2"}
+                "field_1": {"group_id": 1, "value": "Test 1"},
+                "field_2": {"group_id": 2, "value": "Test 2"}
             }
         }
         json.dump(self.sample_json, self.temp_file)
@@ -157,6 +157,82 @@ class TestJsonOperations(unittest.TestCase):
         self.assertIn("field_5", result3["extra_fields"], "'field_5' missing in extra_fields")
         self.assertEqual(result3["extra_fields"]["field_5"]["group_id"], 10,
                          "Incorrect group_id for field_5")
+
+    def test_complete_jsonfile1_with_jsonfile2_groupefield(self):
+        """Test combining two JSON files by extracting and adding group fields.
+        This test does not mock other functions; instead, it tests the function as a whole.
+        It qualifies as an integration test, verifying the interaction between all components.
+        """
+
+        # Define the source JSON file (to be completed)
+        sample_json = {
+            "elabftw": {
+                "extra_fields_groups": [
+                    {"id": 1, "name": "Group 1"},
+                    {"id": 2, "name": "Group 2"}
+                ]
+            },
+            "extra_fields": {
+                "field_1": {"group_id": 1, "value": "Test 1"},
+                "field_2": {"group_id": 2, "value": "Test 2"}
+            }
+        }
+
+        # Define the JSON file to extract data from
+        sample_json2 = {
+            "elabftw": {
+                "extra_fields_groups": [
+                    {"id": 4, "name": "New group"},
+                    {"id": 5, "name": "unwanted group"}
+                ]
+            },
+            "extra_fields": {
+                "field_4": {"group_id": 4, "value": "New TEST"},
+                "field_5": {"group_id": 5, "value": "unwanted"}
+            }
+        }
+
+        # Create temporary files for testing
+        jsonfiletocompleted = NamedTemporaryFile(delete=False, mode='w+', suffix='.json')
+        json.dump(sample_json, jsonfiletocompleted)
+        jsonfiletocompleted.close()
+
+        jsonfiletoextract = NamedTemporaryFile(delete=False, mode='w+', suffix='.json')
+        json.dump(sample_json2, jsonfiletoextract)
+        jsonfiletoextract.close()
+
+        # Define parameters for the function
+        indice = 4
+        new_indice = 1
+
+        # Call the function under test
+        json_completed = complete_jsonfile1_with_jsonfile2_groupefield(
+            jsonfiletocompleted.name, jsonfiletoextract.name, indice, new_indice
+        )
+
+        # Define the expected result
+        expected_json = {
+            "elabftw": {
+                "extra_fields_groups": [
+                    {"id": 1, "name": "New group"},
+                    {"id": 2, "name": "Group 1"},
+                    {"id": 3, "name": "Group 2"}
+                ]
+            },
+            "extra_fields": {
+                "field_4": {"group_id": 1, "value": "New TEST"},
+                "field_1": {"group_id": 2, "value": "Test 1"},
+                "field_2": {"group_id": 3, "value": "Test 2"}
+            }
+        }
+
+        # Validate the output
+        self.assertEqual(json_completed, expected_json,
+                         "The completed JSON does not match the expected structure.")
+
+        # Clean up temporary files
+        os.unlink(jsonfiletocompleted.name)
+        os.unlink(jsonfiletoextract.name)
 
 
 if __name__ == '__main__':
