@@ -134,7 +134,24 @@ def merge_jsonfiles(jsonfile_list_sorted: List[str], json_output: str, dry_run: 
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Merge multiple JSON files into one output file")
+    # Argument parser initialization
+    parser = argparse.ArgumentParser(
+        description=(
+            "This script merges multiple JSON files into a single output file. "
+            "Provide a list of JSON files and the name of the output file."
+        ),
+        epilog=(
+            "Examples:\n"
+            "  python Merge.py file1.json file2.json output.json\n"
+            "  python Merge.py file1.json file2.json output.json --dry-run\n"
+            "  python Merge.py file1.json file2.json output.json --overwrite\n\n"
+            "Options:\n"
+            "  --dry-run   Preview the result without saving.\n"
+            "  --compact   Save the output JSON in a compact format (without extra spaces).\n"
+            "  --overwrite Overwrite the output file if it already exists."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     parser.add_argument("inputfiles", nargs="+", help="List of JSON files to merge", type=str)
     parser.add_argument("output", help="Name of the output JSON file", type=str)
     parser.add_argument("--dry-run", action="store_true", help="Preview changes without saving")
@@ -144,6 +161,9 @@ def main():
 
     args = parser.parse_args()
     list_of_files = [file for file in args.inputfiles if file.endswith('.json')]
+    if not list_of_files:
+        raise ValueError("No valid JSON files found in the input list.")
+
     output_file = args.output if args.output.endswith('.json') else args.output + '.json'
 
     if not args.overwrite and os.path.exists(output_file):
