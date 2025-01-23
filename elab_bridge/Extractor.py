@@ -267,9 +267,38 @@ def orderjsonfile(jsonfile, list_group_field_name, output_jsonfile=None):
 
 
 if __name__ == '__main__':
-    import argparse
 
-    parser = argparse.ArgumentParser(description="Extract and merge JSON files.")
+    parser = argparse.ArgumentParser(
+        description=(
+            "This script provides tools to manipulate JSON files, including:\n"
+            "- Extracting specific fields from a JSON file and creating a new structured JSON.\n"
+            "- Merging two JSON files based on group field IDs: Extracting a group field from one "
+            "JSON file and appending it to another.\n"
+            "- Ordering fields within a JSON file by specified group field names."
+        ),
+        epilog=(
+            "Examples of usage:\n"
+            "  Extract fields:\n"
+            "python Extractor.py extract --jsonfile_extract input.json --id 1 --new_id 2 "
+            "--json_output"
+            "output.json\n\n"
+            
+            "  Merge JSON files:\n"
+            "python  Extractor.py merge --jsonfiletocompleted file1.json --jsonfiletoextract "
+            "file2.json\n"
+            "--indice 3 --new_indice 4 --json_completed merged.json\n\n"
+            "  Order JSON fields:\n"
+            "python  Extractor.py  order --jsonfile input.json --list_group_field_name field1 "
+            "field2\n"
+            "--output_jsonfile ordered.json\n\n"
+            "Options:\n"
+            "  extract   Extracts fields from a JSON file and saves the output.\n"
+            "  merge     Complete a JSON file by adding a group field from another JSON file.\n"
+            "  order     Orders fields in a JSON file by the specified group field names."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+
     parser.add_argument(
         "operation",
         choices=["extract", "merge", "order"],
@@ -278,7 +307,8 @@ if __name__ == '__main__':
     )
 
     # Arguments for extracting
-    parser.add_argument("--jsonfile", help="The JSON file path for extraction.", type=str)
+    parser.add_argument("--jsonfile_extract", help="The JSON file path for extraction.", type=str)
+
     parser.add_argument("--id", help="The groupfield ID to match.", type=int)
     parser.add_argument("--new_id", help="The new ID to replace for matching fields.", type=int)
     parser.add_argument("--json_output", help="The path to save the new JSON structure.", type=str,
@@ -304,7 +334,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.operation == "extract":
-        if not all([args.jsonfile, args.id, args.new_id, args.json_output]):
+        if not all([args.jsonfile_extract, args.id, args.new_id, args.json_output]):
             print("Error: Missing arguments for the 'extract' operation.")
         else:
             construct_extracted_json(args.jsonfile, args.id, args.new_id, args.json_output)
