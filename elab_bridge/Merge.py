@@ -152,15 +152,16 @@ def main():
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("inputfiles", nargs="+", help="List of JSON files to merge", type=str)
-    parser.add_argument("output", help="Name of the output JSON file", type=str)
+    parser.add_argument("--sorted_list_input_files", nargs="+", help="List of JSON files to merge", type=str,
+                        required=True)
+    parser.add_argument("--output", help="Name of the output JSON file", type=str, required=True)
     parser.add_argument("--dry-run", action="store_true", help="Preview changes without saving")
     parser.add_argument("--compact", action="store_true", help="Save output JSON in compact format")
     parser.add_argument("--overwrite", action="store_true",
                         help="Overwrite the output file if it exists")
 
     args = parser.parse_args()
-    list_of_files = [file for file in args.inputfiles if file.endswith('.json')]
+    list_of_files = [file for file in args.sorted_list_input_files if file.endswith('.json')]
     if not list_of_files:
         raise ValueError("No valid JSON files found in the input list.")
 
