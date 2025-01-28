@@ -280,17 +280,14 @@ if __name__ == '__main__':
             "Examples of usage:\n"
             "  Extract fields:\n"
             "python Extractor.py extract --jsonfile_extract input.json --id 1 --new_id 2 "
-            "--json_output"
-            "output.json\n\n"
-            
+            "--json_output output.json\n\n"
+
             "  Merge JSON files:\n"
-            "python  Extractor.py merge --jsonfiletocompleted file1.json --jsonfiletoextract "
-            "file2.json\n"
-            "--indice 3 --new_indice 4 --json_completed merged.json\n\n"
+            "python Extractor.py merge --jsonfiletocompleted file1.json --jsonfiletoextract "
+            "file2.json --id 3 --new_id 4 --json_completed merged.json\n\n"
             "  Order JSON fields:\n"
-            "python  Extractor.py  order --jsonfile input.json --list_group_field_name field1 "
-            "field2\n"
-            "--output_jsonfile ordered.json\n\n"
+            "python Extractor.py order --jsonfile input.json --list_group_field_name field1 "
+            "field2 --output_jsonfile ordered.json\n\n"
             "Options:\n"
             "  extract   Extracts fields from a JSON file and saves the output.\n"
             "  merge     Complete a JSON file by adding a group field from another JSON file.\n"
@@ -298,7 +295,6 @@ if __name__ == '__main__':
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
-
     parser.add_argument(
         "operation",
         choices=["extract", "merge", "order"],
@@ -318,9 +314,6 @@ if __name__ == '__main__':
     parser.add_argument("--jsonfiletocompleted", help="The JSON file to be completed.", type=str)
     parser.add_argument("--jsonfiletoextract", help="The JSON file to extract the groupfield from.",
                         type=str)
-    parser.add_argument("--indice", help="The groupfield ID in the source JSON file.", type=int)
-    parser.add_argument("--new_indice", help="The new groupfield ID for the target JSON file.",
-                        type=int)
     parser.add_argument("--json_completed", help="The path to save the completed JSON file.",
                         type=str, default=None)
 
@@ -337,12 +330,13 @@ if __name__ == '__main__':
         if not all([args.jsonfile_extract, args.id, args.new_id, args.json_output]):
             print("Error: Missing arguments for the 'extract' operation.")
         else:
-            construct_extracted_json(args.jsonfile, args.id, args.new_id, args.json_output)
+            construct_extracted_json(args.jsonfile_extract
+                                     , args.id, args.new_id, args.json_output)
             print(f"Extraction completed and saved to {args.json_output}.")
 
     elif args.operation == "merge":
         if not all(
-                [args.jsonfiletocompleted, args.jsonfiletoextract, args.indice, args.new_indice,
+                [args.jsonfiletocompleted, args.jsonfiletoextract, args.id, args.new_id,
                  args.json_completed]
         ):
             print("Error: Missing arguments for the 'merge' operation.")
@@ -350,8 +344,8 @@ if __name__ == '__main__':
             complete_jsonfile1_with_jsonfile2_groupefield(
                 args.jsonfiletocompleted,
                 args.jsonfiletoextract,
-                args.indice,
-                args.new_indice,
+                args.id,
+                args.new_id,
                 args.json_completed,
             )
             print(f"Merging completed and saved to {args.json_completed}.")
