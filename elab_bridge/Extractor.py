@@ -210,6 +210,20 @@ def complete_jsonfile1_with_jsonfile2_groupefield(jsonfiletocompleted, jsonfilet
 
 
 def orderjsonfile(jsonfile, list_group_field_name, output_jsonfile=None):
+
+    """
+    Orders fields within a JSON file by specified group field names.
+    Parameters
+    ----------
+    jsonfile
+    list_group_field_name
+    output_jsonfile
+
+    Returns
+    -------  the updated JSON data.
+
+    """
+
     try:
         # Loading the JSON file
         Data = loadfile(jsonfile)
