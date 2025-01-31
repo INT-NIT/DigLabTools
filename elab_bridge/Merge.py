@@ -152,12 +152,16 @@ def main():
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("--sorted_list_input_files", nargs="+", help="List of JSON files to merge", type=str,
+    parser.add_argument("--sorted_list_input_files", "-s", nargs="+", help="List of JSON files to "
+                                                                           "merge", type=str,
                         required=True)
-    parser.add_argument("--output", help="Name of the output JSON file", type=str, required=True)
-    parser.add_argument("--dry-run", action="store_true", help="Preview changes without saving")
-    parser.add_argument("--compact", action="store_true", help="Save output JSON in compact format")
-    parser.add_argument("--overwrite", action="store_true",
+    parser.add_argument("--output", "-o", help="Name of the output JSON file", type=str,
+                        required=True)
+    parser.add_argument("--dry-run", "-d",  action="store_true", help="Preview changes without "
+                                                                     "saving")
+    parser.add_argument("--compact", "-c",  action="store_true", help="Save output JSON in "
+                                                                      "compact format")
+    parser.add_argument("--overwrite", "-ov", action="store_true",
                         help="Overwrite the output file if it exists")
 
     args = parser.parse_args()

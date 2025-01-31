@@ -317,25 +317,27 @@ if __name__ == '__main__':
     )
 
     # Arguments for extracting
-    parser.add_argument("--jsonfile_extract", help="The JSON file path for extraction.", type=str)
+    parser.add_argument("--jsonfile_extract", '-e', help="The JSON file path for extraction.", type=str)
 
     parser.add_argument("--id", help="The groupfield ID to match.", type=int)
     parser.add_argument("--new_id", help="The new ID to replace for matching fields.", type=int)
-    parser.add_argument("--json_output", help="The path to save the new JSON structure.", type=str,
+    parser.add_argument("--json_output", '-u', help="The path to save the new JSON structure.", type=str,
                         default=None)
 
     # Arguments for merging
-    parser.add_argument("--jsonfiletocompleted", help="The JSON file to be completed.", type=str)
-    parser.add_argument("--jsonfiletoextract", help="The JSON file to extract the groupfield from.",
+    parser.add_argument("--jsonfiletocompleted", '-c', help="The JSON file to be completed.", type=str)
+    parser.add_argument("--jsonfiletoextract",  '-x', help="The JSON file to extract the "
+                                                           "groupfield from.",
                         type=str)
-    parser.add_argument("--json_completed", help="The path to save the completed JSON file.",
+    parser.add_argument("--json_completed", '-C', help="The path to save the completed JSON file.",
                         type=str, default=None)
 
     # Arguments for ordering
-    parser.add_argument("--jsonfile", help="The JSON file path for ordering.", type=str)
-    parser.add_argument("--list_group_field_name", help="The list of group field names to order.",
+    parser.add_argument("--jsonfile", '-j',  help="The JSON file path for ordering.", type=str)
+    parser.add_argument("--list_group_field_name", '-l', help="The list of group field names to "
+                                                              "order.",
                         type=str, nargs='+')
-    parser.add_argument("--output_jsonfile", help="The path to save the ordered JSON file.",
+    parser.add_argument("--output_jsonfile", '-o', help="The path to save the ordered JSON file.",
                         type=str, default=None)
 
     args = parser.parse_args()
