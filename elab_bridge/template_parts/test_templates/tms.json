@@ -1,0 +1,56 @@
+{
+  "elabftw": {
+    "display_main_text": true,
+    "extra_fields_groups": [
+      {
+        "id": 18,
+        "name": "LaureProjectSPEC"
+      }
+    ]
+  },
+  "extra_fields": {
+    "MotorThreshold": {
+      "type": "text",
+      "value": "",
+      "description": "Resting motor threshold",
+      "group_id": 18,
+      "position": 0
+    },
+    "intensityFEF": {
+      "type": "text",
+      "value": "",
+      "description": "TMS intensity for FEF stimulation (110% motor threshold)",
+      "group_id": 18,
+      "position": 1
+    },
+    "intensitySham": {
+      "type": "text",
+      "value": "",
+      "description": "TMS intensity for Sham stimulation (130% motor threshold)",
+      "group_id": 18,
+      "position": 2
+    },
+    "MRISubNumber": {
+      "type": "text",
+      "value": "",
+      "description": "Subject number for MRI data",
+      "group_id": 18,
+      "position": 3
+    },
+    "RobotTargets": {
+      "type": "text",
+      "value": "",
+      "description": "Corresponding anatomical targets for robot targets",
+      "group_id": 18,
+      "position": 4
+    },
+    "UseRobot": {
+      "type": "select",
+      "value": "Yes",
+      "options": ["Yes", "No", "Tried but did not work"],
+      "group_id": 18,
+      "description": "Did you use the robot for this session?",
+      "position": 5
+    }
+  }
+}

@@ -1,0 +1,17 @@
+Index: bep32v01/BidsDatatype.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import yaml\n\n\ndef _load_data_types(yaml_path=\"ressources/schema/objects/datatypes.yaml\"):\n    \"\"\"\n    Load data types from a YAML file.\n\n    Args:\n        yaml_path (str): The path to the YAML file containing data type data.\n\n    Returns:\n        dict: A dictionary containing data type data.\n    \"\"\"\n    with open(yaml_path, 'r') as file:\n        data_types_data = yaml.safe_load(file)\n    return data_types_data\n\n\nclass DataTypes:\n    def __init__(self):\n        \"\"\"\n        Initialize a DataTypes object and load data types from a YAML file.\n        \"\"\"\n        self.data_types = _load_data_types()\n\n    def get_data_type_value(self, data_type_name):\n        \"\"\"\n        Get the value of a specific data type.\n\n        Args:\n            data_type_name (str): The name of the data type to retrieve.\n\n        Returns:\n            str: The value of the data type, or None if the data type does not exist.\n        \"\"\"\n        return self.data_types.get(data_type_name, {}).get(\"value\")\n\n\ndef main():\n    \"\"\"\n    Main function to demonstrate the usage of the DataTypes class.\n    \"\"\"\n    data_types = DataTypes()\n    data_type_name = \"anat\"\n    data_type = data_types.get_data_type_value(data_type_name)\n    if data_type:\n        print(f\"Données de type '{data_type_name}':\")\n        print(data_type)\n    else:\n        print(f\"Le type de données '{data_type_name}' n'existe pas.\")\n\n\nif __name__ == \"__main__\":\n    main()\n
+===================================================================
+diff --git a/bep32v01/BidsDatatype.py b/bep32v01/BidsDatatype.py
+--- a/bep32v01/BidsDatatype.py	
++++ b/bep32v01/BidsDatatype.py	
+@@ -41,7 +41,7 @@
+     Main function to demonstrate the usage of the DataTypes class.
+     """
+     data_types = DataTypes()
+-    data_type_name = "anat"
++    data_type_name = "mri"
+     data_type = data_types.get_data_type_value(data_type_name)
+     if data_type:
+         print(f"Données de type '{data_type_name}':")

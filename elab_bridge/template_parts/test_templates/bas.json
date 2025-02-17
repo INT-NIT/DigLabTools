@@ -1,0 +1,147 @@
+{
+  "elabftw": {
+    "extra_fields_groups": [
+      {
+        "id": 1,
+        "name": "VisuoMotorLaminar_Specifique_Metadata"
+      }
+    ]
+  },
+  "extra_fields": {
+    "Accuracy": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 13
+    },
+    "Duration": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 3,
+      "blank_value_on_duplicate": false
+    },
+    "TaskName": {
+      "type": "select",
+      "value": "DMSBlocked",
+      "options": [
+        "DMSBlocked",
+        "DMSRandom",
+        "DMS",
+        "Reward schedule",
+        "Movie watching",
+        "Groove",
+        "RestingState"
+      ],
+      "group_id": 1,
+      "position": 0,
+      "blank_value_on_duplicate": false
+    },
+    "Stop Time": {
+      "type": "datetime-local",
+      "value": "",
+      "group_id": 1,
+      "position": 2,
+      "blank_value_on_duplicate": false
+    },
+    "Start Time": {
+      "type": "datetime-local",
+      "value": "",
+      "group_id": 1,
+      "position": 1,
+      "blank_value_on_duplicate": false
+    },
+    " RewardType": {
+      "type": "radio",
+      "value": "liquid",
+      "options": [
+        "liquid",
+        "solid"
+      ],
+      "group_id": 1,
+      "position": 4,
+      "blank_value_on_duplicate": false
+    },
+    "FailedTrial": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 12
+    },
+    "Special Event": {
+      "type": "radio",
+      "value": "no",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "group_id": 1,
+      "position": 10,
+      "blank_value_on_duplicate": false
+    },
+    "Experimenter 1": {
+      "type": "users",
+      "value": "",
+      "group_id": 1,
+      "position": 7,
+      "blank_value_on_duplicate": false
+    },
+    "Experimenter 2": {
+      "type": "users",
+      "value": "",
+      "group_id": 1,
+      "position": 8,
+      "blank_value_on_duplicate": false
+    },
+    "Experimenter 3": {
+      "type": "users",
+      "value": "",
+      "group_id": 1,
+      "position": 9,
+      "blank_value_on_duplicate": false
+    },
+    "RewardQuantity": {
+      "type": "number",
+      "unit": "",
+      "units": [
+        "g",
+        "ml"
+      ],
+      "value": "",
+      "group_id": 1,
+      "position": 6
+    },
+    "Successful Trial": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 11
+    },
+    " Witch Color First": {
+      "type": "radio",
+      "value": "pink",
+      "options": [
+        "pink",
+        "blue",
+        "none"
+      ],
+      "group_id": 1,
+      "position": 5,
+      "blank_value_on_duplicate": false
+    },
+    "Special Event Time": {
+      "type": "datetime-local",
+      "value": "",
+      "group_id": 1,
+      "position": 13,
+      "blank_value_on_duplicate": false
+    },
+    "CommentSpecialEvent": {
+      "type": "text",
+      "value": "Martin",
+      "group_id": 1,
+      "position": 14,
+      "blank_value_on_duplicate": false
+    }
+  }
+}
