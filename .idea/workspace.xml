@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="468d9a1c-1264-4fc5-b38e-ac9f45a8830a" name="Changes" comment="Commit message (English):  &#10;`Added short options (-letter) for long options (--words) to improve usability`">
+      <change beforePath="$PROJECT_DIR$/.idea/DigLabTools.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DigLabTools.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/BidsDatatype.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/BidsDirectoryStructure.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/BidsEmptyRepositoryGenerator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/BidsEntity.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/BidsFilestructure.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/BidsModality.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Createdirectory.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Createfile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/CHANGES" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/CITATION.cff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/README.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/dataset_description.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/fichier.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/genetic_info.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/participants.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/participants.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/samples.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/Essaie/samples.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/helper.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/launch.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/.idea/ressources.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/BIDS_VERSION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/SCHEMA_VERSION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/meta/associations.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/meta/context.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/meta/expression_tests.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/meta/versions.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/objects/columns.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/objects/common_principles.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/objects/datatypes.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/objects/entities.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/objects/enums.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/objects/extensions.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/objects/files.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/objects/formats.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/objects/metadata.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/objects/modalities.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/objects/suffixes.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/anat.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/asl.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/common_derivatives.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/dataset.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/dwi.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/events.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/fmap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/func.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/general.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/hints.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/micr.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/mri.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/nifti.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/nirs.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/privacy.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/checks/references.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/common_principles.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/dataset_metadata.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/directories.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/entities.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/errors.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/common/core.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/common/tables.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/deriv/imaging.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/deriv/preprocessed_data.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/anat.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/beh.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/channels.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/dwi.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/eeg.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/fmap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/func.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/ieeg.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/meg.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/micr.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/motion.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/nirs.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/perf.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/pet.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/photo.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/files/raw/task.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/modalities.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/anat.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/asl.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/beh.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/continuous.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/derivatives/common_derivatives.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/dwi.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/eeg.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/entity_rules.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/events.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/fmap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/func.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/ieeg.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/meg.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/micr.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/motion.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/mri.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/nirs.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/sidecars/pet.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/tabular_data/derivatives/common_derivatives.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/tabular_data/eeg.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/tabular_data/ieeg.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/tabular_data/meg.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/tabular_data/modality_agnostic.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/tabular_data/motion.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/tabular_data/nirs.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/tabular_data/perf.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/tabular_data/pet.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/tabular_data/physio.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/ressources/schema/rules/tabular_data/task.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bep32v01/tests/__init__.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="Python Unit Test" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="mains" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2eaePAVQjlB58K4IAreAK3xJibg" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.pytest for test_Merge.TestJSONMerge.executor": "Run",
+    "Python tests.pytest for test_Merge.TestJSONMerge.test_get_a_jsonfile_structure.executor": "Run",
+    "Python tests.pytest for test_Merge.TestJSONMerge.test_get_indices.executor": "Run",
+    "Python tests.pytest for test_Merge.TestJSONMerge.test_merge_jsonfiles.executor": "Run",
+    "Python tests.pytest for test_Merge.TestJSONMerge.test_replace_id.executor": "Run",
+    "Python tests.pytest for test_Merge.TestJSONMerge.test_safe_load_json.executor": "Run",
+    "Python tests.pytest for test_extractor.TestJsonOperations.executor": "Run",
+    "Python tests.pytest for test_extractor.TestJsonOperations.test_add_a_groupfield.executor": "Run",
+    "Python tests.pytest for test_extractor.TestJsonOperations.test_complete_jsonfile1_with_jsonfile2_groupefield.executor": "Run",
+    "Python tests.pytest for test_extractor.TestJsonOperations.test_construct_extracted_json.executor": "Run",
+    "Python tests.pytest for test_extractor.TestJsonOperations.test_orderjsonfile.executor": "Run",
+    "Python tests.pytest for test_extractor.TestJsonOperations.test_orderjsonfile.test_add_a_groupfield.executor": "Run",
+    "Python tests.pytest for test_extractor.test_complete_jsonfile1_with_jsonfile2_groupefield.executor": "Run",
+    "Python tests.pytest in test_extractor.py.executor": "Run",
+    "Python.BidsDatatype.executor": "Run",
+    "Python.Createdirectory.executor": "Run",
+    "Python.Createfile.executor": "Run",
+    "Python.Extractor.executor": "Run",
+    "Python.Generator.executor": "Run",
+    "Python.Modality.executor": "Run",
+    "Python.Test_export_bids.executor": "Run",
+    "Python.launch.executor": "Run",
+    "Python.lunch.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging main",
+    "last_opened_file_path": "/home/INT/idrissou.f/PycharmProjects/DigLabTools/elab_bridge/template_parts/test_templates",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/elab_bridge/template_parts/test_templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/elab_bridge/tests" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.Extractor">
+    <configuration name="Extractor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DigLabTools" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/elab_bridge" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/elab_bridge/Extractor.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Extractor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DigLabTools" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/elab_bridge" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/elab_bridge/Extractor.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_Merge.TestJSONMerge.test_get_a_jsonfile_structure" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="DigLabTools" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/elab_bridge/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_Merge.TestJSONMerge.test_get_a_jsonfile_structure&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_Merge.TestJSONMerge.test_get_a_jsonfile_structure" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="DigLabTools" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/elab_bridge/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_Merge.TestJSONMerge.test_get_a_jsonfile_structure&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_Merge.TestJSONMerge.test_get_indices" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="DigLabTools" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/elab_bridge/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_Merge.TestJSONMerge.test_get_indices&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_Merge.TestJSONMerge.test_get_indices" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="DigLabTools" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/elab_bridge/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_Merge.TestJSONMerge.test_get_indices&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_Merge.TestJSONMerge.test_merge_jsonfiles" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="DigLabTools" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/elab_bridge/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_Merge.TestJSONMerge.test_merge_jsonfiles&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_Merge.TestJSONMerge.test_merge_jsonfiles" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="DigLabTools" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/elab_bridge/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_Merge.TestJSONMerge.test_merge_jsonfiles&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_Merge.TestJSONMerge.test_replace_id" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="DigLabTools" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/elab_bridge/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_Merge.TestJSONMerge.test_replace_id&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_Merge.TestJSONMerge.test_replace_id" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="DigLabTools" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/elab_bridge/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_Merge.TestJSONMerge.test_replace_id&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.Extractor" />
+      <item itemvalue="Python tests.pytest for test_Merge.TestJSONMerge.test_get_a_jsonfile_structure" />
+      <item itemvalue="Python tests.pytest for test_Merge.TestJSONMerge.test_get_indices" />
+      <item itemvalue="Python tests.pytest for test_Merge.TestJSONMerge.test_merge_jsonfiles" />
+      <item itemvalue="Python tests.pytest for test_Merge.TestJSONMerge.test_replace_id" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Extractor" />
+        <item itemvalue="Python tests.pytest for test_Merge.TestJSONMerge.test_merge_jsonfiles" />
+        <item itemvalue="Python tests.pytest for test_Merge.TestJSONMerge.test_replace_id" />
+        <item itemvalue="Python tests.pytest for test_Merge.TestJSONMerge.test_get_indices" />
+        <item itemvalue="Python tests.pytest for test_Merge.TestJSONMerge.test_get_a_jsonfile_structure" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.19416.19" />
+        <option value="bundled-python-sdk-337b0a7a993a-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.19416.19" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="468d9a1c-1264-4fc5-b38e-ac9f45a8830a" name="Changes" comment="" />
+      <created>1712147092346</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712147092346</updated>
+      <workItem from="1712147097834" duration="13621000" />
+      <workItem from="1712227121442" duration="615000" />
+      <workItem from="1712229129923" duration="4943000" />
+      <workItem from="1712309114366" duration="2760000" />
+      <workItem from="1712322610187" duration="435000" />
+      <workItem from="1713859538687" duration="809000" />
+      <workItem from="1713860876911" duration="1584000" />
+      <workItem from="1732196061910" duration="2963000" />
+      <workItem from="1736838639926" duration="1281000" />
+      <workItem from="1736845350051" duration="13155000" />
+      <workItem from="1736861431464" duration="6139000" />
+      <workItem from="1736869571948" duration="11064000" />
+      <workItem from="1736931760101" duration="6245000" />
+      <workItem from="1737540547433" duration="6801000" />
+      <workItem from="1737623987212" duration="2483000" />
+      <workItem from="1737637185129" duration="1658000" />
+      <workItem from="1737639181073" duration="4548000" />
+      <workItem from="1737710093510" duration="4735000" />
+      <workItem from="1737970673174" duration="72000" />
+      <workItem from="1737970840240" duration="5098000" />
+      <workItem from="1738058655278" duration="3825000" />
+      <workItem from="1738329918087" duration="4652000" />
+      <workItem from="1739792021820" duration="3591000" />
+      <workItem from="1739800938446" duration="2391000" />
+    </task>
+    <task id="LOCAL-00001" summary="first version of datastructure using schema(ymlfile )in bids">
+      <option name="closed" value="true" />
+      <created>1712150009848</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712150009848</updated>
+    </task>
+    <task id="LOCAL-00002" summary="&quot;Correct the error in the pull request.&quot;">
+      <option name="closed" value="true" />
+      <created>1712226328132</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712226328132</updated>
+    </task>
+    <task id="LOCAL-00003" summary="&quot;Documentation and refactoring class name &quot;">
+      <option name="closed" value="true" />
+      <created>1712322239976</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1712322239976</updated>
+    </task>
+    <task id="LOCAL-00004" summary="o">
+      <option name="closed" value="true" />
+      <created>1736865591451</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1736865591451</updated>
+    </task>
+    <task id="LOCAL-00005" summary=" &quot;adding reorder process&quot;">
+      <option name="closed" value="true" />
+      <created>1736867563584</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736867563584</updated>
+    </task>
+    <task id="LOCAL-00006" summary="unitest">
+      <option name="closed" value="true" />
+      <created>1736874450082</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1736874450083</updated>
+    </task>
+    <task id="LOCAL-00007" summary="unitest update">
+      <option name="closed" value="true" />
+      <created>1736881476946</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1736881476946</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Completion of unit tests for the Extractor module">
+      <option name="closed" value="true" />
+      <created>1736935011144</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1736935011144</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Completion of unit tests for the Merge Module">
+      <option name="closed" value="true" />
+      <created>1736937599044</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1736937599044</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Completion of unit tests for the Merge Module">
+      <option name="closed" value="true" />
+      <created>1737552202042</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1737552202042</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Completion of unit tests for the Merge Module">
+      <option name="closed" value="true" />
+      <created>1737627472730</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1737627472730</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Update project configuration and enhance argument parsing in Merge  modules">
+      <option name="closed" value="true" />
+      <created>1738060288667</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1738060288667</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Update project configuration and enhance argument parsing in Extractor  modules">
+      <option name="closed" value="true" />
+      <created>1738061885351</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1738061885351</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Update project configuration and enhance argument parsing in Extractor  modules">
+      <option name="closed" value="true" />
+      <created>1738062240755</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1738062240755</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Commit message (English):  &#10;`Added short options (-letter) for long options (--words) to improve usability`">
+      <option name="closed" value="true" />
+      <created>1738333894464</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1738333894464</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first version of datastructure using schema(ymlfile )in bids" />
+    <MESSAGE value="&quot;Correct the error in the pull request.&quot;" />
+    <MESSAGE value="&quot;Documentation and refactoring class name &quot;" />
+    <MESSAGE value="o" />
+    <MESSAGE value=" &quot;adding reorder process&quot;" />
+    <MESSAGE value="unitest" />
+    <MESSAGE value="unitest update" />
+    <MESSAGE value="Completion of unit tests for the Extractor module" />
+    <MESSAGE value="Completion of unit tests for the Merge Module" />
+    <MESSAGE value="Update project configuration and enhance argument parsing in Merge  modules" />
+    <MESSAGE value="Update project configuration and enhance argument parsing in Extractor  modules" />
+    <MESSAGE value="Commit message (English):  &#10;`Added short options (-letter) for long options (--words) to improve usability`" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit message (English):  &#10;`Added short options (-letter) for long options (--words) to improve usability`" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/elab_bridge/server_interface.py</url>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_Merge_TestJSONMerge_test_merge_jsonfiles.coverage" NAME="pytest for test_Merge.TestJSONMerge.test_merge_jsonfiles Coverage Results" MODIFIED="1736937319804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$Generator.coverage" NAME="Generator Coverage Results" MODIFIED="1712153899037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bep32v01" />
+    <SUITE FILE_PATH="coverage/DigLabTools$project_control.coverage" NAME="project_control Coverage Results" MODIFIED="1732191421791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_extractor_TestJsonOperations.coverage" NAME="pytest for test_extractor.TestJsonOperations Coverage Results" MODIFIED="1736870784723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$BidsDatatype.coverage" NAME="BidsDatatype Coverage Results" MODIFIED="1713867646082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bep32v01" />
+    <SUITE FILE_PATH="coverage/DigLabTools$Modality.coverage" NAME="Modality Coverage Results" MODIFIED="1712152414083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bep32v01" />
+    <SUITE FILE_PATH="coverage/DigLabTools$launch.coverage" NAME="launch Coverage Results" MODIFIED="1713867701413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bep32v01" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_extractor_TestJsonOperations_test_orderjsonfile.coverage" NAME="pytest for test_extractor.TestJsonOperations.test_orderjsonfile Coverage Results" MODIFIED="1736880693595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_Merge_TestJSONMerge_test_get_a_jsonfile_structure.coverage" NAME="pytest for test_Merge.TestJSONMerge.test_get_a_jsonfile_structure Coverage Results" MODIFIED="1736936839155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_Merge_TestJSONMerge.coverage" NAME="pytest for test_Merge.TestJSONMerge Coverage Results" MODIFIED="1736936552506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_extractor_TestJsonOperations_test_complete_jsonfile1_with_jsonfile2_groupefield.coverage" NAME="pytest for test_extractor.TestJsonOperations.test_complete_jsonfile1_with_jsonfile2_groupefield Coverage Results" MODIFIED="1736934408091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_Merge_TestJSONMerge_test_replace_id.coverage" NAME="pytest for test_Merge.TestJSONMerge.test_replace_id Coverage Results" MODIFIED="1736936902239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1713867723510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_extractor_TestJsonOperations_test_orderjsonfile_test_add_a_groupfield.coverage" NAME="pytest for test_extractor.TestJsonOperations.test_orderjsonfile.test_add_a_groupfield Coverage Results" MODIFIED="1736878932068" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$Test_export_bids.coverage" NAME="Test_export_bids Coverage Results" MODIFIED="1732192548961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_Merge_TestJSONMerge_test_get_indices.coverage" NAME="pytest for test_Merge.TestJSONMerge.test_get_indices Coverage Results" MODIFIED="1736936848897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_in_test_extractor_py.coverage" NAME="pytest in test_extractor.py Coverage Results" MODIFIED="1736934853156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$Createfile.coverage" NAME="Createfile Coverage Results" MODIFIED="1712151316747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bep32v01" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_extractor_TestJsonOperations_test_add_a_groupfield.coverage" NAME="pytest for test_extractor.TestJsonOperations.test_add_a_groupfield Coverage Results" MODIFIED="1736880986325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$Createdirectory.coverage" NAME="Createdirectory Coverage Results" MODIFIED="1712153676531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bep32v01" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_Merge_TestJSONMerge_test_safe_load_json.coverage" NAME="pytest for test_Merge.TestJSONMerge.test_safe_load_json Coverage Results" MODIFIED="1736936571190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_extractor_TestJsonOperations_test_construct_extracted_json.coverage" NAME="pytest for test_extractor.TestJsonOperations.test_construct_extracted_json Coverage Results" MODIFIED="1736872228431" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$lunch.coverage" NAME="launch Coverage Results" MODIFIED="1712226165979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bep32v01" />
+    <SUITE FILE_PATH="coverage/DigLabTools$Extractor.coverage" NAME="Extractor Coverage Results" MODIFIED="1738062410804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_extractor_test_complete_jsonfile1_with_jsonfile2_groupefield.coverage" NAME="pytest for test_extractor.test_complete_jsonfile1_with_jsonfile2_groupefield Coverage Results" MODIFIED="1736874073267" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/elab_bridge/tests" />
+    <SUITE FILE_PATH="coverage/DigLabTools$pytest_for_test_conversion_test_conversion_redcap_csv_to_elab_json.coverage" NAME="pytest for test_conversion.test_conversion_redcap_csv_to_elab_json Coverage Results" MODIFIED="1713867839692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/diglab_utils" />
+  </component>
+</project>
