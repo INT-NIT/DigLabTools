@@ -42,27 +42,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.BidsDatatype.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Createdirectory.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Createfile.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Generator.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Modality.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Test_export_bids.executor&quot;: &quot;Run&quot;,
-    &quot;Python.launch.executor&quot;: &quot;Run&quot;,
-    &quot;Python.lunch.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.BidsDatatype.executor": "Run",
+    "Python.Createdirectory.executor": "Run",
+    "Python.Createfile.executor": "Run",
+    "Python.Generator.executor": "Run",
+    "Python.Modality.executor": "Run",
+    "Python.Test_export_bids.executor": "Run",
+    "Python.launch.executor": "Run",
+    "Python.lunch.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "replicate-groupfield",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Python.Test_export_bids">
     <configuration name="Filestructure" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="DigLabTools" />
