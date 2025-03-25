@@ -1,0 +1,144 @@
+{
+  "elabftw": {
+    "display_main_text": true,
+    "extra_fields_groups": [
+      {
+        "id": 2,
+        "name": "Run"
+      }
+    ]
+  },
+  "extra_fields": {
+    "Cm": {
+      "unit": "pF",
+      "value": 4.3,
+      "group_id": 2
+    },
+    "Re": {
+      "unit": "Moh",
+      "value": 3,
+      "group_id": 2
+    },
+    "Rm": {
+      "value": "Goh",
+      "group_id": 2
+    },
+    "Rs": {
+      "unit": "Moh",
+      "value": 18.9,
+      "group_id": 2
+    },
+    "VR": {
+      "unit": "mV",
+      "value": "na",
+      "group_id": 2
+    },
+    "hc": {
+      "unit": "pA",
+      "value": -10,
+      "group_id": 2
+    },
+    "Cell": {
+      "type": "text",
+      "value": "",
+      "group_id": 2
+    },
+    "Rseal": {
+      "unit": "Goh",
+      "value": 2.1,
+      "group_id": 2
+    },
+    "Slice": {
+      "unit": "X",
+      "value": 1,
+      "group_id": 2
+    },
+    "Comp80": {
+      "value": "80% comp.",
+      "group_id": 2
+    },
+    "Offset": {
+      "unit": "mV",
+      "value": 26.01,
+      "group_id": 2
+    },
+    "CellType": {
+      "unit": "Y",
+      "value": "CSF-cN",
+      "group_id": 2
+    },
+    "SampleID": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 1,
+      "description": "A sample identifier of the form sample-<label>, matching a sample entity found in the dataset."
+    },
+    "TaskName": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 0,
+      "required": true,
+      "description": "Code name of the task (no space and only alphanumeric characters). Ex: 'rest or facesnback or headnodding'"
+    },
+    "RunNumber": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 3
+    },
+    "StartTime": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 4
+    },
+    "RunComment": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 5,
+      "description": "Comment about the subject behavior during the run."
+    },
+    "SampleType": {
+      "type": "select",
+      "value": "cell line",
+      "options": [
+        "cell line",
+        "in vitro differentiated cells",
+        "primary cell",
+        "cell-free sample",
+        "cloning host",
+        "tissue",
+        "whole organisms",
+        "organoid",
+        "technical sample"
+      ],
+      "group_id": 2,
+      "position": 2
+    },
+    "hcAtMinus70mV": {
+      "unit": "pA",
+      "value": -11.9,
+      "group_id": 2
+    },
+    "TaskDescription": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 6,
+      "description": "Description of the task"
+    },
+    "PipetteCapacitance": {
+      "unit": "pF",
+      "value": 11,
+      "group_id": 2
+    },
+    "DistanceDuCanalCentral": {
+      "unit": "Z",
+      "value": "Channel activity",
+      "group_id": 2
+    }
+  }
+}

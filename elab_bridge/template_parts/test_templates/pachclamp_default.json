@@ -1,0 +1,1070 @@
+{
+  "elabftw": {
+    "display_main_text": true,
+    "extra_fields_groups": [
+      {
+        "id": 1,
+        "name": "GENERIC_BIDS_PROJECT"
+      },
+      {
+        "id": 2,
+        "name": "GENERIC_BIDS_PARTICIPANT"
+      },
+      {
+        "id": 3,
+        "name": "GENERIC_BIDS_SESSION"
+      },
+      {
+        "id": 4,
+        "name": "Run1"
+      },
+      {
+        "id": 5,
+        "name": "Run2"
+      },
+      {
+        "id": 6,
+        "name": "Run3"
+      },
+      {
+        "id": 7,
+        "name": "Run4"
+      },
+      {
+        "id": 8,
+        "name": "Run5"
+      },
+      {
+        "id": 9,
+        "name": "Run6"
+      },
+      {
+        "id": 10,
+        "name": "Run7"
+      },
+      {
+        "id": 11,
+        "name": "Run8"
+      },
+      {
+        "id": 12,
+        "name": "Run9"
+      },
+      {
+        "id": 13,
+        "name": "Run10"
+      },
+      {
+        "id": 14,
+        "name": "PatchClamp"
+      },
+      {
+        "id": 15,
+        "name": "Cellinformation"
+      },
+      {
+        "id": 16,
+        "name": "Recording parameters"
+      },
+      {
+        "id": 17,
+        "name": "Rs Compensation"
+      }
+    ]
+  },
+  "extra_fields": {
+    "Cm": {
+      "unit": "pF",
+      "value": 4.3,
+      "group_id": 14,
+      "position": 0
+    },
+    "Re": {
+      "unit": "Moh",
+      "value": 3,
+      "group_id": 14,
+      "position": 1
+    },
+    "Rm": {
+      "value": "Goh",
+      "group_id": 14,
+      "position": 2
+    },
+    "Rs": {
+      "unit": "Moh",
+      "value": 18.9,
+      "group_id": 14,
+      "position": 4
+    },
+    "VR": {
+      "unit": "mV",
+      "value": "na",
+      "group_id": 14,
+      "position": 5
+    },
+    "hc": {
+      "unit": "pA",
+      "value": -10,
+      "group_id": 14,
+      "position": 6
+    },
+    "Age": {
+      "type": "number",
+      "unit": "",
+      "units": [
+        "years",
+        "months"
+      ],
+      "value": "",
+      "group_id": 2,
+      "position": 5,
+      "description": " In years or months. Ex: '42 or 0.4'"
+    },
+    "Sex": {
+      "type": "radio",
+      "options": [
+        "F",
+        "M",
+        "Others"
+      ],
+      "group_id": 2,
+      "position": 7,
+      "description": "GDPR"
+    },
+    "Cell": {
+      "type": "text",
+      "value": "",
+      "group_id": 15,
+      "description": "Cell Number"
+    },
+    "Group": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 8,
+      "description": "Experimental group. Ex: 'control, under 10 years, ...'"
+    },
+    "Rseal": {
+      "unit": "Goh",
+      "value": 2.1,
+      "group_id": 14,
+      "position": 8
+    },
+    "Slice": {
+      "type": "text",
+      "value": "",
+      "group_id": 15,
+      "description": "Slice number"
+    },
+    "Comp80": {
+      "value": "80% comp.",
+      "group_id": 14,
+      "position": 10
+    },
+    "Offset": {
+      "unit": "mV",
+      "value": 26.01,
+      "group_id": 14,
+      "position": 11
+    },
+    "Strain": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 4,
+      "description": "The strain of the subject",
+      "blank_value_on_duplicate": false
+    },
+    "Weight": {
+      "type": "number",
+      "value": "",
+      "group_id": 2,
+      "position": 9,
+      "description": "The weight of the subject [in grams]",
+      "blank_value_on_duplicate": false
+    },
+    "Authors": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 1,
+      "description": "List of individuals who contributed to the creation/curation of the dataset."
+    },
+    "Species": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 3
+    },
+    "CellName": {
+      "type": "text",
+      "value": "",
+      "group_id": 15
+    },
+    "CellType": {
+      "unit": "Y",
+      "value": "CSF-cN",
+      "group_id": 14,
+      "position": 12
+    },
+    "Modality": {
+      "type": "select",
+      "value": [
+        "intracellular microelectrode signals"
+      ],
+      "options": [
+        "extracellular microelectrode signals",
+        "intracellular microelectrode signals",
+        "EEG",
+        "EMG",
+        "ECog",
+        "optical imaging",
+        "behaviour",
+        "stimulation (specify below)"
+      ],
+      "group_id": 2,
+      "position": 0,
+      "description": "The modalities recorded",
+      "allow_multi_values": true,
+      "blank_value_on_duplicate": true
+    },
+    "SampleID": {
+      "type": "text",
+      "value": "",
+      "group_id": 14,
+      "position": 13,
+      "description": "A sample identifier of the form sample-<label>, matching a sample entity found in the dataset."
+    },
+    "BirthDate": {
+      "type": "datetime-local",
+      "value": "",
+      "group_id": 2,
+      "position": 6
+    },
+    "StartTime": {
+      "type": "text",
+      "value": "",
+      "group_id": 14,
+      "position": 15
+    },
+    "DatasetDOI": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 9,
+      "description": "The Digital Object Identifier of the dataset (not the corresponding paper)."
+    },
+    "EventsSet1": {
+      "type": "text",
+      "value": "",
+      "group_id": 4,
+      "position": 4,
+      "description": "Details about the events associated with this set."
+    },
+    "EventsSet2": {
+      "type": "text",
+      "value": "",
+      "group_id": 5,
+      "position": 4,
+      "description": "Details about the events associated with this set."
+    },
+    "EventsSet3": {
+      "type": "text",
+      "value": "",
+      "group_id": 6,
+      "position": 4,
+      "description": "Details about the events associated with this set."
+    },
+    "EventsSet4": {
+      "type": "text",
+      "value": "",
+      "group_id": 7,
+      "position": 4,
+      "description": "Details about the events associated with this set."
+    },
+    "EventsSet5": {
+      "type": "text",
+      "value": "",
+      "group_id": 8,
+      "position": 4,
+      "description": "Details about the events associated with this set."
+    },
+    "EventsSet6": {
+      "type": "text",
+      "value": "",
+      "group_id": 9,
+      "position": 4,
+      "description": "Details about the events associated with this set."
+    },
+    "EventsSet7": {
+      "type": "text",
+      "value": "",
+      "group_id": 10,
+      "position": 4,
+      "description": "Details about the events associated with this set."
+    },
+    "EventsSet8": {
+      "type": "text",
+      "value": "",
+      "group_id": 11,
+      "position": 4,
+      "description": "Details about the events associated with this set."
+    },
+    "EventsSet9": {
+      "type": "text",
+      "value": "",
+      "group_id": 12,
+      "position": 4,
+      "description": "Details about the events associated with this set."
+    },
+    "RunNumber1": {
+      "type": "text",
+      "value": "",
+      "group_id": 4,
+      "position": 0
+    },
+    "RunNumber2": {
+      "type": "text",
+      "value": "",
+      "group_id": 5,
+      "position": 0
+    },
+    "RunNumber3": {
+      "type": "text",
+      "value": "",
+      "group_id": 6,
+      "position": 0
+    },
+    "RunNumber4": {
+      "type": "text",
+      "value": "",
+      "group_id": 7,
+      "position": 0
+    },
+    "RunNumber5": {
+      "type": "text",
+      "value": "",
+      "group_id": 8,
+      "position": 0
+    },
+    "RunNumber6": {
+      "type": "text",
+      "value": "",
+      "group_id": 9,
+      "position": 0
+    },
+    "RunNumber7": {
+      "type": "text",
+      "value": "",
+      "group_id": 10,
+      "position": 0
+    },
+    "RunNumber8": {
+      "type": "text",
+      "value": "",
+      "group_id": 11,
+      "position": 0
+    },
+    "RunNumber9": {
+      "type": "text",
+      "value": "",
+      "group_id": 12,
+      "position": 0
+    },
+    "SampleType": {
+      "type": "select",
+      "value": "cell line",
+      "options": [
+        "cell line",
+        "in vitro differentiated cells",
+        "primary cell",
+        "cell-free sample",
+        "cloning host",
+        "tissue",
+        "whole organisms",
+        "organoid",
+        "technical sample"
+      ],
+      "group_id": 14,
+      "position": 14
+    },
+    "StartTime1": {
+      "type": "text",
+      "value": "",
+      "group_id": 4,
+      "position": 5
+    },
+    "StartTime2": {
+      "type": "text",
+      "value": "",
+      "group_id": 5,
+      "position": 5
+    },
+    "StartTime3": {
+      "type": "text",
+      "value": "",
+      "group_id": 6,
+      "position": 5
+    },
+    "StartTime4": {
+      "type": "text",
+      "value": "",
+      "group_id": 7,
+      "position": 5
+    },
+    "StartTime5": {
+      "type": "text",
+      "value": "",
+      "group_id": 8,
+      "position": 5
+    },
+    "StartTime6": {
+      "type": "text",
+      "value": "",
+      "group_id": 9,
+      "position": 5
+    },
+    "StartTime7": {
+      "type": "text",
+      "value": "",
+      "group_id": 10,
+      "position": 5
+    },
+    "StartTime8": {
+      "type": "text",
+      "value": "",
+      "group_id": 11,
+      "position": 5
+    },
+    "StartTime9": {
+      "type": "text",
+      "value": "",
+      "group_id": 12,
+      "position": 5
+    },
+    "Subject ID": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 1,
+      "description": "subject number  or monkey name or etc"
+    },
+    "handedness": {
+      "type": "radio",
+      "options": [
+        "left",
+        "right",
+        "ambidextrous"
+      ],
+      "group_id": 2,
+      "position": 10,
+      "description": "GDPR"
+    },
+    "session_id": {
+      "type": "text",
+      "value": "",
+      "group_id": 3,
+      "position": 0,
+      "required": true,
+      "description": "Ex: '01 or predrug or 20231206'"
+    },
+    "DatasetType": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 3,
+      "description": "The interpretation of the dataset. For backwards compatibility, the default value is \"raw\".  Must be one of: \"raw\", \"derivative\"."
+    },
+    "EventsSet10": {
+      "type": "text",
+      "value": "",
+      "group_id": 13,
+      "position": 4,
+      "description": "Details about the events associated with this set."
+    },
+    "GeneratedBy": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 2,
+      "description": "Used to specify provenance of the dataset."
+    },
+    "RunComment1": {
+      "type": "text",
+      "value": "",
+      "group_id": 4,
+      "position": 6,
+      "description": "Comment about the subject behavior during the run."
+    },
+    "RunComment2": {
+      "type": "text",
+      "value": "",
+      "group_id": 5,
+      "position": 6,
+      "description": "Comment about the subject behavior during the run."
+    },
+    "RunComment3": {
+      "type": "text",
+      "value": "",
+      "group_id": 6,
+      "position": 6,
+      "description": "Comment about the subject behavior during the run."
+    },
+    "RunComment4": {
+      "type": "text",
+      "value": "",
+      "group_id": 7,
+      "position": 6,
+      "description": "Comment about the subject behavior during the run."
+    },
+    "RunComment5": {
+      "type": "text",
+      "value": "",
+      "group_id": 8,
+      "position": 6,
+      "description": "Comment about the subject behavior during the run."
+    },
+    "RunComment6": {
+      "type": "text",
+      "value": "",
+      "group_id": 9,
+      "position": 6,
+      "description": "Comment about the subject behavior during the run."
+    },
+    "RunComment7": {
+      "type": "text",
+      "value": "",
+      "group_id": 10,
+      "position": 6,
+      "description": "Comment about the subject behavior during the run."
+    },
+    "RunComment8": {
+      "type": "text",
+      "value": "",
+      "group_id": 11,
+      "position": 6,
+      "description": "Comment about the subject behavior during the run."
+    },
+    "RunComment9": {
+      "type": "text",
+      "value": "",
+      "group_id": 12,
+      "position": 6,
+      "description": "Comment about the subject behavior during the run."
+    },
+    "RunNumber10": {
+      "type": "text",
+      "value": "",
+      "group_id": 13,
+      "position": 0
+    },
+    "StartTime10": {
+      "type": "text",
+      "value": "",
+      "group_id": 13,
+      "position": 5
+    },
+    "Acquisition1": {
+      "type": "text",
+      "value": "",
+      "group_id": 4,
+      "position": 3,
+      "description": "Details about the acquisition process."
+    },
+    "Acquisition2": {
+      "type": "text",
+      "value": "",
+      "group_id": 5,
+      "position": 3,
+      "description": "Details about the acquisition process."
+    },
+    "Acquisition3": {
+      "type": "text",
+      "value": "",
+      "group_id": 6,
+      "position": 3,
+      "description": "Details about the acquisition process."
+    },
+    "Acquisition4": {
+      "type": "text",
+      "value": "",
+      "group_id": 7,
+      "position": 3,
+      "description": "Details about the acquisition process."
+    },
+    "Acquisition5": {
+      "type": "text",
+      "value": "",
+      "group_id": 8,
+      "position": 3,
+      "description": "Details about the acquisition process."
+    },
+    "Acquisition6": {
+      "type": "text",
+      "value": "",
+      "group_id": 9,
+      "position": 3,
+      "description": "Details about the acquisition process."
+    },
+    "Acquisition7": {
+      "type": "text",
+      "value": "",
+      "group_id": 10,
+      "position": 3,
+      "description": "Details about the acquisition process."
+    },
+    "Acquisition8": {
+      "type": "text",
+      "value": "",
+      "group_id": 11,
+      "position": 3,
+      "description": "Details about the acquisition process."
+    },
+    "Acquisition9": {
+      "type": "text",
+      "value": "",
+      "group_id": 12,
+      "position": 3,
+      "description": "Details about the acquisition process."
+    },
+    "DatasetLinks": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 7,
+      "description": "Used to map a given <dataset-name> from a BIDS URI of the form bids:"
+    },
+    "RunComment10": {
+      "type": "text",
+      "value": "",
+      "group_id": 13,
+      "position": 6,
+      "description": "Comment about the subject behavior during the run."
+    },
+    "Subject GUID": {
+      "type": "text",
+      "value": "",
+      "group_id": 2,
+      "position": 2
+    },
+    "Acquisition10": {
+      "type": "text",
+      "value": "",
+      "group_id": 13,
+      "position": 3,
+      "description": "Details about the acquisition process."
+    },
+    "DataFilePath1": {
+      "type": "text",
+      "value": "",
+      "group_id": 4,
+      "description": "the path where the Protocole 's file is saved"
+    },
+    "DataFilePath2": {
+      "type": "text",
+      "value": "",
+      "group_id": 5,
+      "description": "the path where the Protocole 's file is saved"
+    },
+    "DataFilePath3": {
+      "type": "text",
+      "value": "",
+      "group_id": 6,
+      "description": "the path where the Protocole 's file is saved"
+    },
+    "DataFilePath4": {
+      "type": "text",
+      "value": "",
+      "group_id": 7,
+      "description": "the path where the Protocole 's file is saved"
+    },
+    "DataFilePath5": {
+      "type": "text",
+      "value": "",
+      "group_id": 8,
+      "description": "the path where the Protocole 's file is saved"
+    },
+    "DataFilePath6": {
+      "type": "text",
+      "value": "",
+      "group_id": 9,
+      "description": "the path where the Protocole 's file is saved"
+    },
+    "DataFilePath7": {
+      "type": "text",
+      "value": "",
+      "group_id": 10,
+      "description": "the path where the Protocole 's file is saved"
+    },
+    "DataFilePath8": {
+      "type": "text",
+      "value": "",
+      "group_id": 11,
+      "description": "the path where the Protocole 's file is saved"
+    },
+    "DataFilePath9": {
+      "type": "text",
+      "value": "",
+      "group_id": 12,
+      "description": "the path where the Protocole 's file is saved"
+    },
+    "hcAtMinus70mV": {
+      "unit": "pA",
+      "value": -11.9,
+      "group_id": 14,
+      "position": 16
+    },
+    "DataFilePath10": {
+      "type": "text",
+      "value": "",
+      "group_id": 13,
+      "description": "the path where the Protocole 's file is saved"
+    },
+    "Experimenter 1": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 5,
+      "description": " Ex: 'Odile De Ray'"
+    },
+    "Experimenter 2": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 6,
+      "description": " Ex: 'Odile De Ray'"
+    },
+    "Experimenter 3": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 8,
+      "description": " Ex: 'Odile De Ray'"
+    },
+    "Frequency(µs)": {
+      "type": "text",
+      "value": "",
+      "group_id": 17,
+      "description": "Frequency (µs)"
+    },
+    "ImageFilePath1": {
+      "type": "text",
+      "value": "",
+      "group_id": 4,
+      "description": "This field will store the name of an image file or a link to an image"
+    },
+    "ImageFilePath2": {
+      "type": "text",
+      "value": "",
+      "group_id": 5,
+      "description": "This field will store the name of an image file or a link to an image"
+    },
+    "ImageFilePath3": {
+      "type": "text",
+      "value": "",
+      "group_id": 6,
+      "description": "This field will store the name of an image file or a link to an image"
+    },
+    "ImageFilePath4": {
+      "type": "text",
+      "value": "",
+      "group_id": 7,
+      "description": "This field will store the name of an image file or a link to an image"
+    },
+    "ImageFilePath5": {
+      "type": "text",
+      "value": "",
+      "group_id": 8,
+      "description": "This field will store the name of an image file or a link to an image"
+    },
+    "ImageFilePath6": {
+      "type": "text",
+      "value": "",
+      "group_id": 9,
+      "description": "This field will store the name of an image file or a link to an image"
+    },
+    "ImageFilePath7": {
+      "type": "text",
+      "value": "",
+      "group_id": 10,
+      "description": "This field will store the name of an image file or a link to an image"
+    },
+    "ImageFilePath8": {
+      "type": "text",
+      "value": "",
+      "group_id": 11,
+      "description": "This field will store the name of an image file or a link to an image"
+    },
+    "ImageFilePath9": {
+      "type": "text",
+      "value": "",
+      "group_id": 12,
+      "description": "This field will store the name of an image file or a link to an image"
+    },
+    "Experiment name": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "position": 4,
+      "description": " Experiment name including around X subjects"
+    },
+    "ImageFilePath10": {
+      "type": "text",
+      "value": "",
+      "group_id": 13,
+      "description": "This field will store the name of an image file or a link to an image"
+    },
+    "AnalyseFilePath1": {
+      "type": "text",
+      "value": "",
+      "group_id": 4,
+      "description": "This field will store the name of the analysis fil"
+    },
+    "AnalyseFilePath2": {
+      "type": "text",
+      "value": "",
+      "group_id": 5,
+      "description": "This field will store the name of the analysis fil"
+    },
+    "AnalyseFilePath3": {
+      "type": "text",
+      "value": "",
+      "group_id": 6,
+      "description": "This field will store the name of the analysis file"
+    },
+    "AnalyseFilePath4": {
+      "type": "text",
+      "value": "",
+      "group_id": 7,
+      "description": "This field will store the name of the analysis file"
+    },
+    "AnalyseFilePath5": {
+      "type": "text",
+      "value": "",
+      "group_id": 8,
+      "description": "This field will store the name of the analysis file"
+    },
+    "AnalyseFilePath6": {
+      "type": "text",
+      "value": "",
+      "group_id": 9,
+      "description": "This field will store the name of the analysis file"
+    },
+    "AnalyseFilePath7": {
+      "type": "text",
+      "value": "",
+      "group_id": 10,
+      "description": "This field will store the name of the analysis file"
+    },
+    "AnalyseFilePath8": {
+      "type": "text",
+      "value": "",
+      "group_id": 11,
+      "description": "This field will store the name of the analysis file"
+    },
+    "AnalyseFilePath9": {
+      "type": "text",
+      "value": "",
+      "group_id": 12,
+      "description": "This field will store the name of the analysis file"
+    },
+    "Session duration": {
+      "type": "number",
+      "value": "91",
+      "group_id": 3,
+      "position": "3",
+      "description": "The duration of the session [in minutes]",
+      "blank_value_on_duplicate": true
+    },
+    "TaskDescription1": {
+      "type": "text",
+      "value": "",
+      "group_id": 4,
+      "position": 2,
+      "description": "Description of the task"
+    },
+    "TaskDescription2": {
+      "type": "text",
+      "value": "",
+      "group_id": 5,
+      "position": 2,
+      "description": "Description of the task"
+    },
+    "TaskDescription3": {
+      "type": "text",
+      "value": "",
+      "group_id": 6,
+      "position": 2,
+      "description": "Description of the task"
+    },
+    "TaskDescription4": {
+      "type": "text",
+      "value": "",
+      "group_id": 7,
+      "position": 2,
+      "description": "Description of the task"
+    },
+    "TaskDescription5": {
+      "type": "text",
+      "value": "",
+      "group_id": 8,
+      "position": 2,
+      "description": "Description of the task"
+    },
+    "TaskDescription6": {
+      "type": "text",
+      "value": "",
+      "group_id": 9,
+      "position": 2,
+      "description": "Description of the task"
+    },
+    "TaskDescription7": {
+      "type": "text",
+      "value": "",
+      "group_id": 10,
+      "position": 2,
+      "description": "Description of the task"
+    },
+    "TaskDescription8": {
+      "type": "text",
+      "value": "",
+      "group_id": 11,
+      "position": 2,
+      "description": "Description of the task"
+    },
+    "TaskDescription9": {
+      "type": "text",
+      "value": "",
+      "group_id": 12,
+      "position": 2,
+      "description": "Description of the task"
+    },
+    "AnalyseFilePath10": {
+      "type": "text",
+      "value": "",
+      "group_id": 13,
+      "description": "This field will store the name of the analysis file"
+    },
+    "HeadCircumference": {
+      "type": "number",
+      "unit": "",
+      "units": [
+        "cm"
+      ],
+      "value": "",
+      "group_id": 2,
+      "position": 11,
+      "description": "Ex: '53.5 or 55'"
+    },
+    "TaskDescription10": {
+      "type": "text",
+      "value": "",
+      "group_id": 13,
+      "position": 2,
+      "description": "Description of the task"
+    },
+    "HoldingCurrent(pA)": {
+      "type": "text",
+      "value": "",
+      "group_id": 16,
+      "description": "Holding current (pA)"
+    },
+    "PipetteCapacitance": {
+      "unit": "pF",
+      "value": 11,
+      "group_id": 14,
+      "position": 17
+    },
+    "OffsetPotential(mV)": {
+      "type": "text",
+      "value": "",
+      "group_id": 16,
+      "description": "Offset potential (mV)"
+    },
+    "SealResistance(GΩ)": {
+      "type": "text",
+      "value": "",
+      "group_id": 16,
+      "description": "Seal resistance (GΩ)"
+    },
+    "HoldingPotential(mV)": {
+      "type": "text",
+      "value": "",
+      "group_id": 16,
+      "description": "Holding potential (mV)"
+    },
+    "SeriesResistance(MΩ)": {
+      "type": "text",
+      "value": "",
+      "group_id": 17,
+      "description": "Series resistance (MΩ)"
+    },
+    "DistanceDuCanalCentral": {
+      "unit": "Z",
+      "value": "Channel activity",
+      "group_id": 14,
+      "position": 18
+    },
+    "PipetteCapacitance(pF)": {
+      "type": "text",
+      "value": "",
+      "group_id": 16,
+      "description": "Pipette capacitance (pF)"
+    },
+    "PipetteResistance(MΩ)": {
+      "type": "text",
+      "value": "",
+      "group_id": 16,
+      "description": "Pipette resistance (MΩ)"
+    },
+    "MembraneCapacitance(pF)": {
+      "type": "text",
+      "value": "",
+      "group_id": 17,
+      "description": "Membrane capacitance (pF)"
+    },
+    "MembraneResistance(MΩ)": {
+      "type": "text",
+      "value": "",
+      "group_id": 17,
+      "description": "Membrane resistance (MΩ)"
+    },
+    "HoldingCurrentAtSeal(pA)": {
+      "type": "text",
+      "value": "",
+      "group_id": 16,
+      "description": "Holding current at seal (pA)"
+    },
+    "CellLocalisation[x, y, z]": {
+      "type": "text",
+      "value": "",
+      "group_id": 15,
+      "description": "cell cordianate [x, y , z]"
+    },
+    "CompensationPercentage(%)": {
+      "type": "text",
+      "value": "",
+      "group_id": 17,
+      "description": "Compensation percentage (%)"
+    },
+    "Comments on the experiment": {
+      "type": "text",
+      "value": "",
+      "group_id": 14,
+      "description": "any comment about your experiment"
+    },
+    "Ethical Protocol Identifier": {
+      "type": "text",
+      "value": "defaut format in '5X-16X-vX'",
+      "group_id": 1,
+      "position": 0,
+      "description": "The official ethical protocol id "
+    },
+    "RestingMembranePotential(mV)": {
+      "type": "text",
+      "value": "",
+      "group_id": 16,
+      "description": "Resting membrane potential (mV)"
+    }
+  }
+}
