@@ -1,0 +1,64 @@
+{
+  "elabftw": {
+    "extra_fields_groups": [
+      {
+        "id": 1,
+        "name": "MicroEphys_BIDS_Metadata"
+      }
+    ]
+  },
+  "extra_fields": {
+    "ProbIDList": {
+      "type": "text",
+      "value": "[p023, p021]",
+      "group_id": 1,
+      "blank_value_on_duplicate": false
+    },
+    "HemisphereList": {
+      "type": "text",
+      "value": "[left, right]",
+      "group_id": 1,
+      "blank_value_on_duplicate": false
+    },
+    "BrainRegionList": {
+      "type": "text",
+      "value": "[motor cortex , visual cortex]",
+      "group_id": 1,
+      "blank_value_on_duplicate": false
+    },
+    "CoordinateSystemFile": {
+      "type": "text",
+      "value": "BIDS_coordsystem.json",
+      "group_id": 1,
+      "description": "file path",
+      "blank_value_on_duplicate": false
+    },
+    "ProbesDescriptionFile": {
+      "type": "text",
+      "value": "BIDS_probes.tsv",
+      "group_id": 1,
+      "description": "file path",
+      "blank_value_on_duplicate": false
+    },
+    "ChannelsDescriptionFile": {
+      "type": "text",
+      "value": "BIDS_channels.tsv",
+      "group_id": 1,
+      "description": "file path",
+      "blank_value_on_duplicate": false
+    },
+    "ElectrodesDescriptionFile": {
+      "type": "text",
+      "value": "BIDS_electrodes.tsv",
+      "group_id": 1,
+      "description": "file path",
+      "blank_value_on_duplicate": false
+    },
+    "Comment on the MicroephysBidsMetadata": {
+      "type": "text",
+      "value": "",
+      "group_id": 1,
+      "blank_value_on_duplicate": false
+    }
+  }
+}

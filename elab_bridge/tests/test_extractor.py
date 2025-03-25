@@ -11,6 +11,7 @@ from elab_bridge.Extractor import (
     complete_groupfield_in_jsonfile,
     complete_jsonfile1_with_jsonfile2_groupefield,
     orderjsonfile,
+    replicate_groupfield,
 )
 
 
@@ -233,6 +234,84 @@ class TestJsonOperations(unittest.TestCase):
         # Clean up temporary files
         os.unlink(jsonfiletocompleted.name)
         os.unlink(jsonfiletoextract.name)
+
+    def test_replicate_groupfield(self):
+
+            """Test replicating groupfields."""
+            # Define the source JSON file (to be completed)
+            sample_json = {
+                "elabftw": {
+                    "extra_fields_groups": [
+                        {"id": 1, "name": "Group 1"},
+                        {"id": 2, "name": "Group 2"}
+                    ]
+                },
+                "extra_fields": {
+                    "field_1": {"group_id": 1, "value": "Test 1"},
+                    "field_2": {"group_id": 2, "value": "Test 2"}
+                }
+            }
+
+            # Create temporary files for testing
+            jsonfiletoreplicate = NamedTemporaryFile(delete=False, mode='w+', suffix='.json')
+            json.dump(sample_json, jsonfiletoreplicate)
+            jsonfiletoreplicate.close()
+
+            # Define parameters for the function
+            indice = 2
+            n_replicat = 3
+
+            # Call the function under test
+            data = replicate_groupfield(jsonfiletoreplicate.name, indice, n_replicat,
+                                        samefieldname=False, json_output=None)
+            data2 = replicate_groupfield(jsonfiletoreplicate.name, indice, n_replicat,erase_existing=True,
+                                        samefieldname=False, json_output=None)
+
+            # Define the expected result
+            expected_json1 = {
+                "elabftw": {
+                    "extra_fields_groups": [
+                        {"id": 1, "name": "Group 1"},
+                        {"id": 2, "name": "Group 2"},
+                        {"id": 3, "name": "Group 21"},
+                        {"id": 4, "name": "Group 22"},
+                        {"id": 5, "name": "Group 23"}
+                    ]
+                },
+                "extra_fields": {
+                    "field_1": {"group_id": 1, "value": "Test 1"},
+                    "field_2": {"group_id": 2, "value": "Test 2"},
+                    "field_21": {"group_id": 3, "value": "Test 2"},
+                    "field_22": {"group_id": 4, "value": "Test 2"},
+                    "field_23": {"group_id": 5, "value": "Test 2"}
+                }
+            }
+            expected_json2= {
+                "elabftw": {
+                    "extra_fields_groups": [
+                       
+                        {"id": 3, "name": "Group 21"},
+                        {"id": 4, "name": "Group 22"},
+                        {"id": 5, "name": "Group 23"}
+                    ]
+                },
+                "extra_fields": {
+
+
+                    "field_21": {"group_id": 3, "value": "Test 2"},
+                    "field_22": {"group_id": 4, "value": "Test 2"},
+                    "field_23": {"group_id": 5, "value": "Test 2"}
+                }
+            }
+
+            # Validate the output
+            self.assertEqual(data, expected_json1,
+                             "The replicated JSON does not match the expected structure.")
+            self.assertEqual(data2, expected_json2,
+                             "The replicated JSON does not match the expected structure.")
+            print("data", data)
+            # Clean up temporary files
+            os.unlink(jsonfiletoreplicate.name)
 
 
 if __name__ == '__main__':

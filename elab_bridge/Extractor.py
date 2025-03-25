@@ -210,7 +210,6 @@ def complete_jsonfile1_with_jsonfile2_groupefield(jsonfiletocompleted, jsonfilet
 
 
 def orderjsonfile(jsonfile, list_group_field_name, output_jsonfile=None):
-
     """
     Orders fields within a JSON file by specified group field names.
     Parameters
@@ -237,11 +236,13 @@ def orderjsonfile(jsonfile, list_group_field_name, output_jsonfile=None):
         list_group_field = [group['name'] for group in Data['elabftw']['extra_fields_groups']]
         logger.debug(f"List of group fields: {list_group_field}")
 
+
         # Validate group names
-        missing_groups = [group_name for group_name in list_group_field_name if
-                          group_name not in list_group_field]
+        missing_groups = [group_name for group_name in list_group_field if
+                          group_name not in list_group_field_name]
         if missing_groups:
             raise ValueError(f"Missing groups in data: {missing_groups}")
+
 
         # Create mapping for group IDs
         Dict_group_field_map = {}
@@ -280,6 +281,67 @@ def orderjsonfile(jsonfile, list_group_field_name, output_jsonfile=None):
     return None
 
 
+def replicate_groupfield(jsonfile, id, n_replicat, samefieldname=False, erase_existing=False,
+                         json_output=None):
+    """
+        Replicate a groupfield in a JSON file.
+        Extract a groupfield from a JSON file and replicate it n times
+        where for each replication the groupfield id is incremented by 1 and the groupfield name is the parent groupfield name + index.
+
+        :param jsonfile: The JSON file path.
+        :param id: The groupfield id to replicate.
+        :param n_replicat: The number of groupfield to replicate.
+        :param json_output: The path to save the updated JSON file.
+        :param erase_existing: Boolean to indicate if existing data should be erased.
+        :return: The updated JSON data.
+        """
+    data = loadfile(jsonfile)
+    groupfield_name, list_group_field = extract_groupfield_detail(jsonfile, id, id)
+
+    if samefieldname:
+        list_group_field_name = [groupfield_name for i in range(n_replicat)]
+    else:
+        list_group_field_name = [groupfield_name + str(i) for i in range(1, n_replicat + 1)]
+    list_id = [id + i for i in range(1, n_replicat + 1)]
+    list_group_field_name.insert(0, groupfield_name)
+
+    new_fields = []
+    for field in list_group_field:
+        for k, v in field.items():
+            for i in range(1, n_replicat + 1):
+                new_k = f"{k}{i}"
+                new_v = v.copy()
+                new_v['group_id'] = id + i
+                new_fields.append({new_k: new_v})
+
+    if erase_existing:
+        data['elabftw']['extra_fields_groups'] = []
+        data['extra_fields'] = {}
+    else :
+        # Increment IDs of existing groups if they are greater than or equal to the new index
+        for group in data['elabftw']['extra_fields_groups']:
+            if n_replicat +1 <= group['id'] > id:
+                group['id'] += n_replicat+int(group['id'], 0)
+
+        # Update the group_id in existing extra fields
+        extra_fields = data.get('extra_fields', {})
+        for k, v in extra_fields.items():
+            group_id = int(v.get('group_id', 0))
+            if n_replicat +1 <= group['id'] > id:
+
+                v['group_id'] = group_id + n_replicat+int(group['id'], 0)
+    # Replicate the groupfield n times
+    for new_id, name in zip(list_id, list_group_field_name[1:]):
+        data['elabftw']['extra_fields_groups'].append({'id': new_id, 'name': name})
+
+    data['extra_fields'].update(
+        {field_id: details for field in new_fields for field_id, details in field.items()})
+
+    if json_output is not None:
+        savefile(json_output, data)
+    return data
+
+
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(
@@ -288,7 +350,8 @@ if __name__ == '__main__':
             "- Extracting specific fields from a JSON file and creating a new structured JSON.\n"
             "- Merging two JSON files based on group field IDs: Extracting a group field from one "
             "JSON file and appending it to another.\n"
-            "- Ordering fields within a JSON file by specified group field names."
+            "- Ordering fields within a JSON file by specified group field names.\n"
+            "- Replicating a group field in a JSON file."
         ),
         epilog=(
             "Examples of usage:\n"
@@ -302,43 +365,57 @@ if __name__ == '__main__':
             "  Order JSON fields:\n"
             "python Extractor.py order --jsonfile input.json --list_group_field_name field1 "
             "field2 --output_jsonfile ordered.json\n\n"
+            "  Replicate group field:\n"
+            "python Extractor.py replicate --jsonfile input.json --id 1 --n_replicat 3 "
+            "--json_output replicated.json\n\n"
             "Options:\n"
             "  extract   Extracts fields from a JSON file and saves the output.\n"
             "  merge     Complete a JSON file by adding a group field from another JSON file.\n"
-            "  order     Orders fields in a JSON file by the specified group field names."
+            "  order     Orders fields in a JSON file by the specified group field names.\n"
+            "  replicate Replicates a group field in a JSON file."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument(
         "operation",
-        choices=["extract", "merge", "order"],
-        help="Specify the operation to perform: 'extract' to extract fields or 'merge' to combine "
-             "files.",
+        choices=["extract", "merge", "order", "replicate"],
+        help="Specify the operation to perform: 'extract' to extract fields, 'merge' to combine "
+             "files, 'order' to order fields, or 'replicate' to replicate a group field.",
     )
 
     # Arguments for extracting
-    parser.add_argument("--jsonfile_extract", '-e', help="The JSON file path for extraction.", type=str)
+    parser.add_argument("--jsonfile_extract", '-e', help="The JSON file path for extraction.",
+                        type=str)
 
     parser.add_argument("--id", help="The groupfield ID to match.", type=int)
     parser.add_argument("--new_id", help="The new ID to replace for matching fields.", type=int)
-    parser.add_argument("--json_output", '-u', help="The path to save the new JSON structure.", type=str,
+    parser.add_argument("--json_output", '-u', help="The path to save the new JSON structure.",
+                        type=str,
                         default=None)
 
     # Arguments for merging
-    parser.add_argument("--jsonfiletocompleted", '-c', help="The JSON file to be completed.", type=str)
-    parser.add_argument("--jsonfiletoextract",  '-x', help="The JSON file to extract the "
-                                                           "groupfield from.",
+    parser.add_argument("--jsonfiletocompleted", '-c', help="The JSON file to be completed.",
+                        type=str)
+    parser.add_argument("--jsonfiletoextract", '-x', help="The JSON file to extract the "
+                                                          "groupfield from.",
                         type=str)
     parser.add_argument("--json_completed", '-C', help="The path to save the completed JSON file.",
                         type=str, default=None)
 
     # Arguments for ordering
-    parser.add_argument("--jsonfile", '-j',  help="The JSON file path for ordering.", type=str)
+    parser.add_argument("--jsonfile", '-j', help="The JSON file path for ordering.", type=str)
     parser.add_argument("--list_group_field_name", '-l', help="The list of group field names to "
                                                               "order.",
                         type=str, nargs='+')
     parser.add_argument("--output_jsonfile", '-o', help="The path to save the ordered JSON file.",
                         type=str, default=None)
+
+    # Arguments for replicating
+    parser.add_argument("--n_replicat", '-n', help="The number of groupfield to replicate",
+                        type=int)
+    parser.add_argument("--samefieldname", '-y', help="identical field name for all groupfield",
+                        action='store_true')
+    parser.add_argument("--erase_existing", '-r', help="keep only replicat", action='store_true')
 
     args = parser.parse_args()
 
@@ -346,8 +423,7 @@ if __name__ == '__main__':
         if not all([args.jsonfile_extract, args.id, args.new_id, args.json_output]):
             print("Error: Missing arguments for the 'extract' operation.")
         else:
-            construct_extracted_json(args.jsonfile_extract
-                                     , args.id, args.new_id, args.json_output)
+            construct_extracted_json(args.jsonfile_extract, args.id, args.new_id, args.json_output)
             print(f"Extraction completed and saved to {args.json_output}.")
 
     elif args.operation == "merge":
@@ -365,9 +441,18 @@ if __name__ == '__main__':
                 args.json_completed,
             )
             print(f"Merging completed and saved to {args.json_completed}.")
+
     elif args.operation == "order":
         if not all([args.jsonfile, args.list_group_field_name]):
             print("Error: Missing arguments for the 'order' operation.")
         else:
             orderjsonfile(args.jsonfile, args.list_group_field_name, args.output_jsonfile)
-            print(f"Ordering completed and saved to {args.jsonfile}.")
+            print(f"Ordering lunch and will be save  to {args.jsonfile}.")
+
+    elif args.operation == "replicate":
+        if not all([args.jsonfile, args.id, args.n_replicat]):
+            print("Error: Missing arguments for the 'replicate' operation.")
+        else:
+            replicate_groupfield(args.jsonfile, args.id, args.n_replicat, args.samefieldname,
+                                 args.erase_existing, args.json_output)
+            print(f"Replication completed and saved to {args.json_output}.")
